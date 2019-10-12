@@ -452,7 +452,28 @@ height:50vh;
   <!-- 评论插件 -->
   <!-- 来必力City版安装代码 -->
 
-<!-- City版安装代码已完成 -->  
+<!-- City版安装代码已完成 --> 
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://riverye.com/2019/10/06/Day27-Codewars-刷題/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day27 - Codewars 刷題"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://riverye.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
   <!-- partial('_partial/comment/changyan') -->
   <!--PC版-->
 
@@ -575,6 +596,8 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -1214,17 +1237,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Rails-中的-Gemfile-檔案的內容/" >Rails 中的 Gemfile 檔案的內容</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/" >週末來塊蛋糕吧~ Codewars - Which are in?</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Rails-中的-Gemfile-檔案的內容/" >Rails 中的 Gemfile 檔案的內容</a>
         </li>
     
     
@@ -1240,6 +1258,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
         </li>
     
     
@@ -1276,23 +1299,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="string、object"><span class="iconfont-archer">&#xe606;</span>string、object</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
-    
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
-        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+        <span class="sidebar-tag-name" data-tags="Ruby、Rails、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby、Rails、Git、postgresql</span>
     
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
-        <span class="sidebar-tag-name" data-tags="Ruby、Rails、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby、Rails、Git、postgresql</span>
+        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
     
-        <span class="sidebar-tag-name" data-tags="Ruby Rails、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby Rails、Git、postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby - Rails - Git - postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby - Rails - Git - postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby -Rails -Git -postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby -Rails -Git -postgresql</span>
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1331,11 +1348,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+    
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
         <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
-        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
