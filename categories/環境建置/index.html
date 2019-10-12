@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>用 TDD 刷 Codewars - Reverse words · 小菜的 Blog</title>
+    <title>小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -214,23 +214,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >你必須很努力</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">用 TDD 刷 Codewars - Reverse words</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>你必須很努力</a>
 </header>
@@ -244,63 +233,28 @@
 
 
 
-
-height:50vh;
 "
 >
   
   <!-- 主页  -->
-   
-  <!-- 404页  -->
   
   <div class="site-intro-placeholder"></div>
   <div
     class="site-intro-img"
-    style="background-image: url(/intro/post-bg.jpg)"
+    style="background-image: url(/)"
   ></div>
   <div class="site-intro-meta">
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       用 TDD 刷 Codewars - Reverse words
-      <!-- 404 -->
       
     </h1>
     <!-- 副标题 -->
     <p class="intro-subtitle">
       <!-- 主页副标题  -->
-       
-      <!-- 404 -->
       
     </p>
     <!-- 文章页meta -->
-    
-    <div class="post-intros">
-      <!-- 文章页标签  -->
-       <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>  
-      <div class="post-intro-meta">
-        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-        <span class="post-intro-time"
-          >2019/09/13</span
-        >
-      </div>
-      <div class="post-intro-read">
-        <span
-          >字數統計:
-          <span class="post-count word-count"
-            >209</span
-          >閱讀時間:
-          <span class="post-count reading-time"
-            >1 min</span
-          ></span
-        >
-      </div>
-      
-    </div>
     
   </div>
 </div>
@@ -402,66 +356,56 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-  <article class="article-entry">
-    <p>昨天刷 <a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> Lv8 題目<br>
-覺得不過癮<br>
-這次改以 TDD 刷 Codewars Lv7 題目<br>
-花了些時間講解如何設定 <a href="https://snippet-generator.app/" target="_blank" rel="noopener">snippet</a> 及 <a href="https://en.wikipedia.org/wiki/RSpec" target="_blank" rel="noopener">RSpec</a><br>
-snippet 做得好，省時又省力外，還能避免常打的語法打錯字<br>
-RSpec 寫得好，生活沒煩惱 XD</p>
-<hr>
-<p><strong><a href="https://www.codewars.com/kata/reverse-words/train/ruby" target="_blank" rel="noopener">題目</a>：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Complete the function that accepts a string parameter, <span class="keyword">and</span> reverses each word <span class="keyword">in</span> the string. All spaces <span class="keyword">in</span> the string should be retained.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line"><span class="string">"This is an example!"</span> ==&gt; <span class="string">"sihT si na !elpmaxe"</span></span><br><span class="line"><span class="string">"double  spaces"</span>      ==&gt; <span class="string">"elbuod  secaps"</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_words</span><span class="params">(str)</span></span></span><br><span class="line">  <span class="comment"># Go for it</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Sample <span class="symbol">Tests:</span></span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'The quick brown fox jumps over the lazy dog.'</span>), <span class="string">'ehT kciuq nworb xof spmuj revo eht yzal .god'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'apple'</span>), <span class="string">'elppa'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'a b c d'</span>), <span class="string">'a b c d'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'double  spaced  words'</span>), <span class="string">'elbuod  decaps  sdrow'</span>)</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p><strong>影片解題過程</strong>
-<a href="https://www.youtube.com/watch?v=4MqQO3M1gII" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4MqQO3M1gII/0.jpg" alt="Yes"></a></p>
-<hr>
-<p><strong>解題：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_words</span><span class="params">(str)</span></span></span><br><span class="line">  <span class="keyword">return</span> str.split.map&#123; <span class="params">|x|</span> x.reverse &#125;.join<span class="string">' '</span> <span class="keyword">if</span> str.scan(<span class="regexp">/  /</span>) == []</span><br><span class="line">  str.split.map&#123; <span class="params">|x|</span> x.reverse &#125;.join<span class="string">'  '</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/10/12/Windows-10-安裝-Ruby-Rails-Git-postgresql/" >
+            
+                <span>Windows 10 安裝 Ruby + Rails + Git + postgresql</span>
+        </a>
+        <div class="abstract-content">
+            環境建置
+環境介紹
+作業系統環境：
+作業系統：Windows 10 x64
+系統版本：1903 (OS 組建 18362.418)
 
-  </article>
-  <!-- license  -->
-  
-  <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/13/用-TDD-刷-Codewars-Reverse-words/">https://riverye.com/2019/09/13/用-TDD-刷-Codewars-Reverse-words/</a></p>
-    <p>發表日期：2019-09-13</p>
-    <p>更新日期：2019-10-09</p>
-  </div>
-  
-  <!-- paginator  -->
-  <ul class="post-paginator">
-    <li class="next">
-      
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" title="要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!">
-        <div class="nextTitle">要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</div>
-      </a>
-      
-    </li>
-    <li class="previous">
-      
-      <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/12/換刷-Codewars-Find-the-next-perfect-square/" title="換刷 Codewars - Find the next perfect square!">
-        <div class="prevTitle">換刷 Codewars - Find the next perfect square!</div>
-      </a>
-      
-    </li>
-  </ul>
-  <!-- 评论插件 -->
-  <!-- 来必力City版安装代码 -->
 
-<!-- City版安装代码已完成 -->  
-  <!-- partial('_partial/comment/changyan') -->
-  <!--PC版-->
 
-  
+安裝 Ubuntu
+Windows 10 內建「Microsoft Store」，透過 Microsoft Store 安裝 Ubuntu 18.04 LTS
 
-  <!-- 评论 -->
+
+
+接著開啟 Ubuntu，出現以下的錯誤，用管理者權限開啟「Windows PowerShell」
+
+開啟「Windows PowerSeell」，輸入
+1Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/10/12</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Ruby、Rails、Git、postgresql">Ruby、Rails、Git、postgresql</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    <!-- paginator  -->
+    
 </main>
-
             <!-- profile -->
             
         </div>
@@ -547,24 +491,6 @@ RSpec 寫得好，生活沒煩惱 XD</p>
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1370,8 +1296,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

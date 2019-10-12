@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>用 TDD 刷 Codewars - Reverse words · 小菜的 Blog</title>
+    <title>Windows 10 安裝 Ruby + Rails + Git + postgresql · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -228,7 +228,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">用 TDD 刷 Codewars - Reverse words</a>
+                <a href="#" class="post-name">Windows 10 安裝 Ruby + Rails + Git + postgresql</a>
             </div>
     </div>
     
@@ -262,7 +262,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       用 TDD 刷 Codewars - Reverse words
+       Windows 10 安裝 Ruby + Rails + Git + postgresql
       <!-- 404 -->
       
     </h1>
@@ -279,23 +279,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Ruby、Rails、Git、postgresql">Ruby、Rails、Git、postgresql</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/13</span
+          >2019/10/12</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >209</span
+            >1.1k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >5 min</span
           ></span
         >
       </div>
@@ -404,48 +404,168 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>昨天刷 <a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> Lv8 題目<br>
-覺得不過癮<br>
-這次改以 TDD 刷 Codewars Lv7 題目<br>
-花了些時間講解如何設定 <a href="https://snippet-generator.app/" target="_blank" rel="noopener">snippet</a> 及 <a href="https://en.wikipedia.org/wiki/RSpec" target="_blank" rel="noopener">RSpec</a><br>
-snippet 做得好，省時又省力外，還能避免常打的語法打錯字<br>
-RSpec 寫得好，生活沒煩惱 XD</p>
+    <h1>環境建置</h1>
+<h2>環境介紹</h2>
+<p>作業系統環境：
+作業系統：Windows 10 x64
+系統版本：1903 (OS 組建 18362.418)</p>
+<p><img src="https://i.imgur.com/qrWaiDm.png" alt></p>
+<p><img src="https://i.imgur.com/o9Cbjm2.png" alt></p>
 <hr>
-<p><strong><a href="https://www.codewars.com/kata/reverse-words/train/ruby" target="_blank" rel="noopener">題目</a>：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Complete the function that accepts a string parameter, <span class="keyword">and</span> reverses each word <span class="keyword">in</span> the string. All spaces <span class="keyword">in</span> the string should be retained.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line"><span class="string">"This is an example!"</span> ==&gt; <span class="string">"sihT si na !elpmaxe"</span></span><br><span class="line"><span class="string">"double  spaces"</span>      ==&gt; <span class="string">"elbuod  secaps"</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_words</span><span class="params">(str)</span></span></span><br><span class="line">  <span class="comment"># Go for it</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Sample <span class="symbol">Tests:</span></span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'The quick brown fox jumps over the lazy dog.'</span>), <span class="string">'ehT kciuq nworb xof spmuj revo eht yzal .god'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'apple'</span>), <span class="string">'elppa'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'a b c d'</span>), <span class="string">'a b c d'</span>)</span><br><span class="line">Test.assert_equals(reverse_words(<span class="string">'double  spaced  words'</span>), <span class="string">'elbuod  decaps  sdrow'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2>安裝 Ubuntu</h2>
+<p>Windows 10 內建「Microsoft Store」，透過 Microsoft Store 安裝 <a href="https://www.microsoft.com/zh-tw/p/ubuntu-1804-lts/9n9tngvndl3q" target="_blank" rel="noopener">Ubuntu 18.04 LTS</a></p>
+<p><img src="https://i.imgur.com/X9a93zl.png" alt></p>
+<p><img src="https://i.imgur.com/XIEdVNL.png" alt></p>
+<p><img src="https://i.imgur.com/ONrdnMj.png" alt></p>
+<p>接著開啟 Ubuntu，出現以下的錯誤，用管理者權限開啟「Windows PowerShell」
+<img src="https://i.imgur.com/wpPGfgr.png" alt></p>
+<p>開啟「Windows PowerSeell」，輸入</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</span><br></pre></td></tr></table></figure></p>
+<p>並重新開機，再次開啟 Ubuntu 即可正常使用。</p>
+<p><img src="https://i.imgur.com/BhMvAK9.png" alt></p>
+<p><img src="https://i.imgur.com/gCMp9KN.png" alt></p>
 <hr>
-<p><strong>影片解題過程</strong>
-<a href="https://www.youtube.com/watch?v=4MqQO3M1gII" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/4MqQO3M1gII/0.jpg" alt="Yes"></a></p>
+<p>第一次開啟 Ubuntu 需要跑幾分鐘，接著輸入自訂義的帳號及密碼。</p>
+<p><img src="https://i.imgur.com/onytyQS.png" alt></p>
 <hr>
-<p><strong>解題：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_words</span><span class="params">(str)</span></span></span><br><span class="line">  <span class="keyword">return</span> str.split.map&#123; <span class="params">|x|</span> x.reverse &#125;.join<span class="string">' '</span> <span class="keyword">if</span> str.scan(<span class="regexp">/  /</span>) == []</span><br><span class="line">  str.split.map&#123; <span class="params">|x|</span> x.reverse &#125;.join<span class="string">'  '</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<h2>安裝 Ruby</h2>
+<p>在 Ubuntu (以下簡稱「終端機 (Terminal)」) 中輸入如下：</p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代表註解，不用輸入</span></span><br><span class="line"><span class="comment"># $ 代表這段指令要在 Terminal 輸入， $ 本身不用輸入</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/HkCnfp6.png" alt></p>
+<p><img src="https://i.imgur.com/goDogIt.png" alt></p>
+<hr>
+<p>確認 Ruby 是否安裝及版本查詢</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v           # ruby 2.5.1p57 (2018-03-29 revision 63029 [x86_64-linux-gnu])</span><br><span class="line">$ ruby --version    # 與上面指令效果一樣，擇一使用即可</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/e6n3ISm.png" alt></p>
+<hr>
+<h2>安裝 rvm</h2>
+<p>依序於 Terminal 輸入如下：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ \curl -sSL https://get.rvm.io | bash -s stable</span><br><span class="line">$ gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB</span><br><span class="line">$ \curl -sSL https://get.rvm.io | bash -s stable</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/FIkPL8N.png" alt></p>
+<p><img src="https://i.imgur.com/SvMKoNb.png" alt></p>
+<p><img src="https://i.imgur.com/DuMAMgF.png" alt></p>
+<p><img src="https://i.imgur.com/nOiw7TA.png" alt></p>
+<p>rvm 版本查詢</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm -v</span><br></pre></td></tr></table></figure></p>
+<p>列出目前所有可安裝的清單</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm list known</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/DIS7lDN.png" alt></p>
+<h3>安裝 Ruby 2.6.3 版本</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 2.6</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/AUvoMX3.png" alt></p>
+<p>版本確認</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails -v</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2>安裝 Rails</h2>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install rails</span><br></pre></td></tr></table></figure></p>
+<p>上述指令會安裝目前最新版本 Rails (寫文章時最新版本為 Rails 6.0.0)</p>
+<p><img src="https://i.imgur.com/Ft5ILs9.png" alt></p>
+<h3>安裝特定版本 Rails</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install rails -v 5.2.3</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/iCY9R6m.png" alt></p>
+<hr>
+<h2>建立 Rails 專案</h2>
+<h3>建立特定版本 Rails 專案</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails _5.2.3_ new your_project_name</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/fjeC86u.png" alt></p>
+<p><img src="https://i.imgur.com/YtiO55b.png" alt></p>
+<p>接著執行 Rails 專案</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ rails server</span><br><span class="line">$ rails s</span><br><span class="line"></span><br><span class="line"># 上述兩個指令意思一樣</span><br></pre></td></tr></table></figure></p>
+<p>若出現以下錯誤，可輸入：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libv8-dev</span><br><span class="line">$ sudo apt-get install nodejs</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/ER7omDp.png" alt></p>
+<p><img src="https://i.imgur.com/TLOkMM1.png" alt></p>
+<p>成功開啟的畫面如下：</p>
+<p><img src="https://i.imgur.com/laDbxHb.png" alt></p>
+<h3>建立 Rails 6.0.0 專案</h3>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails new your_project_name</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/yomqQZW.png" alt></p>
+<p><img src="https://i.imgur.com/jdBjKCW.png" alt></p>
+<p>依序輸入：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ rails webpacker:install</span><br><span class="line">$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</span><br><span class="line">$ echo &quot;deb https://dl.yarnpkg.com/debian/ stable main&quot; | $ sudo tee /etc/apt/sources.list.d/yarn.list</span><br><span class="line">$ sudo apt-get update &amp;&amp; sudo apt-get install yarn</span><br><span class="line">$ yarn --version</span><br><span class="line">$ rails webpacker:install</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/Ssg7G4t.png" alt></p>
+<p>成功開啟的畫面如下：</p>
+<p><img src="https://i.imgur.com/IKYcI8r.png" alt></p>
+<p>參考資料：</p>
+<ol>
+<li><a href="https://stackoverflow.com/questions/57724203/rails-6-local-server-booting-rails-env-development-environment-is-not-defined" target="_blank" rel="noopener">Rails 6 local server booting : RAILS_ENV=development environment is not defined</a></li>
+<li><a href="https://yarnpkg.com/lang/en/docs/install/#debian-stable" target="_blank" rel="noopener">Yarn Docs</a></li>
+</ol>
+<hr>
+<h2>安裝 Git</h2>
+<p>下載連結：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a></p>
+<p><img src="https://i.imgur.com/FPxfB7U.png" alt></p>
+<p>下載後，執行，無腦安裝法，下一步直到安裝好為止。</p>
+<p><img src="https://i.imgur.com/CiGOsTG.png" alt></p>
+<p>輸入</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git version</span><br></pre></td></tr></table></figure></p>
+<p>確認安裝版本即大功告成</p>
+<p><img src="https://i.imgur.com/ndCsCAw.png" alt></p>
+<hr>
+<h2>安裝 postgresql</h2>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install wget ca-certificates</span><br><span class="line">$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line">$ sudo sh -c &apos;echo &quot;deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main&quot; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&apos;</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install postgresql postgresql-contrib</span><br></pre></td></tr></table></figure></p>
+<p>版本查詢</p>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ psql <span class="comment">--version</span></span><br><span class="line"><span class="comment"># psql (PostgreSQL) 11.5 (Ubuntu 11.5-3.pgdg18.04+1)</span></span><br></pre></td></tr></table></figure></p>
+<p>參考：
+<a href="https://tecadmin.net/install-postgresql-server-on-ubuntu/" target="_blank" rel="noopener">How to Install PostgreSQL 11 on Ubuntu 18.04 &amp; 16.04 LTS</a></p>
+<hr>
+<h1>Q &amp; A</h1>
+<h2>為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</h2>
+<p>我也想都在 Ubuntu 整合就好 (吶喊
+但 <code>$ git push</code> 時，會遇到即使輸入正確的帳號密碼，仍會說驗證錯誤，無法上傳 <a href="https://github.com/River-Ye" target="_blank" rel="noopener">GitHub</a> 啊..
+撇除 push 功能外， Ubuntu 上的 Git 功能還是可以用喔~</p>
+<h2>Ubuntu 路徑名稱太長，如何縮短 ?</h2>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>修改約第 60 - 62 行 <code>$color_prompt</code> 的內容</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">if [ &quot;$color_prompt&quot; = yes ]; then</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &apos;</span><br><span class="line">else</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\u@\h:\w\$ &apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改後</span><br><span class="line">if [ &quot;$color_prompt&quot; = yes ]; then</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\$ &apos;</span><br><span class="line">else</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\$ &apos;</span><br></pre></td></tr></table></figure></p>
+<p>修改儲存離開後，輸入：</p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>即可看到修改狀態 (免重開 Ubuntu)</p>
+<p>參考：
+<a href="https://blog.csdn.net/jimson_zhu/article/details/81281972" target="_blank" rel="noopener">Ubuntu（Linux）命令行终端命令提示符过长和提示符颜色显示等效果设置</a></p>
+<h2>Ubuntu 的游標消失，該怎辦?</h2>
+<ol>
+<li>
+<p>將 Windows 預設輸入模式從「中文模式」改為「英數模式」，並重開 Ubuntu。
+<img src="https://i.imgur.com/nXTMCW9.png" alt></p>
+</li>
+<li>
+<p>在 Ubuntu 中若不小心切換到中文模式並輸入任意鍵時，游標又會消失，解決方法為<strong>在 Ubuntu 中輸入任意中文字後並按確認</strong> (並非送出指令喔)，此時游標再次出現，接著切換回「英數模式」即可。 (中英文切換快捷鍵：Shift 按一下)</p>
+</li>
+</ol>
+<h2>Ubuntu 顯示的顏色調整</h2>
+<p>Ubuntu 中文字、背景、字型、字型大小等全都可以修改，修方方法如下：
+<strong>滑鼠右鍵點選 Ubuntu 左上角 Logo，選擇「內容」即可進入修改。</strong></p>
+<p>個人 Ubuntu 終端機設定可供參考：</p>
+<p><img src="https://i.imgur.com/ZDWO51Z.png" alt>
+<img src="https://i.imgur.com/x0KyibK.png" alt>
+<img src="https://i.imgur.com/rjAD3In.png" alt></p>
+<hr>
+<h2>參考</h2>
+<ol>
+<li><a href="https://railsbook.tw/chapters/02-environment-setup.html" target="_blank" rel="noopener">為你自己學 Ruby on Rails - 環境設定</a></li>
+<li><a href="https://gitbook.tw/chapters/environment/install-git-in-windows.html" target="_blank" rel="noopener">為你自己學 Git - 安裝在 Windows 作業系統</a></li>
+</ol>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/13/用-TDD-刷-Codewars-Reverse-words/">https://riverye.com/2019/09/13/用-TDD-刷-Codewars-Reverse-words/</a></p>
-    <p>發表日期：2019-09-13</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2019/10/12/Windows-10-安裝-Ruby-Rails-Git-postgresql/">https://riverye.com/2019/10/12/Windows-10-安裝-Ruby-Rails-Git-postgresql/</a></p>
+    <p>發表日期：2019-10-12</p>
+    <p>更新日期：2019-10-12</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" title="要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!">
-        <div class="nextTitle">要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/12/換刷-Codewars-Find-the-next-perfect-square/" title="換刷 Codewars - Find the next perfect square!">
-        <div class="prevTitle">換刷 Codewars - Find the next perfect square!</div>
+      <a href="/2019/10/09/Day30-完賽是這種感覺啊/" title="Day30-完賽是這種感覺啊">
+        <div class="prevTitle">Day30-完賽是這種感覺啊</div>
       </a>
       
     </li>
@@ -563,7 +683,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">環境建置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">環境介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">安裝 Ubuntu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">安裝 Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">安裝 rvm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.4.1.</span> <span class="toc-text">安裝 Ruby 2.6.3 版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">安裝 Rails</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.5.1.</span> <span class="toc-text">安裝特定版本 Rails</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.6.</span> <span class="toc-text">建立 Rails 專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.6.1.</span> <span class="toc-text">建立特定版本 Rails 專案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.6.2.</span> <span class="toc-text">建立 Rails 6.0.0 專案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.7.</span> <span class="toc-text">安裝 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.8.</span> <span class="toc-text">安裝 postgresql</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">Ubuntu 路徑名稱太長，如何縮短 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu 的游標消失，該怎辦?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">Ubuntu 顯示的顏色調整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">參考</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
