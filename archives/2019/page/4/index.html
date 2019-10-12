@@ -364,6 +364,49 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >
+            
+                <span>在 Rails 裡的 spring 指令是做什麼的？</span>
+        </a>
+        <div class="abstract-content">
+            自 Rails 4.1 以後，採用 Spring 來預載應用程式
+保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程
+特徵：
+
+自動化，毋須特別啟動或停止背景程序
+每次運行時會重新加載應用程序
+修改 configs / initializers / gem 時，建議重啟 server
+
+相容性：
+
+Ruby 版本：MRI 2.4 之後
+Rails 版本：4.1 之後 (rails new 新專案時，預設安裝 Spring)
+
+
+打開 Rails 專案的 Gemfile，會發現預設如下：...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/14</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "spring">spring</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >
             
                 <span>要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</span>
@@ -390,45 +433,6 @@ LV7 題目則是方法的應用
             <div class= abstract-tags >
     
         <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >
-            
-                <span>Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</span>
-        </a>
-        <div class="abstract-content">
-            在 Rails 5.1 之前，Rails 提供了form_for和form_tag。 (無 form_with 喔)
-簡單說下form_for和form_tag的功能：
-
-form_for處理 Model 物件
-form_tag處理簡單的表單
-Rails 5.1 之後，form_with取代了form_for和form_tag。
-有 Model 的話：
-
-123&lt;%= form_with model: Message.new do |form| %&gt;  &lt;%= form.text_field :username %&gt;&lt;% end %&gt;
-產生如下：
-12...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/14</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "form_with">form_with</a>
     
 </div>
             
@@ -1239,10 +1243,6 @@ Ex: 我們會看成 age = 30 → “變數” = “值&quot;
     
     
     
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 37
@@ -1391,12 +1391,17 @@ Ex: 我們會看成 age = 30 → “變數” = “值&quot;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Rails-中的-Gemfile-檔案的內容/" >Rails 中的 Gemfile 檔案的內容</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/" >週末來塊蛋糕吧~ Codewars - Which are in?</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Rails-中的-Gemfile-檔案的內容/" >Rails 中的 Gemfile 檔案的內容</a>
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
         </li>
     
     
@@ -1412,11 +1417,6 @@ Ex: 我們會看成 age = 30 → “變數” = “值&quot;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
         </li>
     
     
@@ -1451,6 +1451,10 @@ Ex: 我們會看成 age = 30 → “變數” = “值&quot;
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
         <span class="sidebar-tag-name" data-tags="string、object"><span class="iconfont-archer">&#xe606;</span>string、object</span>
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
@@ -1460,10 +1464,6 @@ Ex: 我們會看成 age = 30 → “變數” = “值&quot;
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
-    
-        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
-    
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1500,11 +1500,11 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
+        <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
+    
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
-    
-        <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
         <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
