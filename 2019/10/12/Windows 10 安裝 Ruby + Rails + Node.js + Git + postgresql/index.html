@@ -295,7 +295,7 @@ height:50vh;
             >1.8k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >7 min</span
+            >8 min</span
           ></span
         >
       </div>
@@ -460,7 +460,7 @@ height:50vh;
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm list known</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/DIS7lDN.png" alt></p>
 <h3>安裝 Ruby 2.6.3 版本</h3>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 2.6</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 2.6.3</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/dPB7opK.png" alt></p>
 <p>版本確認</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-linux]</span></span><br></pre></td></tr></table></figure></p>
@@ -569,8 +569,10 @@ height:50vh;
 <p>版本查詢</p>
 <p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ psql <span class="comment">--version</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># psql (PostgreSQL) 11.5 (Ubuntu 11.5-3.pgdg18.04+1)</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>接下來會比較繁瑣，建議先看下方圖片並瞭解後，再動作</strong></p>
-<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service postgresql <span class="keyword">start</span></span><br><span class="line">$ pg_lsclusters</span><br><span class="line"></span><br><span class="line"><span class="comment"># pg_lscluster &lt;version&gt; &lt;cluster&gt; start</span></span><br><span class="line">$ pg_ctlcluster <span class="number">11</span> <span class="keyword">main</span> <span class="keyword">start</span></span><br><span class="line"></span><br><span class="line">$ sudo service postgresql restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudo -u postgres createuser &lt;username&gt;</span></span><br><span class="line">$ sudo -u postgres createuser river</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudo -u postgres createdb &lt;database_name&gt;</span></span><br><span class="line">$ sudo -u postgres createdb river</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service postgresql <span class="keyword">start</span></span><br><span class="line">$ pg_lsclusters</span><br><span class="line"></span><br><span class="line"><span class="comment"># pg_lscluster &lt;version&gt; &lt;cluster&gt; start</span></span><br><span class="line">$ pg_ctlcluster <span class="number">11</span> <span class="keyword">main</span> <span class="keyword">start</span></span><br><span class="line"></span><br><span class="line">$ sudo service postgresql restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudo -u postgres createuser &lt;username&gt;</span></span><br><span class="line">$ sudo -u postgres createuser river</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudo -u postgres createdb &lt;database_name&gt;</span></span><br><span class="line">$ sudo -u postgres createdb river</span><br><span class="line"></span><br><span class="line">$ sudo apt-<span class="keyword">get</span> <span class="keyword">install</span> libpq-dev</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/zSe6Fyb.png" alt></p>
+<p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ sudo -u postgres -i</span><br><span class="line">$ psql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例：</span></span><br><span class="line"><span class="comment">#= ALTER USER username CREATEDB;</span></span><br><span class="line"><span class="comment"># 我的：</span></span><br><span class="line">= <span class="keyword">ALTER</span> <span class="keyword">USER</span> river CREATEDB;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例：</span></span><br><span class="line"><span class="comment">#= GRANT ALL PRIVILEGES ON  DATABASE database_name to new_user;</span></span><br><span class="line"><span class="comment"># 我的：</span></span><br><span class="line">= <span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span>  <span class="keyword">DATABASE</span> river <span class="keyword">to</span> river;</span><br><span class="line"></span><br><span class="line"><span class="comment"># SQL 語法以 = 表示，從 = 後面開始輸入</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/BI29e7j.png" alt></p>
 <p>參考：<br>
 <a href="https://tecadmin.net/install-postgresql-server-on-ubuntu/" target="_blank" rel="noopener">How to Install PostgreSQL 11 on Ubuntu 18.04 &amp; 16.04 LTS</a></p>
 <hr>
@@ -620,7 +622,7 @@ height:50vh;
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2019/10/12/Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql/">https://riverye.com/2019/10/12/Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql/</a></p>
     <p>發表日期：2019-10-12</p>
-    <p>更新日期：2019-10-13</p>
+    <p>更新日期：2019-10-14</p>
   </div>
   
   <!-- paginator  -->
@@ -784,14 +786,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -1487,11 +1481,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
+        <span class="sidebar-tag-name" data-tags="Ruby、Rails、Node.js、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby、Rails、Node.js、Git、postgresql</span>
+    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby、Rails、Node.js、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby、Rails、Node.js、Git、postgresql</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1532,9 +1526,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
