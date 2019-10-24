@@ -279,7 +279,9 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "string、object">string、object</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "string">string</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "object">object</a>
     
 </div>  
       <div class="post-intro-meta">
@@ -405,20 +407,20 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <p>談 Ruby 程式語言中的符號 (Symbol) 及字串 (String) 前，先了解如何判斷符號，<strong>在字串 (String) 前加入 : (冒號) 即為符號 (如右顯示<code>:name</code> <code>:名稱</code>)</strong>，特徵如下：</p>
-<h2>符號 (symbol)：</h2>
+<h2 id="fu-hao-symbol">符號 (symbol)：</h2>
 <ol>
 <li>就像身份證，具有唯一性 (ID) 的特徵，無法修改。</li>
 <li>有名字的物件。</li>
 <li>是一個值，不是變數。</li>
 </ol>
-<h2>字串 (String)：</h2>
+<h2 id="zi-chuan-string">字串 (String)：</h2>
 <p>字串的內容可以任意修改。</p>
 <hr>
 <p>上面看完有看沒懂嗎? 沒關係，翻譯蒟蒻：</p>
-<h3>把&quot;符號&quot;看成值(value)會更好理解</h3>
-<h3>Ex: 我們會看成 age = 30 → “變數” = “值&quot;</h3>
-<h3>但不會看成 18 = 30，這是明顯的錯誤</h3>
-<h3>所以符號也不會等於值 :ruby = 30，這是錯誤的</h3>
+<h3 id="ba-quot-fu-hao-quot-kan-cheng-zhi-value-hui-geng-hao-li-jie">把&quot;符號&quot;看成值(value)會更好理解</h3>
+<h3 id="ex-wo-men-hui-kan-cheng-age-30-bian-shu-zhi-quot">Ex: 我們會看成 age = 30 → “變數” = “值&quot;</h3>
+<h3 id="dan-bu-hui-kan-cheng-18-30-zhe-shi-ming-xian-de-cuo-wu">但不會看成 18 = 30，這是明顯的錯誤</h3>
+<h3 id="suo-yi-fu-hao-ye-bu-hui-deng-yu-zhi-ruby-30-zhe-shi-cuo-wu-de">所以符號也不會等於值 :ruby = 30，這是錯誤的</h3>
 <hr>
 <p>簡易測試如下：</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字串(String)每次印出"ruby"時，ID都會不同，佔用的記憶體位址也不同。</span></span><br><span class="line">$ p <span class="string">"ruby"</span>.object_id =&gt; <span class="number">70368649284780</span></span><br><span class="line">$ p <span class="string">"ruby"</span>.object_id =&gt; <span class="number">70368649357780</span></span><br><span class="line">$ p <span class="string">"ruby"</span>.object_id =&gt; <span class="number">70368649378300</span></span><br><span class="line">$ p <span class="string">"ruby"</span>.object_id =&gt; <span class="number">70368649452840</span></span><br><span class="line">$ p <span class="string">"ruby"</span>.object_id =&gt; <span class="number">70368649423920</span></span><br><span class="line"><span class="comment"># 符號(Symbol)每次印出 :ruby 時，具有唯一性，佔用記憶體位址相同。</span></span><br><span class="line">$ p <span class="symbol">:ruby</span>.object_id =&gt; <span class="number">680348</span></span><br><span class="line">$ p <span class="symbol">:ruby</span>.object_id =&gt; <span class="number">680348</span></span><br><span class="line">$ p <span class="symbol">:ruby</span>.object_id =&gt; <span class="number">680348</span></span><br><span class="line">$ p <span class="symbol">:ruby</span>.object_id =&gt; <span class="number">680348</span></span><br><span class="line"><span class="comment"># 從上得知，符號(Symbol)效能比字串(String)好。</span></span><br></pre></td></tr></table></figure></p>
@@ -433,7 +435,7 @@ height:50vh;
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2019/07/29/Ruby-世界裡的字串與符號是什麼/">https://riverye.com/2019/07/29/Ruby-世界裡的字串與符號是什麼/</a></p>
     <p>發表日期：2019-07-29</p>
-    <p>更新日期：2019-10-09</p>
+    <p>更新日期：2019-10-24</p>
   </div>
   
   <!-- paginator  -->
@@ -588,7 +590,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">符號 (symbol)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">字串 (String)：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">把&quot;符號&quot;看成值(value)會更好理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">Ex: 我們會看成 age = 30 → “變數” = “值&quot;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">但不會看成 18 = 30，這是明顯的錯誤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">所以符號也不會等於值 :ruby = 30，這是錯誤的</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#fu-hao-symbol"><span class="toc-number">1.</span> <span class="toc-text">符號 (symbol)：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zi-chuan-string"><span class="toc-number">2.</span> <span class="toc-text">字串 (String)：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ba-quot-fu-hao-quot-kan-cheng-zhi-value-hui-geng-hao-li-jie"><span class="toc-number">2.1.</span> <span class="toc-text">把&quot;符號&quot;看成值(value)會更好理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ex-wo-men-hui-kan-cheng-age-30-bian-shu-zhi-quot"><span class="toc-number">2.2.</span> <span class="toc-text">Ex: 我們會看成 age = 30 → “變數” = “值&quot;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dan-bu-hui-kan-cheng-18-30-zhe-shi-ming-xian-de-cuo-wu"><span class="toc-number">2.3.</span> <span class="toc-text">但不會看成 18 = 30，這是明顯的錯誤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#suo-yi-fu-hao-ye-bu-hui-deng-yu-zhi-ruby-30-zhe-shi-cuo-wu-de"><span class="toc-number">2.4.</span> <span class="toc-text">所以符號也不會等於值 :ruby = 30，這是錯誤的</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1310,21 +1312,37 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
         <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
-        <span class="sidebar-tag-name" data-tags="string、object"><span class="iconfont-archer">&#xe606;</span>string、object</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
-        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="Ruby、Rails、Node.js、Git、postgresql"><span class="iconfont-archer">&#xe606;</span>Ruby、Rails、Node.js、Git、postgresql</span>
+        <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
     
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
-        <span class="sidebar-tag-name" data-tags="部落格、Blog、domain、GitHub、Hexo"><span class="iconfont-archer">&#xe606;</span>部落格、Blog、domain、GitHub、Hexo</span>
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
