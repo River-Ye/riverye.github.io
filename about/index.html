@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>週末來塊蛋糕吧~ Codewars - Which are in? · 小菜的 Blog</title>
+    <title>about · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,23 +229,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >你必須很努力</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">週末來塊蛋糕吧~ Codewars - Which are in?</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>你必須很努力</a>
 </header>
@@ -259,63 +248,28 @@
 
 
 
-
-height:50vh;
 "
 >
   
   <!-- 主页  -->
-   
-  <!-- 404页  -->
   
   <div class="site-intro-placeholder"></div>
   <div
     class="site-intro-img"
-    style="background-image: url(/intro/post-bg.jpg)"
+    style="background-image: url(/)"
   ></div>
   <div class="site-intro-meta">
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       週末來塊蛋糕吧~ Codewars - Which are in?
-      <!-- 404 -->
       
     </h1>
     <!-- 副标题 -->
     <p class="intro-subtitle">
       <!-- 主页副标题  -->
-       
-      <!-- 404 -->
       
     </p>
     <!-- 文章页meta -->
-    
-    <div class="post-intros">
-      <!-- 文章页标签  -->
-       <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>  
-      <div class="post-intro-meta">
-        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-        <span class="post-intro-time"
-          >2019/09/15</span
-        >
-      </div>
-      <div class="post-intro-read">
-        <span
-          >字數統計:
-          <span class="post-count word-count"
-            >168</span
-          >閱讀時間:
-          <span class="post-count reading-time"
-            >1 min</span
-          ></span
-        >
-      </div>
-      
-    </div>
     
   </div>
 </div>
@@ -419,46 +373,24 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>中秋連假漸入尾聲，覺得假好短阿~<br>
-來塊比較簡單的蛋糕輕鬆度過一回合 <s>(想摸魚吼</s><br>
-挑戰 <a href="https://www.codewars.com/kata/which-are-in/train/ruby" target="_blank" rel="noopener">Codewars</a> LV6 題目</p>
-<hr>
-<p><a href="https://www.codewars.com/kata/which-are-in/train/ruby" target="_blank" rel="noopener">題目</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Given two arrays of strings a1 <span class="keyword">and</span> a2 <span class="keyword">return</span> a sorted array r <span class="keyword">in</span> lexicographical order of the strings of a1 which are substrings of strings of a2.</span><br><span class="line"></span><br><span class="line"><span class="comment">#Example 1: a1 = ["arp", "live", "strong"]</span></span><br><span class="line"></span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line"></span><br><span class="line">returns [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#Example 2: a1 = ["tarp", "mice", "bull"]</span></span><br><span class="line"></span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line"></span><br><span class="line">returns []</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">in_array</span><span class="params">(array1, array2)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a1 = [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>]</span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line">Test.assert_equals(in_array(a1, a2), [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>])</span><br><span class="line">a1 = [<span class="string">"tarp"</span>, <span class="string">"mice"</span>, <span class="string">"bull"</span>]</span><br><span class="line">Test.assert_equals(in_array(a1, a2), [])</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=Z9i5jsnLxrQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Z9i5jsnLxrQ/0.jpg" alt="Yes"></a></p>
-<hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">in_array</span><span class="params">(array1, array2)</span></span></span><br><span class="line">  array1.select&#123;<span class="params">|x|</span> array2.any?&#123;<span class="params">|y|</span> y.<span class="keyword">include</span>?(x)&#125;&#125;.sort</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+    <h1 id="guan-yu-wo">關於我</h1>
+<p>想到便補上</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/">https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/</a></p>
-    <p>發表日期：2019-09-15</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/about/index.html">https://riverye.com/about/index.html</a></p>
+    <p>發表日期：2019-10-25</p>
+    <p>更新日期：2019-10-25</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/15/Rails-中的-Gemfile-檔案的內容/" title="Rails 中的 Gemfile 檔案的內容">
-        <div class="nextTitle">Rails 中的 Gemfile 檔案的內容</div>
-      </a>
-      
     </li>
     <li class="previous">
-      
-      <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" title="Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？">
-        <div class="prevTitle">Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</div>
-      </a>
       
     </li>
   </ul>
@@ -473,8 +405,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "週末來塊蛋糕吧~ Codewars - Which are in?"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/about/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "about"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -584,24 +516,6 @@ height:50vh;
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1466,8 +1380,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
