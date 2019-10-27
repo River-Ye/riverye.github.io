@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2019-10-24T16:07:28.392Z</updated>
+  <updated>2019-10-27T13:43:03.944Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何在不重灌的情況下修復 Ubuntu OS</title>
+    <link href="https://riverye.com/2019/10/27/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%8D%E9%87%8D%E7%81%8C%E7%9A%84%E6%83%85%E6%B3%81%E4%B8%8B%E4%BF%AE%E5%BE%A9-Ubuntu-OS/"/>
+    <id>https://riverye.com/2019/10/27/如何在不重灌的情況下修復-Ubuntu-OS/</id>
+    <published>2019-10-26T16:00:00.000Z</published>
+    <updated>2019-10-27T13:43:03.944Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="huan-jing-jie-shao">環境介紹</h1><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作業系統：Windows <span class="number">10</span> x64</span><br><span class="line">系統版本：<span class="number">1903</span> (OS 組建 <span class="number">18362.418</span>)</span><br><span class="line">Ubuntu <span class="number">18.04</span> LTS</span><br></pre></td></tr></table></figure></p><h1 id="shi-mo-qing-kuang-xu-yao">什麼情況需要?</h1><p>以我自己為例，在 Windows 10 底下安裝 Ubuntu 後，除了寫 code 外，也會摸索 Unbutu 的功能，各種測試，玩到系統有異常反應時，但又不想重灌 Ubuntu，此時就會需要！<br>好處是能解決大部分的問題，還能省去裝軟體的時間及繁瑣。<br>(遇到特例問題依然無解的話，重灌是最快的方式 XD)</p><h1 id="kai-shi-qian">開始前</h1><p><strong>資料備份，這點非常重要！</strong></p><p>照以下所有步驟操作即可完成修復</p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /var/lib/apt/lists/lock</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo rm /var/lib/dpkg/lock-frontend</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg --configure -a</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt clean</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update --fix-missing</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install -f</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg --configure -a</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt upgrade</span><br></pre></td></tr></table></figure></p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt dist-upgrade</span><br></pre></td></tr></table></figure></p><p>最後，輸入以下指令並重開 Ubuntu 即完工！</p><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure></p><p>完成以上步驟後，Ubuntu 已經恢復正常狀態，資料也都還保留著。</p><p>此方法，不見得對所有情況都適用，</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;huan-jing-jie-shao&quot;&gt;環境介紹&lt;/h1&gt;
+&lt;p&gt;&lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;s
+      
+    
+    </summary>
+    
+    
+      <category term="環境修復" scheme="https://riverye.com/categories/%E7%92%B0%E5%A2%83%E4%BF%AE%E5%BE%A9/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://riverye.com/tags/Ubuntu/"/>
+    
+  </entry>
   
   <entry>
     <title>從無到有的 Blog 建置教學 (含 domain 購買轉址)</title>
@@ -574,35 +601,6 @@
 看起來很簡單 但執行時會有錯誤&lt;br&gt;
 推斷是思考邏輯不正確導致特定情況下&lt;br&gt;
 
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="11th鐵人賽" scheme="https://riverye.com/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day14 - Codewars 刷題</title>
-    <link href="https://riverye.com/2019/09/23/Day14-Codewars-%E5%88%B7%E9%A1%8C/"/>
-    <id>https://riverye.com/2019/09/23/Day14-Codewars-刷題/</id>
-    <published>2019-09-22T16:00:00.000Z</published>
-    <updated>2019-10-08T17:16:39.607Z</updated>
-    
-    <content type="html"><![CDATA[<p>喉嚨比昨天更脆弱了 QQ<br>請多多包涵 ~&quot;~</p><hr><p><a href="https://www.codewars.com/kata/spacify/train/ruby" target="_blank" rel="noopener">題目(Spacify)</a>：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Modify the spacify function so that it returns the given string with spaces insertedbetween each character.</span><br><span class="line"></span><br><span class="line">spacify(<span class="string">"hello world"</span>) <span class="comment"># returns "h e l l o   w o r l d"</span></span><br></pre></td></tr></table></figure></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spacify</span><span class="params">(str)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(spacify(<span class="string">"hello world"</span>),<span class="string">"h e l l o   w o r l d"</span>);</span><br><span class="line">Test.assert_equals(spacify(<span class="string">"12345"</span>),<span class="string">"1 2 3 4 5"</span>);</span><br></pre></td></tr></table></figure></p><p><a href="https://www.codewars.com/kata/create-phone-number/train/ruby" target="_blank" rel="noopener">題目(Create Phone Number)</a>：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Write a function that accepts an array of <span class="number">10</span> integers (between <span class="number">0</span> <span class="keyword">and</span> <span class="number">9</span>), that returns a string of those numbers <span class="keyword">in</span> the form of a phone number.</span><br><span class="line"></span><br><span class="line"><span class="symbol">Example:</span></span><br><span class="line">createPhoneNumber(Array[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]) <span class="comment"># =&gt; returns "(123) 456-7890"</span></span><br><span class="line">The returned format must be correct <span class="keyword">in</span> order to complete this challenge.</span><br><span class="line">Don<span class="string">'t forget the space after the closing parenthesis!</span></span><br></pre></td></tr></table></figure></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createPhoneNumber</span><span class="params">(numbers)</span></span></span><br><span class="line">  <span class="comment">#TODO</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(createPhoneNumber([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]), <span class="string">"(123) 456-7890"</span>);</span><br></pre></td></tr></table></figure></p><hr><p>影片解題：<a href="https://www.youtube.com/watch?v=DBKYFtJ0_Qs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/DBKYFtJ0_Qs/0.jpg" alt="Yes"></a></p><hr><p>答案：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Spacify</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">spacify</span><span class="params">(str)</span></span></span><br><span class="line">  str.chars.join<span class="string">' '</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create Phone Number</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createPhoneNumber</span><span class="params">(numbers)</span></span></span><br><span class="line">  phone = numbers.join</span><br><span class="line">  <span class="string">"(<span class="subst">#&#123;phone[<span class="number">0</span>..<span class="number">2</span>]&#125;</span>) <span class="subst">#&#123;phone[<span class="number">3</span>..<span class="number">5</span>]&#125;</span>-<span class="subst">#&#123;phone[<span class="number">6</span>..-<span class="number">1</span>]&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;喉嚨比昨天更脆弱了 QQ&lt;br&gt;
-請多多包涵 ~&amp;quot;~&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.codewars.com/kata/spacify/train/ruby&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;題目(
       
     
     </summary>
