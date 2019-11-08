@@ -430,15 +430,15 @@ height:50vh;
     <p>一口氣將常用的軟體建置起來<br>
 包含 Ubuntu、Ruby、rvm、Rails、Node.js、npm、Git、postgresql...等<br>
 實用度滿分的大補帖~~</p>
-<h1 id="huan-jing-jian-zhi">環境建置</h1>
-<h2 id="huan-jing-jie-shao">環境介紹</h2>
+<h1>環境建置</h1>
+<h2>環境介紹</h2>
 <p>作業系統環境：<br>
 作業系統：Windows 10 x64<br>
 系統版本：1903 (OS 組建 18362.418)</p>
 <p><img src="https://i.imgur.com/qrWaiDm.png" alt></p>
 <p><img src="https://i.imgur.com/o9Cbjm2.png" alt></p>
 <hr>
-<h2 id="an-zhuang-ubuntu">安裝 Ubuntu</h2>
+<h2>安裝 Ubuntu</h2>
 <p><strong>為何要先安裝 Ubuntu ?</strong><br>
 因為許多 code 軟體在 Windows 上支援度很低甚至不支援<br>
 在 Windows 上安裝 Ubuntu 子系統來操作算是比較方便了<br>
@@ -459,7 +459,7 @@ height:50vh;
 <p>第一次開啟 Ubuntu 需要跑幾分鐘，接著輸入自訂義的帳號及密碼。</p>
 <p><img src="https://i.imgur.com/onytyQS.png" alt></p>
 <hr>
-<h2 id="an-zhuang-ruby">安裝 Ruby</h2>
+<h2>安裝 Ruby</h2>
 <p>在 Ubuntu (以下簡稱「終端機 (Terminal)」) 中輸入如下：</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install ruby</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代表註解，不用輸入</span></span><br><span class="line"><span class="comment"># $ 代表這段指令要在 Terminal 輸入， $ 本身不用輸入</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/99qn2tB.png" alt></p>
@@ -470,7 +470,7 @@ height:50vh;
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v           # ruby 2.5.1p57 (2018-03-29 revision 63029 [x86_64-linux-gnu])</span><br><span class="line">$ ruby --version    # 與上面指令效果一樣，擇一使用即可</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/e6n3ISm.png" alt></p>
 <hr>
-<h2 id="an-zhuang-rvm">安裝 rvm</h2>
+<h2>安裝 rvm</h2>
 <p>依序於 Terminal 輸入如下：</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ \curl -sSL <span class="symbol">https:</span>/<span class="regexp">/get.rvm.io | bash -s stable</span></span><br><span class="line"><span class="regexp">$ gpg --keyserver hkp:/</span><span class="regexp">/pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB</span></span><br><span class="line"><span class="regexp">$ \curl -sSL https:/</span><span class="regexp">/get.rvm.io | bash -s stable</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"># 安裝後，Ubuntu 要重開</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/Y9LUDQX.png" alt></p>
@@ -482,26 +482,26 @@ height:50vh;
 <p>列出目前所有可安裝的清單</p>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm list known</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/DIS7lDN.png" alt></p>
-<h3 id="an-zhuang-ruby-2-6-3-ban-ben">安裝 Ruby 2.6.3 版本</h3>
+<h3>安裝 Ruby 2.6.3 版本</h3>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 2.6.3</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/dPB7opK.png" alt></p>
 <p>版本確認</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-linux]</span></span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="an-zhuang-rails">安裝 Rails</h2>
+<h2>安裝 Rails</h2>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gem install rails</span><br></pre></td></tr></table></figure></p>
 <p>上述指令會安裝目前最新版本 Rails (寫文章時最新版本為 Rails 6.0.0)</p>
 <p><img src="https://i.imgur.com/Ft5ILs9.png" alt></p>
-<h3 id="an-zhuang-te-ding-ban-ben-rails">安裝特定版本 Rails</h3>
+<h3>安裝特定版本 Rails</h3>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gem install rails -v <span class="number">5.2</span>.<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以 Rails 5.2.3 版本為例</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/iCY9R6m.png" alt></p>
 <hr>
-<h2 id="jian-li-rails-zhuan-an">建立 Rails 專案</h2>
-<h3 id="jian-li-rails-6-0-0-zhuan-an">建立 Rails 6.0.0 專案</h3>
+<h2>建立 Rails 專案</h2>
+<h3>建立 Rails 6.0.0 專案</h3>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails new your_project_name</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/jpy36h7.png" alt></p>
 <p><img src="https://i.imgur.com/qWiHRVF.png" alt></p>
-<h2 id="an-zhuang-node-js">安裝 Node.js</h2>
+<h2>安裝 Node.js</h2>
 <p>以安裝 Node.js 12.x 版本為例</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install build-essential apt-transport-https lsb-release ca-certificates curl</span><br><span class="line">$ curl -sL <span class="symbol">https:</span>/<span class="regexp">/deb.nodesource.com/setup</span>_12.x <span class="params">| sudo -E bash -</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/4ElSULN.png" alt></p>
@@ -526,7 +526,7 @@ height:50vh;
 <p><img src="https://i.imgur.com/U1XTAmY.png" alt></p>
 <p>成功開啟的畫面如下：</p>
 <p><img src="https://i.imgur.com/IKYcI8r.png" alt></p>
-<h3 id="jian-li-te-ding-ban-ben-rails-zhuan-an">建立特定版本 Rails 專案</h3>
+<h3>建立特定版本 Rails 專案</h3>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ rails _5.<span class="number">2.3_</span> new your_project_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以 rails 5.2.3 版本為例</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/fjeC86u.png" alt></p>
 <p><img src="https://i.imgur.com/YtiO55b.png" alt></p>
@@ -537,7 +537,7 @@ height:50vh;
 <p>參考：<br>
 <a href="https://yarnpkg.com/lang/en/docs/install/#debian-stable" target="_blank" rel="noopener">Yarn Docs</a></p>
 <hr>
-<h2 id="an-zhuang-git">安裝 Git</h2>
+<h2>安裝 Git</h2>
 <p>下載連結：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a></p>
 <p><img src="https://i.imgur.com/FPxfB7U.png" alt></p>
 <p>下載後，執行，無腦安裝法，下一步直到安裝好為止。</p>
@@ -546,7 +546,7 @@ height:50vh;
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git version</span><br></pre></td></tr></table></figure></p>
 <p>確認安裝版本即大功告成</p>
 <p><img src="https://i.imgur.com/ndCsCAw.png" alt></p>
-<h2 id="ubuntu-shang-git-ban-ben-geng-xin">Ubuntu 上 Git 版本更新</h2>
+<h2>Ubuntu 上 Git 版本更新</h2>
 <p>Ubuntu 很貼心內建 Git v2.17.1 版本，覺得版本老舊更新如下：</p>
 <ol>
 <li>先更新本地端索引：</li>
@@ -582,7 +582,7 @@ height:50vh;
 <p>參考：<br>
 <a href="https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-18-04" target="_blank" rel="noopener">How To Install Git on Ubuntu 18.04</a></p>
 <hr>
-<h2 id="an-zhuang-postgresql">安裝 postgresql</h2>
+<h2>安裝 postgresql</h2>
 <p>Rails 內建資料庫 SQLite 練習上很方便，但實務完全不會用<br>
 (詳細原因自行 Google)<br>
 因此我們要手動安裝 postgresql 資料庫，以備需要時可以使用<br>
@@ -599,12 +599,12 @@ height:50vh;
 <p>參考：<br>
 <a href="https://tecadmin.net/install-postgresql-server-on-ubuntu/" target="_blank" rel="noopener">How to Install PostgreSQL 11 on Ubuntu 18.04 &amp; 16.04 LTS</a></p>
 <hr>
-<h1 id="q-amp-a">Q &amp; A</h1>
-<h2 id="wei-he-bu-yong-ubuntu-de-git-er-yao-an-zhuang-git-bash">為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</h2>
+<h1>Q &amp; A</h1>
+<h2>為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</h2>
 <p>我也想都在 Ubuntu 上操作就好 (吶喊<br>
 但 <code>$ git push</code> 時，會遇到即使輸入正確的帳號密碼，仍會說驗證錯誤，無法上傳 <a href="https://github.com/River-Ye" target="_blank" rel="noopener">GitHub</a> 啊...<br>
 撇除 push 功能外， Ubuntu 上的 Git 功能還是可以用喔~</p>
-<h2 id="ubuntu-lu-jing-ming-cheng-tai-chang-ru-he-suo-duan">Ubuntu 路徑名稱太長，如何縮短 ?</h2>
+<h2>Ubuntu 路徑名稱太長，如何縮短 ?</h2>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure></p>
 <p>修改約第 60 - 62 行 <code>$color_prompt</code> 的內容</p>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">if [ &quot;$color_prompt&quot; = yes ]; then</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ &apos;</span><br><span class="line">else</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\u@\h:\w\$ &apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改後</span><br><span class="line">if [ &quot;$color_prompt&quot; = yes ]; then</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\$ &apos;</span><br><span class="line">else</span><br><span class="line">    PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\$ &apos;</span><br></pre></td></tr></table></figure></p>
@@ -615,7 +615,7 @@ height:50vh;
 <p><img src="https://i.imgur.com/Nm2JFfz.png" alt></p>
 <p>參考：<br>
 <a href="https://blog.csdn.net/jimson_zhu/article/details/81281972" target="_blank" rel="noopener">Ubuntu（Linux）命令行终端命令提示符过长和提示符颜色显示等效果设置</a></p>
-<h2 id="ubuntu-de-you-biao-xiao-shi-gai-zen-ban">Ubuntu 的游標消失，該怎辦?</h2>
+<h2>Ubuntu 的游標消失，該怎辦?</h2>
 <ol>
 <li>
 <p>將 Windows 預設輸入模式從「中文模式」改為「英數模式」，並重開 Ubuntu。
@@ -625,7 +625,7 @@ height:50vh;
 <p>在 Ubuntu 中若不小心切換到中文模式並輸入任意鍵時，游標又會消失，解決方法為<strong>在 Ubuntu 中輸入任意中文字後並按確認</strong> (並非送出指令喔)，此時游標再次出現，接著切換回「英數模式」即可。 (中英文切換快捷鍵：Shift 按一下)</p>
 </li>
 </ol>
-<h2 id="ubuntu-xian-shi-de-yan-se-diao-zheng">Ubuntu 顯示的顏色調整</h2>
+<h2>Ubuntu 顯示的顏色調整</h2>
 <p>Ubuntu 中文字、背景、字型、字型大小等全都可以修改，修方方法如下：<br>
 <strong>滑鼠右鍵點選 Ubuntu 左上角 Logo，選擇「內容」即可進入修改。</strong></p>
 <p>個人 Ubuntu 終端機設定可供參考：</p>
@@ -633,7 +633,7 @@ height:50vh;
 <img src="https://i.imgur.com/x0KyibK.png" alt>
 <img src="https://i.imgur.com/rjAD3In.png" alt></p>
 <hr>
-<h2 id="can-kao">參考</h2>
+<h2>參考</h2>
 <ol>
 <li><a href="https://railsbook.tw/chapters/02-environment-setup.html" target="_blank" rel="noopener">為你自己學 Ruby on Rails - 環境設定</a></li>
 <li><a href="https://gitbook.tw/chapters/environment/install-git-in-windows.html" target="_blank" rel="noopener">為你自己學 Git - 安裝在 Windows 作業系統</a></li>
@@ -805,7 +805,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#huan-jing-jian-zhi"><span class="toc-number">1.</span> <span class="toc-text">環境建置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#huan-jing-jie-shao"><span class="toc-number">1.1.</span> <span class="toc-text">環境介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-ubuntu"><span class="toc-number">1.2.</span> <span class="toc-text">安裝 Ubuntu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-ruby"><span class="toc-number">1.3.</span> <span class="toc-text">安裝 Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-rvm"><span class="toc-number">1.4.</span> <span class="toc-text">安裝 rvm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#an-zhuang-ruby-2-6-3-ban-ben"><span class="toc-number">1.4.1.</span> <span class="toc-text">安裝 Ruby 2.6.3 版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-rails"><span class="toc-number">1.5.</span> <span class="toc-text">安裝 Rails</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#an-zhuang-te-ding-ban-ben-rails"><span class="toc-number">1.5.1.</span> <span class="toc-text">安裝特定版本 Rails</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jian-li-rails-zhuan-an"><span class="toc-number">1.6.</span> <span class="toc-text">建立 Rails 專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jian-li-rails-6-0-0-zhuan-an"><span class="toc-number">1.6.1.</span> <span class="toc-text">建立 Rails 6.0.0 專案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-node-js"><span class="toc-number">1.7.</span> <span class="toc-text">安裝 Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jian-li-te-ding-ban-ben-rails-zhuan-an"><span class="toc-number">1.7.1.</span> <span class="toc-text">建立特定版本 Rails 專案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-git"><span class="toc-number">1.8.</span> <span class="toc-text">安裝 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-shang-git-ban-ben-geng-xin"><span class="toc-number">1.9.</span> <span class="toc-text">Ubuntu 上 Git 版本更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#an-zhuang-postgresql"><span class="toc-number">1.10.</span> <span class="toc-text">安裝 postgresql</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#q-amp-a"><span class="toc-number">2.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#wei-he-bu-yong-ubuntu-de-git-er-yao-an-zhuang-git-bash"><span class="toc-number">2.1.</span> <span class="toc-text">為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-lu-jing-ming-cheng-tai-chang-ru-he-suo-duan"><span class="toc-number">2.2.</span> <span class="toc-text">Ubuntu 路徑名稱太長，如何縮短 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-de-you-biao-xiao-shi-gai-zen-ban"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu 的游標消失，該怎辦?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ubuntu-xian-shi-de-yan-se-diao-zheng"><span class="toc-number">2.4.</span> <span class="toc-text">Ubuntu 顯示的顏色調整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#can-kao"><span class="toc-number">2.5.</span> <span class="toc-text">參考</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">環境建置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">環境介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.2.</span> <span class="toc-text">安裝 Ubuntu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.3.</span> <span class="toc-text">安裝 Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.4.</span> <span class="toc-text">安裝 rvm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.4.1.</span> <span class="toc-text">安裝 Ruby 2.6.3 版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.5.</span> <span class="toc-text">安裝 Rails</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.5.1.</span> <span class="toc-text">安裝特定版本 Rails</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.6.</span> <span class="toc-text">建立 Rails 專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.6.1.</span> <span class="toc-text">建立 Rails 6.0.0 專案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.7.</span> <span class="toc-text">安裝 Node.js</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.7.1.</span> <span class="toc-text">建立特定版本 Rails 專案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.8.</span> <span class="toc-text">安裝 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.9.</span> <span class="toc-text">Ubuntu 上 Git 版本更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.10.</span> <span class="toc-text">安裝 postgresql</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">為何不用 Ubuntu 的 Git 而要安裝 Git Bash ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">Ubuntu 路徑名稱太長，如何縮短 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu 的游標消失，該怎辦?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">Ubuntu 顯示的顏色調整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">參考</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1587,12 +1587,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
         </li>
     
     
@@ -1631,25 +1631,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
     
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
         <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
         <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
-    
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -1658,6 +1652,16 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
@@ -1674,10 +1678,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
         <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
