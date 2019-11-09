@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2019-11-07T16:06:51.749Z</updated>
+  <updated>2019-11-09T02:57:53.766Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 踩到的雷(導覽列及站內搜尋功能)</title>
+    <link href="https://riverye.com/2019/11/09/Hexo-%E8%B8%A9%E5%88%B0%E7%9A%84%E9%9B%B7-%E5%B0%8E%E8%A6%BD%E5%88%97%E5%8F%8A%E7%AB%99%E5%85%A7%E6%90%9C%E5%B0%8B%E5%8A%9F%E8%83%BD/"/>
+    <id>https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/</id>
+    <published>2019-11-08T16:00:00.000Z</published>
+    <updated>2019-11-09T02:57:53.766Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="說在前面">說在前面</h1><blockquote><p>越小的細節，雷說不定越多</p></blockquote><p>最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨<a href="https://zh.wikipedia.org/wiki/%E9%81%BA%E5%BF%98%E6%9B%B2%E7%B7%9A" target="_blank" rel="noopener">遺忘曲線</a>，生疏或健忘是可能的。</p><p><img src="https://i.imgur.com/2ICL0V9.png" alt></p><hr><h1 id="遇到的問題">遇到的問題</h1><ol><li>Blog 文章的側邊欄導覽列 Catalog 點擊時無法跳到對應位置，會顯示 null</li><li>Blog 站內搜尋突然失效無法使用</li></ol><h1 id="分析問題">分析問題</h1><p>新增「<a href="https://riverye.com/2019/11/08/%E6%9C%89%E8%B6%A3%E7%9A%84-4-%E9%A1%8C%E7%99%BD%E6%9D%BF%E9%A1%8C/">文章加密</a>」功能後，誤動到原本的 code。</p><h1 id="解決方法">解決方法</h1><h2 id="導覽列問題">導覽列問題</h2><h3 id="markdown-it-套件的-bug">markdown-it 套件的 bug</h3><p>安装 markdown-it-named-headings 來修復原本套件的 bug<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install markdown-it-named-headings --save</span><br></pre></td></tr></table></figure></p><p>進入 Blog 的根目錄修改 <code>node_modules\hexo-renderer-markdown-it\lib\renderer.js</code> 檔案，並在第 9 行後面新增如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br></pre></td></tr></table></figure></p><p>修改後會像這樣：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">data, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> MdIt = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>);</span><br><span class="line">  <span class="keyword">var</span> cfg = <span class="keyword">this</span>.config.markdown;</span><br><span class="line">  <span class="keyword">var</span> opt = (cfg) ? cfg : <span class="string">'default'</span>;</span><br><span class="line">  <span class="keyword">var</span> parser = (opt === <span class="string">'default'</span> || opt === <span class="string">'commonmark'</span> || opt === <span class="string">'zero'</span>) ?</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt) :</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt.render);</span><br><span class="line"></span><br><span class="line">  parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.plugins) &#123;</span><br><span class="line">    parser = opt.plugins.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">parser, pugs</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> parser.use(<span class="built_in">require</span>(pugs));</span><br><span class="line">    &#125;, parser);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.anchors) &#123;</span><br><span class="line">    parser = parser.use(<span class="built_in">require</span>(<span class="string">'./anchors'</span>), opt.anchors);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> parser.render(data.text);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p><p>接著 <code>hexo clean</code> 及 <code>hexo server</code> 測試是否解決問題<br>若解決，則恭喜你~</p><p>尚未解決請繼續往下看<br>改進入 Blog 根目錄 <code>node_modules\hexo-toc\lib\filter.js</code> ，把 28-31 行改成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(<span class="string">'id'</span>, id);</span><br><span class="line"><span class="comment">// $title.children('a').remove();</span></span><br><span class="line"><span class="comment">// $title.html( '&lt;span id="' + id + '"&gt;' + $title.html() + '&lt;/span&gt;' );</span></span><br><span class="line"><span class="comment">// $title.removeAttr('id');</span></span><br></pre></td></tr></table></figure></p><blockquote><p>修改後，記得 <code>hexo clean</code> 及 <code>hexo server</code> ，「用無痕模式測試」，確保不受暫存檔影響。</p></blockquote><h3 id="造成原因">造成原因</h3><p>找的 theme 已經很久沒更新了，更新後導致 <code>hexo-toc</code> 不相容的問題。</p><p>沒踩到此雷的可能原因：</p><ol><li>theme 持續更新已解決問題</li><li>舊版本沒更新</li></ol><hr><h2 id="站內搜尋失效的問題">站內搜尋失效的問題</h2><h3 id="algolia-服務">Algolia 服務</h3><p>站內搜尋使用 <a href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> 服務製作而成，註冊後享有 14 天內所有功能免費使用，到期後需「手動」選擇免費方案，否則無法繼續使用。</p><p>解決方法其實已經在描述中，到 Algolia 選擇免費方案即可。</p><p>補充紀錄 <code>_config.yml</code> 設定：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Blog 根目錄的 _config.yml</span></span><br><span class="line"><span class="symbol">algolia:</span></span><br><span class="line">  <span class="symbol">applicationID:</span> <span class="number">5</span>XXXXXXXR</span><br><span class="line">  <span class="symbol">apiKey:</span> eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">  <span class="symbol">indexName:</span> rXXXXXXXg</span><br><span class="line">  <span class="symbol">chunkSize:</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Blog 根目錄底下的/themes/&lt;主題名稱&gt;/_config.yml</span></span><br><span class="line"><span class="symbol">algolia_search:</span></span><br><span class="line">  <span class="symbol">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="symbol">hits:</span></span><br><span class="line">    <span class="symbol">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="symbol">labels:</span></span><br><span class="line">    <span class="symbol">input_placeholder:</span> Search <span class="keyword">for</span> Posts</span><br><span class="line">    <span class="symbol">hits_empty:</span> <span class="string">"沒有找到任何搜尋結果： $&#123;query&#125;"</span></span><br><span class="line">    <span class="symbol">hits_stats:</span> <span class="string">"約有 $&#123;hits&#125; 項結果 (搜尋時間： $&#123;time&#125; 毫秒)"</span></span><br></pre></td></tr></table></figure></p><p>每次新增文章後，都要做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">$ hexo algolia</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/vJsVr3O.png" alt></p><hr><h1 id="小結">小結</h1><p>透過 <a href="https://zh.wikipedia.org/wiki/%E9%B4%A8%E5%AD%90%E9%A1%9E%E5%9E%8B" target="_blank" rel="noopener">Duck typing</a> 的方式，在描述問題的過程中，答案說不定就在裡面~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;說在前面&quot;&gt;說在前面&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;越小的細節，雷說不定越多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨&lt;a href
+      
+    
+    </summary>
+    
+    
+      <category term="踩到的雷" scheme="https://riverye.com/categories/%E8%B8%A9%E5%88%B0%E7%9A%84%E9%9B%B7/"/>
+    
+    
+      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
+    
+      <category term="導覽列" scheme="https://riverye.com/tags/%E5%B0%8E%E8%A6%BD%E5%88%97/"/>
+    
+      <category term="站內搜尋" scheme="https://riverye.com/tags/%E7%AB%99%E5%85%A7%E6%90%9C%E5%B0%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>有趣的 4 題白板題</title>
@@ -160,6 +194,8 @@
       <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
     
     
+      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
+    
       <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
     
       <category term="Blog" scheme="https://riverye.com/tags/Blog/"/>
@@ -167,8 +203,6 @@
       <category term="domain" scheme="https://riverye.com/tags/domain/"/>
     
       <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
-    
-      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
     
   </entry>
   
@@ -577,36 +611,6 @@
 不停地學習及做專案&lt;br&gt;
 再忙也要擠出一點時間鐵人賽一下&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.codewars.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Codewars&lt;/a&gt; LV7&lt;/
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="11th鐵人賽" scheme="https://riverye.com/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day18 - Codewars 刷題</title>
-    <link href="https://riverye.com/2019/09/27/Day18-Codewars-%E5%88%B7%E9%A1%8C/"/>
-    <id>https://riverye.com/2019/09/27/Day18-Codewars-刷題/</id>
-    <published>2019-09-26T16:00:00.000Z</published>
-    <updated>2019-10-08T17:16:39.594Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天整個忙翻<br>擠出時間刷一題簡單的題目<br>示範如果對 Ruby 不熟時<br>可以如何下關鍵字、測試方法是否正確<br><a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV8 小品一下</p><hr><p><a href="https://www.codewars.com/kata/century-from-year/train/ruby" target="_blank" rel="noopener">題目(Century From Year)</a>：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Introduction</span><br><span class="line">The first century spans from the year <span class="number">1</span> up to <span class="keyword">and</span> including the year <span class="number">100</span>, The second - from the year <span class="number">101</span> up to <span class="keyword">and</span> including the year <span class="number">200</span>, etc.</span><br><span class="line"></span><br><span class="line">Task <span class="symbol">:</span></span><br><span class="line">Given a year, <span class="keyword">return</span> the century it is <span class="keyword">in</span>.</span><br><span class="line"></span><br><span class="line">Input , Output Examples <span class="symbol">:</span><span class="symbol">:</span></span><br><span class="line">centuryFromYear(<span class="number">1705</span>)  returns (<span class="number">18</span>)</span><br><span class="line">centuryFromYear(<span class="number">1900</span>)  returns (<span class="number">19</span>)</span><br><span class="line">centuryFromYear(<span class="number">1601</span>)  returns (<span class="number">17</span>)</span><br><span class="line">centuryFromYear(<span class="number">2000</span>)  returns (<span class="number">20</span>)</span><br><span class="line">Hope you enjoy it .. Awaiting <span class="keyword">for</span> Best Practice Codes</span><br><span class="line"></span><br><span class="line">Enjoy Learning !!!</span><br></pre></td></tr></table></figure></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">century</span><span class="params">(year)</span></span></span><br><span class="line">  <span class="comment"># Your solution goes here, warrior</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">describe <span class="string">"Solution"</span> <span class="keyword">do</span></span><br><span class="line">  it <span class="string">"should return the proper century for each year"</span> <span class="keyword">do</span></span><br><span class="line">    Test.assert_equals(century(<span class="number">1705</span>), <span class="number">18</span>, <span class="string">'Testing for year 1705'</span>);</span><br><span class="line">    Test.assert_equals(century(<span class="number">1900</span>), <span class="number">19</span>, <span class="string">'Testing for year 1900'</span>);</span><br><span class="line">    Test.assert_equals(century(<span class="number">1601</span>), <span class="number">17</span>, <span class="string">'Testing for year 1601'</span>);</span><br><span class="line">    Test.assert_equals(century(<span class="number">2000</span>), <span class="number">20</span>, <span class="string">'Testing for year 2000'</span>);</span><br><span class="line">    Test.assert_equals(century(<span class="number">89</span>), <span class="number">1</span>, <span class="string">'Testing for year 89'</span>);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><hr><p>影片解題：<a href="https://www.youtube.com/watch?v=h6iBLN2biJk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/h6iBLN2biJk/0.jpg" alt="Yes"></a></p><hr><p>答案：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Century From Year</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">century</span><span class="params">(year)</span></span></span><br><span class="line">  year.ceil(-<span class="number">2</span>)/<span class="number">100</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;今天整個忙翻&lt;br&gt;
-擠出時間刷一題簡單的題目&lt;br&gt;
-示範如果對 Ruby 不熟時&lt;br&gt;
-可以如何下關鍵字、測試方法是否正確&lt;br&gt;
-&lt;a href=&quot;https://www.codewars.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;C
       
     
     </summary>

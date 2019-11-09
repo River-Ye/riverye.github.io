@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day13 - Codewars 刷題 · 小菜的 Blog</title>
+    <title>Hexo 踩到的雷(導覽列及站內搜尋功能) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day13 - Codewars 刷題</a>
+                <a href="#" class="post-name">Hexo 踩到的雷(導覽列及站內搜尋功能)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day13 - Codewars 刷題
+       Hexo 踩到的雷(導覽列及站內搜尋功能)
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,27 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "導覽列">導覽列</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "站內搜尋">站內搜尋</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/22</span
+          >2019/11/09</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >196</span
+            >674</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >2 min</span
           ></span
         >
       </div>
@@ -419,45 +423,77 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>今日喉嚨微恙<br>
-講話比較小聲且無力<br>
-請多多包涵 ~&quot;~</p>
+    <h1 id="說在前面">說在前面</h1>
+<blockquote>
+<p>越小的細節，雷說不定越多</p>
+</blockquote>
+<p>最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨<a href="https://zh.wikipedia.org/wiki/%E9%81%BA%E5%BF%98%E6%9B%B2%E7%B7%9A" target="_blank" rel="noopener">遺忘曲線</a>，生疏或健忘是可能的。</p>
+<p><img src="https://i.imgur.com/2ICL0V9.png" alt></p>
 <hr>
-<p><a href="https://www.codewars.com/kata/your-order-please/train/ruby" target="_blank" rel="noopener">題目(Your order, please)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Your task is to sort a given string. Each word <span class="keyword">in</span> the string will contain a single number. This number is the position the word should have <span class="keyword">in</span> the result.</span><br><span class="line"></span><br><span class="line"><span class="symbol">Note:</span> Numbers can be from <span class="number">1</span> to <span class="number">9</span>. So <span class="number">1</span> will be the first word (<span class="keyword">not</span> <span class="number">0</span>).</span><br><span class="line"></span><br><span class="line">If the input string is empty, <span class="keyword">return</span> an empty string. The words <span class="keyword">in</span> the input String will only contain valid consecutive numbers.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line"><span class="string">"is2 Thi1s T4est 3a"</span>  --&gt;  <span class="string">"Thi1s is2 3a T4est"</span></span><br><span class="line"><span class="string">"4of Fo1r pe6ople g3ood th5e the2"</span>  --&gt;  <span class="string">"Fo1r the2 g3ood 4of th5e pe6ople"</span></span><br><span class="line"><span class="string">""</span>  --&gt;  <span class="string">""</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order</span><span class="params">(words)</span></span></span><br><span class="line">  <span class="comment"># your code...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(order(<span class="string">"is2 Thi1s T4est 3a"</span>), <span class="string">"Thi1s is2 3a T4est"</span>)</span><br><span class="line">Test.assert_equals(order(<span class="string">"4of Fo1r pe6ople g3ood th5e the2"</span>), <span class="string">"Fo1r the2 g3ood 4of th5e pe6ople"</span>)</span><br><span class="line">Test.assert_equals(order(<span class="string">""</span>), <span class="string">""</span>, <span class="string">"Empty input should return empty string"</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="遇到的問題">遇到的問題</h1>
+<ol>
+<li>Blog 文章的側邊欄導覽列 Catalog 點擊時無法跳到對應位置，會顯示 null</li>
+<li>Blog 站內搜尋突然失效無法使用</li>
+</ol>
+<h1 id="分析問題">分析問題</h1>
+<p>新增「<a href="https://riverye.com/2019/11/08/%E6%9C%89%E8%B6%A3%E7%9A%84-4-%E9%A1%8C%E7%99%BD%E6%9D%BF%E9%A1%8C/">文章加密</a>」功能後，誤動到原本的 code。</p>
+<h1 id="解決方法">解決方法</h1>
+<h2 id="導覽列問題">導覽列問題</h2>
+<h3 id="markdown-it-套件的-bug">markdown-it 套件的 bug</h3>
+<p>安装 markdown-it-named-headings 來修復原本套件的 bug<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install markdown-it-named-headings --save</span><br></pre></td></tr></table></figure></p>
+<p>進入 Blog 的根目錄修改 <code>node_modules\hexo-renderer-markdown-it\lib\renderer.js</code> 檔案，並在第 9 行後面新增如下：<br>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>修改後會像這樣：<br>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">data, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> MdIt = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>);</span><br><span class="line">  <span class="keyword">var</span> cfg = <span class="keyword">this</span>.config.markdown;</span><br><span class="line">  <span class="keyword">var</span> opt = (cfg) ? cfg : <span class="string">'default'</span>;</span><br><span class="line">  <span class="keyword">var</span> parser = (opt === <span class="string">'default'</span> || opt === <span class="string">'commonmark'</span> || opt === <span class="string">'zero'</span>) ?</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt) :</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt.render);</span><br><span class="line"></span><br><span class="line">  parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.plugins) &#123;</span><br><span class="line">    parser = opt.plugins.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">parser, pugs</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> parser.use(<span class="built_in">require</span>(pugs));</span><br><span class="line">    &#125;, parser);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.anchors) &#123;</span><br><span class="line">    parser = parser.use(<span class="built_in">require</span>(<span class="string">'./anchors'</span>), opt.anchors);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> parser.render(data.text);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>接著 <code>hexo clean</code> 及 <code>hexo server</code> 測試是否解決問題<br>
+若解決，則恭喜你~</p>
+<p>尚未解決請繼續往下看<br>
+改進入 Blog 根目錄 <code>node_modules\hexo-toc\lib\filter.js</code> ，把 28-31 行改成：<br>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(<span class="string">'id'</span>, id);</span><br><span class="line"><span class="comment">// $title.children('a').remove();</span></span><br><span class="line"><span class="comment">// $title.html( '&lt;span id="' + id + '"&gt;' + $title.html() + '&lt;/span&gt;' );</span></span><br><span class="line"><span class="comment">// $title.removeAttr('id');</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>修改後，記得 <code>hexo clean</code> 及 <code>hexo server</code> ，「用無痕模式測試」，確保不受暫存檔影響。</p>
+</blockquote>
+<h3 id="造成原因">造成原因</h3>
+<p>找的 theme 已經很久沒更新了，更新後導致 <code>hexo-toc</code> 不相容的問題。</p>
+<p>沒踩到此雷的可能原因：</p>
+<ol>
+<li>theme 持續更新已解決問題</li>
+<li>舊版本沒更新</li>
+</ol>
 <hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=TZJG1F67SSQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TZJG1F67SSQ/0.jpg" alt="Yes"></a></p>
+<h2 id="站內搜尋失效的問題">站內搜尋失效的問題</h2>
+<h3 id="algolia-服務">Algolia 服務</h3>
+<p>站內搜尋使用 <a href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> 服務製作而成，註冊後享有 14 天內所有功能免費使用，到期後需「手動」選擇免費方案，否則無法繼續使用。</p>
+<p>解決方法其實已經在描述中，到 Algolia 選擇免費方案即可。</p>
+<p>補充紀錄 <code>_config.yml</code> 設定：<br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Blog 根目錄的 _config.yml</span></span><br><span class="line"><span class="symbol">algolia:</span></span><br><span class="line">  <span class="symbol">applicationID:</span> <span class="number">5</span>XXXXXXXR</span><br><span class="line">  <span class="symbol">apiKey:</span> eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">  <span class="symbol">indexName:</span> rXXXXXXXg</span><br><span class="line">  <span class="symbol">chunkSize:</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Blog 根目錄底下的/themes/&lt;主題名稱&gt;/_config.yml</span></span><br><span class="line"><span class="symbol">algolia_search:</span></span><br><span class="line">  <span class="symbol">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="symbol">hits:</span></span><br><span class="line">    <span class="symbol">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="symbol">labels:</span></span><br><span class="line">    <span class="symbol">input_placeholder:</span> Search <span class="keyword">for</span> Posts</span><br><span class="line">    <span class="symbol">hits_empty:</span> <span class="string">"沒有找到任何搜尋結果： $&#123;query&#125;"</span></span><br><span class="line">    <span class="symbol">hits_stats:</span> <span class="string">"約有 $&#123;hits&#125; 項結果 (搜尋時間： $&#123;time&#125; 毫秒)"</span></span><br></pre></td></tr></table></figure></p>
+<p>每次新增文章後，都要做：<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">$ hexo algolia</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/vJsVr3O.png" alt></p>
 <hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your order, please</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order</span><span class="params">(words)</span></span></span><br><span class="line">  words.split.sort_by&#123; <span class="params">|x|</span> x.chars.min &#125;.join<span class="string">' '</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<h1 id="小結">小結</h1>
+<p>透過 <a href="https://zh.wikipedia.org/wiki/%E9%B4%A8%E5%AD%90%E9%A1%9E%E5%9E%8B" target="_blank" rel="noopener">Duck typing</a> 的方式，在描述問題的過程中，答案說不定就在裡面~</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/22/Day13-Codewars-刷題/">https://riverye.com/2019/09/22/Day13-Codewars-刷題/</a></p>
-    <p>發表日期：2019-09-22</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/">https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/</a></p>
+    <p>發表日期：2019-11-09</p>
+    <p>更新日期：2019-11-09</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/23/Day14-Codewars-刷題/" title="Day14 - Codewars 刷題">
-        <div class="nextTitle">Day14 - Codewars 刷題</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/21/刷題的標題好難想-沒梗了-XD/" title="刷題的標題好難想 (沒梗了 XD)">
-        <div class="prevTitle">刷題的標題好難想 (沒梗了 XD)</div>
+      <a href="/2019/11/08/有趣的-4-題白板題/" title="有趣的 4 題白板題">
+        <div class="prevTitle">有趣的 4 題白板題</div>
       </a>
       
     </li>
@@ -473,8 +509,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/22/Day13-Codewars-刷題/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day13 - Codewars 刷題"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Hexo 踩到的雷(導覽列及站內搜尋功能)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -600,7 +636,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說在前面"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的問題"><span class="toc-number">2.</span> <span class="toc-text">遇到的問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析問題"><span class="toc-number">3.</span> <span class="toc-text">分析問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解決方法"><span class="toc-number">4.</span> <span class="toc-text">解決方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#導覽列問題"><span class="toc-number">4.1.</span> <span class="toc-text">導覽列問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-it-套件的-bug"><span class="toc-number">4.1.1.</span> <span class="toc-text">markdown-it 套件的 bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#造成原因"><span class="toc-number">4.1.2.</span> <span class="toc-text">造成原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#站內搜尋失效的問題"><span class="toc-number">4.2.</span> <span class="toc-text">站內搜尋失效的問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#algolia-服務"><span class="toc-number">4.2.1.</span> <span class="toc-text">Algolia 服務</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

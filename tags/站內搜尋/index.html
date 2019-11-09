@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day13 - Codewars 刷題 · 小菜的 Blog</title>
+    <title>小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,23 +229,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >你必須很努力</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Day13 - Codewars 刷題</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>你必須很努力</a>
 </header>
@@ -259,63 +248,28 @@
 
 
 
-
-height:50vh;
 "
 >
   
   <!-- 主页  -->
-   
-  <!-- 404页  -->
   
   <div class="site-intro-placeholder"></div>
   <div
     class="site-intro-img"
-    style="background-image: url(/intro/post-bg.jpg)"
+    style="background-image: url(/)"
   ></div>
   <div class="site-intro-meta">
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day13 - Codewars 刷題
-      <!-- 404 -->
       
     </h1>
     <!-- 副标题 -->
     <p class="intro-subtitle">
       <!-- 主页副标题  -->
-       
-      <!-- 404 -->
       
     </p>
     <!-- 文章页meta -->
-    
-    <div class="post-intros">
-      <!-- 文章页标签  -->
-       <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>  
-      <div class="post-intro-meta">
-        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-        <span class="post-intro-time"
-          >2019/09/22</span
-        >
-      </div>
-      <div class="post-intro-read">
-        <span
-          >字數統計:
-          <span class="post-count word-count"
-            >196</span
-          >閱讀時間:
-          <span class="post-count reading-time"
-            >1 min</span
-          ></span
-        >
-      </div>
-      
-    </div>
     
   </div>
 </div>
@@ -417,84 +371,44 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-  <article class="article-entry">
-    <p>今日喉嚨微恙<br>
-講話比較小聲且無力<br>
-請多多包涵 ~&quot;~</p>
-<hr>
-<p><a href="https://www.codewars.com/kata/your-order-please/train/ruby" target="_blank" rel="noopener">題目(Your order, please)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Your task is to sort a given string. Each word <span class="keyword">in</span> the string will contain a single number. This number is the position the word should have <span class="keyword">in</span> the result.</span><br><span class="line"></span><br><span class="line"><span class="symbol">Note:</span> Numbers can be from <span class="number">1</span> to <span class="number">9</span>. So <span class="number">1</span> will be the first word (<span class="keyword">not</span> <span class="number">0</span>).</span><br><span class="line"></span><br><span class="line">If the input string is empty, <span class="keyword">return</span> an empty string. The words <span class="keyword">in</span> the input String will only contain valid consecutive numbers.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line"><span class="string">"is2 Thi1s T4est 3a"</span>  --&gt;  <span class="string">"Thi1s is2 3a T4est"</span></span><br><span class="line"><span class="string">"4of Fo1r pe6ople g3ood th5e the2"</span>  --&gt;  <span class="string">"Fo1r the2 g3ood 4of th5e pe6ople"</span></span><br><span class="line"><span class="string">""</span>  --&gt;  <span class="string">""</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order</span><span class="params">(words)</span></span></span><br><span class="line">  <span class="comment"># your code...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(order(<span class="string">"is2 Thi1s T4est 3a"</span>), <span class="string">"Thi1s is2 3a T4est"</span>)</span><br><span class="line">Test.assert_equals(order(<span class="string">"4of Fo1r pe6ople g3ood th5e the2"</span>), <span class="string">"Fo1r the2 g3ood 4of th5e pe6ople"</span>)</span><br><span class="line">Test.assert_equals(order(<span class="string">""</span>), <span class="string">""</span>, <span class="string">"Empty input should return empty string"</span>)</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=TZJG1F67SSQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/TZJG1F67SSQ/0.jpg" alt="Yes"></a></p>
-<hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your order, please</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">order</span><span class="params">(words)</span></span></span><br><span class="line">  words.split.sort_by&#123; <span class="params">|x|</span> x.chars.min &#125;.join<span class="string">' '</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
-
-  </article>
-  <!-- license  -->
-  
-  <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/22/Day13-Codewars-刷題/">https://riverye.com/2019/09/22/Day13-Codewars-刷題/</a></p>
-    <p>發表日期：2019-09-22</p>
-    <p>更新日期：2019-10-09</p>
-  </div>
-  
-  <!-- paginator  -->
-  <ul class="post-paginator">
-    <li class="next">
-      
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/23/Day14-Codewars-刷題/" title="Day14 - Codewars 刷題">
-        <div class="nextTitle">Day14 - Codewars 刷題</div>
-      </a>
-      
-    </li>
-    <li class="previous">
-      
-      <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/21/刷題的標題好難想-沒梗了-XD/" title="刷題的標題好難想 (沒梗了 XD)">
-        <div class="prevTitle">刷題的標題好難想 (沒梗了 XD)</div>
-      </a>
-      
-    </li>
-  </ul>
-  <!-- 评论插件 -->
-  <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 --> 
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        
-        var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/22/Day13-Codewars-刷題/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day13 - Codewars 刷題"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        
-        (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://riverye.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
- 
-  <!-- partial('_partial/comment/changyan') -->
-  <!--PC版-->
-
-  
-
-  <!-- 评论 -->
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/" >
+            
+                <span>Hexo 踩到的雷(導覽列及站內搜尋功能)</span>
+        </a>
+        <div class="abstract-content">
+            
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/09</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "導覽列">導覽列</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "站內搜尋">站內搜尋</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    <!-- paginator  -->
+    
 </main>
-
             <!-- profile -->
             
         </div>
@@ -584,24 +498,6 @@ height:50vh;
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1580,8 +1476,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
