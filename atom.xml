@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2019-11-09T02:57:53.766Z</updated>
+  <updated>2019-11-10T04:17:49.252Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)</title>
+    <link href="https://riverye.com/2019/11/10/%E4%BF%AE%E6%94%B9-Ubuntu-%E7%B5%82%E7%AB%AF%E6%A9%9F%E7%9A%84%E6%A8%99%E9%A1%8C%E9%A1%AF%E7%A4%BA-%E5%8F%AA%E9%A1%AF%E7%A4%BA%E7%95%B6%E5%89%8D%E8%B7%AF%E5%BE%91-Git-branch/"/>
+    <id>https://riverye.com/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/</id>
+    <published>2019-11-09T16:00:00.000Z</published>
+    <updated>2019-11-10T04:17:49.252Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言">前言</h1><p>看過<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">這篇文章</a>會知道裡面有教學如何修改「<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/#ubuntu-%E8%B7%AF%E5%BE%91%E5%90%8D%E7%A8%B1%E5%A4%AA%E9%95%B7%E5%A6%82%E4%BD%95%E7%B8%AE%E7%9F%AD">Ubuntu 路徑名稱太長，如何縮短 ?</a>」，若仍覺得顯示整個資料夾路徑很長，並想知道目前資料夾的 Git branch 的話，可參考以下方法，或<a href="http://xta.github.io/HalloweenBash" target="_blank" rel="noopener">參考這個網站 Bash Profile Generator</a>，先在網頁上改成想要的效果後，再把 code 貼回 <code>~/.bashrc</code></p><h1 id="開始前">開始前</h1><p>建議先把 <code>~/.bashrc</code> 備份，預防萬一</p><h1 id="步驟">步驟</h1><p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure></p><p>修改約第 60 行 <code>$color_prompt</code> 的內容</p><p><strong>是否顯示完整路徑差別在於 w 的大小寫，小寫 w 為完整路徑，大寫 W 為當前路徑</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\$ &apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改後 + Git branch (顯示完整路徑)</span><br><span class="line">function parse_git_branch &#123;</span><br><span class="line">git branch --no-color 2&gt; /dev/null | sed -e &apos;/^[^*]/d&apos; -e &apos;s/* \(.*\)/(\1)/&apos;</span><br><span class="line">&#125;</span><br><span class="line">export PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\033[01;32m\]$(parse_git_branch)\[\033[00m\]$ &apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改後 + Git branch (只顯示當前路徑)</span><br><span class="line">function parse_git_branch &#123;</span><br><span class="line">git branch --no-color 2&gt; /dev/null | sed -e &apos;/^[^*]/d&apos; -e &apos;s/* \(.*\)/(\1)/&apos;</span><br><span class="line">&#125;</span><br><span class="line">export PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\W\[\033[00m\]]\033[01;32m\]$(parse_git_branch)\[\033[00m\]$ &apos;</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/lNSbnt8.png" alt></p><h1 id="顯示效果">顯示效果</h1><p>修改儲存離開後，輸入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bashrc</span><br></pre></td></tr></table></figure></p><p>即可看到修改狀態 (免重開 Ubuntu)</p><p><img src="https://i.imgur.com/1vP21Dh.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
+&lt;p&gt;看過&lt;a href=&quot;https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Gi
+      
+    
+    </summary>
+    
+    
+      <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
+    
+    
+      <category term="Ubuntu" scheme="https://riverye.com/tags/Ubuntu/"/>
+    
+      <category term="terminal" scheme="https://riverye.com/tags/terminal/"/>
+    
+      <category term="git branch" scheme="https://riverye.com/tags/git-branch/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo 踩到的雷(導覽列及站內搜尋功能)</title>
@@ -196,9 +227,9 @@
     
       <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
     
-      <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
-    
       <category term="Blog" scheme="https://riverye.com/tags/Blog/"/>
+    
+      <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
     
       <category term="domain" scheme="https://riverye.com/tags/domain/"/>
     
@@ -582,35 +613,6 @@
 再 10 天就結束了，同時也是最忙的階段&lt;br&gt;
 一起把鐵人賽完賽吧!!&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.codewars.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Code
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="11th鐵人賽" scheme="https://riverye.com/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day19 - Codewars 刷題</title>
-    <link href="https://riverye.com/2019/09/28/Day19-Codewars-%E5%88%B7%E9%A1%8C/"/>
-    <id>https://riverye.com/2019/09/28/Day19-Codewars-刷題/</id>
-    <published>2019-09-27T16:00:00.000Z</published>
-    <updated>2019-10-08T17:16:39.594Z</updated>
-    
-    <content type="html"><![CDATA[<p>即便是假日也閒不下來<br>不停地學習及做專案<br>再忙也要擠出一點時間鐵人賽一下</p><p><a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV7</p><hr><p><a href="https://www.codewars.com/kata/century-from-year/train/ruby" target="_blank" rel="noopener">題目(Century From Year)</a>：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Usually <span class="keyword">when</span> you buy something, you<span class="string">'re asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don'</span>t want that shown on your screen. Instead, we mask it.</span><br><span class="line"></span><br><span class="line">Your task is to write a function maskify, which changes all but the last four characters into <span class="string">'#'</span>.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line">maskify(<span class="string">'4556364607935616'</span>) <span class="comment"># should return '############5616'</span></span><br><span class="line">maskify(<span class="string">'64607935616'</span>)      <span class="comment"># should return '#######5616'</span></span><br><span class="line">maskify(<span class="string">'1'</span>)                <span class="comment"># should return '1'</span></span><br><span class="line">maskify(<span class="string">''</span>)                 <span class="comment"># should return ''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># "What was the name of your first pet?"</span></span><br><span class="line">maskify(<span class="string">'Skippy'</span>)                                   <span class="comment"># should return '##ippy'</span></span><br><span class="line">maskify(<span class="string">'Nananananananananananananananana Batman!'</span>) <span class="comment"># should return '####################################man!'</span></span><br></pre></td></tr></table></figure></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maskify</span><span class="params">(cc)</span></span></span><br><span class="line">  <span class="comment"># your beautiful code goes here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(maskify(<span class="string">'4556364607935616'</span>), <span class="string">'############5616'</span>)</span><br><span class="line">Test.assert_equals(maskify(<span class="string">'1'</span>), <span class="string">'1'</span>)</span><br><span class="line">Test.assert_equals(maskify(<span class="string">'11111'</span>), <span class="string">'#1111'</span>)</span><br></pre></td></tr></table></figure></p><hr><p>影片解題：<a href="https://www.youtube.com/watch?v=wG9BX_f8iVU" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/wG9BX_f8iVU/0.jpg" alt="Yes"></a></p><hr><p>答案：</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Credit Card Mask</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maskify</span><span class="params">(cc)</span></span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line"><span class="keyword">return</span> cc <span class="keyword">if</span> cc.length &lt;= <span class="number">4</span></span><br><span class="line"><span class="string">'#'</span> * (cc.length - <span class="number">4</span>) + cc[-<span class="number">4</span>..-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">cc.gsub(<span class="regexp">/.(?=....)/</span>, <span class="string">'#'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;即便是假日也閒不下來&lt;br&gt;
-不停地學習及做專案&lt;br&gt;
-再忙也要擠出一點時間鐵人賽一下&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.codewars.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Codewars&lt;/a&gt; LV7&lt;/
       
     
     </summary>

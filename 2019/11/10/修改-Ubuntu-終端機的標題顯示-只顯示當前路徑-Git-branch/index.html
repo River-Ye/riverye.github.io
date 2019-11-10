@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day25 - Codewars 刷題 · 小菜的 Blog</title>
+    <title>修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day25 - Codewars 刷題</a>
+                <a href="#" class="post-name">修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day25 - Codewars 刷題
+       修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)
       <!-- 404 -->
       
     </h1>
@@ -294,20 +294,24 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Ubuntu">Ubuntu</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "terminal">terminal</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "git branch">git branch</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/10/04</span
+          >2019/11/10</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >202</span
+            >310</span
           >閱讀時間:
           <span class="post-count reading-time"
             >1 min</span
@@ -419,49 +423,41 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>寫 code 前，先讀懂題目是很重要的，<br>
-前面寫起來挺順的，實際丟 <a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV5 測試時，<br>
-代誌不是憨人想的那麼簡單，<br>
-例外訊息沒留意到，卡在後面搞懂問題及下關鍵字找答案，<br>
-為了不耽誤各位時間，<br>
-後半段解法明天繼續。</p>
-<hr>
-<p><a href="https://www.codewars.com/kata/520b9d2ad5c005041100000f/train/ruby" target="_blank" rel="noopener">題目(Simple Pig Latin)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Move the first letter of each word to the <span class="keyword">end</span> of it, <span class="keyword">then</span> add <span class="string">"ay"</span> to the <span class="keyword">end</span> of the word. Leave punctuation marks untouched.</span><br><span class="line"></span><br><span class="line">Examples</span><br><span class="line">pig_it(<span class="string">'Pig latin is cool'</span>) <span class="comment"># igPay atinlay siay oolcay</span></span><br><span class="line">pig_it(<span class="string">'Hello world !'</span>)     <span class="comment"># elloHay orldway !</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pig_it</span> <span class="title">text</span></span></span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(pig_it(<span class="string">'Pig latin is cool'</span>),<span class="string">'igPay atinlay siay oolcay'</span>)</span><br><span class="line">Test.assert_equals(pig_it(<span class="string">'This is my string'</span>),<span class="string">'hisTay siay ymay tringsay'</span>);</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=sRCBIYhhYow" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/sRCBIYhhYow/0.jpg" alt="Yes"></a></p>
-<hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Simple Pig Latin</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pig_it</span> <span class="title">text</span></span></span><br><span class="line">  text.split.map&#123; <span class="params">|x|</span> x.chars.rotate.insert(-<span class="number">1</span>, <span class="string">"ay"</span>).join &#125;.join<span class="string">' '</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#非正確答案喔!!</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>下集待續..</strong></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+    <h1 id="前言">前言</h1>
+<p>看過<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">這篇文章</a>會知道裡面有教學如何修改「<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/#ubuntu-%E8%B7%AF%E5%BE%91%E5%90%8D%E7%A8%B1%E5%A4%AA%E9%95%B7%E5%A6%82%E4%BD%95%E7%B8%AE%E7%9F%AD">Ubuntu 路徑名稱太長，如何縮短 ?</a>」，若仍覺得顯示整個資料夾路徑很長，並想知道目前資料夾的 Git branch 的話，可參考以下方法，或<a href="http://xta.github.io/HalloweenBash" target="_blank" rel="noopener">參考這個網站 Bash Profile Generator</a>，先在網頁上改成想要的效果後，再把 code 貼回 <code>~/.bashrc</code></p>
+<h1 id="開始前">開始前</h1>
+<p>建議先把 <code>~/.bashrc</code> 備份，預防萬一</p>
+<h1 id="步驟">步驟</h1>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>修改約第 60 行 <code>$color_prompt</code> 的內容</p>
+<p><strong>是否顯示完整路徑差別在於 w 的大小寫，小寫 w 為完整路徑，大寫 W 為當前路徑</strong>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 修改前</span><br><span class="line">PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\$ &apos;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"># 修改後 + Git branch (顯示完整路徑)</span><br><span class="line">function parse_git_branch &#123;</span><br><span class="line">	git branch --no-color 2&gt; /dev/null | sed -e &apos;/^[^*]/d&apos; -e &apos;s/* \(.*\)/(\1)/&apos;</span><br><span class="line">&#125;</span><br><span class="line">export PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\w\[\033[00m\]]\033[01;32m\]$(parse_git_branch)\[\033[00m\]$ &apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 修改後 + Git branch (只顯示當前路徑)</span><br><span class="line">function parse_git_branch &#123;</span><br><span class="line">	git branch --no-color 2&gt; /dev/null | sed -e &apos;/^[^*]/d&apos; -e &apos;s/* \(.*\)/(\1)/&apos;</span><br><span class="line">&#125;</span><br><span class="line">export PS1=&apos;$&#123;debian_chroot:+($debian_chroot)&#125;\[[\033[01;32m\]\W\[\033[00m\]]\033[01;32m\]$(parse_git_branch)\[\033[00m\]$ &apos;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/lNSbnt8.png" alt></p>
+<h1 id="顯示效果">顯示效果</h1>
+<p>修改儲存離開後，輸入：<br>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>即可看到修改狀態 (免重開 Ubuntu)</p>
+<p><img src="https://i.imgur.com/1vP21Dh.png" alt></p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/10/04/Day25-Codewars-刷題/">https://riverye.com/2019/10/04/Day25-Codewars-刷題/</a></p>
-    <p>發表日期：2019-10-04</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/">https://riverye.com/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/</a></p>
+    <p>發表日期：2019-11-10</p>
+    <p>更新日期：2019-11-10</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/10/05/Day26-Codewars-刷題/" title="Day26 - Codewars 刷題">
-        <div class="nextTitle">Day26 - Codewars 刷題</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/10/03/Day24-Codewars-刷題/" title="Day24 - Codewars 刷題">
-        <div class="prevTitle">Day24 - Codewars 刷題</div>
+      <a href="/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/" title="Hexo 踩到的雷(導覽列及站內搜尋功能)">
+        <div class="prevTitle">Hexo 踩到的雷(導覽列及站內搜尋功能)</div>
       </a>
       
     </li>
@@ -477,8 +473,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/10/04/Day25-Codewars-刷題/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day25 - Codewars 刷題"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -604,7 +600,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#開始前"><span class="toc-number">2.</span> <span class="toc-text">開始前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#步驟"><span class="toc-number">3.</span> <span class="toc-text">步驟</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#顯示效果"><span class="toc-number">4.</span> <span class="toc-text">顯示效果</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
