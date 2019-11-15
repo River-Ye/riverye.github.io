@@ -578,7 +578,7 @@ Block 中包住 <code>i</code> 和 <code>num</code> 的 | 唸做 pipe，中間�
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hi_proc(<span class="string">"Hahaha"</span>)&#123; <span class="params">|s|</span> puts s &#125;</span><br><span class="line"></span><br><span class="line">hi_lambda = (<span class="number">1</span>..<span class="number">5</span>).map &#123; <span class="params">|x|</span> x * x &#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="ampblock-放參數最後面"><code>&amp;block</code> 放參數最後面</h2>
 <p>Block 無法得知被物件化(參數化)後的 Block，需在最後一個參數前面加上 <code>&amp;</code> ，這東西只能有一個，且必須放在最後面，否則會出現 syntax error。<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 錯誤示範</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block</span><span class="params">(&amp;p, n)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block</span><span class="params">(n, &amp;p1, &amp;p2)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block1</span><span class="params">(str, &amp;test01)</span></span></span><br><span class="line">  <span class="string">"<span class="subst">#&#123;str&#125;</span> <span class="subst">#&#123;test01.call(<span class="number">18</span>)&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hi_block1(<span class="string">"Hello"</span>) &#123; <span class="params">|age|</span> <span class="string">"I'm <span class="subst">#&#123;age&#125;</span> years old."</span> &#125;</span><br><span class="line"><span class="comment"># "Hello I'm 18 years old."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">temp_b1</span></span></span><br><span class="line">  <span class="keyword">yield</span>(<span class="string">"參數1"</span>) <span class="comment"># 小刮號可省略</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">temp_b2</span><span class="params">(&amp;block)</span></span></span><br><span class="line">  block.call(<span class="string">"參數2"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">block1 = Proc.new &#123;<span class="params">|x|</span> puts <span class="string">"這是 Proc <span class="subst">#&#123;x&#125;</span>"</span>&#125;</span><br><span class="line">block2 = lambda &#123;<span class="params">|x|</span> puts <span class="string">"這是 lambda <span class="subst">#&#123;x&#125;</span>"</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">temp_b1 &#123; <span class="params">|x|</span> puts <span class="string">"block0 <span class="subst">#&#123;x&#125;</span>"</span> &#125;  <span class="comment"># block0 參數1</span></span><br><span class="line">temp_b1(&amp;block1)                    <span class="comment"># 這是 Proc 參數1</span></span><br><span class="line">temp_b2(&amp;block2)                    <span class="comment"># 這是 lambda 參數2</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 錯誤示範</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block</span><span class="params">(&amp;p, n)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block</span><span class="params">(n, &amp;p1, &amp;p2)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hi_block1</span><span class="params">(str, &amp;test01)</span></span></span><br><span class="line">  <span class="string">"<span class="subst">#&#123;str&#125;</span> <span class="subst">#&#123;test01.call(<span class="number">18</span>)&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hi_block1(<span class="string">"Hello"</span>) &#123; <span class="params">|age|</span> <span class="string">"I'm <span class="subst">#&#123;age&#125;</span> years old."</span> &#125;</span><br><span class="line"><span class="comment"># "Hello I'm 18 years old."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例2</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">temp_b1</span></span></span><br><span class="line">  <span class="keyword">yield</span>(<span class="string">"參數1"</span>) <span class="comment"># 小括號可省略</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">temp_b2</span><span class="params">(&amp;block)</span></span></span><br><span class="line">  block.call(<span class="string">"參數2"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">block1 = Proc.new &#123;<span class="params">|x|</span> puts <span class="string">"這是 Proc <span class="subst">#&#123;x&#125;</span>"</span>&#125;</span><br><span class="line">block2 = lambda &#123;<span class="params">|x|</span> puts <span class="string">"這是 lambda <span class="subst">#&#123;x&#125;</span>"</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">temp_b1 &#123; <span class="params">|x|</span> puts <span class="string">"block0 <span class="subst">#&#123;x&#125;</span>"</span> &#125;  <span class="comment"># block0 參數1</span></span><br><span class="line">temp_b1(&amp;block1)                    <span class="comment"># 這是 Proc 參數1</span></span><br><span class="line">temp_b2(&amp;block2)                    <span class="comment"># 這是 lambda 參數2</span></span><br></pre></td></tr></table></figure></p>
 <p>看完會發現 Ruby 中的 <code>&amp;</code> 非常的神奇，背後做了很多事情，實際上它是生出一個 Proc 物件，雖然好用，但若不了解背後原理的話，會不知怎麼用、錯在哪。</p>
 <h2 id="有兩個以上-ampblock-該怎辦">有兩個以上 <code>&amp;block</code> 該怎辦？</h2>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">two_block</span><span class="params">(n, p1, p2)</span></span></span><br><span class="line">  p1[n]      <span class="comment"># 等同於 p1.call(n)</span></span><br><span class="line">  p2.call n  <span class="comment"># 括號可省略</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">two_block(<span class="string">'River'</span>, proc &#123; <span class="params">|i|</span> puts <span class="string">"<span class="subst">#&#123;i&#125;</span> 1"</span> &#125;, Proc.new &#123; <span class="params">|i|</span> puts <span class="string">"<span class="subst">#&#123;i&#125;</span> 2"</span> &#125; )</span><br><span class="line"><span class="comment"># 印出結果如下</span></span><br><span class="line">River <span class="number">1</span></span><br><span class="line">River <span class="number">2</span></span><br><span class="line"> =&gt; nil</span><br><span class="line"><span class="comment"># 印出結果如上</span></span><br></pre></td></tr></table></figure></p>
@@ -771,6 +771,12 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1586,11 +1592,6 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
@@ -1602,6 +1603,11 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
         </li>
     
     
@@ -1648,35 +1654,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+    
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
         <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
-    
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
-    
-        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
-    
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
-        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
-    
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
-    
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -1685,6 +1671,18 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
     
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
@@ -1701,6 +1699,14 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
         <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1743,13 +1749,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
-        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+        <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
     
-        <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
-    
         <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
+    
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
