@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="River-Ye">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="River-Ye">
+    
+    <meta name="keywords" content="小菜,葉政偉,被端走的小菜">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!) · 小菜的 Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+        <!-- algolia -->
+        <script>
+            
+            var hits = JSON.parse('{"per_page":10}')
+            var labels = JSON.parse('{"input_placeholder":"Search for Posts","hits_empty":"沒有找到任何搜尋結果： ${query}","hits_stats":"約有 ${hits} 項結果 (搜尋時間： ${time} 毫秒)"}')
+
+            var algolia = {
+                applicationID: '56R5S6AIDR',
+                apiKey: 'efd30c461b3709a1bd36117ce4ab7875',
+                indexName: 'riverye_blog',
+                hits: hits,
+                labels: labels
+            }
+        </script>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-149439464-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >你必須很努力</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>你必須很努力</a>
+</header>
+    <div class="wrapper">
+        <div
+  class="site-intro"
+  style="
+
+
+
+
+
+
+
+height:50vh;
+"
+>
+  
+  <!-- 主页  -->
+   
+  <!-- 404页  -->
+  
+  <div class="site-intro-placeholder"></div>
+  <div
+    class="site-intro-img"
+    style="background-image: url(/intro/post-bg.jpg)"
+  ></div>
+  <div class="site-intro-meta">
+    <!-- 标题  -->
+    <h1 class="intro-title">
+      <!-- 主页  -->
+       透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)
+      <!-- 404 -->
+      
+    </h1>
+    <!-- 副标题 -->
+    <p class="intro-subtitle">
+      <!-- 主页副标题  -->
+       
+      <!-- 404 -->
+      
+    </p>
+    <!-- 文章页meta -->
+    
+    <div class="post-intros">
+      <!-- 文章页标签  -->
+       <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Cloudflare">Cloudflare</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Freenom">Freenom</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Heroku">Heroku</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Domain">Domain</a>
+    
+</div>  
+      <div class="post-intro-meta">
+        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+        <span class="post-intro-time"
+          >2019/11/19</span
+        >
+      </div>
+      <div class="post-intro-read">
+        <span
+          >字數統計:
+          <span class="post-count word-count"
+            >1k</span
+          >閱讀時間:
+          <span class="post-count reading-time"
+            >4 min</span
+          ></span
+        >
+      </div>
+      
+    </div>
+    
+  </div>
+</div>
+
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+  <article class="article-entry">
+    <h1 id="說明">說明</h1>
+<p>Ruby on Rails 專案完成且部署到 <a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a> 後，想要有一個專屬 <a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">Domain Name</a> 網址並有 <a href="https://zh.wikipedia.org/wiki/https" target="_blank" rel="noopener">HTTPS</a> 的話，本文以 Freenom 購買 Domain 網址，在 Cloudflare 進行 CDN 及 DNS 設定為例。</p>
+<h1 id="heroku-cloudflare-freenom-是什麼">Heroku、Cloudflare、Freenom 是什麼？</h1>
+<h3 id="heroku">Heroku</h3>
+<p>Heroku 是一個支援多種程式語言的雲平台即服務。Heroku作為最元祖的雲平台之一，從 2007 年 6 月起開發，當時它僅支援 Ruby，但後來增加了對 Java、Node.js、Scala、Clojure、Python 以及（未記錄在正式檔案上）PHP 和 Perl 的支援。基礎作業系統是 Debian，在最新的技術堆疊則是基於 Debian 的 Ubuntu。更重要的是 Ruby 程式語言的發明之父<a href="https://zh.wikipedia.org/wiki/%E6%9D%BE%E6%9C%AC%E8%A1%8C%E5%BC%98" target="_blank" rel="noopener">松本行弘</a>（日文：まつもとゆきひろ，網路上大家通常稱他 Matz）也在這上班。</p>
+<p>出處：<a href="https://zh.wikipedia.org/wiki/Heroku" target="_blank" rel="noopener">維基百科</a></p>
+<h3 id="cloudflare">Cloudflare</h3>
+<p>Cloudflare 是一間總部位於舊金山的美國跨國 IT 企業，以向客戶提供基於反向代理的內容傳遞網路（Content Delivery Network, CDN）及分布式域名解析服務（Distributed Domain Name Server）為主要業務。Cloudflare可以幫助受保護站點抵禦包拒絕服務攻擊等網路攻擊，確保該網站長期在線，同時提升網站的效能、載入速度以改善訪客體驗。</p>
+<p>出處：<a href="https://zh.wikipedia.org/wiki/CloudFlare" target="_blank" rel="noopener">維基百科</a></p>
+<h3 id="freenom">Freenom</h3>
+<p>Freenom 是世界上第一個也是唯一一個免費功能變數名稱的供應商，運用最近的網路建設和託管技術，打破了壁壘，整合了免費的功能變數名稱，這使得任何企業或個人不花一分錢就可以建立網站和目錄。</p>
+<p>出處：<a href="https://www.freenom.com/zu/aboutfreenom.html" target="_blank" rel="noopener">公司介紹</a></p>
+<h1 id="開始前">開始前</h1>
+<p>你要有：</p>
+<ol>
+<li><a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a> 的帳號密碼 (上面要有已部署好的專案)</li>
+<li><a href="https://www.freenom.com/zu/index.html" target="_blank" rel="noopener">Freenom</a>  的帳號密碼</li>
+<li><a href="https://www.cloudflare.com/zh-tw/" target="_blank" rel="noopener">Cloudflare</a>  的帳號密碼</li>
+</ol>
+<blockquote>
+<p>備註：以下說明，皆在登入 Heroku、Freenom、Cloudflare 狀態下操作</p>
+</blockquote>
+<h1 id="如何設定-heroku-freenom-cloudflare">如何設定 Heroku、Freenom、Cloudflare</h1>
+<h3 id="1-先到-freenom-挑一組喜歡的-domain-購買">1. 先到 Freenom 挑一組喜歡的 Domain 購買</h3>
+<p>文章以「this-is-test.tk」為例</p>
+<h3 id="2-在-heroku-首頁點選該專案的-settings先確認部署的專案能正常執行以下兩種方法將-domain-加入擇一即可">2. 在 Heroku 首頁點選該專案的 Settings，先確認部署的專案能正常執行，以下兩種方法將 Domain 加入(擇一即可)</h3>
+<p><img src="https://i.imgur.com/62TqU8u.png" alt></p>
+<h3 id="3-1-在-heroku-網頁點選add-domain輸入買的-domain例如this-is-testtk">3-1. 在 Heroku 網頁點選「Add domain」輸入「買的 domain」，例如：「this-is-test.tk」</h3>
+<p><img src="https://i.imgur.com/FGiUWpe.png" alt></p>
+<p><img src="https://i.imgur.com/BGLEM8V.png" alt></p>
+<h3 id="3-2-在專案目錄的終端機輸入如下">3-2. 在專案目錄的終端機輸入如下</h3>
+<p>(已做 3-1. 可省略此步驟)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 記得先切換到該專案資料夾</span></span><br><span class="line"></span><br><span class="line">$ heroku domains:add &lt;你買的domain&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">$ heroku domains:add this-is-test.tk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接著回 Heroku 網頁確認是否已加入</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/NJhfgOb.png" alt></p>
+<h3 id="4-cloudflare-網頁點選add-a-site">4. Cloudflare 網頁點選「+Add a Site」</h3>
+<p><img src="https://i.imgur.com/rKAxR5l.png" alt></p>
+<h3 id="5-輸入購買的-domain">5. 輸入購買的 Domain</h3>
+<p><img src="https://i.imgur.com/NUUIr6p.png" alt></p>
+<h3 id="6-選-free-接著下一步">6. 選 Free 接著下一步</h3>
+<p><img src="https://i.imgur.com/IaVD23J.png" alt></p>
+<h3 id="7-輸入-dns-設定-後面說明">7. 輸入 DNS 設定 (後面說明)</h3>
+<p><img src="https://i.imgur.com/wYA92yk.png" alt></p>
+<h3 id="8-設定如下確認無誤點continue">8. 設定如下，確認無誤點「Continue」</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Value</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td>&lt;你買的 Domain&gt;</td>
+<td>&lt;原本 Heroku 網址&gt;</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>www</td>
+<td>&lt;你買的 Domain&gt;</td>
+<td>Automatic</td>
+</tr>
+</tbody>
+</table>
+<p>範例如下：(此範例連結之後會失效)</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Name</th>
+<th>Value</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CNAME</td>
+<td>this-is-test.tk</td>
+<td>test-freenom-and-cloudflare.herokuapp.com</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>CNAME</td>
+<td>www</td>
+<td>this-is-test.tk</td>
+<td>Automatic</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://i.imgur.com/kTTFgke.png" alt></p>
+<h3 id="9-確認無誤後點done-check-nameservers">9. 確認無誤後點「Done, check nameservers」</h3>
+<p><img src="https://i.imgur.com/ws04oId.png" alt></p>
+<h3 id="10-複製這-2-個-nameserver在-freenom-會用到">10. 複製這 2 個 Nameserver，在 freenom 會用到</h3>
+<blockquote>
+<p>可能會與我的不同</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Nameserver 1</th>
+<th>Nameserver 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dara.ns.cloudflare.com</td>
+<td>scott.ns.cloudflare.com</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://i.imgur.com/s2WcK0l.png" alt></p>
+<h3 id="11-在-freenom-網頁設定-nameserver">11. 在 freenom 網頁設定 Nameserver</h3>
+<blockquote>
+<p>流程：<br>
+freenom → Services → My Domains → Manage Domain → Management Tools → Nameservers → User custom nameservers(enter below) → 輸入 cloudflare 的 Nameserver → 點「Change Nameservers」</p>
+</blockquote>
+<p><img src="https://i.imgur.com/sBOBFeu.png" alt></p>
+<h3 id="12-將-cloudflare-的-nameserver-貼在-freenom">12. 將 Cloudflare 的 Nameserver 貼在 freenom</h3>
+<blockquote>
+<p>可能會與我的不同</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Nameserver 1</th>
+<th>Nameserver 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dara.ns.cloudflare.com</td>
+<td>scott.ns.cloudflare.com</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://i.imgur.com/ouCGjwS.png" alt></p>
+<h3 id="13-設定成功畫面如下">13. 設定成功畫面如下</h3>
+<p><img src="https://i.imgur.com/DX6HABx.png" alt></p>
+<h3 id="14-回-cloudflare-點re-check-now">14. 回 Cloudflare 點「Re-check now」</h3>
+<p><img src="https://i.imgur.com/ImNemsA.png" alt></p>
+<h3 id="15-在-cloudflare-首頁會看到更新中等待同時先把-https-設定開啟">15. 在 Cloudflare 首頁會看到更新中，等待同時，先把 HTTPS 設定開啟</h3>
+<p><img src="https://i.imgur.com/qPhcfQw.png" alt></p>
+<h3 id="16-cloudflare-之後若要改-dns-可在此調整">16. Cloudflare 之後若要改 DNS 可在此調整</h3>
+<p><img src="https://i.imgur.com/gqgsuJj.png" alt></p>
+<h3 id="17-在-ssltls-的-edge-certificates-設定中啟動always-use-https">17. 在 SSL/TLS 的 Edge Certificates 設定中，啟動「Always Use HTTPS」</h3>
+<p><img src="https://i.imgur.com/tNP2I4J.png" alt></p>
+<h3 id="18-在-ssltls-的-overview-中設定成full">18. 在 SSL/TLS 的 Overview 中，設定成「Full」</h3>
+<p><img src="https://i.imgur.com/Qxe39NM.png" alt></p>
+<h3 id="19-回-ssltls-的-edge-certificates-中status-目前為pending-validation">19. 回 SSL/TLS 的 Edge Certificates 中，Status 目前為「Pending Validation」</h3>
+<blockquote>
+<p>等它從黃燈變綠燈，所需時間短則 10-30 分鐘，長則 1 天左右</p>
+</blockquote>
+<p><s>人品好壞就看這次了</s></p>
+<p><img src="https://i.imgur.com/RfAJDna.png" alt></p>
+<h3 id="20-經過漫長等待變綠燈時網址就能瀏覽囉">20. 經過漫長等待，變綠燈時，網址就能瀏覽囉</h3>
+<blockquote>
+<p>測試下來約 2 小時左右才變綠燈</p>
+</blockquote>
+<p><img src="https://i.imgur.com/odMdnFU.png" alt></p>
+<h1 id="小結">小結</h1>
+<p>寫這篇真的是漫長的等待，後面把 HTTPS 設定完成後，再來就是被動地等待，前面只要設定正確，時間會證明一切的~~</p>
+
+  </article>
+  <!-- license  -->
+  
+  <div class="license-wrapper">
+    <p>原文連結：<a href="https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/">https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/</a></p>
+    <p>發表日期：2019-11-19</p>
+    <p>更新日期：2019-11-19</p>
+  </div>
+  
+  <!-- paginator  -->
+  <ul class="post-paginator">
+    <li class="next">
+      
+    </li>
+    <li class="previous">
+      
+      <div class="prevSlogan">Previous Post</div>
+      <a href="/2019/11/18/如何在-GitHub-設定-Travis-CI，以-Ruby-on-Rails-專案為例。/" title="如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例。">
+        <div class="prevTitle">如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例。</div>
+      </a>
+      
+    </li>
+  </ul>
+  <!-- 评论插件 -->
+  <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 --> 
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://riverye.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
+  <!-- partial('_partial/comment/changyan') -->
+  <!--PC版-->
+
+  
+
+  <!-- 评论 -->
+</main>
+
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+  <!-- social  -->
+  
+  <div class="social">
+    
+    
+        
+            
+                <a href="mailto:river@riverye.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/River-Ye" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/wechat.jpg" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://www.facebook.com/jhengwei.ye" class="iconfont-archer facebook" target="_blank" title=facebook></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="//medium.com/@riverye" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+  </div>
+  
+  <!-- powered by Hexo  -->
+  <div class="copyright">
+    <span id="hexo-power"
+      >Powered by <a href="https://riverye.com/" target="_blank">River</a></span
+    ><span class="iconfont-archer power">&#xe635;</span>
+  </div>
+</footer>
+
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說明"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#heroku-cloudflare-freenom-是什麼"><span class="toc-number">2.</span> <span class="toc-text">Heroku、Cloudflare、Freenom 是什麼？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#heroku"><span class="toc-number">2.0.1.</span> <span class="toc-text">Heroku</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudflare"><span class="toc-number">2.0.2.</span> <span class="toc-text">Cloudflare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freenom"><span class="toc-number">2.0.3.</span> <span class="toc-text">Freenom</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#開始前"><span class="toc-number">3.</span> <span class="toc-text">開始前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何設定-heroku-freenom-cloudflare"><span class="toc-number">4.</span> <span class="toc-text">如何設定 Heroku、Freenom、Cloudflare</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-先到-freenom-挑一組喜歡的-domain-購買"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 先到 Freenom 挑一組喜歡的 Domain 購買</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在-heroku-首頁點選該專案的-settings先確認部署的專案能正常執行以下兩種方法將-domain-加入擇一即可"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. 在 Heroku 首頁點選該專案的 Settings，先確認部署的專案能正常執行，以下兩種方法將 Domain 加入(擇一即可)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-在-heroku-網頁點選add-domain輸入買的-domain例如this-is-testtk"><span class="toc-number">4.0.3.</span> <span class="toc-text">3-1. 在 Heroku 網頁點選「Add domain」輸入「買的 domain」，例如：「this-is-test.tk」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-在專案目錄的終端機輸入如下"><span class="toc-number">4.0.4.</span> <span class="toc-text">3-2. 在專案目錄的終端機輸入如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-cloudflare-網頁點選add-a-site"><span class="toc-number">4.0.5.</span> <span class="toc-text">4. Cloudflare 網頁點選「+Add a Site」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-輸入購買的-domain"><span class="toc-number">4.0.6.</span> <span class="toc-text">5. 輸入購買的 Domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-選-free-接著下一步"><span class="toc-number">4.0.7.</span> <span class="toc-text">6. 選 Free 接著下一步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-輸入-dns-設定-後面說明"><span class="toc-number">4.0.8.</span> <span class="toc-text">7. 輸入 DNS 設定 (後面說明)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-設定如下確認無誤點continue"><span class="toc-number">4.0.9.</span> <span class="toc-text">8. 設定如下，確認無誤點「Continue」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-確認無誤後點done-check-nameservers"><span class="toc-number">4.0.10.</span> <span class="toc-text">9. 確認無誤後點「Done, check nameservers」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-複製這-2-個-nameserver在-freenom-會用到"><span class="toc-number">4.0.11.</span> <span class="toc-text">10. 複製這 2 個 Nameserver，在 freenom 會用到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-在-freenom-網頁設定-nameserver"><span class="toc-number">4.0.12.</span> <span class="toc-text">11. 在 freenom 網頁設定 Nameserver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-將-cloudflare-的-nameserver-貼在-freenom"><span class="toc-number">4.0.13.</span> <span class="toc-text">12. 將 Cloudflare 的 Nameserver 貼在 freenom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-設定成功畫面如下"><span class="toc-number">4.0.14.</span> <span class="toc-text">13. 設定成功畫面如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-回-cloudflare-點re-check-now"><span class="toc-number">4.0.15.</span> <span class="toc-text">14. 回 Cloudflare 點「Re-check now」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-在-cloudflare-首頁會看到更新中等待同時先把-https-設定開啟"><span class="toc-number">4.0.16.</span> <span class="toc-text">15. 在 Cloudflare 首頁會看到更新中，等待同時，先把 HTTPS 設定開啟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-cloudflare-之後若要改-dns-可在此調整"><span class="toc-number">4.0.17.</span> <span class="toc-text">16. Cloudflare 之後若要改 DNS 可在此調整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-在-ssltls-的-edge-certificates-設定中啟動always-use-https"><span class="toc-number">4.0.18.</span> <span class="toc-text">17. 在 SSL/TLS 的 Edge Certificates 設定中，啟動「Always Use HTTPS」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-在-ssltls-的-overview-中設定成full"><span class="toc-number">4.0.19.</span> <span class="toc-text">18. 在 SSL/TLS 的 Overview 中，設定成「Full」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-回-ssltls-的-edge-certificates-中status-目前為pending-validation"><span class="toc-number">4.0.20.</span> <span class="toc-text">19. 回 SSL/TLS 的 Edge Certificates 中，Status 目前為「Pending Validation」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-經過漫長等待變綠燈時網址就能瀏覽囉"><span class="toc-number">4.0.21.</span> <span class="toc-text">20. 經過漫長等待，變綠燈時，網址就能瀏覽囉</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 47
+        </div>
+        <!-- search  -->
+        
+            <div class="site-search popup-trigger">
+                <span class="iconfont-archer search-icon">&#xe627;</span>
+            </div>
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/19</span><a class="archive-post-title" href= "/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/" >透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/18</span><a class="archive-post-title" href= "/2019/11/18/如何在-GitHub-設定-Travis-CI，以-Ruby-on-Rails-專案為例。/" >如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例。</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/15</span><a class="archive-post-title" href= "/2019/11/15/Ruby-中的-Block、Proc、Lambda-是什麼？/" >Ruby 中的 Block、Proc、Lambda 是什麼？</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span><a class="archive-post-title" href= "/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/" >修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href= "/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/" >Hexo 踩到的雷(導覽列及站內搜尋功能)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/08</span><a class="archive-post-title" href= "/2019/11/08/有趣的-4-題白板題/" >有趣的 4 題白板題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2019/11/07/來個三題-Leetcode-easy-吧/" >來個三題 LeetCode easy 吧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/03</span><a class="archive-post-title" href= "/2019/11/03/修復-BIOS-Boot-Sequence-找不到-Windows-10/" >修復 BIOS Boot Sequence 找不到 Windows 10</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/27</span><a class="archive-post-title" href= "/2019/10/27/如何在不重灌的情況下修復-Ubuntu-OS/" >如何在不重灌的情況下修復 Ubuntu OS</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/23</span><a class="archive-post-title" href= "/2019/10/23/從無到有的-Blog-建置教學-含-domain-購買轉址/" >從無到有的 Blog 建置教學 (含 domain 購買轉址)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/12</span><a class="archive-post-title" href= "/2019/10/12/Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql/" >Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "/2019/10/09/Day30-完賽是這種感覺啊/" >Day30-完賽是這種感覺啊</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/08</span><a class="archive-post-title" href= "/2019/10/08/Day29-Codewars-刷題/" >Day29 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/07</span><a class="archive-post-title" href= "/2019/10/07/Day28-Codewars-刷題/" >Day28 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2019/10/06/Day27-Codewars-刷題/" >Day27 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/06</span><a class="archive-post-title" href= "/2019/10/06/有自己的網站了!!/" >從 Hello World 開始</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/05</span><a class="archive-post-title" href= "/2019/10/05/Day26-Codewars-刷題/" >Day26 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/04</span><a class="archive-post-title" href= "/2019/10/04/Day25-Codewars-刷題/" >Day25 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/03</span><a class="archive-post-title" href= "/2019/10/03/Day24-Codewars-刷題/" >Day24 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href= "/2019/10/02/Day23-Codewars-刷題/" >Day23 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/01</span><a class="archive-post-title" href= "/2019/10/01/Day22-Codewars-刷題/" >Day22 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/30</span><a class="archive-post-title" href= "/2019/09/30/Day21-Codewars-刷題/" >Day21 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/29</span><a class="archive-post-title" href= "/2019/09/29/Day20-Codewars-刷題/" >Day20 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/28</span><a class="archive-post-title" href= "/2019/09/28/Day19-Codewars-刷題/" >Day19 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/27</span><a class="archive-post-title" href= "/2019/09/27/Day18-Codewars-刷題/" >Day18 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/26</span><a class="archive-post-title" href= "/2019/09/26/Day17-Codewars-刷題/" >Day17 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/25</span><a class="archive-post-title" href= "/2019/09/25/Day16-Codewars-刷題/" >Day16 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/24</span><a class="archive-post-title" href= "/2019/09/24/Day15-Codewars-刷題/" >Day15 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/2019/09/23/Day14-Codewars-刷題/" >Day14 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/22</span><a class="archive-post-title" href= "/2019/09/22/Day13-Codewars-刷題/" >Day13 - Codewars 刷題</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/21</span><a class="archive-post-title" href= "/2019/09/21/刷題的標題好難想-沒梗了-XD/" >刷題的標題好難想 (沒梗了 XD)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/2019/09/20/刷題難度逐漸增強/" >刷題難度逐漸增強</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/2019/09/19/完成-1-3-鐵人賽，調整刷題步調繼續前進/" >完成 1 / 3 鐵人賽，調整刷題步調繼續前進</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2019/09/18/連續刷題看-7-分鐘能刷幾題-Codewars/" >連續刷題看 7 分鐘能刷幾題 Codewars</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/17</span><a class="archive-post-title" href= "/2019/09/17/壓線前逼自己刷一題-Codewars/" >壓線前逼自己刷一題 Codewars</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/16</span><a class="archive-post-title" href= "/2019/09/16/刷一週題目了，有變強一些嗎/" >刷一週題目了，有變強一些嗎?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/Rails-中的-Gemfile-檔案的內容/" >Rails 中的 Gemfile 檔案的內容</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/15</span><a class="archive-post-title" href= "/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/" >週末來塊蛋糕吧~ Codewars - Which are in?</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" >Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/13</span><a class="archive-post-title" href= "/2019/09/13/用-TDD-刷-Codewars-Reverse-words/" >用 TDD 刷 Codewars - Reverse words</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "/2019/09/12/換刷-Codewars-Find-the-next-perfect-square/" >換刷 Codewars - Find the next perfect square!</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2019/09/11/從經典-LeetCode-開始吧-Two-Sum/" >從經典 LeetCode 開始吧 - Two Sum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/2019/09/10/初生之犢不畏虎-參賽動機/" >初生之犢不畏虎-參賽動機</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2019/07/29/Ruby-世界裡的字串與符號是什麼/" >Ruby 世界裡的字串與符號是什麼?</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
+    
+        <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
+    
+        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="導覽列"><span class="iconfont-archer">&#xe606;</span>導覽列</span>
+    
+        <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
+    
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+    
+        <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
+    
+        <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
+    
+        <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
+    
+        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
+    
+        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
+    
+        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+    
+        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
+    
+        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
+    
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
+    
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
+    
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
+    
+        <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
+    
+        <span class="sidebar-tag-name" data-tags="Freenom"><span class="iconfont-archer">&#xe606;</span>Freenom</span>
+    
+        <span class="sidebar-tag-name" data-tags="Heroku"><span class="iconfont-archer">&#xe606;</span>Heroku</span>
+    
+        <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
+    
+        <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
+    
+        <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
+    
+        <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
+    
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+    
+        <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "River-Ye"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+        <div class="site-search">
+  <div class="algolia-popup popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="iconfont-archer">&#xe609;</i>
+    </span>
+  </div>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js" defer></script>
+        <script src="/scripts/search.js" defer></script>
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
