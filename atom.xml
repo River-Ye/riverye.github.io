@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-07-11T14:42:36.256Z</updated>
+  <updated>2020-07-11T15:15:12.800Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://riverye.com/2020/07/11/%E5%A6%82%E4%BD%95%E8%AE%93-GitHub-%E6%AF%8F%E5%80%8B-pull-request-PR-%E6%9C%89%E9%A0%90%E8%A8%AD%E6%A8%A1%E6%9D%BF/"/>
     <id>https://riverye.com/2020/07/11/如何讓-GitHub-每個-pull-request-PR-有預設模板/</id>
     <published>2020-07-10T16:00:00.000Z</published>
-    <updated>2020-07-11T14:42:36.256Z</updated>
+    <updated>2020-07-11T15:15:12.800Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="說明">說明</h1><p>當多人在 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> 開發協作，你要發 pull request (以下簡稱 PR ) 時，如果能有個預設範本 (default template) 的話，能節省一些時間，確保自己是否有遺漏該先檢查的事項，也能讓大家有共同的公版，避免格式不一致的問題。</p><h1 id="步驟">步驟</h1><h3 id="1-開始前先看下預設-pr-是長這樣">1. 開始前，先看下預設 PR 是長這樣</h3><p><img src="https://i.imgur.com/6YK5D6M.png" alt></p><h3 id="2-在專案根目錄底下新增-github-資料夾裡面放-pull_request_templatemd-檔案並撰寫想要的預設範本-支援-markdown-語法">2. 在專案根目錄底下新增 <code>.github</code> 資料夾，裡面放 <code>pull_request_template.md</code> 檔案，並撰寫想要的預設範本 (支援 Markdown 語法)</h3><p><img src="https://i.imgur.com/9Ldz9R5.png" alt></p><p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 參考範例:</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**將這支 PR 所做的事情，取代這段文字，描述越詳細越好。**</span></span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">與這支 PR 有關聯的 Trello 卡片:</span><br><span class="line"></span><br><span class="line">URL: https://trello.com/c/xyzAbC</span><br><span class="line"></span><br><span class="line">提交 PR 前，請先檢查以下是否已完成：</span><br><span class="line"></span><br><span class="line"><span class="bullet">* </span>[ ] 該分支是從最新 <span class="code">`master`</span> 切出來 (如果不是，請先 rebase/merge 它)</span><br><span class="line"><span class="bullet">* </span>[ ] 是否新增測試，或被現有的測試覆蓋</span><br><span class="line"><span class="bullet">* </span>[ ] 這支 PR 是否有明確的標題、內容描述</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">補充說明:</span><br></pre></td></tr></table></figure></p><h3 id="3-發-pr-並-merge-到-base-通常預設是-master">3. 發 PR 並 merge 到 base (通常預設是 <code>master</code>)</h3><p><img src="https://i.imgur.com/HUQ7X4o.png" alt></p><h3 id="4-接下來每個-pr-都會有預設範本囉">4. 接下來每個 PR 都會有預設範本囉</h3><p>範例：<a href="https://github.com/River-Ye/demo-pull-request-template/pull/2" target="_blank" rel="noopener">https://github.com/River-Ye/demo-pull-request-template/pull/2</a></p><p><img src="https://i.imgur.com/Nq5U1dj.png" alt></p><h1 id="小結">小結</h1><p>有了公版範本後，能將團隊約定的事項先寫好，避免發 PR 前有丟三落四的情況發生。</p><h1 id="範例">範例</h1><p><a href="https://github.com/River-Ye/demo-pull-request-template/" target="_blank" rel="noopener">https://github.com/River-Ye/demo-pull-request-template/</a></p><h1 id="參考文件">參考文件</h1><p><a href="https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository" target="_blank" rel="noopener">Creating a pull request template for your repository</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="說明">說明</h1><p>當多人在 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> 開發協作，你要發 pull request (以下簡稱 PR ) 時，如果能有個預設範本 (default template) 的話，能節省一些時間，確保自己是否有遺漏該先檢查的事項，也能讓大家有共同的公版，避免格式不一致的問題。</p><h1 id="步驟">步驟</h1><h3 id="1-開始前先看下預設-pr-是長這樣">1. 開始前，先看下預設 PR 是長這樣</h3><p><img src="https://i.imgur.com/9IxxWJ4.png" alt></p><h3 id="2-在專案根目錄底下新增-github-資料夾裡面放-pull_request_templatemd-檔案並撰寫想要的預設範本-支援-markdown-語法">2. 在專案根目錄底下新增 <code>.github</code> 資料夾，裡面放 <code>pull_request_template.md</code> 檔案，並撰寫想要的預設範本 (支援 Markdown 語法)</h3><p><img src="https://i.imgur.com/9Ldz9R5.png" alt></p><p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># 參考範例:</span></span><br><span class="line"></span><br><span class="line"><span class="strong">**將這支 PR 所做的事情，取代這段文字，描述越詳細越好。**</span></span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">與這支 PR 有關聯的 Trello 卡片:</span><br><span class="line"></span><br><span class="line">URL: https://trello.com/c/xyzAbC</span><br><span class="line"></span><br><span class="line">提交 PR 前，請先檢查以下是否已完成：</span><br><span class="line"></span><br><span class="line"><span class="bullet">* </span>[ ] 該分支是從最新 <span class="code">`master`</span> 切出來 (如果不是，請先 rebase/merge 它)</span><br><span class="line"><span class="bullet">* </span>[ ] 是否新增測試，或被現有的測試覆蓋</span><br><span class="line"><span class="bullet">* </span>[ ] 這支 PR 是否有明確的標題、內容描述</span><br><span class="line"></span><br><span class="line">-----------------</span><br><span class="line"></span><br><span class="line">補充說明:</span><br></pre></td></tr></table></figure></p><h3 id="3-發-pr-並-merge-到-base-通常預設是-master">3. 發 PR 並 merge 到 base (通常預設是 <code>master</code>)</h3><p><img src="https://i.imgur.com/Zf76iRd.png" alt></p><h3 id="4-接下來每個-pr-都會有預設範本囉">4. 接下來每個 PR 都會有預設範本囉</h3><p>範例：<a href="https://github.com/River-Ye/demo-pull-request-template/pull/2" target="_blank" rel="noopener">https://github.com/River-Ye/demo-pull-request-template/pull/2</a><img src="https://i.imgur.com/ugUhhJC.png" alt></p><h1 id="小結">小結</h1><p>有了公版範本後，能將團隊約定的事項先寫好，避免發 PR 前有丟三落四的情況發生。</p><h1 id="範例">範例</h1><p><a href="https://github.com/River-Ye/demo-pull-request-template/" target="_blank" rel="noopener">https://github.com/River-Ye/demo-pull-request-template/</a></p><h1 id="參考文件">參考文件</h1><p><a href="https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository" target="_blank" rel="noopener">Creating a pull request template for your repository</a></p>]]></content>
     
     <summary type="html">
     
@@ -212,9 +212,9 @@
     
       <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
     
-      <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
-    
       <category term="Travis CI" scheme="https://riverye.com/tags/Travis-CI/"/>
+    
+      <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
     
   </entry>
   
@@ -463,6 +463,8 @@
       <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
     
     
+      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
+    
       <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
     
       <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
@@ -470,8 +472,6 @@
       <category term="Blog" scheme="https://riverye.com/tags/Blog/"/>
     
       <category term="domain" scheme="https://riverye.com/tags/domain/"/>
-    
-      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
     
   </entry>
   
