@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-07-11T15:15:12.800Z</updated>
+  <updated>2020-09-06T15:41:50.888Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day01 - 不免俗一定要來一下的參賽宣言</title>
+    <link href="https://riverye.com/2020/09/06/Day01-%E4%B8%8D%E5%85%8D%E4%BF%97%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BE%86%E4%B8%80%E4%B8%8B%E7%9A%84%E5%8F%83%E8%B3%BD%E5%AE%A3%E8%A8%80/"/>
+    <id>https://riverye.com/2020/09/06/Day01-不免俗一定要來一下的參賽宣言/</id>
+    <published>2020-09-05T16:00:00.000Z</published>
+    <updated>2020-09-06T15:41:50.888Z</updated>
+    
+    <content type="html"><![CDATA[<p>轉眼一年過去了，時間過好快(怕<br>轉職後工作也 10 個月左右，<br>過程中有蠻多可以寫成文章，<br><s>但因為太懶而沒寫(逃</s><br>一直很苦惱要寫些什麼，很擔心自己寫不出所以然，或寫太淺，<br>不如就來點已知但還沒寫的文章、或想專研的部分好惹<br>期許自己能夠完賽 (其實沒什麼把握，且沒什麼囤文章..</p><h2 id="這次直接來大雜燴可能會有">這次直接來大雜燴，「可能會有」：</h2><h3 id="1-開發工具介紹">1. 開發工具介紹</h3><h3 id="2-常用小技巧">2. 常用小技巧</h3><h3 id="3-一些-linux-相關">3. 一些 Linux 相關</h3><h3 id="4-ruby-on-rails-相關">4. Ruby on Rails 相關</h3><h3 id="5-臨時想到想寫的內容">5. 臨時想到想寫的內容</h3><hr><h2 id="目前想到的-30-天內容如下">目前想到的 30 天內容如下：</h2><h4 id="只有先想標題內容還沒產">只有先想標題，內容還沒產...</h4><p>Day01 - 不免俗一定要來一下的參賽宣言<br>Day02 - Chrome 的小技巧 - 內建截圖功能<br>Day03 - Chrome 的小技巧 - 內建 URL 轉 QRcode<br>Day04 - Mac 上常用的軟體 (iTerm、Dash、Alfred、Spectacle、Kap、GIPHY Capture)<br>Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵<br>Day06 - 一些常用 Linux 指令 - 1-7 - 基礎篇 (exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find)<br>Day07 - 一些常用 Linux 指令 - 2-7 (ps、top、htop、free、df、du、kill)<br>Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)<br>Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)<br>Day10 - 一些常用 Linux 指令 - 5-7 (lsof、dig、curl、nc、nice、cpulimit)<br>Day11 - 一些 Linux 套件 - 6-7 - 實用篇 (fzf、tldr)<br>Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)<br>Day13 - 一些 Git 指令<br>Day14 - Ruby on Rails 中的 N+1 與解法<br>Day15 - Ruby on Rails 中的 race condition 與解法<br>Day16 - Ruby on Rails 的介紹<br>Day17 - 在 Ruby on Rails 中使用 FFmpeg 處理影音轉檔上字幕<br>Day18 - Redis 的介紹與應用<br>Day19 - Sidekiq 的介紹與應用<br>Day20 - Resque 的介紹與應用<br>Day21 - 想到再說<br>Day22 - 想到再說<br>Day23 - 想到再說<br>Day24 - 想到再說<br>Day25 - 想到再說<br>Day26 - 想到再說<br>Day27 - 想到再說<br>Day28 - 想到再說<br>Day29 - 想到再說<br>Day30 - 不免俗一定要來一下的完賽心得</p><h3 id="備註-以上標題-順序僅供參考依當天發文為主-xd">備註: 以上標題、順序僅供參考，依當天發文為主 XD</h3><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10233527" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10233527</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/06/Day01-%E4%B8%8D%E5%85%8D%E4%BF%97%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BE%86%E4%B8%80%E4%B8%8B%E7%9A%84%E5%8F%83%E8%B3%BD%E5%AE%A3%E8%A8%80/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;轉眼一年過去了，時間過好快(怕&lt;br&gt;
+轉職後工作也 10 個月左右，&lt;br&gt;
+過程中有蠻多可以寫成文章，&lt;br&gt;
+&lt;s&gt;但因為太懶而沒寫(逃&lt;/s&gt;&lt;br&gt;
+一直很苦惱要寫些什麼，很擔心自己寫不出所以然，或寫太淺，&lt;br&gt;
+不如就來點已知但還沒寫的文章、或想專研的部分好惹
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>如何讓 GitHub 每個 pull request (PR) 有預設模板</title>
@@ -105,9 +136,9 @@
       <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
     
     
-      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
-    
       <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
+    
+      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
     
       <category term="IRB" scheme="https://riverye.com/tags/IRB/"/>
     
@@ -208,13 +239,13 @@
       <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
     
     
-      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
-    
       <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
     
-      <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
+      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
     
       <category term="Travis CI" scheme="https://riverye.com/tags/Travis-CI/"/>
+    
+      <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
     
   </entry>
   
@@ -467,9 +498,9 @@
     
       <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
     
-      <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
-    
       <category term="Blog" scheme="https://riverye.com/tags/Blog/"/>
+    
+      <category term="部落格" scheme="https://riverye.com/tags/%E9%83%A8%E8%90%BD%E6%A0%BC/"/>
     
       <category term="domain" scheme="https://riverye.com/tags/domain/"/>
     
@@ -501,9 +532,9 @@
       <category term="環境建置" scheme="https://riverye.com/categories/%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE/"/>
     
     
-      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
-    
       <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
+    
+      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
     
       <category term="Node.js" scheme="https://riverye.com/tags/Node-js/"/>
     
@@ -625,39 +656,6 @@
     
     
       <category term="11th鐵人賽" scheme="https://riverye.com/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>從 Hello World 開始</title>
-    <link href="https://riverye.com/2019/10/06/%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E7%B6%B2%E7%AB%99%E4%BA%86!!/"/>
-    <id>https://riverye.com/2019/10/06/有自己的網站了!!/</id>
-    <published>2019-10-05T16:00:00.000Z</published>
-    <updated>2019-10-08T17:17:42.342Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="千呼萬喚使出來">千呼萬喚使出來</h1><p>終於有自己的網域及部落格了，<br>前陣子卡住後就先擱置著，<br>卡在最後一關的部署，<br>對 Windows 環境真不友善，<br>但辦法是人想出來的，如今順利架設完成 (灑花</p><hr><h2 id="不管是什麼都給我來一點">不管是什麼，都給我來一點</h2><p>這裡以技術文章、學習心得、筆記為主，有自己的部落格後，和用別人的平台，感受是截然不同的！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;千呼萬喚使出來&quot;&gt;千呼萬喚使出來&lt;/h1&gt;
-&lt;p&gt;終於有自己的網域及部落格了，&lt;br&gt;
-前陣子卡住後就先擱置著，&lt;br&gt;
-卡在最後一關的部署，&lt;br&gt;
-對 Windows 環境真不友善，&lt;br&gt;
-但辦法是人想出來的，如今順利架設完成 (灑花&lt;/p&gt;
-&lt;hr&gt;
-&lt;h
-      
-    
-    </summary>
-    
-    
-      <category term="網頁" scheme="https://riverye.com/categories/%E7%B6%B2%E9%A0%81/"/>
-    
-    
-      <category term="Blog" scheme="https://riverye.com/tags/Blog/"/>
     
   </entry>
   
