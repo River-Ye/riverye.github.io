@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!) · 小菜的 Blog</title>
+    <title>Day02 - Chrome 的小技巧 - 內建截圖功能 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)</a>
+                <a href="#" class="post-name">Day02 - Chrome 的小技巧 - 內建截圖功能</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)
+       Day02 - Chrome 的小技巧 - 內建截圖功能
       <!-- 404 -->
       
     </h1>
@@ -294,29 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Cloudflare">Cloudflare</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Freenom">Freenom</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Heroku">Heroku</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Domain">Domain</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/11/19</span
+          >2020/09/07</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1k</span
+            >743</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >4 min</span
+            >2 min</span
           ></span
         >
       </div>
@@ -425,195 +419,106 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1 id="說明">說明</h1>
-<p>Ruby on Rails 專案完成且部署到 <a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a> 後，想要有一個專屬 <a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D" target="_blank" rel="noopener">Domain Name</a> 網址並有 <a href="https://zh.wikipedia.org/wiki/https" target="_blank" rel="noopener">HTTPS</a> 的話，本文以 Freenom 購買 Domain 網址，在 Cloudflare 進行 CDN 及 DNS 設定為例。</p>
-<h1 id="heroku-cloudflare-freenom-是什麼">Heroku、Cloudflare、Freenom 是什麼？</h1>
-<h3 id="heroku">Heroku</h3>
-<p>Heroku 是一個支援多種程式語言的雲平台即服務。Heroku 作為最元祖的雲平台之一，從 2007 年 6 月起開發，當時它僅支援 Ruby，但後來增加了對 Java、Node.js、Scala、Clojure、Python 以及（未記錄在正式檔案上）PHP 和 Perl 的支援。基礎作業系統是 Debian，在最新的技術堆疊則是基於 Debian 的 Ubuntu。更重要的是 Ruby 程式語言的發明之父<a href="https://zh.wikipedia.org/wiki/%E6%9D%BE%E6%9C%AC%E8%A1%8C%E5%BC%98" target="_blank" rel="noopener">松本行弘</a>（日文：まつもとゆきひろ，網路上大家通常稱他 Matz）也在這上班。</p>
-<p>出處：<a href="https://zh.wikipedia.org/wiki/Heroku" target="_blank" rel="noopener">維基百科</a></p>
-<h3 id="cloudflare">Cloudflare</h3>
-<p>Cloudflare 是一間總部位於舊金山的美國跨國 IT 企業，以向客戶提供基於反向代理的內容傳遞網路（Content Delivery Network, CDN）及分布式域名解析服務（Distributed Domain Name Server）為主要業務。Cloudflare可以幫助受保護站點抵禦包拒絕服務攻擊等網路攻擊，確保該網站長期在線，同時提升網站的效能、載入速度以改善訪客體驗。</p>
-<p>出處：<a href="https://zh.wikipedia.org/wiki/CloudFlare" target="_blank" rel="noopener">維基百科</a></p>
-<h3 id="freenom">Freenom</h3>
-<p>Freenom 是世界上第一個也是唯一一個免費功能變數名稱的供應商，運用最近的網路建設和託管技術，打破了壁壘，整合了免費的功能變數名稱，這使得任何企業或個人不花一分錢就可以建立網站和目錄。</p>
-<p>出處：<a href="https://www.freenom.com/zu/aboutfreenom.html" target="_blank" rel="noopener">公司介紹</a></p>
-<h1 id="開始前">開始前</h1>
-<p>你要有：</p>
+    <h2 id="前言">前言</h2>
+<p>Chrome 是許多人電腦必裝的瀏覽器之一，自今年微軟 (Microsoft) 宣佈 Internet Explorer (以下簡稱 IE) 最後支援時間 (2021年8月17日) 後，可以聽到許多工程師的歡呼，在寫這段時，有特地到微軟官方網站查詢<a href="https://docs.microsoft.com/zh-tw/lifecycle/products/?terms=Internet%20Explore" target="_blank" rel="noopener">生命週期</a>，發現還查不到結束日期，查詢結果截圖如下：</p>
+<p><img src="https://i.imgur.com/XSy3V8X.png" alt></p>
+<p>但類似的報導網路垂手可得，反而在自家網頁還看不到，同時也驗證了以下這張梗圖：</p>
+<p><img src="https://i.imgur.com/m87Ge3T.png" alt>
+(圖片出處: <a href="https://www.facebook.com/kaobei.engineer/photos/a.147822669212056/635338400460478" target="_blank" rel="noopener">純靠北工程師</a>)</p>
+<p>以上博君一笑</p>
+<hr>
+<h1 id="full-page-screenshots">Full-page screenshots</h1>
+<p>隨著 Chrome 越來越強大 <s>(記憶體也越吃越多</s><br>
+內建的功能也很實用，像是內建網頁截圖功能<br>
+早在 Chrome 59 版開始，便支援 Full-page screenshots</p>
+<h2 id="使用步驟">使用步驟</h2>
 <ol>
-<li><a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a> 的帳號密碼 (上面要有已部署好的專案)</li>
-<li><a href="https://www.freenom.com/zu/index.html" target="_blank" rel="noopener">Freenom</a>  的帳號密碼</li>
-<li><a href="https://www.cloudflare.com/zh-tw/" target="_blank" rel="noopener">Cloudflare</a>  的帳號密碼</li>
+<li>用 Chrome 開啟想要截圖的網頁 (以 <a href="https://riverye.com/">https://riverye.com/</a> 為例)</li>
+<li>鍵盤 <code>F12</code> 開啟開發者工具<br>
+Windows 用戶： 或 <code>Ctrl + Shift + c</code><br>
+Mac 用戶： 或 <code>(Cmd）鍵 ⌘ + Shift 鍵 ⇧ + c</code></li>
+<li>接著輸入<br>
+Windows 用戶: <code>Ctrl + Shift + p</code><br>
+Mac 用戶: <code>(Cmd）鍵 ⌘ + Shift 鍵 ⇧ + p</code></li>
 </ol>
-<blockquote>
-<p>備註：以下說明，皆在登入 Heroku、Freenom、Cloudflare 狀態下操作</p>
-</blockquote>
-<h1 id="如何設定-heroku-freenom-cloudflare">如何設定 Heroku、Freenom、Cloudflare</h1>
-<h3 id="1-先到-freenom-挑一組喜歡的-domain-購買">1. 先到 Freenom 挑一組喜歡的 Domain 購買</h3>
-<p>文章以「this-is-test.tk」為例</p>
-<h3 id="2-在-heroku-首頁點選該專案的-settings先確認部署的專案能正常執行以下兩種方法將-domain-加入擇一即可">2. 在 Heroku 首頁點選該專案的 Settings，先確認部署的專案能正常執行，以下兩種方法將 Domain 加入(擇一即可)</h3>
-<p><img src="https://i.imgur.com/62TqU8u.png" alt></p>
-<h3 id="3-1-在-heroku-網頁點選add-domain輸入買的-domain例如this-is-testtk">3-1. 在 Heroku 網頁點選「Add domain」輸入「買的 domain」，例如：「this-is-test.tk」</h3>
-<p><img src="https://i.imgur.com/FGiUWpe.png" alt></p>
-<p><img src="https://i.imgur.com/BGLEM8V.png" alt></p>
-<h3 id="3-2-在專案目錄的終端機輸入如下">3-2. 在專案目錄的終端機輸入如下</h3>
-<p>(已做 3-1. 可省略此步驟)<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 記得先切換到該專案資料夾</span></span><br><span class="line"></span><br><span class="line">$ heroku domains:add &lt;你買的domain&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">$ heroku domains:add this-is-test.tk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接著回 Heroku 網頁確認是否已加入</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/NJhfgOb.png" alt></p>
-<h3 id="4-cloudflare-網頁點選add-a-site">4. Cloudflare 網頁點選「+Add a Site」</h3>
-<p><img src="https://i.imgur.com/rKAxR5l.png" alt></p>
-<h3 id="5-輸入購買的-domain">5. 輸入購買的 Domain</h3>
-<p><img src="https://i.imgur.com/NUUIr6p.png" alt></p>
-<h3 id="6-選-free-接著下一步">6. 選 Free 接著下一步</h3>
-<p><img src="https://i.imgur.com/IaVD23J.png" alt></p>
-<h3 id="7-輸入-dns-設定-後面說明">7. 輸入 DNS 設定 (後面說明)</h3>
-<p><img src="https://i.imgur.com/wYA92yk.png" alt></p>
-<h3 id="8-設定如下確認無誤點continue">8. 設定如下，確認無誤點「Continue」</h3>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Name</th>
-<th>Value</th>
-<th>TTL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CNAME</td>
-<td>&lt;你買的 Domain&gt;</td>
-<td>&lt;原本 Heroku 網址&gt;</td>
-<td>Automatic</td>
-</tr>
-<tr>
-<td>CNAME</td>
-<td>www</td>
-<td>&lt;你買的 Domain&gt;</td>
-<td>Automatic</td>
-</tr>
-</tbody>
-</table>
-<p>範例如下：(此範例連結之後會失效)</p>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Name</th>
-<th>Value</th>
-<th>TTL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CNAME</td>
-<td>this-is-test.tk</td>
-<td>test-freenom-and-cloudflare.herokuapp.com</td>
-<td>Automatic</td>
-</tr>
-<tr>
-<td>CNAME</td>
-<td>www</td>
-<td>this-is-test.tk</td>
-<td>Automatic</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://i.imgur.com/kTTFgke.png" alt></p>
-<h3 id="9-確認無誤後點done-check-nameservers">9. 確認無誤後點「Done, check nameservers」</h3>
-<p><img src="https://i.imgur.com/ws04oId.png" alt></p>
-<h3 id="10-複製這-2-個-nameserver在-freenom-會用到">10. 複製這 2 個 Nameserver，在 freenom 會用到</h3>
-<blockquote>
-<p>可能會與我的不同</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Nameserver 1</th>
-<th>Nameserver 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dara.ns.cloudflare.com</td>
-<td>scott.ns.cloudflare.com</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://i.imgur.com/s2WcK0l.png" alt></p>
-<h3 id="11-在-freenom-網頁設定-nameserver">11. 在 freenom 網頁設定 Nameserver</h3>
-<blockquote>
-<p>流程：<br>
-freenom → Services → My Domains → Manage Domain → Management Tools → Nameservers → User custom nameservers(enter below) → 輸入 cloudflare 的 Nameserver → 點「Change Nameservers」</p>
-</blockquote>
-<p><img src="https://i.imgur.com/sBOBFeu.png" alt></p>
-<h3 id="12-將-cloudflare-的-nameserver-貼在-freenom">12. 將 Cloudflare 的 Nameserver 貼在 freenom</h3>
-<blockquote>
-<p>可能會與我的不同</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Nameserver 1</th>
-<th>Nameserver 2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dara.ns.cloudflare.com</td>
-<td>scott.ns.cloudflare.com</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://i.imgur.com/ouCGjwS.png" alt></p>
-<h3 id="13-設定成功畫面如下">13. 設定成功畫面如下</h3>
-<p><img src="https://i.imgur.com/DX6HABx.png" alt></p>
-<h3 id="14-回-cloudflare-點re-check-now">14. 回 Cloudflare 點「Re-check now」</h3>
-<p><img src="https://i.imgur.com/ImNemsA.png" alt></p>
-<h3 id="15-在-cloudflare-首頁會看到更新中等待同時先把-https-設定開啟">15. 在 Cloudflare 首頁會看到更新中，等待同時，先把 HTTPS 設定開啟</h3>
-<p><img src="https://i.imgur.com/qPhcfQw.png" alt></p>
-<h3 id="16-cloudflare-之後若要改-dns-可在此調整">16. Cloudflare 之後若要改 DNS 可在此調整</h3>
-<p><img src="https://i.imgur.com/gqgsuJj.png" alt></p>
-<h3 id="17-在-ssltls-的-edge-certificates-設定中啟動always-use-https">17. 在 SSL/TLS 的 Edge Certificates 設定中，啟動「Always Use HTTPS」</h3>
-<p><img src="https://i.imgur.com/tNP2I4J.png" alt></p>
-<h3 id="18-在-ssltls-的-overview-中設定成full">18. 在 SSL/TLS 的 Overview 中，設定成「Full」</h3>
-<p><img src="https://i.imgur.com/Qxe39NM.png" alt></p>
-<h3 id="19-回-ssltls-的-edge-certificates-中status-目前為pending-validation">19. 回 SSL/TLS 的 Edge Certificates 中，Status 目前為「Pending Validation」</h3>
-<blockquote>
-<p>等它從黃燈變綠燈，所需時間短則 10-30 分鐘，長則 1 天左右</p>
-</blockquote>
-<p><s>人品好壞就看這次了</s></p>
-<p><img src="https://i.imgur.com/RfAJDna.png" alt></p>
-<h3 id="20-經過漫長等待變綠燈時網址就能瀏覽囉">20. 經過漫長等待，變綠燈時，網址就能瀏覽囉</h3>
-<blockquote>
-<p>測試下來約 2 小時左右才變綠燈</p>
-</blockquote>
-<p><img src="https://i.imgur.com/odMdnFU.png" alt></p>
-<h1 id="小結">小結</h1>
-<p>寫這篇真的是漫長的等待，後面把 HTTPS 設定完成後，再來就是被動地等待，前面只要設定正確，時間會證明一切的~~</p>
+<p><img src="https://i.imgur.com/kEwBSmJ.png" alt></p>
+<p>另一種截圖方式</p>
+<p><img src="https://i.imgur.com/busdk1b.png" alt></p>
+<h2 id="說明">說明</h2>
+<h3 id="capture-area-screenshot指定特定區域">Capture area screenshot：指定特定區域</h3>
+<h3 id="capture-screenshot僅截圖所看到的區域">Capture screenshot：僅截圖所看到的區域</h3>
+<h3 id="capture-full-size-screenshot整個網頁">Capture full size screenshot：整個網頁</h3>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://youtu.be/r_6_9eFPhxI" target="_blank" rel="noopener">官方教學操作影片 Full-Page Screenshots (Chrome 59)</a></p>
+<hr>
+<h1 id="同場加碼">同場加碼</h1>
+<h2 id="windows-10-截圖快捷鍵">Windows 10 截圖快捷鍵：</h2>
+<p>全螢幕截圖： <code>PrintScreen</code><br>
+視窗截圖： <code>Alt + PrintScreen</code> (接著開啟小畫家，<code>Ctrl + v</code> 即可貼上)<br>
+特定區域截圖： <code>Win + Shift + s</code></p>
+<p>註：<code>PrintScreen</code>、<code>Alt</code>、<code>Win</code>...等皆是鍵盤上的快捷鍵</p>
+<h2 id="windows-10-內建截圖軟體">Windows 10 內建截圖軟體：</h2>
+<ol>
+<li>
+<p>本人使用的 Windows 10 版本為 1909 (OS 組建 18363.1016)<br>
+<img src="https://i.imgur.com/RUpinJm.png" alt></p>
+</li>
+<li>
+<p>在工具列左下角點「開始」(Windows 圖案)，接著搜尋「剪取」可以找到兩套內建的軟體，分別是「<a href="https://support.microsoft.com/zh-tw/help/13776/windows-10-use-snipping-tool-to-capture-screenshots" target="_blank" rel="noopener">剪取工具</a>」與「<a href="https://www.microsoft.com/zh-tw/p/%E5%89%AA%E5%8F%96%E8%88%87%E7%B9%AA%E5%9C%96/9mz95kl8mr0l/" target="_blank" rel="noopener">剪取與繪圖</a>」。<br>
+<img src="https://i.imgur.com/bvTmgLE.png" alt></p>
+</li>
+</ol>
+<h2 id="windows-推薦截圖軟體">Windows 推薦截圖軟體：</h2>
+<h4 id="軟體名稱picpick">軟體名稱：PicPick</h4>
+<h4 id="軟體說明支援全螢幕-使用中視窗-捲動視窗-固定區域-手繪區域等各種模式加上內建強大圖片編輯器功能又有免安裝版非常好用">軟體說明：支援全螢幕、使用中視窗、捲動視窗、固定區域、手繪區域...等各種模式，加上內建強大「圖片編輯器」功能，又有免安裝版，非常好用。</h4>
+<p>PicPick  程式選項：<br>
+<img src="https://i.imgur.com/FSOTqXE.jpg" alt></p>
+<p>PicPick 圖片編輯器：<br>
+<img src="https://i.imgur.com/B8rVhUb.jpg" alt></p>
+<h2 id="macos-截圖快捷鍵">macOS 截圖快捷鍵：</h2>
+<p>全螢幕截圖：<code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>數字 3</code><br>
+指定區域截圖：<code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>數字 4</code><br>
+固定區域截圖： <code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>數字 5</code><br>
+視窗截圖(有陰影)：</p>
+<ol>
+<li>先按 <code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>數字 4</code>，然後放開</li>
+<li>接著再按 <code>空白鍵</code> 一下，然後放開</li>
+<li>點選想截圖的視窗</li>
+</ol>
+<p>視窗截圖(無陰影)：</p>
+<ol>
+<li>先按 <code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>數字 4</code>，然後放開</li>
+<li>接著再按 <code>空白鍵</code> 一下，然後放開</li>
+<li>按著 <code>Option（或 Alt）鍵 ⌥</code> 不放</li>
+<li>同時點選想截圖的視窗</li>
+</ol>
+<h2 id="小結">小結</h2>
+<p>同時記錄 Windows 和 Mac 的操作方式，花比預期還長一點的時間寫此文，希望能幫助到看到的人</p>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10234563" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10234563</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/07/Day02-Chrome-%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7-%E5%85%A7%E5%BB%BA%E6%88%AA%E5%9C%96%E5%8A%9F%E8%83%BD/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/">https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/</a></p>
-    <p>發表日期：2019-11-19</p>
-    <p>更新日期：2019-11-23</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/07/Day02-Chrome-的小技巧-內建截圖功能/">https://riverye.com/2020/09/07/Day02-Chrome-的小技巧-內建截圖功能/</a></p>
+    <p>發表日期：2020-09-07</p>
+    <p>更新日期：2020-09-07</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/11/22/Ubuntu-sudo-免輸入密碼-no-password-設定/" title="Ubuntu sudo 免輸入密碼 no password 設定">
-        <div class="nextTitle">Ubuntu sudo 免輸入密碼 no password 設定</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/11/18/如何在-GitHub-設定-Travis-CI，以-Ruby-on-Rails-專案為例。/" title="如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例。">
-        <div class="prevTitle">如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例。</div>
+      <a href="/2020/09/06/Day01-不免俗一定要來一下的參賽宣言/" title="Day01 - 不免俗一定要來一下的參賽宣言">
+        <div class="prevTitle">Day01 - 不免俗一定要來一下的參賽宣言</div>
       </a>
       
     </li>
@@ -629,8 +534,8 @@ freenom → Services → My Domains → Manage Domain → Management Tools → N
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/11/19/透過-Freenom-幫-Heroku-網址做-Cloudflare-的設定-Domain-買起來/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "透過 Freenom 幫 Heroku 網址做 Cloudflare 的設定(Domain 買起來!!)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/07/Day02-Chrome-的小技巧-內建截圖功能/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day02 - Chrome 的小技巧 - 內建截圖功能"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -749,7 +654,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說明"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#heroku-cloudflare-freenom-是什麼"><span class="toc-number">2.</span> <span class="toc-text">Heroku、Cloudflare、Freenom 是什麼？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#heroku"><span class="toc-number">2.0.1.</span> <span class="toc-text">Heroku</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudflare"><span class="toc-number">2.0.2.</span> <span class="toc-text">Cloudflare</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freenom"><span class="toc-number">2.0.3.</span> <span class="toc-text">Freenom</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#開始前"><span class="toc-number">3.</span> <span class="toc-text">開始前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何設定-heroku-freenom-cloudflare"><span class="toc-number">4.</span> <span class="toc-text">如何設定 Heroku、Freenom、Cloudflare</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-先到-freenom-挑一組喜歡的-domain-購買"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. 先到 Freenom 挑一組喜歡的 Domain 購買</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在-heroku-首頁點選該專案的-settings先確認部署的專案能正常執行以下兩種方法將-domain-加入擇一即可"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. 在 Heroku 首頁點選該專案的 Settings，先確認部署的專案能正常執行，以下兩種方法將 Domain 加入(擇一即可)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-在-heroku-網頁點選add-domain輸入買的-domain例如this-is-testtk"><span class="toc-number">4.0.3.</span> <span class="toc-text">3-1. 在 Heroku 網頁點選「Add domain」輸入「買的 domain」，例如：「this-is-test.tk」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-在專案目錄的終端機輸入如下"><span class="toc-number">4.0.4.</span> <span class="toc-text">3-2. 在專案目錄的終端機輸入如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-cloudflare-網頁點選add-a-site"><span class="toc-number">4.0.5.</span> <span class="toc-text">4. Cloudflare 網頁點選「+Add a Site」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-輸入購買的-domain"><span class="toc-number">4.0.6.</span> <span class="toc-text">5. 輸入購買的 Domain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-選-free-接著下一步"><span class="toc-number">4.0.7.</span> <span class="toc-text">6. 選 Free 接著下一步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-輸入-dns-設定-後面說明"><span class="toc-number">4.0.8.</span> <span class="toc-text">7. 輸入 DNS 設定 (後面說明)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-設定如下確認無誤點continue"><span class="toc-number">4.0.9.</span> <span class="toc-text">8. 設定如下，確認無誤點「Continue」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-確認無誤後點done-check-nameservers"><span class="toc-number">4.0.10.</span> <span class="toc-text">9. 確認無誤後點「Done, check nameservers」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-複製這-2-個-nameserver在-freenom-會用到"><span class="toc-number">4.0.11.</span> <span class="toc-text">10. 複製這 2 個 Nameserver，在 freenom 會用到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-在-freenom-網頁設定-nameserver"><span class="toc-number">4.0.12.</span> <span class="toc-text">11. 在 freenom 網頁設定 Nameserver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-將-cloudflare-的-nameserver-貼在-freenom"><span class="toc-number">4.0.13.</span> <span class="toc-text">12. 將 Cloudflare 的 Nameserver 貼在 freenom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-設定成功畫面如下"><span class="toc-number">4.0.14.</span> <span class="toc-text">13. 設定成功畫面如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-回-cloudflare-點re-check-now"><span class="toc-number">4.0.15.</span> <span class="toc-text">14. 回 Cloudflare 點「Re-check now」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-在-cloudflare-首頁會看到更新中等待同時先把-https-設定開啟"><span class="toc-number">4.0.16.</span> <span class="toc-text">15. 在 Cloudflare 首頁會看到更新中，等待同時，先把 HTTPS 設定開啟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-cloudflare-之後若要改-dns-可在此調整"><span class="toc-number">4.0.17.</span> <span class="toc-text">16. Cloudflare 之後若要改 DNS 可在此調整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-在-ssltls-的-edge-certificates-設定中啟動always-use-https"><span class="toc-number">4.0.18.</span> <span class="toc-text">17. 在 SSL/TLS 的 Edge Certificates 設定中，啟動「Always Use HTTPS」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-在-ssltls-的-overview-中設定成full"><span class="toc-number">4.0.19.</span> <span class="toc-text">18. 在 SSL/TLS 的 Overview 中，設定成「Full」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-回-ssltls-的-edge-certificates-中status-目前為pending-validation"><span class="toc-number">4.0.20.</span> <span class="toc-text">19. 回 SSL/TLS 的 Edge Certificates 中，Status 目前為「Pending Validation」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-經過漫長等待變綠燈時網址就能瀏覽囉"><span class="toc-number">4.0.21.</span> <span class="toc-text">20. 經過漫長等待，變綠燈時，網址就能瀏覽囉</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#full-page-screenshots"><span class="toc-number"></span> <span class="toc-text">Full-page screenshots</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用步驟"><span class="toc-number">1.</span> <span class="toc-text">使用步驟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#說明"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#capture-area-screenshot指定特定區域"><span class="toc-number">2.1.</span> <span class="toc-text">Capture area screenshot：指定特定區域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capture-screenshot僅截圖所看到的區域"><span class="toc-number">2.2.</span> <span class="toc-text">Capture screenshot：僅截圖所看到的區域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capture-full-size-screenshot整個網頁"><span class="toc-number">2.3.</span> <span class="toc-text">Capture full size screenshot：整個網頁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">3.</span> <span class="toc-text">參考資料</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#同場加碼"><span class="toc-number"></span> <span class="toc-text">同場加碼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-10-截圖快捷鍵"><span class="toc-number">1.</span> <span class="toc-text">Windows 10 截圖快捷鍵：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-10-內建截圖軟體"><span class="toc-number">2.</span> <span class="toc-text">Windows 10 內建截圖軟體：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windows-推薦截圖軟體"><span class="toc-number">3.</span> <span class="toc-text">Windows 推薦截圖軟體：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#軟體名稱picpick"><span class="toc-number">3.0.1.</span> <span class="toc-text">軟體名稱：PicPick</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#軟體說明支援全螢幕-使用中視窗-捲動視窗-固定區域-手繪區域等各種模式加上內建強大圖片編輯器功能又有免安裝版非常好用"><span class="toc-number">3.0.2.</span> <span class="toc-text">軟體說明：支援全螢幕、使用中視窗、捲動視窗、固定區域、手繪區域...等各種模式，加上內建強大「圖片編輯器」功能，又有免安裝版，非常好用。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#macos-截圖快捷鍵"><span class="toc-number">4.</span> <span class="toc-text">macOS 截圖快捷鍵：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
