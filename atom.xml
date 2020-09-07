@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-09-07T16:04:12.591Z</updated>
+  <updated>2020-09-07T16:11:01.635Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://riverye.com/2020/09/08/Day03-Chrome-%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7-%E5%85%A7%E5%BB%BA-URL-%E8%BD%89-QRcode/"/>
     <id>https://riverye.com/2020/09/08/Day03-Chrome-的小技巧-內建-URL-轉-QRcode/</id>
     <published>2020-09-07T16:00:00.000Z</published>
-    <updated>2020-09-07T16:04:12.591Z</updated>
+    <updated>2020-09-07T16:11:01.635Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>過去要將網頁轉 QRcode 需透過擴充功能(<a href="https://chrome.google.com/webstore/category/extensions?hl=zh-TW" target="_blank" rel="noopener">extensions</a>)尋找合適的套件才得以實現，從 Chrome 85 電腦版開始，將此功能納入實驗中惹，未來說不定會下放。</p><h2 id="使用步驟">使用步驟</h2><ol><li>在 Chrome 網址列輸入「chrome://flags」</li><li>搜尋「QR」</li><li>將「Enable sharing page via QR Code」改成「Enable」</li><li>重啟 Chrome 瀏覽器<br><img src="https://i.imgur.com/c46pk9X.png" alt></li><li>開啟想產 QRcode 的網頁 (以 <a href="https://riverye.com/">https://riverye.com/</a> 為例)</li><li>滑鼠右鍵選擇「為這個網頁建立 QR 圖碼」<br><img src="https://i.imgur.com/pMPjD0K.jpg" alt></li><li>點「下載」即大功告成<br><img src="https://i.imgur.com/v7f6Tmy.png" alt></li></ol><h3 id="注意需確認-chrome-版本在-85-以上才有此功能喔版本檢查與更新方式chromesettingshelp">注意：需確認 Chrome 版本在 85 以上才有此功能喔，版本檢查與更新方式「chrome://settings/help」</h3><h2 id="參考資料">參考資料</h2><p><a href="https://www.ithome.com.tw/news/139608" target="_blank" rel="noopener">Chrome 85出爐，網頁載入速度快10%</a></p><h2 id="小結">小結</h2><p>比起 QRcode 功能，更想要 goo.gl 短網址能復活，或出新的產品 (許願ing)，真的很好用 QQ</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10234819" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10234819</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href="https://riverye.com/2020/09/08/Day03-Chrome-%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7-%E5%85%A7%E5%BB%BA-URL-%E8%BD%89-QRcode/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>過去要將網頁轉 QRcode 需透過擴充功能(<a href="https://chrome.google.com/webstore/category/extensions?hl=zh-TW" target="_blank" rel="noopener">extensions</a>)尋找合適的套件才得以實現，從 Chrome 85 電腦版開始，將此功能納入實驗中惹，未來說不定會下放。</p><h2 id="使用步驟">使用步驟</h2><ol><li>在 Chrome 網址列輸入「chrome://flags」</li><li>搜尋「QR」</li><li>將「Enable sharing page via QR Code」改成「Enable」</li><li>重啟 Chrome 瀏覽器<br><img src="https://i.imgur.com/c46pk9X.png" alt></li><li>開啟想產 QRcode 的網頁 (以 <a href="https://riverye.com/">https://riverye.com/</a> 為例)</li><li>滑鼠右鍵選擇「為這個網頁建立 QR 圖碼」<br><img src="https://i.imgur.com/pMPjD0K.jpg" alt></li><li>點「下載」即大功告成<br><img src="https://i.imgur.com/v7f6Tmy.png" alt></li></ol><h3 id="注意需確認-chrome-版本在-85-以上才有此功能喔版本檢查與更新方式chromesettingshelp">注意：需確認 Chrome 版本在 85 以上才有此功能喔，版本檢查與更新方式「chrome://settings/help」</h3><h2 id="參考資料">參考資料</h2><p><a href="https://www.ithome.com.tw/news/139608" target="_blank" rel="noopener">Chrome 85出爐，網頁載入速度快10%</a></p><h2 id="小結">小結</h2><p>比起 QRcode 功能，更想要 goo.gl 短網址能復活，或出新的產品 (許願ing)，真的很好用 QQ</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10234819" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10234819</a><br>medium 文章連結：<a href="https://link.medium.com/9vaGB6oFA9" target="_blank" rel="noopener">https://link.medium.com/9vaGB6oFA9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/08/Day03-Chrome-%E7%9A%84%E5%B0%8F%E6%8A%80%E5%B7%A7-%E5%85%A7%E5%BB%BA-URL-%E8%BD%89-QRcode/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
     
     <summary type="html">
     
