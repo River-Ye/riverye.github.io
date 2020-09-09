@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Hexo 踩到的雷(導覽列及站內搜尋功能) · 小菜的 Blog</title>
+    <title>Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo 踩到的雷(導覽列及站內搜尋功能)</a>
+                <a href="#" class="post-name">Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Hexo 踩到的雷(導覽列及站內搜尋功能)
+       Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵
       <!-- 404 -->
       
     </h1>
@@ -294,27 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "導覽列">導覽列</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "站內搜尋">站內搜尋</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/11/09</span
+          >2020/09/10</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >674</span
+            >905</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >3 min</span
           ></span
         >
       </div>
@@ -423,82 +419,308 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1 id="說在前面">說在前面</h1>
-<blockquote>
-<p>越小的細節，雷說不定越多</p>
-</blockquote>
-<p>最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨<a href="https://zh.wikipedia.org/wiki/%E9%81%BA%E5%BF%98%E6%9B%B2%E7%B7%9A" target="_blank" rel="noopener">遺忘曲線</a>，生疏或健忘是可能的。</p>
-<p><img src="https://i.imgur.com/2ICL0V9.png" alt></p>
+    <h2 id="前言">前言</h2>
+<p>紀錄個人常用的 Mac 、 Chrome 、 iTerm2 、 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> (以下簡稱 VS code) 的快捷鍵，若有覺得不錯但我沒分享的快捷鍵，歡迎留言互相交流 :)</p>
 <hr>
-<h1 id="遇到的問題">遇到的問題</h1>
-<ol>
-<li>Blog 文章的側邊欄導覽列 Catalog 點擊時無法跳到對應位置，會顯示 null</li>
-<li>Blog 站內搜尋突然失效無法使用</li>
-</ol>
-<h1 id="分析問題">分析問題</h1>
-<p>新增「<a href="https://riverye.com/2019/11/08/%E6%9C%89%E8%B6%A3%E7%9A%84-4-%E9%A1%8C%E7%99%BD%E6%9D%BF%E9%A1%8C/">文章加密</a>」功能後，誤動到原本的 code。</p>
-<h1 id="解決方法">解決方法</h1>
-<h2 id="導覽列問題">導覽列問題</h2>
-<h3 id="markdown-it-套件的-bug">markdown-it 套件的 bug</h3>
-<p>安装 markdown-it-named-headings 來修復原本套件的 bug<br>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install markdown-it-named-headings --save</span><br></pre></td></tr></table></figure></p>
-<p>進入 Blog 的根目錄修改 <code>node_modules\hexo-renderer-markdown-it\lib\renderer.js</code> 檔案，並在第 9 行後面新增如下：<br>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br></pre></td></tr></table></figure></p>
-<p>修改後會像這樣：<br>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">data, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> MdIt = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>);</span><br><span class="line">  <span class="keyword">var</span> cfg = <span class="keyword">this</span>.config.markdown;</span><br><span class="line">  <span class="keyword">var</span> opt = (cfg) ? cfg : <span class="string">'default'</span>;</span><br><span class="line">  <span class="keyword">var</span> parser = (opt === <span class="string">'default'</span> || opt === <span class="string">'commonmark'</span> || opt === <span class="string">'zero'</span>) ?</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt) :</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt.render);</span><br><span class="line"></span><br><span class="line">  parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.plugins) &#123;</span><br><span class="line">    parser = opt.plugins.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">parser, pugs</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> parser.use(<span class="built_in">require</span>(pugs));</span><br><span class="line">    &#125;, parser);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.anchors) &#123;</span><br><span class="line">    parser = parser.use(<span class="built_in">require</span>(<span class="string">'./anchors'</span>), opt.anchors);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> parser.render(data.text);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>接著 <code>hexo clean</code> 及 <code>hexo server</code> 測試是否解決問題<br>
-若解決，則恭喜你~</p>
-<p>尚未解決請繼續往下看<br>
-改進入 Blog 根目錄 <code>node_modules\hexo-toc\lib\filter.js</code> ，把 28-31 行改成：<br>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(<span class="string">'id'</span>, id);</span><br><span class="line"><span class="comment">// $title.children('a').remove();</span></span><br><span class="line"><span class="comment">// $title.html( '&lt;span id="' + id + '"&gt;' + $title.html() + '&lt;/span&gt;' );</span></span><br><span class="line"><span class="comment">// $title.removeAttr('id');</span></span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>修改後，記得 <code>hexo clean</code> 及 <code>hexo server</code> ，「用無痕模式測試」，確保不受暫存檔影響。</p>
-</blockquote>
-<h3 id="造成原因">造成原因</h3>
-<p>找的 theme 已經很久沒更新了，更新後導致 <code>hexo-toc</code> 不相容的問題。</p>
-<p>沒踩到此雷的可能原因：</p>
-<ol>
-<li>theme 持續更新已解決問題</li>
-<li>舊版本沒更新</li>
-</ol>
+<h2 id="mac-常用快捷鍵">Mac 常用快捷鍵</h2>
+<p>開始前，可以先看下 Apple 官方文件 (<a href="https://support.apple.com/zh-tw/HT201236" target="_blank" rel="noopener">Mac 鍵盤快速鍵</a>)，然後發現會的都是裡面有寫的 XD</p>
+<h4 id="列出以下幾種-mac-常用的快捷鍵">列出以下幾種 Mac 常用的快捷鍵：</h4>
+<table>
+<thead>
+<tr>
+<th>說明</th>
+<th>快捷鍵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>複製</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>C</code></td>
+</tr>
+<tr>
+<td>剪下</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>X</code></td>
+</tr>
+<tr>
+<td>貼上</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>V</code></td>
+</tr>
+<tr>
+<td>還原</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Z</code></td>
+</tr>
+<tr>
+<td>取消還原</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>Z</code></td>
+</tr>
+<tr>
+<td>選取從游標處至最左邊</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>向左鍵</code></td>
+</tr>
+<tr>
+<td>選取從游標處至最右邊</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>向右鍵</code></td>
+</tr>
+<tr>
+<td>從游標處跳至最左邊</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>向左鍵</code></td>
+</tr>
+<tr>
+<td>從游標處跳至最右邊</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>向右鍵</code></td>
+</tr>
+<tr>
+<td>從游標處跳至最上面</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>向上鍵</code></td>
+</tr>
+<tr>
+<td>從游標處跳至最下面</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>向下鍵</code></td>
+</tr>
+<tr>
+<td>切換桌面</td>
+<td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>向左鍵</code> 或 <code>向右鍵</code></td>
+</tr>
+</tbody>
+</table>
+<p>參考資料：<a href="https://support.apple.com/zh-tw/HT201236" target="_blank" rel="noopener">Mac 鍵盤快速鍵</a></p>
 <hr>
-<h2 id="站內搜尋失效的問題">站內搜尋失效的問題</h2>
-<h3 id="algolia-服務">Algolia 服務</h3>
-<p>站內搜尋使用 <a href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> 服務製作而成，註冊後享有 14 天內所有功能免費使用，到期後需「手動」選擇免費方案，否則無法繼續使用。</p>
-<p>解決方法其實已經在描述中，到 Algolia 選擇免費方案即可。</p>
-<p>補充紀錄 <code>_config.yml</code> 設定：<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Blog 根目錄的 _config.yml</span></span><br><span class="line"><span class="symbol">algolia:</span></span><br><span class="line">  <span class="symbol">applicationID:</span> <span class="number">5</span>XXXXXXXR</span><br><span class="line">  <span class="symbol">apiKey:</span> eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">  <span class="symbol">indexName:</span> rXXXXXXXg</span><br><span class="line">  <span class="symbol">chunkSize:</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Blog 根目錄底下的/themes/&lt;主題名稱&gt;/_config.yml</span></span><br><span class="line"><span class="symbol">algolia_search:</span></span><br><span class="line">  <span class="symbol">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="symbol">hits:</span></span><br><span class="line">    <span class="symbol">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="symbol">labels:</span></span><br><span class="line">    <span class="symbol">input_placeholder:</span> Search <span class="keyword">for</span> Posts</span><br><span class="line">    <span class="symbol">hits_empty:</span> <span class="string">"沒有找到任何搜尋結果： $&#123;query&#125;"</span></span><br><span class="line">    <span class="symbol">hits_stats:</span> <span class="string">"約有 $&#123;hits&#125; 項結果 (搜尋時間： $&#123;time&#125; 毫秒)"</span></span><br></pre></td></tr></table></figure></p>
-<p>每次新增文章後，都要做：<br>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">$ hexo algolia</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/vJsVr3O.png" alt></p>
+<h2 id="chrome-常用快捷鍵">Chrome 常用快捷鍵</h2>
+<table>
+<thead>
+<tr>
+<th>說明</th>
+<th>快捷鍵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>重新整理</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>R</code></td>
+</tr>
+<tr>
+<td>新增分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>T</code></td>
+</tr>
+<tr>
+<td>關閉分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>W</code></td>
+</tr>
+<tr>
+<td>真 · 全螢幕 (要先進入全螢幕)</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>F</code></td>
+</tr>
+<tr>
+<td>搜尋</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>F</code></td>
+</tr>
+<tr>
+<td>放大</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>+</code></td>
+</tr>
+<tr>
+<td>縮小</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>-</code></td>
+</tr>
+<tr>
+<td>切換分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>數字鍵</code></td>
+</tr>
+<tr>
+<td>切至最左邊分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>數字鍵 1</code></td>
+</tr>
+<tr>
+<td>切至最右邊分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>數字鍵 9</code></td>
+</tr>
+<tr>
+<td>顯示/隱藏書籤</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>B</code></td>
+</tr>
+<tr>
+<td>開發者工具</td>
+<td><code>鍵盤 F12</code></td>
+</tr>
+<tr>
+<td>打開/切換檢查元素模式和瀏覽器窗口</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>C</code></td>
+</tr>
+</tbody>
+</table>
+<p>參考資料：<a href="https://developers.google.com/web/tools/chrome-devtools/shortcuts?hl=zh-tw" target="_blank" rel="noopener">Chrome 鍵盤快捷鍵參考</a></p>
 <hr>
-<h1 id="小結">小結</h1>
-<p>透過 <a href="https://zh.wikipedia.org/wiki/%E9%B4%A8%E5%AD%90%E9%A1%9E%E5%9E%8B" target="_blank" rel="noopener">Duck typing</a> 的方式，在描述問題的過程中，答案說不定就在裡面~</p>
+<h2 id="iterm2-常用快捷鍵與指令">iTerm2 常用快捷鍵與指令</h2>
+<table>
+<thead>
+<tr>
+<th>說明</th>
+<th>快捷鍵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>開新分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>T</code></td>
+</tr>
+<tr>
+<td>關閉分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>W</code></td>
+</tr>
+<tr>
+<td>左右切換分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>向左鍵</code> 或 <code>向右鍵</code></td>
+</tr>
+<tr>
+<td>跳到指定分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>數字鍵</code></td>
+</tr>
+<tr>
+<td>清除視窗上所有訊 (可往上捲)</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>R</code></td>
+</tr>
+<tr>
+<td>清除視窗上所有訊 (往上捲找不到)</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>K</code></td>
+</tr>
+<tr>
+<td>當前分頁新增水平分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>D</code></td>
+</tr>
+<tr>
+<td>當前分頁新增垂直分頁</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>D</code></td>
+</tr>
+<tr>
+<td>開啟當前路徑的資料夾</td>
+<td><code>open .</code></td>
+</tr>
+<tr>
+<td>開啟特定路徑的資料夾</td>
+<td><code>open {path}</code> ，範例: <code>open ~/Documents</code></td>
+</tr>
+<tr>
+<td>開啟當前路徑 VScode</td>
+<td><code>code .</code></td>
+</tr>
+<tr>
+<td>開啟指定路徑 VScode</td>
+<td><code>code {path}</code> ，範例: <code>code ~/Documents</code></td>
+</tr>
+<tr>
+<td>清除游標左邊所有訊息</td>
+<td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>U</code></td>
+</tr>
+<tr>
+<td>清除游標左邊訊息一段</td>
+<td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>W</code></td>
+</tr>
+<tr>
+<td>清除游標右邊所有訊息</td>
+<td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>K</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://i.imgur.com/v8jS3wH.gif" alt></p>
+<h4 id="設定開啟分頁時預設路徑">設定開啟分頁時，預設路徑：</h4>
+<p><img src="https://i.imgur.com/K47ffDb.png" alt></p>
+<h4 id="隨意操作示意圖">隨意操作示意圖</h4>
+<p><img src="https://i.imgur.com/hTyh57D.gif" alt></p>
+<hr>
+<h2 id="vscode-常用快捷鍵">VScode 常用快捷鍵</h2>
+<table>
+<thead>
+<tr>
+<th>說明</th>
+<th>快捷鍵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>開新檔案</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>N</code></td>
+</tr>
+<tr>
+<td>關閉檔案</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>W</code></td>
+</tr>
+<tr>
+<td>快速搜尋檔案</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>P</code></td>
+</tr>
+<tr>
+<td>命令面板</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>P</code></td>
+</tr>
+<tr>
+<td>搜尋檔案內文</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>F</code></td>
+</tr>
+<tr>
+<td>搜尋路徑下符合條件的內文</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>Shift 鍵 ⇧</code> + <code>F</code></td>
+</tr>
+<tr>
+<td>開/隱藏側邊欄</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>B</code></td>
+</tr>
+<tr>
+<td>開/隱藏面板</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>J</code></td>
+</tr>
+<tr>
+<td>放大</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>+</code></td>
+</tr>
+<tr>
+<td>縮小</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>-</code></td>
+</tr>
+<tr>
+<td>切割視窗</td>
+<td><code>(Cmd）鍵 ⌘</code> + <code>\</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="同時選取符合條件的關鍵字-cmd鍵-d">同時選取符合條件的關鍵字： <code>(Cmd）鍵 ⌘</code> + <code>D</code></h4>
+<p><img src="https://i.imgur.com/f6XtolL.gif" alt></p>
+<h4 id="同時指定多行游標位置的方式-option或-alt鍵-shift-鍵-滑鼠左鍵">同時指定多行游標位置的方式： <code>Option（或 Alt）鍵 ⌥</code> + <code>Shift 鍵 ⇧</code> + <code>滑鼠左鍵</code></h4>
+<p><img src="https://i.imgur.com/105Z3Wk.gif" alt></p>
+<h4 id="當前路徑-vscode-再開一個新視窗">當前路徑 VScode 再開一個新視窗</h4>
+<p>輸入「命令面板」快捷鍵，接著搜尋 dup 點「Duplicate Workspace in New Windows」
+<img src="https://i.imgur.com/U6ZXCRD.png" alt></p>
+<h4 id="設定自動儲存">設定自動儲存</h4>
+<p><img src="https://i.imgur.com/t4UtK0W.png" alt></p>
+<h4 id="隨意操作示意圖">隨意操作示意圖</h4>
+<p><img src="https://i.imgur.com/ZEHLPXp.gif" alt></p>
+<hr>
+<h2 id="小結">小結</h2>
+<p>目前想到的快捷鍵如上，日後有想起或發現不錯的快捷鍵會再持續更新此篇，也歡迎在下方留言分享各種快捷鍵 :)</p>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10235273" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10235273</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/10/Day05-Mac%E3%80%81Chrome%E3%80%81iTerm2%E3%80%81Visual-Studio-Code-%E4%B8%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5/%22">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/">https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/</a></p>
-    <p>發表日期：2019-11-09</p>
-    <p>更新日期：2019-11-09</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/10/Day05-Mac、Chrome、iTerm2、Visual-Studio-Code-上常用的快捷鍵/">https://riverye.com/2020/09/10/Day05-Mac、Chrome、iTerm2、Visual-Studio-Code-上常用的快捷鍵/</a></p>
+    <p>發表日期：2020-09-10</p>
+    <p>更新日期：2020-09-10</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/11/10/修改-Ubuntu-終端機的標題顯示-只顯示當前路徑-Git-branch/" title="修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)">
-        <div class="nextTitle">修改 Ubuntu 終端機的標題顯示(只顯示當前路徑 + Git branch)</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/11/08/有趣的-4-題白板題/" title="有趣的 4 題白板題">
-        <div class="prevTitle">有趣的 4 題白板題</div>
+      <a href="/2020/09/09/Day04-Mac-上常用的軟體-iTerm2、Dash、Alfred、Spectacle、Kap、GIPHY-Capture/" title="Day04 - Mac 上常用的軟體 (iTerm2、Dash、Alfred、Spectacle、Kap、GIPHY Capture)">
+        <div class="prevTitle">Day04 - Mac 上常用的軟體 (iTerm2、Dash、Alfred、Spectacle、Kap、GIPHY Capture)</div>
       </a>
       
     </li>
@@ -514,8 +736,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Hexo 踩到的雷(導覽列及站內搜尋功能)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/10/Day05-Mac、Chrome、iTerm2、Visual-Studio-Code-上常用的快捷鍵/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -634,7 +856,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說在前面"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的問題"><span class="toc-number">2.</span> <span class="toc-text">遇到的問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析問題"><span class="toc-number">3.</span> <span class="toc-text">分析問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解決方法"><span class="toc-number">4.</span> <span class="toc-text">解決方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#導覽列問題"><span class="toc-number">4.1.</span> <span class="toc-text">導覽列問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-it-套件的-bug"><span class="toc-number">4.1.1.</span> <span class="toc-text">markdown-it 套件的 bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#造成原因"><span class="toc-number">4.1.2.</span> <span class="toc-text">造成原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#站內搜尋失效的問題"><span class="toc-number">4.2.</span> <span class="toc-text">站內搜尋失效的問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#algolia-服務"><span class="toc-number">4.2.1.</span> <span class="toc-text">Algolia 服務</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mac-常用快捷鍵"><span class="toc-number">2.</span> <span class="toc-text">Mac 常用快捷鍵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#列出以下幾種-mac-常用的快捷鍵"><span class="toc-number">2.0.1.</span> <span class="toc-text">列出以下幾種 Mac 常用的快捷鍵：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chrome-常用快捷鍵"><span class="toc-number">3.</span> <span class="toc-text">Chrome 常用快捷鍵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iterm2-常用快捷鍵與指令"><span class="toc-number">4.</span> <span class="toc-text">iTerm2 常用快捷鍵與指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#設定開啟分頁時預設路徑"><span class="toc-number">4.0.1.</span> <span class="toc-text">設定開啟分頁時，預設路徑：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#隨意操作示意圖"><span class="toc-number">4.0.2.</span> <span class="toc-text">隨意操作示意圖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode-常用快捷鍵"><span class="toc-number">5.</span> <span class="toc-text">VScode 常用快捷鍵</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#同時選取符合條件的關鍵字-cmd鍵-d"><span class="toc-number">5.0.1.</span> <span class="toc-text">同時選取符合條件的關鍵字： (Cmd）鍵 ⌘ + D</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#同時指定多行游標位置的方式-option或-alt鍵-shift-鍵-滑鼠左鍵"><span class="toc-number">5.0.2.</span> <span class="toc-text">同時指定多行游標位置的方式： Option（或 Alt）鍵 ⌥ + Shift 鍵 ⇧ + 滑鼠左鍵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#當前路徑-vscode-再開一個新視窗"><span class="toc-number">5.0.3.</span> <span class="toc-text">當前路徑 VScode 再開一個新視窗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#設定自動儲存"><span class="toc-number">5.0.4.</span> <span class="toc-text">設定自動儲存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#隨意操作示意圖"><span class="toc-number">5.0.5.</span> <span class="toc-text">隨意操作示意圖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">6.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
