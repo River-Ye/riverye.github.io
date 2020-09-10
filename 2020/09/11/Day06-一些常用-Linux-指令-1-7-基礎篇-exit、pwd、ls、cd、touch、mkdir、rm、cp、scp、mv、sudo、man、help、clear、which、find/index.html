@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>刷題難度逐漸增強 · 小菜的 Blog</title>
+    <title>Day06 - 一些常用 Linux 指令 - 1-7 - 基礎篇 (exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">刷題難度逐漸增強</a>
+                <a href="#" class="post-name">Day06 - 一些常用 Linux 指令 - 1-7 - 基礎篇 (exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       刷題難度逐漸增強
+       Day06 - 一些常用 Linux 指令 - 1-7 - 基礎篇 (exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、su...
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/20</span
+          >2020/09/11</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >225</span
+            >1.1k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >4 min</span
           ></span
         >
       </div>
@@ -419,51 +419,204 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>刷 1000 題 <a href="https://www.codewars.com/" target="_blank" rel="noopener">Coderwars</a> LV8 或 LV7<br>
-不代表有本事刷 LV1 一題<br>
-前面練習是為了更熟悉 Ruby 語法及如何使用<br>
-重點在於如何思考邏輯、解題<br>
-接下來會漸漸把強度加強<br>
-這次以 LV6、LV7 各一題</p>
+    <h2 id="前言">前言</h2>
+<p>預計會有 7 篇介紹 Linux 指令與套件，並提供一些範例讓大家可以更快了解及如何應用，那麼，直接開始吧</p>
 <hr>
-<p><a href="https://www.codewars.com/kata/5ac6932b2f317b96980000ca/train/ruby" target="_blank" rel="noopener">題目(Form The Minimum)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Task</span><br><span class="line">Given a list of digits, <span class="keyword">return</span> the smallest number that could be formed from these digits, using the digits only once (ignore duplicates).</span><br><span class="line"></span><br><span class="line"><span class="symbol">Notes:</span></span><br><span class="line">Only positive integers will be passed to the function (&gt; <span class="number">0</span> ), no negatives <span class="keyword">or</span> zeros.</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">min_value</span><span class="params">(digits)</span></span></span><br><span class="line">  <span class="comment"># your code here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(min_value([<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>]), <span class="number">13</span>)</span><br><span class="line">Test.assert_equals(min_value([<span class="number">4</span>, <span class="number">7</span>, <span class="number">5</span>, <span class="number">7</span>]), <span class="number">457</span>)</span><br><span class="line">Test.assert_equals(min_value([<span class="number">4</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">4</span>]), <span class="number">148</span>)</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://www.codewars.com/kata/5208f99aee097e6552000148/train/ruby" target="_blank" rel="noopener">題目(Break camelCase)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Complete the solution so that the function will <span class="keyword">break</span> up camel casing, using a space between words.</span><br><span class="line"></span><br><span class="line">Example</span><br><span class="line">solution(<span class="string">'camelCasing'</span>) <span class="comment"># =&gt; should return 'camel Casing'</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(string)</span></span></span><br><span class="line">  <span class="comment"># complete the function</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(solution(<span class="string">'camelCasing'</span>), <span class="string">'camel Casing'</span>)</span><br><span class="line">Test.assert_equals(solution(<span class="string">'camelCasingTest'</span>), <span class="string">'camel Casing Test'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="exit">exit</h2>
+<p>嗯，就是離開，沒什麼好說的 XD<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="pwd">pwd</h2>
+<p>取得目前的路徑<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># /Users/user/Documents/demo/</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="ls">ls</h2>
+<p>取得當前資料夾與檔案名稱<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">ls -la</span><br><span class="line">ls -laSrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可依需求調整參數</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>以行的方式成列： <code>-l</code><br>
+顯示隱藏檔案： <code>-a</code><br>
+按照檔案大小排序： <code>-S</code><br>
+反向排序： <code>-r</code><br>
+按照修改時間排序： <code>-t</code></p>
+<h4 id="查詢電腦規格-lshw">查詢電腦規格 <code>lshw</code></h4>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">lshw</span><br></pre></td></tr></table></figure></p>
+<h4 id="查詢-cpu-規格-lscpu">查詢 CPU 規格 <code>lscpu</code></h4>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">lscpu</span><br></pre></td></tr></table></figure></p>
+<h2 id="cd">cd</h2>
+<p>切換目錄<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切到桌面</span></span><br><span class="line"><span class="built_in">cd</span> ~/Desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切到上一層</span></span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切回上一次的目錄</span></span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure></p>
+<h2 id="touch">touch</h2>
+<p>建立檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch test.log</span><br><span class="line">touch hello.html</span><br></pre></td></tr></table></figure></p>
+<p>建立指定日期時間檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">touch -t YYYYMMDDHHMM.SS filename</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">touch -t 202009011800.11 test.log</span><br></pre></td></tr></table></figure></p>
+<h2 id="mkdir">mkdir</h2>
+<p>建立資料夾<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">mkdir hello_world</span><br></pre></td></tr></table></figure></p>
+<h2 id="rm">rm</h2>
+<p>刪除檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm filename</span><br><span class="line">rm -i filename</span><br><span class="line">rm -r directory</span><br><span class="line">rm -d directory</span><br><span class="line">rm -rf anything</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>刪除前會再次確認： <code>-i</code><br>
+刪除資料夾(含裡面的檔案)： <code>-r</code><br>
+強制刪除(不會有提示)： <code>-f</code><br>
+只刪除空資料夾： <code>-d</code></p>
+<h2 id="cp">cp</h2>
+<p>複製檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp 來源檔案 目的地(可以是不同路徑並換檔名)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cp test.TXT /tmp/<span class="built_in">test</span>-1.TXT</span><br></pre></td></tr></table></figure></p>
+<h3 id="scp">scp</h3>
+<p>在不同的 Linux 主機之間複製檔案</p>
+<p>備註： 在不同 Linux 主機之間使用 scp 指令複製檔案時，遠端的 Linux 主機必須要開啟 SSH 遠端登入服務，否則無法使用 scp 指令複製檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">scp [帳號@來源主機]:來源檔案 目的地</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下指示為範例，直接輸入不會有反應</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將遠端「考試100分.pdf」下載到「本地桌面」</span></span><br><span class="line">scp user_name@riverye.com:/home/data/考試100分.pdf ~/Desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將遠端「本地桌面」的「考試100分.pdf」上傳到遠端</span></span><br><span class="line">scp ~/Desktop/考試100分.pdf user_name@riverye.com:/home/data/</span><br></pre></td></tr></table></figure></p>
+<h2 id="mv">mv</h2>
+<p>移動檔案<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mv source_file target</span><br><span class="line">mv -f source_file target</span><br><span class="line">mv -i source_file target</span><br><span class="line">mv -n source_file target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">mv -i test.rb /tmp/</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>遇到同樣檔名要覆蓋前，不提示： <code>-f</code><br>
+遇到同樣檔名要覆蓋前，會有提示： <code>-i</code><br>
+不覆蓋同樣檔名： <code>-n</code></p>
+<h2 id="sudo">sudo</h2>
+<p>使用最高權限執行<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo 你要下的指令</span><br></pre></td></tr></table></figure></p>
+<h2 id="man">man</h2>
+<p>查看指令說明文件</p>
+<p>備註： 不知別的指令怎麼用，可以用這個查詢，很常用的小技巧!!!<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">man 指令</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">man ls</span><br><span class="line">man rm</span><br><span class="line">man sudo</span><br></pre></td></tr></table></figure></p>
+<h2 id="help">help</h2>
+<p>查看指令說明</p>
+<p>備註： 很常用的小技巧!!
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">指令 --<span class="built_in">help</span></span><br><span class="line">指令 -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cp --<span class="built_in">help</span></span><br><span class="line">cp -h</span><br></pre></td></tr></table></figure></p>
+<h2 id="clear">clear</h2>
+<p>清除終端機上的訊息 (往上捲看得到)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure></p>
+<h2 id="which">which</h2>
+<p>查詢指令的來源路徑<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> executable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="built_in">which</span> sudo</span><br><span class="line"><span class="built_in">which</span> ruby</span><br><span class="line"><span class="built_in">which</span> rails</span><br></pre></td></tr></table></figure></p>
+<h2 id="find">find</h2>
+<p>找出符合條件的檔案或資料夾<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只找特定檔案大小範圍且符合關鍵字的檔案</span></span><br><span class="line">find <span class="built_in">test</span> -size +10k -size -10M</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=pNswp5nbfPs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/pNswp5nbfPs/0.jpg" alt="Yes"></a></p>
+<h2 id="總整理">總整理</h2>
+<table>
+<thead>
+<tr>
+<th>MacOS / Linux 指令</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exit</td>
+<td>離開</td>
+<td><code>exit</code></td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>取得目前的路徑</td>
+<td><code>pwd</code></td>
+</tr>
+<tr>
+<td>ls</td>
+<td>取得當前資料夾與檔案名稱</td>
+<td><code>ls</code></td>
+</tr>
+<tr>
+<td>cd</td>
+<td>切換目錄</td>
+<td><code>cd ~</code></td>
+</tr>
+<tr>
+<td>touch</td>
+<td>建立檔案</td>
+<td><code>touch demo.html</code></td>
+</tr>
+<tr>
+<td>mkdir</td>
+<td>建立資料夾</td>
+<td><code>mkdir demo</code></td>
+</tr>
+<tr>
+<td>rm</td>
+<td>刪除檔案</td>
+<td><code>rm demo.html</code></td>
+</tr>
+<tr>
+<td>cp</td>
+<td>複製檔案</td>
+<td><code>cp demo.html demo1.html</code></td>
+</tr>
+<tr>
+<td>scp</td>
+<td>在不同的 Linux 主機之間複製檔案</td>
+<td><code>scp user_name@riverye.com:/home/data/考試100分.pdf ~/Desktop</code></td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移動檔案</td>
+<td><code>mv demo1.html ~</code></td>
+</tr>
+<tr>
+<td>sudo</td>
+<td>使用最高權限</td>
+<td><code>sudo 欲使用的指令</code></td>
+</tr>
+<tr>
+<td>man</td>
+<td>查看指令說明文件</td>
+<td><code>man pwd</code></td>
+</tr>
+<tr>
+<td>help</td>
+<td>查看指令說明</td>
+<td><code>mv --help</code></td>
+</tr>
+<tr>
+<td>clear</td>
+<td>清除終端機上的訊息(往上捲看得到)</td>
+<td><code>clear</code></td>
+</tr>
+<tr>
+<td>which</td>
+<td>查詢指令的來源路徑</td>
+<td><code>which sudo</code></td>
+</tr>
+<tr>
+<td>find</td>
+<td>找出符合條件的檔案或資料夾</td>
+<td><code>find .</code></td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Form The Minimum</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">min_value</span><span class="params">(digits)</span></span></span><br><span class="line">  digits.uniq.sort.join.to_i</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Break camelCase</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(string)</span></span></span><br><span class="line">  string.gsub(<span class="regexp">/([A-Z])/</span>, <span class="string">' \1'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<h2 id="小結">小結</h2>
+<p>這篇不知不覺就花了 5 小時左右準備和撰寫，<br>
+寫到眼睛快花了，過程中不停用 <code>man</code> 與  <code>help</code> 查詢其他指令的參數說明，<br>
+針對比較常用的提出來說明，若有不錯的組合技，歡迎下方留言交流 :)</p>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10235530" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10235530</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/11/Day05-Mac%E3%80%81Chrome%E3%80%81iTerm2%E3%80%81Visual-Studio-Code-%E4%B8%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%8D%B5">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/20/刷題難度逐漸增強/">https://riverye.com/2019/09/20/刷題難度逐漸增強/</a></p>
-    <p>發表日期：2019-09-20</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/11/Day06-一些常用-Linux-指令-1-7-基礎篇-exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find/">https://riverye.com/2020/09/11/Day06-一些常用-Linux-指令-1-7-基礎篇-exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find/</a></p>
+    <p>發表日期：2020-09-11</p>
+    <p>更新日期：2020-09-11</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/21/刷題的標題好難想-沒梗了-XD/" title="刷題的標題好難想 (沒梗了 XD)">
-        <div class="nextTitle">刷題的標題好難想 (沒梗了 XD)</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/19/完成-1-3-鐵人賽，調整刷題步調繼續前進/" title="完成 1 / 3 鐵人賽，調整刷題步調繼續前進">
-        <div class="prevTitle">完成 1 / 3 鐵人賽，調整刷題步調繼續前進</div>
+      <a href="/2020/09/10/Day05-Mac、Chrome、iTerm2、Visual-Studio-Code-上常用的快捷鍵/" title="Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵">
+        <div class="prevTitle">Day05 - Mac、Chrome、iTerm2、Visual Studio Code 上常用的快捷鍵</div>
       </a>
       
     </li>
@@ -479,8 +632,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/20/刷題難度逐漸增強/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "刷題難度逐漸增強"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/11/Day06-一些常用-Linux-指令-1-7-基礎篇-exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day06 - 一些常用 Linux 指令 - 1-7 - 基礎篇 (exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -599,7 +752,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exit"><span class="toc-number">2.</span> <span class="toc-text">exit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd"><span class="toc-number">3.</span> <span class="toc-text">pwd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls"><span class="toc-number">4.</span> <span class="toc-text">ls</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查詢電腦規格-lshw"><span class="toc-number">4.0.2.</span> <span class="toc-text">查詢電腦規格 lshw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查詢-cpu-規格-lscpu"><span class="toc-number">4.0.3.</span> <span class="toc-text">查詢 CPU 規格 lscpu</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cd"><span class="toc-number">5.</span> <span class="toc-text">cd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch"><span class="toc-number">6.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir"><span class="toc-number">7.</span> <span class="toc-text">mkdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm"><span class="toc-number">8.</span> <span class="toc-text">rm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">8.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp"><span class="toc-number">9.</span> <span class="toc-text">cp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scp"><span class="toc-number">9.1.</span> <span class="toc-text">scp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv"><span class="toc-number">10.</span> <span class="toc-text">mv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">10.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo"><span class="toc-number">11.</span> <span class="toc-text">sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#man"><span class="toc-number">12.</span> <span class="toc-text">man</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#help"><span class="toc-number">13.</span> <span class="toc-text">help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clear"><span class="toc-number">14.</span> <span class="toc-text">clear</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#which"><span class="toc-number">15.</span> <span class="toc-text">which</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-number">16.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">17.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">18.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
