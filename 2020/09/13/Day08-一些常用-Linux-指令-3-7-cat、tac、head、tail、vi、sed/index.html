@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>週末來塊蛋糕吧~ Codewars - Which are in? · 小菜的 Blog</title>
+    <title>Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">週末來塊蛋糕吧~ Codewars - Which are in?</a>
+                <a href="#" class="post-name">Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       週末來塊蛋糕吧~ Codewars - Which are in?
+       Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/15</span
+          >2020/09/13</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >168</span
+            >985</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >3 min</span
           ></span
         >
       </div>
@@ -419,45 +419,132 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>中秋連假漸入尾聲，覺得假好短阿~<br>
-來塊比較簡單的蛋糕輕鬆度過一回合 <s>(想摸魚吼</s><br>
-挑戰 <a href="https://www.codewars.com/kata/which-are-in/train/ruby" target="_blank" rel="noopener">Codewars</a> LV6 題目</p>
+    <h2 id="前言">前言</h2>
+<p>此為 Linux 相關的 3-7 篇，都是很常用的指令，每天學一點，並常使用，便會記下成為反射動作之一</p>
+<h2 id="cat">cat</h2>
+<p>將該檔案內容印在終端機上<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> | cat</span><br><span class="line">cat -n file</span><br><span class="line">cat file</span><br><span class="line">cat file1 file2</span><br><span class="line">cat file1 &gt; target_file</span><br><span class="line">cat file1 &gt;&gt; target_file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git <span class="built_in">log</span> | cat</span><br><span class="line">cat -n 001.log</span><br><span class="line">cat 001.log &gt; 002.log</span><br><span class="line">cat 001.log &gt;&gt; 002.log</span><br><span class="line">cat 001.log 002.log &gt; 003.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>將輸入指令執行結果顯示在終端機上： <code>| cat</code><br>
+顯示行數： <code>-n</code><br>
+將多個文件覆蓋到目標文件中： <code>&gt;</code><br>
+將多個文件追加到目標文件中： <code>&gt;&gt;</code><br>
+備註: 目標文件若原本不存在，則直接建立新檔案</p>
+<h2 id="tac">tac</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tac file</span><br><span class="line"><span class="built_in">command</span> | tac</span><br><span class="line">tac file1 file2 &gt; target_file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git <span class="built_in">log</span> --oneline --all --graph | tac</span><br><span class="line">tac 001.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>將輸入指令執行結果顯示在終端機上： <code>| tac</code><br>
+將多個文件覆蓋到目標文件中： <code>&gt;</code><br>
+將多個文件追加到目標文件中： <code>&gt;&gt;</code><br>
+備註: 目標文件若原本不存在，則直接建立新檔案</p>
+<h2 id="head">head</h2>
+<p>看該檔案頭部 (預設為 10 行)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">head file</span><br><span class="line">head -n 30 file</span><br><span class="line">head -c 25 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">head 001.log</span><br><span class="line">head -n 30 001.log</span><br><span class="line">head -c 25 001.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>顯示前 N 行的訊息 (N 為數字)： <code>-n 30</code><br>
+顯示前 N bytes 的字元 (N 為數字)： <code>-c 25</code></p>
+<h2 id="tail">tail</h2>
+<p>看該檔案尾部 (預設為 10 行)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tail file</span><br><span class="line">tail -n 15 file</span><br><span class="line">tail -f file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">tail 001.log</span><br><span class="line">tail -n 001.log</span><br><span class="line">tail -f 001.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>顯示最後 N 行的訊息 (N 為數字)： <code>-n 30</code><br>
+持續讀取檔案，直到按 <code>Ctrl + c</code> 為止 (可觀察檔案持續更新的內容)： <code>-f</code></p>
+<h2 id="vi">vi</h2>
+<p>vi 編輯器，可新增、修改檔案、搜尋並取代文字等<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi 001.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用指令說明">幾個常用指令說明：</h4>
+<p>新增、編輯檔案： <code>vi file_name</code><br>
+編輯模式： 進入 vi 後，鍵盤 <code>i</code><br>
+離開編輯模式 (並非離開 vi 編輯器喔)： <code>ESC</code><br>
+不儲存離開 vi： <code>:q</code><br>
+不儲存強制離開 vi： <code>:q!</code><br>
+儲存且離開 vi ： <code>:wq</code><br>
+將檔案還原到最初狀態(進入 vi 後一開始的樣貌) ： <code>:e!</code><br>
+針對特定行數，搜尋並取代： <code>:s/string/new_string/g</code><br>
+針對整份文件，搜尋並取代： <code>:%s/string/new_string/g</code></p>
+<h3 id="示範如何針對特定行數及整份文件進行搜尋並取代文字">示範如何針對特定行數及整份文件進行搜尋並取代文字</h3>
+<p><img src="https://i.imgur.com/drxy63J.gif" alt></p>
+<p>備註:  除了 vi 編輯器外，Linux 上知名編輯器還有 vim、nano</p>
+<h2 id="sed">sed</h2>
+<p>檔案處理工具，是一個管道命令，以行為單位處理，能做到字串取代、複製、刪除等<br>
+在寫這段時，發現網路上已經有許多不錯的文章及詳細說明，故省略撰寫 XD<br>
+挑了幾篇覺得不錯的，放下方參考文件，跟著練習，會更有感覺及上手喔 :)</p>
+<h4 id="參考資料">參考資料</h4>
+<ol>
+<li><a href="http://linux.vbird.org/linux_basic/0330regularex.php#sed" target="_blank" rel="noopener">鳥哥的 Linux 私房菜 -- 第十一章、正規表示法與文件格式化處理</a></li>
+<li><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/392291/" target="_blank" rel="noopener">Linux中 sed 和 awk的用法詳解</a></li>
+<li><a href="https://terryl.in/zh/linux-sed-command/" target="_blank" rel="noopener">Linux 指令 SED 用法教學、取代範例、詳解</a></li>
+</ol>
+<h2 id="總整理">總整理</h2>
+<table>
+<thead>
+<tr>
+<th>MacOS / Linux 指令</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cat</td>
+<td>將該檔案內容印在終端機上</td>
+<td><code>cat demo.html</code></td>
+</tr>
+<tr>
+<td>tac</td>
+<td>反過來印出 cat 的內容</td>
+<td><code>tac demo.html</code></td>
+</tr>
+<tr>
+<td>head</td>
+<td>看該檔案頭部 (預設為 10 行)</td>
+<td><code>head -n 3 demo.html</code></td>
+</tr>
+<tr>
+<td>tail</td>
+<td>看該檔案尾部 (預設為 10 行)</td>
+<td><code>tail -n 5 demo.html</code></td>
+</tr>
+<tr>
+<td>vi</td>
+<td>vi 編輯器，可新增、修改檔案、搜尋並取代文字等</td>
+<td><code>vi demo.html</code></td>
+</tr>
+<tr>
+<td>sed</td>
+<td>檔案處理工具，是一個管道命令，以行為單位處理，能做到字串取代、複製、刪除等</td>
+<td><code>sed -n '$p'</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="小結">小結</h2>
+<p>在搜尋取代整份文件時，習慣以 <code>vi</code> 進行操作，<code>sed</code> 反而比較少用，<br>
+之前在批次改 SQL 資料庫的某字串時，覺得蠻方便的，與使用習慣有關</p>
 <hr>
-<p><a href="https://www.codewars.com/kata/which-are-in/train/ruby" target="_blank" rel="noopener">題目</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Given two arrays of strings a1 <span class="keyword">and</span> a2 <span class="keyword">return</span> a sorted array r <span class="keyword">in</span> lexicographical order of the strings of a1 which are substrings of strings of a2.</span><br><span class="line"></span><br><span class="line"><span class="comment">#Example 1: a1 = ["arp", "live", "strong"]</span></span><br><span class="line"></span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line"></span><br><span class="line">returns [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#Example 2: a1 = ["tarp", "mice", "bull"]</span></span><br><span class="line"></span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line"></span><br><span class="line">returns []</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">in_array</span><span class="params">(array1, array2)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a1 = [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>]</span><br><span class="line">a2 = [<span class="string">"lively"</span>, <span class="string">"alive"</span>, <span class="string">"harp"</span>, <span class="string">"sharp"</span>, <span class="string">"armstrong"</span>]</span><br><span class="line">Test.assert_equals(in_array(a1, a2), [<span class="string">"arp"</span>, <span class="string">"live"</span>, <span class="string">"strong"</span>])</span><br><span class="line">a1 = [<span class="string">"tarp"</span>, <span class="string">"mice"</span>, <span class="string">"bull"</span>]</span><br><span class="line">Test.assert_equals(in_array(a1, a2), [])</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=Z9i5jsnLxrQ" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Z9i5jsnLxrQ/0.jpg" alt="Yes"></a></p>
-<hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">in_array</span><span class="params">(array1, array2)</span></span></span><br><span class="line">  array1.select&#123;<span class="params">|x|</span> array2.any?&#123;<span class="params">|y|</span> y.<span class="keyword">include</span>?(x)&#125;&#125;.sort</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10236105" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10236105</a><br>
+medium 文章連結：<a href="https://link.medium.com/4hDsZdhXI9" target="_blank" rel="noopener">https://link.medium.com/4hDsZdhXI9</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/13/Day08-%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8-Linux-%E6%8C%87%E4%BB%A4-3-7-cat%E3%80%81tac%E3%80%81head%E3%80%81tail%E3%80%81vi%E3%80%81sed/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/">https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/</a></p>
-    <p>發表日期：2019-09-15</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/13/Day08-一些常用-Linux-指令-3-7-cat、tac、head、tail、vi、sed/">https://riverye.com/2020/09/13/Day08-一些常用-Linux-指令-3-7-cat、tac、head、tail、vi、sed/</a></p>
+    <p>發表日期：2020-09-13</p>
+    <p>更新日期：2020-09-13</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/15/Rails-中的-Gemfile-檔案的內容/" title="Rails 中的 Gemfile 檔案的內容">
-        <div class="nextTitle">Rails 中的 Gemfile 檔案的內容</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" title="Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？">
-        <div class="prevTitle">Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</div>
+      <a href="/2020/09/12/Day07-一些常用-Linux-指令-2-7-ps、top、htop、free、df、du、kill/" title="Day07 - 一些常用 Linux 指令 - 2-7 (ps、top、htop、free、df、du、kill)">
+        <div class="prevTitle">Day07 - 一些常用 Linux 指令 - 2-7 (ps、top、htop、free、df、du、kill)</div>
       </a>
       
     </li>
@@ -473,8 +560,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "週末來塊蛋糕吧~ Codewars - Which are in?"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/13/Day08-一些常用-Linux-指令-3-7-cat、tac、head、tail、vi、sed/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -593,7 +680,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cat"><span class="toc-number">2.</span> <span class="toc-text">cat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tac"><span class="toc-number">3.</span> <span class="toc-text">tac</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#head"><span class="toc-number">4.</span> <span class="toc-text">head</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tail"><span class="toc-number">5.</span> <span class="toc-text">tail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi"><span class="toc-number">6.</span> <span class="toc-text">vi</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用指令說明"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用指令說明：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示範如何針對特定行數及整份文件進行搜尋並取代文字"><span class="toc-number">6.1.</span> <span class="toc-text">示範如何針對特定行數及整份文件進行搜尋並取代文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">7.</span> <span class="toc-text">sed</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#參考資料"><span class="toc-number">7.0.1.</span> <span class="toc-text">參考資料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
