@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>在 Rails 裡的 spring 指令是做什麼的？ · 小菜的 Blog</title>
+    <title>小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,23 +229,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >你必須很努力</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">在 Rails 裡的 spring 指令是做什麼的？</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>你必須很努力</a>
 </header>
@@ -259,65 +248,28 @@
 
 
 
-
-height:50vh;
 "
 >
   
   <!-- 主页  -->
-   
-  <!-- 404页  -->
   
   <div class="site-intro-placeholder"></div>
   <div
     class="site-intro-img"
-    style="background-image: url(/intro/post-bg.jpg)"
+    style="background-image: url(/)"
   ></div>
   <div class="site-intro-meta">
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       在 Rails 裡的 spring 指令是做什麼的？
-      <!-- 404 -->
       
     </h1>
     <!-- 副标题 -->
     <p class="intro-subtitle">
       <!-- 主页副标题  -->
-       
-      <!-- 404 -->
       
     </p>
     <!-- 文章页meta -->
-    
-    <div class="post-intros">
-      <!-- 文章页标签  -->
-       <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Rails">Rails</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spring">spring</a>
-    
-</div>  
-      <div class="post-intro-meta">
-        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-        <span class="post-intro-time"
-          >2019/09/14</span
-        >
-      </div>
-      <div class="post-intro-read">
-        <span
-          >字數統計:
-          <span class="post-count word-count"
-            >648</span
-          >閱讀時間:
-          <span class="post-count reading-time"
-            >2 min</span
-          ></span
-        >
-      </div>
-      
-    </div>
     
   </div>
 </div>
@@ -419,118 +371,48 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-  <article class="article-entry">
-    <h3 id="自-rails-41-以後採用-spring-來預載應用程式">自 Rails 4.1 以後，採用 Spring 來預載應用程式</h3>
-<h3 id="保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</h3>
-<p>特徵：</p>
-<ul>
-<li>自動化，毋須特別啟動或停止背景程序</li>
-<li>每次運行時會重新加載應用程序</li>
-<li>修改 configs / initializers / gem 時，建議重啟server</li>
-</ul>
-<p>相容性：</p>
-<ul>
-<li>Ruby 版本：MRI 2.4 之後</li>
-<li>Rails 版本：4.1 之後 (rails new 新專案時，預設安裝Spring)</li>
-</ul>
-<hr>
-<p>打開 Rails 專案的 Gemfile，會發現預設如下：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line"> gem ‘spring’</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>直接在終端機輸入的話
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># $ 表示在終端機輸入， $ 本身不用跟著輸入喔</span></span><br><span class="line"></span><br><span class="line">$ spring status</span><br><span class="line">  Spring is not running.</span><br></pre></td></tr></table></figure></p>
-<p>需先進入
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails console</span><br></pre></td></tr></table></figure></p>
-<p>再回終端機輸入
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spring status</span><br><span class="line">  Spring is running:</span><br><span class="line">  350 spring server | ivoting | started 1 hour ago</span><br><span class="line">  352 spring app | ivoting | started 1 hour ago | development mode</span><br></pre></td></tr></table></figure></p>
-<p>關閉指令</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spring stop</span><br></pre></td></tr></table></figure></p>
-<p>開啟指令
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spring server</span><br></pre></td></tr></table></figure></p>
-<p>若想知道 spring 還有哪些指令
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ spring</span><br><span class="line">Version: 2.1.0</span><br><span class="line">Usage: spring COMMAND [ARGS]</span><br><span class="line">Commands <span class="keyword">for</span> Spring itself:</span><br><span class="line">binstub         Generate Spring based binstubs. Use --all to generate a binstub <span class="keyword">for</span> all known commands. Use --remove to revert.</span><br><span class="line">  <span class="built_in">help</span>            Print available commands.</span><br><span class="line">  server          Explicitly start a Spring server <span class="keyword">in</span> the foreground</span><br><span class="line">  status          Show current status.</span><br><span class="line">  stop            Stop all Spring processes <span class="keyword">for</span> this project.</span><br><span class="line">Commands <span class="keyword">for</span> your application:</span><br><span class="line">rails           Run a rails <span class="built_in">command</span>. The following sub commands will use Spring: console, runner, generate, destroy, <span class="built_in">test</span>.</span><br><span class="line">  rake            Runs the rake <span class="built_in">command</span></span><br></pre></td></tr></table></figure></p>
-<p>很貼心地 show 出所有指令，能透過同樣技巧查詢 rails 指令有哪些喔~</p>
-<hr>
-<h3 id="如何加速-rails-c-rails-t第二次以上執行速度">如何加速 <code>rails c</code>、<code>rails -T</code>，第二次以上執行速度?</h3>
-<p>可參考 <a href="https://github.com/rails/spring/blob/master/README.md#setup" target="_blank" rel="noopener">Spring 的官方文件</a> 或以下操作步驟:</p>
-<h4 id="1-確認-gemfile-有安裝-spring-並-bundle-過">1. 確認 Gemfile 有安裝 <code>spring</code> 並 <code>bundle</code> 過</h4>
-<h4 id="2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下">2. 檢查專案資料夾底下是否有 <code>bin/rails</code> 和 <code>bin/rake</code> 這兩個檔案，且資訊會如下：</h4>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rails</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">APP_PATH = File.expand_path(<span class="string">'../config/application'</span>, __dir_<span class="number">_</span>)</span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails/commands'</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rake</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rake'</span></span><br><span class="line">Rake.application.run</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-如果有缺檔案或部分內容的話可在終端機輸入">3. 如果有缺檔案或部分內容的話，可在終端機輸入</h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ spring binstub</span><br><span class="line">$ bundle <span class="built_in">exec</span> spring binstub --all</span><br></pre></td></tr></table></figure></p>
-<p>會幫你檢查上述 2 個檔案是否有缺，並幫你補上所缺的部分，可用 Git 觀察被增加了什麼檔案和內容</p>
-<h4 id="4-將原本-rails-c-進入的方式改成">4. 將原本 <code>rails c</code> 進入的方式，改成</h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/rails c</span><br></pre></td></tr></table></figure></p>
-<h4 id="5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了">5. 進入後再離開，接著再輸入一次 <code>./bin/rails c</code> ，會發現第二次起，進入變快了！</h4>
-<hr>
-<p>參考：</p>
-<ol>
-<li><a href="https://rails.ruby.tw/4_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 4.1 發佈記</a></li>
-<li><a href="https://github.com/rails/spring/blob/master/README.md" target="_blank" rel="noopener">Spring README</a></li>
-</ol>
-
-  </article>
-  <!-- license  -->
-  
-  <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/">https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/</a></p>
-    <p>發表日期：2019-09-14</p>
-    <p>更新日期：2020-07-12</p>
-  </div>
-  
-  <!-- paginator  -->
-  <ul class="post-paginator">
-    <li class="next">
-      
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/14/Ruby-裡的-self-是什麼意思/" title="Ruby 裡的 self 是什麼意思">
-        <div class="nextTitle">Ruby 裡的 self 是什麼意思</div>
-      </a>
-      
-    </li>
-    <li class="previous">
-      
-      <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" title="要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!">
-        <div class="prevTitle">要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</div>
-      </a>
-      
-    </li>
-  </ul>
-  <!-- 评论插件 -->
-  <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 --> 
-    <div id="disqus_thread"></div>
-    <script>
-        /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        
-        var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "在 Rails 裡的 spring 指令是做什麼的？"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        
-        (function () { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://riverye.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
- 
-  <!-- partial('_partial/comment/changyan') -->
-  <!--PC版-->
-
-  
-
-  <!-- 评论 -->
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/11/從排斥寫程式到轉職成為工程師/" >
+            
+                <span>從排斥寫程式到轉職成為工程師</span>
+        </a>
+        <div class="abstract-content">
+            
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "轉職">轉職</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "工程師">工程師</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "軟體工程師">軟體工程師</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2020/">&#60; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
+    </nav>
+    
 </main>
-
             <!-- profile -->
             
         </div>
@@ -613,24 +495,6 @@ height:50vh;
 
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自-rails-41-以後採用-spring-來預載應用程式"><span class="toc-number">1.</span> <span class="toc-text">自 Rails 4.1 以後，採用 Spring 來預載應用程式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程"><span class="toc-number">2.</span> <span class="toc-text">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何加速-rails-c-rails-t第二次以上執行速度"><span class="toc-number">3.</span> <span class="toc-text">如何加速 rails c、rails -T，第二次以上執行速度?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-確認-gemfile-有安裝-spring-並-bundle-過"><span class="toc-number">3.1.</span> <span class="toc-text">1. 確認 Gemfile 有安裝 spring 並 bundle 過</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下"><span class="toc-number">3.2.</span> <span class="toc-text">2. 檢查專案資料夾底下是否有 bin/rails 和 bin/rake 這兩個檔案，且資訊會如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如果有缺檔案或部分內容的話可在終端機輸入"><span class="toc-number">3.3.</span> <span class="toc-text">3. 如果有缺檔案或部分內容的話，可在終端機輸入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-將原本-rails-c-進入的方式改成"><span class="toc-number">3.4.</span> <span class="toc-text">4. 將原本 rails c 進入的方式，改成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了"><span class="toc-number">3.5.</span> <span class="toc-text">5. 進入後再離開，接著再輸入一次 ./bin/rails c ，會發現第二次起，進入變快了！</span></a></li></ol></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -2032,8 +1896,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

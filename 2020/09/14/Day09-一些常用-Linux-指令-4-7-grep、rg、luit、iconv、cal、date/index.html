@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>在 Rails 裡的 spring 指令是做什麼的？ · 小菜的 Blog</title>
+    <title>Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">在 Rails 裡的 spring 指令是做什麼的？</a>
+                <a href="#" class="post-name">Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       在 Rails 裡的 spring 指令是做什麼的？
+       Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)
       <!-- 404 -->
       
     </h1>
@@ -294,25 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Rails">Rails</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "spring">spring</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/14</span
+          >2020/09/14</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >648</span
+            >1.5k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >6 min</span
           ></span
         >
       </div>
@@ -421,79 +419,130 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h3 id="自-rails-41-以後採用-spring-來預載應用程式">自 Rails 4.1 以後，採用 Spring 來預載應用程式</h3>
-<h3 id="保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</h3>
-<p>特徵：</p>
-<ul>
-<li>自動化，毋須特別啟動或停止背景程序</li>
-<li>每次運行時會重新加載應用程序</li>
-<li>修改 configs / initializers / gem 時，建議重啟server</li>
-</ul>
-<p>相容性：</p>
-<ul>
-<li>Ruby 版本：MRI 2.4 之後</li>
-<li>Rails 版本：4.1 之後 (rails new 新專案時，預設安裝Spring)</li>
-</ul>
+    <h2 id="前言">前言</h2>
+<p>此為 Linux 相關的 4-7 篇，有準備情境讓大家可以練習，開始會有組合技的使用技巧</p>
+<h4 id="情境練習">情境練習</h4>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將以下資訊儲存成 demo.log</span></span><br><span class="line"></span><br><span class="line">INFO [2099-01-11 13:14:40]: order_id: 0001, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-11 14:15:41]: 其它資訊</span><br><span class="line">INFO [2099-01-11 14:18:42]: order_id: 0002, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:10]: order_id: 0003, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:13]: 其它資訊</span><br><span class="line">INFO [2099-01-12 11:22:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-15 14:15:40]: order_id: 0004, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 23:34:10]: order_id: 0005, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:32]: order_id: 0006, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:33]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:24]: order_id: 0007, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:25]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-16 14:15:29]: order_id: 0008, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:30]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:30]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 08:15:40]: order_id: 0009, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 09:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 10:15:40]: order_id: 0010, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0011, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0012, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 15:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 16:15:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 17:15:40]: order_id: 0013, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 20:15:40]: 其它資訊</span><br></pre></td></tr></table></figure></p>
+<h2 id="grep">grep</h2>
+<p>找出符合搜尋條件的訊息<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 關鍵字 路徑</span></span><br><span class="line">grep search_pattern path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出正在運行中的程式，關鍵字為 line</span></span><br><span class="line">ps aux | grep line</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的上文也顯示 15 行</span></span><br><span class="line">grep -A 15 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下文也顯示 20 行</span></span><br><span class="line">grep -B 20 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下下各顯示 5 行</span></span><br><span class="line">grep -C 5 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算關鍵字出現的次數</span></span><br><span class="line">grep -c <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過濾除了關鍵字的訊息</span></span><br><span class="line">grep -v <span class="string">"其它"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A or B 關鍵字的訊息</span></span><br><span class="line">grep -E <span class="string">"2099|成功"</span> demo.log</span><br><span class="line">grep -E <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">grep <span class="string">'2099\|成功'</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A and B 的關鍵字訊息</span></span><br><span class="line">grep <span class="string">"2099"</span> demo.log | grep 成功</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的訂單數量</span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -c 建立成功</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | wc -l</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -v -c <span class="string">'建立失敗\|其它資訊'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的資訊，並反轉印出</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | tac</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
+符合條件的下文也顯示 n 行： <code>-B n</code><br>
+符合條件的上下各顯示 n 行： <code>-C n</code><br>
+計算符合條件的數量： <code>-c</code><br>
+除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
+用正規表示式搜尋 (regexp)： <code>-E</code></p>
+<h2 id="rg">rg</h2>
+<p>全名為 ripgrep ，為 <code>grep</code> 加強版，<br>
+用起來手感與 <code>grep</code> 差不多，搜尋速度更快，個人習慣以 <code>rg</code> 取代 <code>grep</code></p>
+<p>備註: 需另外安裝 <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener">官方網站</a><br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install ripgrep</span><br><span class="line"></span><br><span class="line">rg 建立成功</span><br><span class="line">rg -uu 建立成功</span><br><span class="line">rg -C 7 建立失敗</span><br><span class="line">rg <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">rg <span class="string">"2099"</span> demo.log | rg 成功</span><br><span class="line">rg -t <span class="built_in">log</span> 成功</span><br><span class="line"></span><br><span class="line">rg -z <span class="string">"成功"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
+符合條件的下文也顯示 n 行： <code>-B n</code><br>
+符合條件的上下各顯示 n 行： <code>-C n</code><br>
+計算符合條件的數量： <code>-c</code><br>
+除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
+隱藏檔案及 <code>.gitignore</code> 檔也一併搜尋： <code>-uu</code><br>
+針對特定副檔名搜尋： <code>-t type</code><br>
+壓縮檔也一併搜尋： <code>-z</code> (支援格式 gzip、bzip2、xz、LZ4、LZMA、Brotli、Zstd)</p>
+<p>(謎之聲，習慣在終端機直接輸入 <code>rg 關鍵字</code>，快速找該目錄底下所有符合條件的檔案及內容</p>
+<h2 id="luit">luit</h2>
+<p>將文件編碼轉換成另一種格式<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install luit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">luit -encoding big5 cat demo.txt</span><br><span class="line">luit -encoding big5 rg <span class="string">'訂單'</span> demo.txt</span><br></pre></td></tr></table></figure></p>
+<h2 id="iconv">iconv</h2>
+<p>多種國際編碼格式之間進行文字內碼的轉換<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iconv -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cat order_info.txt | iconv -f big5</span><br><span class="line">iconv -f UTF-16 demo.log &gt; hello.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>顯示所有支援的編碼格式： <code>-l</code><br>
+將檔案進行編碼轉檔後，另存新檔案： <code>-f from_encoding input_file &gt; output_file</code></p>
+<h4 id="以-big5-編碼檔案為例">以 BIG5 編碼檔案為例</h4>
+<p><img src="https://i.imgur.com/akmeLJ3.png" alt></p>
+<h2 id="cal">cal</h2>
+<p>顯示行事曆資訊<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cal</span><br><span class="line">cal -3</span><br><span class="line">cal -m 12</span><br><span class="line">cal -y 2012</span><br><span class="line">cal 1 2012</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>顯示當月的前後一個月： <code>-3</code><br>
+顯示當年指定月份 (month 為 1-12)： <code>-m month</code><br>
+顯示指定年份月曆 (year 為 1..9999)： <code>-y year</code><br>
+顯示特定月份日曆 (參數範圍如上)： <code>month year</code></p>
+<h2 id="date">date</h2>
+<p>顯示系統日期時間資訊<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date</span><br><span class="line">date +%s</span><br><span class="line">date -r 1598937256</span><br></pre></td></tr></table></figure></p>
+<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<p>將當下時間轉成 Unix timestamp： <code>+%s</code><br>
+將 Unix timestamp 轉成人類看得懂的： <code>-r timestamp</code></p>
+<h2 id="總整理">總整理</h2>
+<table>
+<thead>
+<tr>
+<th>MacOS / Linux 指令</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>grep</td>
+<td>找出符合搜尋條件的訊息</td>
+<td><code>rails route | grep admin</code></td>
+</tr>
+<tr>
+<td>rg</td>
+<td><code>grep</code> 加強版</td>
+<td><code>rg 訂單名稱</code></td>
+</tr>
+<tr>
+<td>luit</td>
+<td>將文件編碼轉換成另一種格式</td>
+<td><code>luit -encoding big5 cat demo.txt</code></td>
+</tr>
+<tr>
+<td>iconv</td>
+<td>多種國際編碼格式之間進行文字內碼的轉換</td>
+<td><code>cat order_info.txt | iconv -f big5</code></td>
+</tr>
+<tr>
+<td>cal</td>
+<td>顯示行事曆資訊</td>
+<td><code>cal -m 7</code></td>
+</tr>
+<tr>
+<td>date</td>
+<td>顯示系統日期時間資訊</td>
+<td><code>date</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="小結">小結</h2>
+<p>這篇花蠻多時間在想情境及準備假資料，透過範例，能更快上手並學會組合技，<br>
+若覺得受用歡迎在下方留言或交流喔</p>
 <hr>
-<p>打開 Rails 專案的 Gemfile，會發現預設如下：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line"> gem ‘spring’</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>直接在終端機輸入的話
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># $ 表示在終端機輸入， $ 本身不用跟著輸入喔</span></span><br><span class="line"></span><br><span class="line">$ spring status</span><br><span class="line">  Spring is not running.</span><br></pre></td></tr></table></figure></p>
-<p>需先進入
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rails console</span><br></pre></td></tr></table></figure></p>
-<p>再回終端機輸入
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ spring status</span><br><span class="line">  Spring is running:</span><br><span class="line">  350 spring server | ivoting | started 1 hour ago</span><br><span class="line">  352 spring app | ivoting | started 1 hour ago | development mode</span><br></pre></td></tr></table></figure></p>
-<p>關閉指令</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spring stop</span><br></pre></td></tr></table></figure></p>
-<p>開啟指令
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spring server</span><br></pre></td></tr></table></figure></p>
-<p>若想知道 spring 還有哪些指令
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ spring</span><br><span class="line">Version: 2.1.0</span><br><span class="line">Usage: spring COMMAND [ARGS]</span><br><span class="line">Commands <span class="keyword">for</span> Spring itself:</span><br><span class="line">binstub         Generate Spring based binstubs. Use --all to generate a binstub <span class="keyword">for</span> all known commands. Use --remove to revert.</span><br><span class="line">  <span class="built_in">help</span>            Print available commands.</span><br><span class="line">  server          Explicitly start a Spring server <span class="keyword">in</span> the foreground</span><br><span class="line">  status          Show current status.</span><br><span class="line">  stop            Stop all Spring processes <span class="keyword">for</span> this project.</span><br><span class="line">Commands <span class="keyword">for</span> your application:</span><br><span class="line">rails           Run a rails <span class="built_in">command</span>. The following sub commands will use Spring: console, runner, generate, destroy, <span class="built_in">test</span>.</span><br><span class="line">  rake            Runs the rake <span class="built_in">command</span></span><br></pre></td></tr></table></figure></p>
-<p>很貼心地 show 出所有指令，能透過同樣技巧查詢 rails 指令有哪些喔~</p>
-<hr>
-<h3 id="如何加速-rails-c-rails-t第二次以上執行速度">如何加速 <code>rails c</code>、<code>rails -T</code>，第二次以上執行速度?</h3>
-<p>可參考 <a href="https://github.com/rails/spring/blob/master/README.md#setup" target="_blank" rel="noopener">Spring 的官方文件</a> 或以下操作步驟:</p>
-<h4 id="1-確認-gemfile-有安裝-spring-並-bundle-過">1. 確認 Gemfile 有安裝 <code>spring</code> 並 <code>bundle</code> 過</h4>
-<h4 id="2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下">2. 檢查專案資料夾底下是否有 <code>bin/rails</code> 和 <code>bin/rake</code> 這兩個檔案，且資訊會如下：</h4>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rails</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">APP_PATH = File.expand_path(<span class="string">'../config/application'</span>, __dir_<span class="number">_</span>)</span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails/commands'</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rake</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rake'</span></span><br><span class="line">Rake.application.run</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-如果有缺檔案或部分內容的話可在終端機輸入">3. 如果有缺檔案或部分內容的話，可在終端機輸入</h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ spring binstub</span><br><span class="line">$ bundle <span class="built_in">exec</span> spring binstub --all</span><br></pre></td></tr></table></figure></p>
-<p>會幫你檢查上述 2 個檔案是否有缺，並幫你補上所缺的部分，可用 Git 觀察被增加了什麼檔案和內容</p>
-<h4 id="4-將原本-rails-c-進入的方式改成">4. 將原本 <code>rails c</code> 進入的方式，改成</h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/rails c</span><br></pre></td></tr></table></figure></p>
-<h4 id="5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了">5. 進入後再離開，接著再輸入一次 <code>./bin/rails c</code> ，會發現第二次起，進入變快了！</h4>
-<hr>
-<p>參考：</p>
-<ol>
-<li><a href="https://rails.ruby.tw/4_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 4.1 發佈記</a></li>
-<li><a href="https://github.com/rails/spring/blob/master/README.md" target="_blank" rel="noopener">Spring README</a></li>
-</ol>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10236391" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10236391</a><br>
+medium 文章連結：<a href="https://link.medium.com/YFjvigcCK9" target="_blank" rel="noopener">https://link.medium.com/YFjvigcCK9</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/14/Day09-%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8-Linux-%E6%8C%87%E4%BB%A4-4-7-grep%E3%80%81rg%E3%80%81luit%E3%80%81iconv%E3%80%81cal%E3%80%81date/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/">https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/</a></p>
-    <p>發表日期：2019-09-14</p>
-    <p>更新日期：2020-07-12</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/">https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/</a></p>
+    <p>發表日期：2020-09-14</p>
+    <p>更新日期：2020-09-14</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/14/Ruby-裡的-self-是什麼意思/" title="Ruby 裡的 self 是什麼意思">
-        <div class="nextTitle">Ruby 裡的 self 是什麼意思</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" title="要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!">
-        <div class="prevTitle">要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</div>
+      <a href="/2020/09/13/Day08-一些常用-Linux-指令-3-7-cat、tac、head、tail、vi、sed/" title="Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)">
+        <div class="prevTitle">Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)</div>
       </a>
       
     </li>
@@ -509,8 +558,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "在 Rails 裡的 spring 指令是做什麼的？"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -629,7 +678,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自-rails-41-以後採用-spring-來預載應用程式"><span class="toc-number">1.</span> <span class="toc-text">自 Rails 4.1 以後，採用 Spring 來預載應用程式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程"><span class="toc-number">2.</span> <span class="toc-text">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何加速-rails-c-rails-t第二次以上執行速度"><span class="toc-number">3.</span> <span class="toc-text">如何加速 rails c、rails -T，第二次以上執行速度?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-確認-gemfile-有安裝-spring-並-bundle-過"><span class="toc-number">3.1.</span> <span class="toc-text">1. 確認 Gemfile 有安裝 spring 並 bundle 過</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下"><span class="toc-number">3.2.</span> <span class="toc-text">2. 檢查專案資料夾底下是否有 bin/rails 和 bin/rake 這兩個檔案，且資訊會如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如果有缺檔案或部分內容的話可在終端機輸入"><span class="toc-number">3.3.</span> <span class="toc-text">3. 如果有缺檔案或部分內容的話，可在終端機輸入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-將原本-rails-c-進入的方式改成"><span class="toc-number">3.4.</span> <span class="toc-text">4. 將原本 rails c 進入的方式，改成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了"><span class="toc-number">3.5.</span> <span class="toc-text">5. 進入後再離開，接著再輸入一次 ./bin/rails c ，會發現第二次起，進入變快了！</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#情境練習"><span class="toc-number">1.0.1.</span> <span class="toc-text">情境練習</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep"><span class="toc-number">2.</span> <span class="toc-text">grep</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rg"><span class="toc-number">3.</span> <span class="toc-text">rg</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#luit"><span class="toc-number">4.</span> <span class="toc-text">luit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv"><span class="toc-number">5.</span> <span class="toc-text">iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以-big5-編碼檔案為例"><span class="toc-number">5.0.2.</span> <span class="toc-text">以 BIG5 編碼檔案為例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cal"><span class="toc-number">6.</span> <span class="toc-text">cal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date"><span class="toc-number">7.</span> <span class="toc-text">date</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
