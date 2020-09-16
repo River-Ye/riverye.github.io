@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-09-15T16:05:39.515Z</updated>
+  <updated>2020-09-16T16:01:18.871Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)</title>
+    <link href="https://riverye.com/2020/09/17/Day12-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-7-7-%E4%B8%8D%E5%AF%A6%E7%94%A8%E7%AF%87-cowsay%E3%80%81cmatrix/"/>
+    <id>https://riverye.com/2020/09/17/Day12-一些-Linux-套件-7-7-不實用篇-cowsay、cmatrix/</id>
+    <published>2020-09-16T16:00:00.000Z</published>
+    <updated>2020-09-16T16:01:18.871Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>此為 Linux 相關的 7-7 篇，有實用篇，當然也有不實用篇 (笑<br>這篇的套件不裝也沒關係，裝了也不能幹嘛<br>有時自己會邊看邊笑 (廢到笑的那種 XD</p><h2 id="cowsay">cowsay</h2><p>透過 ASCII 產生一個角色 (預設為母牛)，並說出一段話</p><p>(謎之聲，套件名稱試著用台語發音看看 XD</p><p>備註：需另外安裝 <a href="https://github.com/tnalpgge/rank-amateur-cowsay" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install cowsay</span><br><span class="line"></span><br><span class="line">cowsay -l</span><br><span class="line">cowsay <span class="string">'hello world'</span></span><br><span class="line">cowsay -f dragon <span class="string">"一條龍laaa"</span></span><br><span class="line">cowsay -f kitty 根本不像kitty的的kitty</span><br></pre></td></tr></table></figure></p><h4 id="幾個常用參數說明">幾個常用參數說明：</h4><p>列出所有可用的角色： <code>-l</code><br>切換角色： <code>-f character</code></p><h4 id="cowsay-示意圖"><code>cowsay</code> 示意圖</h4><p><img src="https://i.imgur.com/xzOSTQh.png" alt></p><h2 id="cmatrix">cmatrix</h2><p>像駭客任務那樣的電腦螢幕畫面<br>很炫炮，然後..就沒有然後了 XD</p><p>備註：需另外安裝 <a href="https://github.com/abishekvashok/cmatrix" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install cmatrix</span><br><span class="line"></span><br><span class="line">cmatrix</span><br><span class="line">cmatrix -C red</span><br><span class="line">cmatrix -C yellow</span><br><span class="line">cmatrix -r</span><br></pre></td></tr></table></figure></p><p>離開方式： <code>鍵盤Q</code></p><h4 id="幾個常用參數說明">幾個常用參數說明：</h4><p>設定顯示的顏色： <code>-C color</code><br>彩虹模式： <code>-r</code></p><h4 id="cmatrix-示意圖"><code>cmatrix</code> 示意圖</h4><p><img src="https://i.imgur.com/Accuqgc.gif" alt></p><h2 id="總整理">總整理</h2><table><thead><tr><th>MacOS / Linux 指令</th><th>說明</th><th>範例</th></tr></thead><tbody><tr><td>cowsay</td><td>透過 ASCII 產生一個角色 (預設為母牛)，並說出一段話</td><td><code>cowsay -f dragon 安安</code></td></tr><tr><td>cmatrix</td><td>像駭客任務那樣的電腦螢幕畫面</td><td><code>cmatrix</code></td></tr></tbody></table><h2 id="小結">小結</h2><p>Linux 指令系列的最後一篇，以歡樂的方式收尾<br>有其它廢到笑或不實用的套件，歡迎留言交流~</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10238183" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10238183</a><br>medium 文章連結：<a href="https://link.medium.com/IaMPuOTAP9" target="_blank" rel="noopener">https://link.medium.com/IaMPuOTAP9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/17/Day12-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-7-7-%E4%B8%8D%E5%AF%A6%E7%94%A8%E7%AF%87-cowsay%E3%80%81cmatrix/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;此為 Linux 相關的 7-7 篇，有實用篇，當然也有不實用篇 (笑&lt;br&gt;
+這篇的套件不裝也沒關係，裝了也不能幹嘛&lt;br&gt;
+有時自己會邊看邊笑 (廢到笑的那種 XD&lt;/p&gt;
+&lt;h2 id=&quot;cowsay&quot;&gt;cowsay&lt;/h2&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Day11 - 一些 Linux 套件 - 6-7 - 實用篇 (fzf、tldr)</title>
     <link href="https://riverye.com/2020/09/16/Day11-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-6-7-%E5%AF%A6%E7%94%A8%E7%AF%87-fzf%E3%80%81tldr/"/>
     <id>https://riverye.com/2020/09/16/Day11-一些-Linux-套件-6-7-實用篇-fzf、tldr/</id>
     <published>2020-09-15T16:00:00.000Z</published>
-    <updated>2020-09-15T16:05:39.515Z</updated>
+    <updated>2020-09-16T15:47:00.368Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>此為 Linux 相關的 6-7 篇，後 2 篇我自己是比較期待 <s>(才不會承認是因為需要寫得比較少呢</s><br>本篇以實用套件為主，幾乎每天都在使用的</p><h2 id="fzf">fzf</h2><p>指令模糊搜尋器<br>能快速搜尋「曾經輸入過」的指令<br>像平常起 rails server 指令是 <code>./bin/rails s -p 4000</code><br>輸入全部實在太長了<br>透過 <code>fzf</code> 只需輸入 <code>sp4</code> 就能快速找到</p><p>備註：需另外安裝 <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install fzf</span><br></pre></td></tr></table></figure></p><p>使用方式： <code>Control（或 Ctrl）鍵 ⌃</code> + <code>R</code> + <code>command</code>離開方式： <code>ESC</code></p><h4 id="透過-fzf-搜尋曾輸入過的指令">透過 <code>fzf</code> 搜尋曾輸入過的指令</h4><p><img src="https://i.imgur.com/cIjlXSZ.gif" alt></p><h2 id="tldr">tldr</h2><p>查詢指令簡易說明與範例的工具<br>不瞞各位說，這 7 篇文章中，許多參數和範例，是透過 <code>tldr</code> 在參考的 XD</p><p>備註：需另外安裝 <a href="https://github.com/tldr-pages/tldr" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install tldr</span><br><span class="line"></span><br><span class="line">tldr <span class="built_in">command</span></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">tldr tldr</span><br><span class="line">tldr cat</span><br><span class="line">tldr ps</span><br><span class="line">tldr grep</span><br></pre></td></tr></table></figure></p><h4 id="tldr-查詢的畫面"><code>tldr</code> 查詢的畫面</h4><p><img src="https://i.imgur.com/SU1mdpo.png" alt></p><h2 id="總整理">總整理</h2><table><thead><tr><th>MacOS / Linux 指令</th><th>說明</th><th>範例</th></tr></thead><tbody><tr><td>fzf</td><td>指令模糊搜尋器</td><td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>R</code> + <code>command</code></td></tr><tr><td>tldr</td><td>查詢指令簡易說明與範例的工具</td><td><code>tldr cat</code></td></tr></tbody></table><h2 id="小結">小結</h2><p>除了用 <code>fzf</code> 快速找曾經輸入過的指令外<br>也可將常用指令寫成 alias (像我自己將 <code>git status</code> 改成只需輸入 <code>git s</code> 即可)<br>若有不錯的套件，也歡迎在下方留言交流喔</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10237413" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10237413</a><br>medium 文章連結：<a href="https://link.medium.com/W5OE67YVN9" target="_blank" rel="noopener">https://link.medium.com/W5OE67YVN9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/16/Day11-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-6-7-%E5%AF%A6%E7%94%A8%E7%AF%87-fzf%E3%80%81tldr/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
     
@@ -532,9 +563,9 @@
     
       <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
     
-      <category term="Travis CI" scheme="https://riverye.com/tags/Travis-CI/"/>
-    
       <category term="GitHub" scheme="https://riverye.com/tags/GitHub/"/>
+    
+      <category term="Travis CI" scheme="https://riverye.com/tags/Travis-CI/"/>
     
   </entry>
   
@@ -602,40 +633,6 @@
       <category term="terminal" scheme="https://riverye.com/tags/terminal/"/>
     
       <category term="git branch" scheme="https://riverye.com/tags/git-branch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo 踩到的雷(導覽列及站內搜尋功能)</title>
-    <link href="https://riverye.com/2019/11/09/Hexo-%E8%B8%A9%E5%88%B0%E7%9A%84%E9%9B%B7-%E5%B0%8E%E8%A6%BD%E5%88%97%E5%8F%8A%E7%AB%99%E5%85%A7%E6%90%9C%E5%B0%8B%E5%8A%9F%E8%83%BD/"/>
-    <id>https://riverye.com/2019/11/09/Hexo-踩到的雷-導覽列及站內搜尋功能/</id>
-    <published>2019-11-08T16:00:00.000Z</published>
-    <updated>2019-11-09T02:57:53.766Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="說在前面">說在前面</h1><blockquote><p>越小的細節，雷說不定越多</p></blockquote><p>最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨<a href="https://zh.wikipedia.org/wiki/%E9%81%BA%E5%BF%98%E6%9B%B2%E7%B7%9A" target="_blank" rel="noopener">遺忘曲線</a>，生疏或健忘是可能的。</p><p><img src="https://i.imgur.com/2ICL0V9.png" alt></p><hr><h1 id="遇到的問題">遇到的問題</h1><ol><li>Blog 文章的側邊欄導覽列 Catalog 點擊時無法跳到對應位置，會顯示 null</li><li>Blog 站內搜尋突然失效無法使用</li></ol><h1 id="分析問題">分析問題</h1><p>新增「<a href="https://riverye.com/2019/11/08/%E6%9C%89%E8%B6%A3%E7%9A%84-4-%E9%A1%8C%E7%99%BD%E6%9D%BF%E9%A1%8C/">文章加密</a>」功能後，誤動到原本的 code。</p><h1 id="解決方法">解決方法</h1><h2 id="導覽列問題">導覽列問題</h2><h3 id="markdown-it-套件的-bug">markdown-it 套件的 bug</h3><p>安装 markdown-it-named-headings 來修復原本套件的 bug<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install markdown-it-named-headings --save</span><br></pre></td></tr></table></figure></p><p>進入 Blog 的根目錄修改 <code>node_modules\hexo-renderer-markdown-it\lib\renderer.js</code> 檔案，並在第 9 行後面新增如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br></pre></td></tr></table></figure></p><p>修改後會像這樣：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">data, options</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> MdIt = <span class="built_in">require</span>(<span class="string">'markdown-it'</span>);</span><br><span class="line">  <span class="keyword">var</span> cfg = <span class="keyword">this</span>.config.markdown;</span><br><span class="line">  <span class="keyword">var</span> opt = (cfg) ? cfg : <span class="string">'default'</span>;</span><br><span class="line">  <span class="keyword">var</span> parser = (opt === <span class="string">'default'</span> || opt === <span class="string">'commonmark'</span> || opt === <span class="string">'zero'</span>) ?</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt) :</span><br><span class="line">    <span class="keyword">new</span> MdIt(opt.render);</span><br><span class="line"></span><br><span class="line">  parser.use(<span class="built_in">require</span>(<span class="string">'markdown-it-named-headings'</span>))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.plugins) &#123;</span><br><span class="line">    parser = opt.plugins.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">parser, pugs</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> parser.use(<span class="built_in">require</span>(pugs));</span><br><span class="line">    &#125;, parser);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (opt.anchors) &#123;</span><br><span class="line">    parser = parser.use(<span class="built_in">require</span>(<span class="string">'./anchors'</span>), opt.anchors);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> parser.render(data.text);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p><p>接著 <code>hexo clean</code> 及 <code>hexo server</code> 測試是否解決問題<br>若解決，則恭喜你~</p><p>尚未解決請繼續往下看<br>改進入 Blog 根目錄 <code>node_modules\hexo-toc\lib\filter.js</code> ，把 28-31 行改成：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$title.attr(<span class="string">'id'</span>, id);</span><br><span class="line"><span class="comment">// $title.children('a').remove();</span></span><br><span class="line"><span class="comment">// $title.html( '&lt;span id="' + id + '"&gt;' + $title.html() + '&lt;/span&gt;' );</span></span><br><span class="line"><span class="comment">// $title.removeAttr('id');</span></span><br></pre></td></tr></table></figure></p><blockquote><p>修改後，記得 <code>hexo clean</code> 及 <code>hexo server</code> ，「用無痕模式測試」，確保不受暫存檔影響。</p></blockquote><h3 id="造成原因">造成原因</h3><p>找的 theme 已經很久沒更新了，更新後導致 <code>hexo-toc</code> 不相容的問題。</p><p>沒踩到此雷的可能原因：</p><ol><li>theme 持續更新已解決問題</li><li>舊版本沒更新</li></ol><hr><h2 id="站內搜尋失效的問題">站內搜尋失效的問題</h2><h3 id="algolia-服務">Algolia 服務</h3><p>站內搜尋使用 <a href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> 服務製作而成，註冊後享有 14 天內所有功能免費使用，到期後需「手動」選擇免費方案，否則無法繼續使用。</p><p>解決方法其實已經在描述中，到 Algolia 選擇免費方案即可。</p><p>補充紀錄 <code>_config.yml</code> 設定：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Blog 根目錄的 _config.yml</span></span><br><span class="line"><span class="symbol">algolia:</span></span><br><span class="line">  <span class="symbol">applicationID:</span> <span class="number">5</span>XXXXXXXR</span><br><span class="line">  <span class="symbol">apiKey:</span> eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">  <span class="symbol">indexName:</span> rXXXXXXXg</span><br><span class="line">  <span class="symbol">chunkSize:</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Blog 根目錄底下的/themes/&lt;主題名稱&gt;/_config.yml</span></span><br><span class="line"><span class="symbol">algolia_search:</span></span><br><span class="line">  <span class="symbol">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="symbol">hits:</span></span><br><span class="line">    <span class="symbol">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="symbol">labels:</span></span><br><span class="line">    <span class="symbol">input_placeholder:</span> Search <span class="keyword">for</span> Posts</span><br><span class="line">    <span class="symbol">hits_empty:</span> <span class="string">"沒有找到任何搜尋結果： $&#123;query&#125;"</span></span><br><span class="line">    <span class="symbol">hits_stats:</span> <span class="string">"約有 $&#123;hits&#125; 項結果 (搜尋時間： $&#123;time&#125; 毫秒)"</span></span><br></pre></td></tr></table></figure></p><p>每次新增文章後，都要做：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">$ hexo algolia</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/vJsVr3O.png" alt></p><hr><h1 id="小結">小結</h1><p>透過 <a href="https://zh.wikipedia.org/wiki/%E9%B4%A8%E5%AD%90%E9%A1%9E%E5%9E%8B" target="_blank" rel="noopener">Duck typing</a> 的方式，在描述問題的過程中，答案說不定就在裡面~</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;說在前面&quot;&gt;說在前面&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;越小的細節，雷說不定越多&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨&lt;a href
-      
-    
-    </summary>
-    
-    
-      <category term="踩到的雷" scheme="https://riverye.com/categories/%E8%B8%A9%E5%88%B0%E7%9A%84%E9%9B%B7/"/>
-    
-    
-      <category term="Hexo" scheme="https://riverye.com/tags/Hexo/"/>
-    
-      <category term="導覽列" scheme="https://riverye.com/tags/%E5%B0%8E%E8%A6%BD%E5%88%97/"/>
-    
-      <category term="站內搜尋" scheme="https://riverye.com/tags/%E7%AB%99%E5%85%A7%E6%90%9C%E5%B0%8B/"/>
     
   </entry>
   
