@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Rails 中的 Gemfile 檔案的內容 · 小菜的 Blog</title>
+    <title>Day13 - 一些 Git 指令 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Rails 中的 Gemfile 檔案的內容</a>
+                <a href="#" class="post-name">Day13 - 一些 Git 指令</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Rails 中的 Gemfile 檔案的內容
+       Day13 - 一些 Git 指令
       <!-- 404 -->
       
     </h1>
@@ -294,25 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Rails">Rails</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "gemfile">gemfile</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/15</span
+          >2020/09/18</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.2k</span
+            >1.1k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >5 min</span
+            >4 min</span
           ></span
         >
       </div>
@@ -421,86 +419,103 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>建立 Rails 新專案時 (以 5.2.3 為例)，接著開啟專案中「Gemfile」檔案：</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">source &apos;https://rubygems.org&apos;</span><br><span class="line">git_source(:github) &#123; |repo| &quot;https://github.com/#&#123;repo&#125;.git&quot; &#125;</span><br><span class="line"></span><br><span class="line">ruby &apos;2.6.3&apos;</span><br><span class="line"></span><br><span class="line"># Bundle edge Rails instead: gem &apos;rails&apos;, github: &apos;rails/rails&apos;</span><br><span class="line">gem &apos;rails&apos;, &apos;~&gt; 5.2.3&apos;</span><br><span class="line"># Use sqlite3 as the database for Active Record</span><br><span class="line">gem &apos;sqlite3&apos;</span><br><span class="line"># Use Puma as the app server</span><br><span class="line">gem &apos;puma&apos;, &apos;~&gt; 3.11&apos;</span><br><span class="line"># Use SCSS for stylesheets</span><br><span class="line">gem &apos;sass-rails&apos;, &apos;~&gt; 5.0&apos;</span><br><span class="line"># Use Uglifier as compressor for JavaScript assets</span><br><span class="line">gem &apos;uglifier&apos;, &apos;&gt;= 1.3.0&apos;</span><br><span class="line"># See https://github.com/rails/execjs#readme for more supported runtimes</span><br><span class="line"># gem &apos;mini_racer&apos;, platforms: :ruby</span><br><span class="line"></span><br><span class="line"># Use CoffeeScript for .coffee assets and views</span><br><span class="line">gem &apos;coffee-rails&apos;, &apos;~&gt; 4.2&apos;</span><br><span class="line"># Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks</span><br><span class="line">gem &apos;turbolinks&apos;, &apos;~&gt; 5&apos;</span><br><span class="line"># Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder</span><br><span class="line">gem &apos;jbuilder&apos;, &apos;~&gt; 2.5&apos;</span><br><span class="line"># Use Redis adapter to run Action Cable in production</span><br><span class="line"># gem &apos;redis&apos;, &apos;~&gt; 4.0&apos;</span><br><span class="line"># Use ActiveModel has_secure_password</span><br><span class="line"># gem &apos;bcrypt&apos;, &apos;~&gt; 3.1.7&apos;</span><br><span class="line"></span><br><span class="line"># Use ActiveStorage variant</span><br><span class="line"># gem &apos;mini_magick&apos;, &apos;~&gt; 4.8&apos;</span><br><span class="line"></span><br><span class="line"># Use Capistrano for deployment</span><br><span class="line"># gem &apos;capistrano-rails&apos;, group: :development</span><br><span class="line"></span><br><span class="line"># Reduces boot times through caching; required in config/boot.rb</span><br><span class="line">gem &apos;bootsnap&apos;, &apos;&gt;= 1.1.0&apos;, require: false</span><br><span class="line"></span><br><span class="line">group :development, :test do</span><br><span class="line">  # Call &apos;byebug&apos; anywhere in the code to stop execution and get a debugger console</span><br><span class="line">  gem &apos;byebug&apos;, platforms: [:mri, :mingw, :x64_mingw]</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :development do</span><br><span class="line">  # Access an interactive console on exception pages or by calling &apos;console&apos; anywhere in the code.</span><br><span class="line">  gem &apos;web-console&apos;, &apos;&gt;= 3.3.0&apos;</span><br><span class="line">  gem &apos;listen&apos;, &apos;&gt;= 3.0.5&apos;, &apos;&lt; 3.2&apos;</span><br><span class="line">  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span><br><span class="line">  gem &apos;spring&apos;</span><br><span class="line">  gem &apos;spring-watcher-listen&apos;, &apos;~&gt; 2.0.0&apos;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :test do</span><br><span class="line">  # Adds support for Capybara system testing and selenium driver</span><br><span class="line">  gem &apos;capybara&apos;, &apos;&gt;= 2.15&apos;</span><br><span class="line">  gem &apos;selenium-webdriver&apos;</span><br><span class="line">  # Easy installation and use of chromedriver to run system tests with Chrome</span><br><span class="line">  gem &apos;chromedriver-helper&apos;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"># Windows does not include zoneinfo files, so bundle the tzinfo-data gem</span><br><span class="line">gem &apos;tzinfo-data&apos;, platforms: [:mingw, :mswin, :x64_mingw, :jruby]</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/bL5RKaL.png" alt></p>
-<p>會發現第 1–2 行寫著如下：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source ‘<span class="symbol">https:</span>/<span class="regexp">/rubygems.org'</span></span><br><span class="line"><span class="regexp">git_source(:github) &#123; |repo| “https:/</span><span class="regexp">/github.com/</span><span class="comment">#&#123;repo&#125;.git" &#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>Gemfile 需要至少一個 gem 來源，以 <a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a> 伺服器 URL 格式來說，透過執行產生具有預設 <a href="https://rubygems.org/" target="_blank" rel="noopener">rubygems.org</a> 的 Gemfile <code>bundle init</code>，請使用<code>https</code>以便使用 SSL 驗證與 <a href="https://rubygems.org/" target="_blank" rel="noopener">rubygems.org</a> 的連結。</p>
+    <h2 id="前言">前言</h2>
+<p>記錄工作上用過的一些 Git 指令，主要是在 terminal (終端機) 或 VScode 的介面操作，沒什麼在用 <a href="https://git-scm.com/docs/gitk" target="_blank" rel="noopener">gitk</a>、<a href="https://www.sourcetreeapp.com/" target="_blank" rel="noopener">SourceTree</a>，覺得在 terminal 輸入看起來也比較厲害 XD</p>
+<p>本篇以已會基本 Git 操作為基礎上，進行分享 (需已會 <code>git status</code> 、 <code>git add</code> 、 <code>git commit</code> 、 <code>git branch</code> 、 <code>git checkout</code> 、 <code>git push</code> 、 <code>git pull</code> 等操作)</p>
 <hr>
-<p>往下看，發現下面程式碼起手式大部分為 <code>gem</code> 和 <code>group</code> 開頭：
-先從 <code>gem</code> 開頭介紹每個版本的涵義：</p>
-<p><strong>沒寫版本：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem ‘sqlite3’</span><br><span class="line">gem ‘spring’</span><br></pre></td></tr></table></figure></p>
-<p>安裝時選用「最新的穩定版本」，重點在「穩定」而非「最新」。</p>
-<hr>
-<p><strong>有寫版本：</strong></p>
-<p><code>ruby '2.6.3'</code>
-如看到所說，「我要安裝 Ruby 2.6.3 版本」。</p>
-<p><strong>大於等於、小於：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem ‘uglifier’, ‘&gt;= <span class="number">1.3</span>.<span class="number">0</span>’</span><br></pre></td></tr></table></figure></p>
-<p>安裝大於等於 1.3.0 版本。</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem ‘listen’, ‘&gt;= <span class="number">3.0</span>.<span class="number">5</span>’, ‘&lt; <span class="number">3.2</span>’</span><br></pre></td></tr></table></figure></p>
-<p>安裝大於等於 3.0.5 及小於 3.2 的版本。</p>
-<p>差不多</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem ‘rails’, ‘~&gt; <span class="number">5.2</span>.<span class="number">3</span>’</span><br></pre></td></tr></table></figure></p>
-<p>安裝 5.2.3 以上，但 5.3 以下(不含 5.3)的最新版本。</p>
-<hr>
-<p><strong>放在 group 中：</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line"> (略)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>只在開發(:development)、測試(:test)環境中能使用，像是 spring (可看上篇文章)，網站上線時不需讓使用者看到、用到，就會寫在這裡面。</p>
-<p>只想單獨讓開發(:development)或測試(:test)使用，可各別寫在對應的 group 內喔。</p>
-<hr>
-<p>說到 Gemfile 一定要介紹下 <a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a>，上面提供許多好用的 Gem 套件可供使用，像是<a href="https://rubygems.org/gems/bootstrap" target="_blank" rel="noopener">bootstrap</a>、<a href="https://rubygems.org/gems/faker" target="_blank" rel="noopener">faker</a>、<a href="https://rubygems.org/gems/simple_form" target="_blank" rel="noopener">simple_form</a>、<a href="https://rubygems.org/gems/devise" target="_blank" rel="noopener">devise</a>、<a href="https://rubygems.org/gems/hirb-unicode" target="_blank" rel="noopener">hirb-unicode</a>、<a href="https://rubygems.org/gems/rspec-rails" target="_blank" rel="noopener">rspec-rails</a>、<a href="https://rubygems.org/gems/factory_bot_rails" target="_blank" rel="noopener">factory_bot_rails</a>…等，使用前記得先翻閱文件，會更清楚如何使用</p>
-<hr>
-<p><strong>如何新增 gem 呢?</strong>
-<a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a> 搜尋需要的 gem 並加入 Gemfile 中，接著再終端機輸入</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bundle install</span><br><span class="line">或</span><br><span class="line">bundle</span><br></pre></td></tr></table></figure></p>
-<p>就能使用囉~ (有些 gem 要將 server 重啟喔，<strong>記得看文件(很重要講三次)</strong>)</p>
-<p>打開看 Gemfile.lock 檔案，會發現目前所有套件的快照檔已被存下來<br>
-未來 bundle 時，會根據快照檔 Gemfile.lock 決定 Gemfile 是否有修改來進行套件更新</p>
-<h3 id="為什麼要這麼麻煩">為什麼要這麼麻煩?</h3>
-<p>不如說這是貼心的代價，以版本 5.2.3 為例，5、2、3 三個數字分別代表主要版號(Major)、次要版號(Minor)、修訂版號(Path)，表示如下：</p>
-<ul>
-<li>主要版號：功能大改，公開的 API 做了不少修正，不一定能向下相容。</li>
-<li>次要版號：加入某些新功能，但不影響其它功能，能向下相容。</li>
-<li>修訂版號：對現有的功能做小幅度修正，可向下相容。</li>
-</ul>
-<h4 id="若沒有版本控制每次都安裝最新版導致舊版或某些-api-不相容或產生衝突時通往相依性地獄的死亡之谷將給你滿滿地絕望">若沒有版本控制，每次都安裝最新版，導致舊版或某些 API 不相容或產生衝突時，通往「相依性地獄」的死亡之谷將給你滿滿地絕望…</h4>
-<hr>
-<p>參考：</p>
+<h2 id="本篇以此-repo-為範例">本篇以此 <a href="https://github.com/River-Ye/demo_git.git" target="_blank" rel="noopener">repo 為範例</a></h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/River-Ye/demo_git.git</span><br></pre></td></tr></table></figure></p>
+<h2 id="查詢-remote-名稱和-url">查詢 remote 名稱和 URL</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure></p>
+<h4 id="超重要小技巧-可透過-git-remote-h-的方式看有哪些參數絕大部分指令皆能透過此技巧查詢參數或透過-tldr-git-remote-的方式看範例">超重要小技巧： 可透過 <code>git remote -h</code> 的方式，看有哪些參數，絕大部分指令皆能透過此技巧查詢參數或透過 <code>tldr git remote</code> 的方式看範例</h4>
+<h2 id="從既有-branch-建立新的-branch-並切到新的-branch">從既有 branch 建立新的 branch 並切到新的 branch</h2>
+<p>情境： 假如我正在 master，想直接建立新的 branch 並切過去<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b new_branch_name</span><br></pre></td></tr></table></figure></p>
+<h2 id="將既有-branch-移動到別的-branch-的位置">將既有 branch 移動到別的 branch 的位置</h2>
+<p>情境： 我有一個 river_branch ，想移動到 master branch 的位置<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch -f &lt;branch_name&gt; &lt;目的地branch_name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git branch -f river_branch master</span><br></pre></td></tr></table></figure></p>
+<h2 id="事情做到一半突然要切到不同-branch-處理時">事情做到一半，突然要切到不同 branch 處理時</h2>
+<p>很常會遇到的情境，這些指令很常用<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將手中的事情先藏起來 (非存到 add 或 commit 喔)</span></span><br><span class="line">git stash save -u <span class="string">"輸入要儲存的名稱，可寫中文"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出目前已儲存的 stash</span></span><br><span class="line">git stash list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 stash 中的 stash@&#123;0&#125; 抓下來，且不刪除 stash@&#123;0&#125;</span></span><br><span class="line">git stash apply stash@&#123;0&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將 stash 中的 stash@&#123;0&#125; 抓下來，同時刪除 stash@&#123;0&#125;</span></span><br><span class="line">git stash pop stash@&#123;0&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刪除 stash 中的 stash@&#123;0&#125;</span></span><br><span class="line">git stash drop stash@&#123;0&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="切到遠端-branch">切到遠端 branch</h2>
+<p>情境： 小菜有將 river_branch 上傳， Louis 要接手處理 (或一同開發)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br><span class="line">git checkout river_branch</span><br></pre></td></tr></table></figure></p>
+<h2 id="強制覆蓋遠端-branch">強制覆蓋遠端 branch</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f</span><br></pre></td></tr></table></figure></p>
+<p>備註： 多人協作同 branch 的話，不建議這麼做，會被同事追殺</p>
+<h2 id="多人協作同-branch要-push-時發現上面有新的-commit-時">多人協作同 branch，要 push 時，發現上面有新的 commit 時</h2>
+<p>每個人開發速度不一樣，有的人比較快，有的會比較慢，<br>
+當要 <code>push</code> 發現上面已經有新的 commit 時，可用以下指令<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase</span><br></pre></td></tr></table></figure></p>
+<p>備註： 可能會有 conflict (檔案衝突)，與對方確認哪些需保留，Local 解完衝突後，便能 <code>git push</code></p>
+<h2 id="用圖形化方式看-log-資訊">用圖形化方式看 log 資訊</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --all --graph</span><br></pre></td></tr></table></figure></p>
+<p>備註： <code>--oneline</code>、<code>--all</code>、<code>--grpah</code> 這三個參數的放置沒有差</p>
+<h4 id="示意圖">示意圖</h4>
+<p><img src="https://i.imgur.com/5SgPrI9.png" alt></p>
+<h2 id="local-和-remote-皆增加-tag">Local 和 remote 皆增加 tag</h2>
+<p>假如： remote name 為 origin，default branch 為 master<br>
+情境： 將最新 remote 的 master 增加標籤 (tag)<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br><span class="line">git pull</span><br><span class="line">git tag 20200913</span><br><span class="line">git push origin --tags</span><br></pre></td></tr></table></figure></p>
+<h4 id="動作說明">動作說明：</h4>
 <ol>
-<li><a href="https://kaochenlong.com/2016/05/02/gemfile/" target="_blank" rel="noopener">Ruby 語法放大鏡之「在 Gemfile 裡看到版本寫法有好幾款，各是代表什麼意思?」</a></li>
-<li><a href="http://sayaku.github.io/blog/2016/05/05/rubyde-rvm-gem-bundler/" target="_blank" rel="noopener">[筆記]Ruby 的 RVM,GEM,Bundler 是什麼？</a></li>
-<li><a href="https://railsbook.tw/chapters/09-using-gems.html" target="_blank" rel="noopener">[使用套件（Gem）讓開發更有效率]</a></li>
-<li><a href="https://semver.org/lang/zh-TW/" target="_blank" rel="noopener">Bundler</a></li>
-<li><a href="https://semver.org/lang/zh-TW/" target="_blank" rel="noopener">[語意化版本 2.0.0]</a></li>
+<li>先切到 Local master</li>
+<li>將最新資料 pull 到 Local</li>
+<li>在 Local master 增加 tag</li>
+<li>將 tag 上傳到 remote origin</li>
 </ol>
+<h2 id="查看兩個-tag-或-commit-間增加了哪些-pr">查看兩個 tag 或 commit 間增加了哪些 pr</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> old_tag_name..new_tag_name --pretty=<span class="string">'%s'</span> --reverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="comment"># GitHub repo 設定中的 Allow merge commits 有打勾</span></span><br><span class="line">git <span class="built_in">log</span> 20200909..20200909-1 --pretty=<span class="string">'%s'</span> --reverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># GitHub repo 設定中的 Allow merge commits 沒打勾</span></span><br><span class="line">git <span class="built_in">log</span> 20200909-3..20200909-4 --pretty=<span class="string">'%s'</span> --reverse</span><br></pre></td></tr></table></figure></p>
+<h4 id="github-repo-設定">GitHub repo 設定</h4>
+<p><img src="https://i.imgur.com/RWCQvdC.png" alt></p>
+<h4 id="範例圖-allow-merge-commits-有無打勾一次看">範例圖 (Allow merge commits 有無打勾一次看)</h4>
+<p><img src="https://i.imgur.com/qRgMhkl.png" alt></p>
+<h2 id="查看兩個-commit-間所有檔案的差異-diff">查看兩個 commit 間所有檔案的差異 (diff)</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff commit1..commit2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git diff 57cb9613c..77b628f47</span><br></pre></td></tr></table></figure></p>
+<h2 id="commit-後想反悔-恢復上一洞">commit 後想反悔 (恢復上一洞)</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想還原 11 次的話</span></span><br><span class="line">git reset HEAD~11</span><br></pre></td></tr></table></figure></p>
+<h2 id="撿別的-commit-過來使用">撿別的 commit 過來使用</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick commit</span><br></pre></td></tr></table></figure></p>
+<h4 id="超重要小技巧-可透過-git-cherry-pick-h-的方式看有哪些參數絕大部分指令皆能透過此技巧查詢參數或透過-tldr-git-cherry-pick-的方式看範例">超重要小技巧： 可透過 <code>git cherry-pick -h</code> 的方式，看有哪些參數，絕大部分指令皆能透過此技巧查詢參數或透過 <code>tldr git cherry-pick</code> 的方式看範例</h4>
+<h2 id="整理自己-branch-的-commit">整理自己 branch 的 commit</h2>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rebase 互動模式很好用，網路已有詳細文章可參考</span></span><br><span class="line"></span><br><span class="line">rebase -i commit</span><br></pre></td></tr></table></figure></p>
+<h2 id="一定要知道的">一定要知道的</h2>
+<p>平常不太會用到，需要時，卻很重要的存在<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搭配之前所學，可用合體技搜尋 (若不清楚，可看 Linux 系列的文章)</span></span><br><span class="line">git reflog | rg <span class="string">'HEAD@'</span></span><br><span class="line">git reflog &gt;&gt; demo.log</span><br></pre></td></tr></table></figure></p>
+<h2 id="小結">小結</h2>
+<p>會把一些常用指令設定 alias，像是把 <code>status</code> 設定成 <code>s</code>、 <code>branch</code> 設定成 <code>b</code> ...等，依照自己常輸入指令設定，可以省下不少時間</p>
+<p>多善用 <code>-h</code> 和 <code>tldr</code> 看下有哪些參數、範例，搭配實作，會更快上手喔</p>
+<h2 id="參考資料">參考資料</h2>
+<ol>
+<li><a href="https://git-scm.com/book/zh-tw/" target="_blank" rel="noopener">Git-Book</a></li>
+<li><a href="https://gitbook.tw/" target="_blank" rel="noopener">為你自己學 Git</a></li>
+<li><a href="https://github.com/doggy8088/Learn-Git-in-30-days/" target="_blank" rel="noopener">30 天精通 Git 版本控管</a></li>
+</ol>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10238939" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10238939</a><br>
+medium 文章連結：<a href="https://link.medium.com/Mmx5PSNfR9" target="_blank" rel="noopener">https://link.medium.com/Mmx5PSNfR9</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/18/Day13-%E4%B8%80%E4%BA%9B-Git-%E6%8C%87%E4%BB%A4/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/15/Rails-中的-Gemfile-檔案的內容/">https://riverye.com/2019/09/15/Rails-中的-Gemfile-檔案的內容/</a></p>
-    <p>發表日期：2019-09-15</p>
-    <p>更新日期：2019-10-25</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/18/Day13-一些-Git-指令/">https://riverye.com/2020/09/18/Day13-一些-Git-指令/</a></p>
+    <p>發表日期：2020-09-18</p>
+    <p>更新日期：2020-09-18</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/16/刷一週題目了，有變強一些嗎/" title="刷一週題目了，有變強一些嗎?">
-        <div class="nextTitle">刷一週題目了，有變強一些嗎?</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/15/週末來塊蛋糕吧-Codewars-Which-are-in/" title="週末來塊蛋糕吧~ Codewars - Which are in?">
-        <div class="prevTitle">週末來塊蛋糕吧~ Codewars - Which are in?</div>
+      <a href="/2020/09/17/Day12-一些-Linux-套件-7-7-不實用篇-cowsay、cmatrix/" title="Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)">
+        <div class="prevTitle">Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)</div>
       </a>
       
     </li>
@@ -516,8 +531,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/15/Rails-中的-Gemfile-檔案的內容/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Rails 中的 Gemfile 檔案的內容"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/18/Day13-一些-Git-指令/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day13 - 一些 Git 指令"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -636,7 +651,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#為什麼要這麼麻煩"><span class="toc-number">1.</span> <span class="toc-text">為什麼要這麼麻煩?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#若沒有版本控制每次都安裝最新版導致舊版或某些-api-不相容或產生衝突時通往相依性地獄的死亡之谷將給你滿滿地絕望"><span class="toc-number">1.1.</span> <span class="toc-text">若沒有版本控制，每次都安裝最新版，導致舊版或某些 API 不相容或產生衝突時，通往「相依性地獄」的死亡之谷將給你滿滿地絕望…</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本篇以此-repo-為範例"><span class="toc-number">2.</span> <span class="toc-text">本篇以此 repo 為範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查詢-remote-名稱和-url"><span class="toc-number">3.</span> <span class="toc-text">查詢 remote 名稱和 URL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#超重要小技巧-可透過-git-remote-h-的方式看有哪些參數絕大部分指令皆能透過此技巧查詢參數或透過-tldr-git-remote-的方式看範例"><span class="toc-number">3.0.1.</span> <span class="toc-text">超重要小技巧： 可透過 git remote -h 的方式，看有哪些參數，絕大部分指令皆能透過此技巧查詢參數或透過 tldr git remote 的方式看範例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從既有-branch-建立新的-branch-並切到新的-branch"><span class="toc-number">4.</span> <span class="toc-text">從既有 branch 建立新的 branch 並切到新的 branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#將既有-branch-移動到別的-branch-的位置"><span class="toc-number">5.</span> <span class="toc-text">將既有 branch 移動到別的 branch 的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事情做到一半突然要切到不同-branch-處理時"><span class="toc-number">6.</span> <span class="toc-text">事情做到一半，突然要切到不同 branch 處理時</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切到遠端-branch"><span class="toc-number">7.</span> <span class="toc-text">切到遠端 branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#強制覆蓋遠端-branch"><span class="toc-number">8.</span> <span class="toc-text">強制覆蓋遠端 branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多人協作同-branch要-push-時發現上面有新的-commit-時"><span class="toc-number">9.</span> <span class="toc-text">多人協作同 branch，要 push 時，發現上面有新的 commit 時</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用圖形化方式看-log-資訊"><span class="toc-number">10.</span> <span class="toc-text">用圖形化方式看 log 資訊</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示意圖"><span class="toc-number">10.0.1.</span> <span class="toc-text">示意圖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#local-和-remote-皆增加-tag"><span class="toc-number">11.</span> <span class="toc-text">Local 和 remote 皆增加 tag</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#動作說明"><span class="toc-number">11.0.1.</span> <span class="toc-text">動作說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看兩個-tag-或-commit-間增加了哪些-pr"><span class="toc-number">12.</span> <span class="toc-text">查看兩個 tag 或 commit 間增加了哪些 pr</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#github-repo-設定"><span class="toc-number">12.0.1.</span> <span class="toc-text">GitHub repo 設定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#範例圖-allow-merge-commits-有無打勾一次看"><span class="toc-number">12.0.2.</span> <span class="toc-text">範例圖 (Allow merge commits 有無打勾一次看)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看兩個-commit-間所有檔案的差異-diff"><span class="toc-number">13.</span> <span class="toc-text">查看兩個 commit 間所有檔案的差異 (diff)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit-後想反悔-恢復上一洞"><span class="toc-number">14.</span> <span class="toc-text">commit 後想反悔 (恢復上一洞)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撿別的-commit-過來使用"><span class="toc-number">15.</span> <span class="toc-text">撿別的 commit 過來使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#超重要小技巧-可透過-git-cherry-pick-h-的方式看有哪些參數絕大部分指令皆能透過此技巧查詢參數或透過-tldr-git-cherry-pick-的方式看範例"><span class="toc-number">15.0.1.</span> <span class="toc-text">超重要小技巧： 可透過 git cherry-pick -h 的方式，看有哪些參數，絕大部分指令皆能透過此技巧查詢參數或透過 tldr git cherry-pick 的方式看範例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整理自己-branch-的-commit"><span class="toc-number">16.</span> <span class="toc-text">整理自己 branch 的 commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一定要知道的"><span class="toc-number">17.</span> <span class="toc-text">一定要知道的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">18.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">19.</span> <span class="toc-text">參考資料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
