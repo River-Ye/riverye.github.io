@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day14 - 在 Ruby 中使用 Benchmark 比較哪個方法比較快 · 小菜的 Blog</title>
+    <title>Day16 - Ruby on Rails 中的風格管理套件 RuboCop · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day14 - 在 Ruby 中使用 Benchmark 比較哪個方法比較快</a>
+                <a href="#" class="post-name">Day16 - Ruby on Rails 中的風格管理套件 RuboCop</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day14 - 在 Ruby 中使用 Benchmark 比較哪個方法比較快
+       Day16 - Ruby on Rails 中的風格管理套件 RuboCop
       <!-- 404 -->
       
     </h1>
@@ -300,17 +300,17 @@ height:50vh;
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2020/09/19</span
+          >2020/09/21</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >503</span
+            >1.2k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >5 min</span
           ></span
         >
       </div>
@@ -420,103 +420,85 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <h2 id="前言">前言</h2>
-<p>總算開始進入 Ruby 程式語言的世界中，再不寫點什麼，都快與鐵人賽報名的題目不相干，變成標題殺人惹 XD</p>
-<p>後續 Ruby on Rails 的相關文章，假定讀者為已經有 CRUD 基礎上(或有工作經驗)，進而分享，故不從環境建置等開始說起 (若有興趣想從頭學，可參考這篇環境建置 <a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql</a>，然後自學)</p>
+<p>多人協作時，通常會規範 style，像是統一使用單引號、雙引號、每個方法最多不能超過幾行、每行的長度限制等<br>
+這時就需要透過 RuboCop 來進行把關</p>
+<p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="benchmark">Benchmark</h2>
-<p>中文翻譯為「基準測試」，為 Ruby 內建的 <code>module</code>，用於評估程式的效能</p>
-<h3 id="情境">情境</h3>
-<p>寫了一段程式，想到幾種寫法皆能做到一樣的事情，但想知道哪個效能比較好的話，可以用 Benchmark，在 Ruby 或 Ruby on Rails 中皆能使用</p>
-<h3 id="如何測試">如何測試</h3>
-<p>以下這段有 3 種方法可以測試：</p>
-<ol>
-<li>在 Ruby 的 <code>irb</code> 模式中，貼上以下的程式碼</li>
-<li>在 Ruby on Rails 的 <code>rails console</code> (可縮寫成 <code>rails c</code>) 中，貼上以下的程式碼</li>
-<li>將以下這段存成 <code>test.rb</code> 檔，在終端機輸入 <code>ruby test.rb</code>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test.rb</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'benchmark'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="comment"># n 為要測試的次數</span></span><br><span class="line">  n = <span class="number">5000000</span></span><br><span class="line">  y = Benchmark.bm <span class="keyword">do</span> <span class="params">|x|</span></span><br><span class="line">    x.report(<span class="string">"&lt;&lt;    "</span>) &#123; n.times &#123; [] &lt;&lt; <span class="string">'river'</span> &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"push  "</span>) &#123; n.times &#123; [].push(<span class="string">'river'</span>) &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"concat"</span>) &#123; n.times &#123; [].concat([<span class="string">'river'</span>]) &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"+     "</span>) &#123; n.times &#123; [] + [<span class="string">'river'</span>] &#125; &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="顯示如下">顯示如下</h4>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>user</th>
-<th>system</th>
-<th>total</th>
-<th>real</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&lt;&lt;</td>
-<td>0.600000</td>
-<td>0.000000</td>
-<td>0.600000</td>
-<td>(  0.615966)</td>
-</tr>
-<tr>
-<td>push</td>
-<td>0.650000</td>
-<td>0.000000</td>
-<td>0.650000</td>
-<td>(  0.658296)</td>
-</tr>
-<tr>
-<td>concat</td>
-<td>1.230000</td>
-<td>0.010000</td>
-<td>1.240000</td>
-<td>(  1.234671)</td>
-</tr>
-<tr>
-<td>+</td>
-<td>1.010000</td>
-<td>0.000000</td>
-<td>1.010000</td>
-<td>(  1.034694)</td>
-</tr>
-</tbody>
-</table>
-<h4 id="irb-測試的畫面"><code>irb</code> 測試的畫面</h4>
-<p><img src="https://i.imgur.com/rznoF2B.png" alt></p>
-<h4 id="rails-c-測試的畫面"><code>rails c</code> 測試的畫面</h4>
-<p><img src="https://i.imgur.com/63OEQ41.png" alt></p>
+<h2 id="rubocop">Rubocop</h2>
+<blockquote>
+<p>Role models are important.
+-- Officer Alex J. Murphy / RoboCop</p>
+</blockquote>
+<p>進入<a href="https://github.com/rubocop-hq/rubocop" target="_blank" rel="noopener">官方網站</a>便能看到這段話，由此可見風格規範的重要性</p>
+<h2 id="如何安裝">如何安裝</h2>
+<p>如文件所說直接在終端機輸入<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install rubocop</span><br></pre></td></tr></table></figure></p>
+<p>接著放在 development 中，test 和 production 不需使用<br>
+或不放 Gemfile 中，只針對 CI 處理即可</p>
+<p>可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/commit/f44bdc052ccbf0c195bb9c7e154abb72788ebc8f" target="_blank" rel="noopener">commit</a><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile 檔案</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'rubocop'</span>, <span class="string">'~&gt; 0.90.0'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="如何執行">如何執行</h2>
+<p>在專案目錄下的終端機輸入<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 檢查全部的檔案</span></span><br><span class="line">rubocop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只針對特定檔案、資料夾檢查</span></span><br><span class="line">rubocop path/to/file path/to/directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">rubocop app/controllers/application_controller.rb</span><br></pre></td></tr></table></figure></p>
+<p>備註: 善用 <code>tldr</code> 可看下 <code>rubocop</code> 怎麼使用<br>
+<img src="https://i.imgur.com/0MFURaa.png" alt></p>
+<h2 id="如何客製化-rubocop-設定">如何客製化 RuboCop 設定</h2>
+<p>可參考 <a href="https://docs.rubocop.org/rubocop/0.85/cops_style.html" target="_blank" rel="noopener">Cop Documentation Style</a><br>
+裡面有提供各種範例的設定，可針對專案需求進行調整，<br>
+並將設定檔寫在 <code>.rubocop.yml</code> 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/commit/db549bd5145f1555dc3a20cddc9a8639a5223ac3" target="_blank" rel="noopener">commit</a><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This is the configuration used to check the rubocop source code.</span></span><br><span class="line"><span class="comment"># url: https://docs.rubocop.org/rubocop/0.85/cops_style.html</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">AllCops:</span></span><br><span class="line">  <span class="symbol">Exclude:</span></span><br><span class="line">    - <span class="string">'config/routes.rb'</span></span><br><span class="line">    - <span class="string">'db/schema.rb'</span></span><br><span class="line">  <span class="symbol">TargetRubyVersion:</span> <span class="number">2.7</span>.<span class="number">1</span></span><br><span class="line">  <span class="symbol">TargetRailsVersion:</span> <span class="number">6.0</span>.<span class="number">3.3</span></span><br><span class="line"></span><br><span class="line">  <span class="symbol">Rails:</span></span><br><span class="line">    <span class="symbol">Enabled:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  Rails/<span class="symbol">UnknownEnv:</span></span><br><span class="line">    <span class="symbol">Environments:</span></span><br><span class="line">      - production</span><br><span class="line">      - staging</span><br><span class="line">      - development</span><br><span class="line">      - test</span><br><span class="line"></span><br><span class="line"><span class="comment"># modern editors and terminal fit more than 120 characters.</span></span><br><span class="line">Metrics/<span class="symbol">LineLength:</span></span><br><span class="line">  <span class="symbol">Max:</span> <span class="number">120</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Class length is not critical to code quality</span></span><br><span class="line">Metrics/<span class="symbol">ClassLength:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Module length is not critical to code quality</span></span><br><span class="line">Metrics/<span class="symbol">ModuleLength:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Block length is ok to be long in DSLs like 'rspec' or 'rake'</span></span><br><span class="line">Metrics/<span class="symbol">BlockLength:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># defualt '10 line' is too strict to us, and may clutter the class</span></span><br><span class="line">Metrics/<span class="symbol">MethodLength:</span></span><br><span class="line">  <span class="symbol">Max:</span> <span class="number">25</span></span><br><span class="line"></span><br><span class="line">Metrics/<span class="symbol">AbcSize:</span></span><br><span class="line">  <span class="symbol">Max:</span> <span class="number">25</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Most Rails generated class are not doced, and not needed</span></span><br><span class="line">Style/<span class="symbol">Documentation:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 'return' makes code more readable in some cases</span></span><br><span class="line">Style/<span class="symbol">RedundantReturn:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">Style/<span class="symbol">AsciiComments:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Guard is not always good to readablity</span></span><br><span class="line"><span class="comment"># Note: It does not mean we don't use guard to reduce block levels</span></span><br><span class="line"><span class="comment"># In short methods, using guard is not necessary, e.g.</span></span><br><span class="line"><span class="comment">#   def foo(x)   | def foo(x)</span></span><br><span class="line"><span class="comment">#     if xxx?(x) |   return unless xxx?(x)</span></span><br><span class="line"><span class="comment">#       bar(x)   |   bar(x)</span></span><br><span class="line"><span class="comment">#     end        | end</span></span><br><span class="line"><span class="comment">#   end          |</span></span><br><span class="line">Style/<span class="symbol">GuardClause:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The rule expects</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   if xxxxxx</span></span><br><span class="line"><span class="comment">#     a_very_long_method_or_somethings_like_that......</span></span><br><span class="line"><span class="comment">#   end</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># to be</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   a_very_long_method_or_somethings_like_that...... if xxxxxx</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># It is not good looking at all.</span></span><br><span class="line">Style/<span class="symbol">IfUnlessModifier:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # bad</span></span><br><span class="line"><span class="comment"># a = [1, 2,]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># # good</span></span><br><span class="line"><span class="comment"># a = [</span></span><br><span class="line"><span class="comment">#   1, 2,</span></span><br><span class="line"><span class="comment">#   3,</span></span><br><span class="line"><span class="comment"># ]</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># # good</span></span><br><span class="line"><span class="comment"># a = [</span></span><br><span class="line"><span class="comment">#   1,</span></span><br><span class="line"><span class="comment">#   2,</span></span><br><span class="line"><span class="comment"># ]</span></span><br><span class="line">Style/<span class="symbol">TrailingCommaInArrayLiteral:</span></span><br><span class="line">  <span class="symbol">EnforcedStyleForMultiline:</span> consistent_comma</span><br><span class="line"></span><br><span class="line"><span class="comment"># # good</span></span><br><span class="line"><span class="comment"># foo(</span></span><br><span class="line"><span class="comment">#   1,</span></span><br><span class="line"><span class="comment">#   2,</span></span><br><span class="line"><span class="comment"># )</span></span><br><span class="line">Style/<span class="symbol">TrailingCommaInArguments:</span></span><br><span class="line">  <span class="symbol">EnforcedStyleForMultiline:</span> consistent_comma</span><br><span class="line"></span><br><span class="line"><span class="comment"># # good</span></span><br><span class="line"><span class="comment"># a = &#123;</span></span><br><span class="line"><span class="comment">#   1,</span></span><br><span class="line"><span class="comment">#   2,</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br><span class="line">Style/<span class="symbol">TrailingCommaInHashLiteral:</span></span><br><span class="line">  <span class="symbol">EnforcedStyleForMultiline:</span> consistent_comma</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="comment"># class Foo</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#   def bar</span></span><br><span class="line"><span class="comment">#     ...</span></span><br><span class="line"><span class="comment">#   end</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># end</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="comment"># class Foo</span></span><br><span class="line"><span class="comment">#   def bar</span></span><br><span class="line"><span class="comment">#     ...</span></span><br><span class="line"><span class="comment">#   end</span></span><br><span class="line"><span class="comment"># end</span></span><br><span class="line"></span><br><span class="line">Style/<span class="symbol">ClassAndModuleChildren:</span></span><br><span class="line">  <span class="symbol">Enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="comment"># "No special symbols"</span></span><br><span class="line"><span class="comment"># "No string interpolation"</span></span><br><span class="line"><span class="comment"># "Just text"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="comment"># 'No special symbols'</span></span><br><span class="line"><span class="comment"># 'No string interpolation'</span></span><br><span class="line"><span class="comment"># 'Just text'</span></span><br><span class="line"><span class="comment"># "Wait! What's #&#123;this&#125;!"</span></span><br><span class="line"><span class="comment"># Style/StringLiterals:</span></span><br><span class="line"><span class="comment">#   EnforcedStyle: single_quotes (default)</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="如何只針對修改的檔案進行檢查就好">如何只針對修改的檔案進行檢查就好</h2>
+<p>改了好多檔案，逐步檢查好麻煩，有什麼方法可以只針對修改的檔案檢查就好?<br>
+在自己 Local branch 的終端機輸入以下
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若有更好的設定方式，歡迎留言交流 :)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">rubocop $(git diff master --name-only)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">git diff-tree -r --no-commit-id --name-only head..origin/master | xargs rubocop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 備註: xargs 是 Linux 指令</span></span><br></pre></td></tr></table></figure></p>
+<p>或不想每次發 Pull requests (簡稱: pr) 都檢查全部的檔案</p>
+<h3 id="只想針對修改的檔案進行檢查就好可參考此-commit-或此-commit">只想針對修改的檔案進行檢查就好，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/6/commits/1a368ad8619e2c690da4012d6d5b42ff429ce6c1" target="_blank" rel="noopener">commit</a> 或此 <a href="https://github.com/River-Ye/ironman_12th_2020/commit/e83a65f01c7a83d15220381a754044a890d744c5" target="_blank" rel="noopener">commit</a></h3>
+<h3 id="只想針對修改的行數進行檢查就好可參考此-pr">只想針對修改的行數進行檢查就好，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/9" target="_blank" rel="noopener">pr</a></h3>
+<p>備註: 安裝「<a href="https://rubygems.org/gems/pronto-rubocop" target="_blank" rel="noopener">pronto-rubocop</a>」時，應該會踩到安裝失敗的雷，有相依「<a href="https://rubygems.org/gems/thor" target="_blank" rel="noopener">thor</a>」比較舊的版本，可參考上面 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/9" target="_blank" rel="noopener">pr</a> 的解決方式<br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若有更好的設定方式，歡迎留言交流 :)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以 Travis CI 為例</span></span><br><span class="line"><span class="comment"># .travis.yml</span></span><br><span class="line">git fetch origin master &amp;&amp; master_sha1=<span class="string">"$(cut -c -40&lt;&lt;&lt;"</span>$(cat .git/FETCH_HEAD)<span class="string">")"</span> &amp;&amp; pronto run -c $master_sha1 --exit-code</span><br><span class="line"></span><br><span class="line"><span class="comment"># 欲使用 pronto 這指令，需安裝「pronto-rubocop」</span></span><br><span class="line"><span class="comment"># 有安裝「pronto-rubocop」的話，這段也能直接在終端機輸入</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="某些行數不想被檢查可以跳過檢查嗎">某些行數不想被檢查，可以跳過檢查嗎</h2>
+<p>基於某些原因，某些 code 不想被 RuboCop 檢查 <s>(說白就是不想處理 XD</s></p>
+<p>想跳過檢查的話，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/1/commits/34a64825f160f9dc5d711e178ce4c49ff0da1d60" target="_blank" rel="noopener">commit</a><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 依照 RuboCop 提醒，後面 oo_xx 改成對應的內容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rubocop:disable oo_xx</span></span><br><span class="line">your code</span><br><span class="line"><span class="comment"># rubocop:enable oo_xx</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rubocop:disable Style/TrailingCommaInHashLiteral</span></span><br><span class="line">your code</span><br><span class="line"><span class="comment"># rubocop:enable Style/TrailingCommaInHashLiteral</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="vs-code-套件">VS code 套件</h2>
+<p>每次都要輸入 <code>rubocop</code> 才知道哪些要改，好麻煩，<br>
+有沒有視覺化的工具可以協助呢?</p>
+<h4 id="vs-code-有套件推薦使用ruby-rubocop">VS code 有套件推薦使用「ruby-rubocop」</h4>
+<h4 id="套件名稱-ruby-rubocop">套件名稱: ruby-rubocop</h4>
+<h4 id="套件連結-httpsmarketplacevisualstudiocomitemsitemnamemisogiruby-rubocop">套件連結: <a href="https://marketplace.visualstudio.com/items?itemName=misogi.ruby-rubocop" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=misogi.ruby-rubocop</a></h4>
+<p><img src="https://i.imgur.com/tpuARTz.png" alt></p>
+<h4 id="vs-code-示範畫面">VS code 示範畫面</h4>
+<p><img src="https://i.imgur.com/pe4dE6c.gif" alt></p>
+<hr>
+<h2 id="參考">參考</h2>
+<p><a href="https://5xruby.tw/posts/rubocop-intro/" target="_blank" rel="noopener">機器戰警 RuboCop</a></p>
 <h2 id="小結">小結</h2>
-<p>從上述情境中可以發現使用 <code>&lt;&lt;</code> 效能比較好<br>
-但不等於 <code>&lt;&lt;</code> 這方法是最好的，端看情境應用<br>
-尤其在 SQL Query 時，更是明顯</p>
-<h2 id="參考資料">參考資料</h2>
-<p><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/benchmark/rdoc/Benchmark.html" target="_blank" rel="noopener">Benchmark</a></p>
+<p>RuboCop 真的是又愛又恨的套件，好處是讓大家風格一致，壞處是處理時挺花時間的，遇到不知怎解決的問題時，Goolge 會是你的好朋友，<s>再不行就跳過檢查(誤</s></p>
 <hr>
-<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10239641" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10239641</a><br>
-medium 文章連結：<a href="https://link.medium.com/epApulKUS9" target="_blank" rel="noopener">https://link.medium.com/epApulKUS9</a><br>
-本文同步發布於 <a href="https://riverye.com/2020/09/19/Day14-%E5%9C%A8-Ruby-%E4%B8%AD%E4%BD%BF%E7%94%A8-Benchmark-%E6%AF%94%E8%BC%83%E5%93%AA%E5%80%8B%E6%96%B9%E6%B3%95%E6%AF%94%E8%BC%83%E5%BF%AB/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10240956" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10240956</a><br>
+medium 文章連結：<a href="https://link.medium.com/fx6sSkzeW9" target="_blank" rel="noopener">https://link.medium.com/fx6sSkzeW9</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/21/Day16-Ruby-on-Rails-%E4%B8%AD%E7%9A%84%E9%A2%A8%E6%A0%BC%E7%AE%A1%E7%90%86%E5%A5%97%E4%BB%B6-RuboCop/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
 <p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2020/09/19/Day14-在-Ruby-中使用-Benchmark-比較哪個方法比較快/">https://riverye.com/2020/09/19/Day14-在-Ruby-中使用-Benchmark-比較哪個方法比較快/</a></p>
-    <p>發表日期：2020-09-19</p>
-    <p>更新日期：2020-09-19</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/21/Day16-Ruby-on-Rails-中的風格管理套件-RuboCop/">https://riverye.com/2020/09/21/Day16-Ruby-on-Rails-中的風格管理套件-RuboCop/</a></p>
+    <p>發表日期：2020-09-21</p>
+    <p>更新日期：2020-09-21</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2020/09/20/Day15-如何看自己打出去的-request-完整資訊，以-PostBin-和-Webhook-site-為例/" title="Day15 - 如何看自己打出去的 request 完整資訊，以 PostBin 和 Webhook.site 為例">
-        <div class="nextTitle">Day15 - 如何看自己打出去的 request 完整資訊，以 PostBin 和 Webhook.site 為例</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2020/09/17/Day12-一些-Linux-套件-7-7-不實用篇-cowsay、cmatrix/" title="Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)">
-        <div class="prevTitle">Day12 - 一些 Linux 套件 - 7-7 - 不實用篇 (cowsay、cmatrix)</div>
+      <a href="/2020/09/20/Day15-如何看自己打出去的-request-完整資訊，以-PostBin-和-Webhook-site-為例/" title="Day15 - 如何看自己打出去的 request 完整資訊，以 PostBin 和 Webhook.site 為例">
+        <div class="prevTitle">Day15 - 如何看自己打出去的 request 完整資訊，以 PostBin 和 Webhook.site 為例</div>
       </a>
       
     </li>
@@ -532,8 +514,8 @@ medium 文章連結：<a href="https://link.medium.com/epApulKUS9" target="_blan
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2020/09/19/Day14-在-Ruby-中使用-Benchmark-比較哪個方法比較快/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day14 - 在 Ruby 中使用 Benchmark 比較哪個方法比較快"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/21/Day16-Ruby-on-Rails-中的風格管理套件-RuboCop/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day16 - Ruby on Rails 中的風格管理套件 RuboCop"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -652,7 +634,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#benchmark"><span class="toc-number">2.</span> <span class="toc-text">Benchmark</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#情境"><span class="toc-number">2.1.</span> <span class="toc-text">情境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何測試"><span class="toc-number">2.2.</span> <span class="toc-text">如何測試</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#顯示如下"><span class="toc-number">2.2.1.</span> <span class="toc-text">顯示如下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#irb-測試的畫面"><span class="toc-number">2.2.2.</span> <span class="toc-text">irb 測試的畫面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rails-c-測試的畫面"><span class="toc-number">2.2.3.</span> <span class="toc-text">rails c 測試的畫面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">3.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">4.</span> <span class="toc-text">參考資料</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rubocop"><span class="toc-number">2.</span> <span class="toc-text">Rubocop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何客製化-rubocop-設定"><span class="toc-number">5.</span> <span class="toc-text">如何客製化 RuboCop 設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何只針對修改的檔案進行檢查就好"><span class="toc-number">6.</span> <span class="toc-text">如何只針對修改的檔案進行檢查就好</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#只想針對修改的檔案進行檢查就好可參考此-commit-或此-commit"><span class="toc-number">6.1.</span> <span class="toc-text">只想針對修改的檔案進行檢查就好，可參考此 commit 或此 commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只想針對修改的行數進行檢查就好可參考此-pr"><span class="toc-number">6.2.</span> <span class="toc-text">只想針對修改的行數進行檢查就好，可參考此 pr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#某些行數不想被檢查可以跳過檢查嗎"><span class="toc-number">7.</span> <span class="toc-text">某些行數不想被檢查，可以跳過檢查嗎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vs-code-套件"><span class="toc-number">8.</span> <span class="toc-text">VS code 套件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vs-code-有套件推薦使用ruby-rubocop"><span class="toc-number">8.0.1.</span> <span class="toc-text">VS code 有套件推薦使用「ruby-rubocop」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#套件名稱-ruby-rubocop"><span class="toc-number">8.0.2.</span> <span class="toc-text">套件名稱: ruby-rubocop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#套件連結-httpsmarketplacevisualstudiocomitemsitemnamemisogiruby-rubocop"><span class="toc-number">8.0.3.</span> <span class="toc-text">套件連結: https://marketplace.visualstudio.com/items?itemName=misogi.ruby-rubocop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vs-code-示範畫面"><span class="toc-number">8.0.4.</span> <span class="toc-text">VS code 示範畫面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考"><span class="toc-number">9.</span> <span class="toc-text">參考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">10.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
