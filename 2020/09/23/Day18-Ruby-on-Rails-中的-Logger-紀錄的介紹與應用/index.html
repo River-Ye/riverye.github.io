@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>從無到有的 Blog 建置教學 (含 domain 購買轉址) · 小菜的 Blog</title>
+    <title>Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">從無到有的 Blog 建置教學 (含 domain 購買轉址)</a>
+                <a href="#" class="post-name">Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       從無到有的 Blog 建置教學 (含 domain 購買轉址)
+       Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用
       <!-- 404 -->
       
     </h1>
@@ -294,31 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "GitHub">GitHub</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "部落格">部落格</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Blog">Blog</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "domain">domain</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/10/23</span
+          >2020/09/23</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >2.1k</span
+            >680</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >9 min</span
+            >2 min</span
           ></span
         >
       </div>
@@ -427,196 +419,65 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="說在前面">說在前面</h2>
-<p>本篇以 Windows 環境架設 Blog，同時記錄自己 Blog 建立的過程。</p>
+    <h2 id="前言">前言</h2>
+<p>追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題<br>
+像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等<br>
+若都沒有儲存 Log 紀錄的話，就...好自為之 QQ</p>
+<p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="環境建置">環境建置</h2>
-<p>開始前，你要先有：</p>
+<h2 id="如何產生-log">如何產生 Log</h2>
+<p>使用者在操作時，本身就會產生制式 Log 被記錄，並存在 Log 資料夾底下，依照當下環境，存在對應的檔案中</p>
+<h4 id="在-development-操作的-log">在 development 操作的 Log</h4>
+<p><img src="https://i.imgur.com/lwrV4PN.jpg" alt></p>
+<h2 id="development-增加時間戳">development 增加時間戳</h2>
+<p>上面那張圖雖然有自動存成 Log，但沒時間戳挺不方便的</p>
+<p>增加方法如下，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/e384552e8e4f616854f38fe87be71998f3e612c6" target="_blank" rel="noopener">commit</a></p>
+<p>備註: production 預設就有記錄時間戳 (<code>config/environments/production.rb</code>)，故不用調整，而 development 則依需求是否需要增加</p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line"></span><br><span class="line">config.log_formatter = <span class="symbol">:</span><span class="symbol">:Logger</span><span class="symbol">:</span><span class="symbol">:Formatter</span>.new</span><br></pre></td></tr></table></figure></p>
+<h4 id="增加時間戳的-log">增加時間戳的 Log</h4>
+<p><img src="https://i.imgur.com/i4pCCKD.png" alt></p>
+<h2 id="如何在指定位置增加-log">如何在指定位置增加 Log</h2>
+<p>情境: 打 API 的 request 和 response 建議可以儲存，以及針對錯誤訊息也要記錄，方便後續追蹤</p>
+<p>示範如何紀錄，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/a7c4b3d52485ee08dee4d7518ffb53713b1acd7b" target="_blank" rel="noopener">commit</a><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line"></span><br><span class="line">Rails.logger.info <span class="string">"params: <span class="subst">#&#123;user_params&#125;</span>, <span class="subst">#&#123;@user.inspect&#125;</span>"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="將-log-存到指定路徑檔案中">將 Log 存到指定路徑檔案中</h2>
+<p>將所有 Log 都存在預設路徑檔案中，會導致原本的檔案過於肥大，且要尋找時會比較麻煩，可依需求分類存在不同檔案中，像是打 A API 的統一存在 A 路徑，B API 的統一存在 B 路徑中...</p>
+<p>範例可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/add096871d024f3f6e5f8cb6121c5e5c1e3c8c5e" target="_blank" rel="noopener">commit</a>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/services/file_log.rb</span></span><br><span class="line"><span class="comment"># 有不同寫法，歡迎在底下留言交流</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileLog</span></span></span><br><span class="line">  @loggers <span class="params">||</span>= &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">logger</span><span class="params">(location)</span></span></span><br><span class="line">    @loggers[location] <span class="params">||</span>= create_logger(location)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_logger</span><span class="params">(location)</span></span></span><br><span class="line">    <span class="keyword">if</span> ENV[<span class="string">'RAILS_LOG_TO_STDOUT'</span>]</span><br><span class="line">      logger = Logger.new(STDOUT)</span><br><span class="line">      logger.progname = File.basename(location, <span class="string">'.log'</span>)</span><br><span class="line">      logger.formatter = Rails.configuration.log_formatter</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      FileUtils.mkdir_p(Rails.root.join(<span class="string">'log'</span>, File.dirname(location)))</span><br><span class="line">      logger = Logger.new(Rails.root.join(<span class="string">'log'</span>, location))</span><br><span class="line">      logger.formatter = proc <span class="keyword">do</span> <span class="params">|severity, datetime, _progname, msg|</span></span><br><span class="line">        <span class="string">"<span class="subst">#&#123;severity&#125;</span> [<span class="subst">#&#123;datetime.strftime(<span class="string">'%Y-%m-%d %H:%M:%S.%6N'</span>)&#125;</span>]: <span class="subst">#&#123;msg&#125;</span>\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ActiveSupport::TaggedLogging.new(logger)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="參考資料">參考資料</h2>
 <ol>
-<li>Node.js</li>
-<li>Git (<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">可參考這篇建置 Node.js 及 Git 環境</a>)</li>
-<li><a href="https://github.com/" target="_blank" rel="noopener">GitHub 帳號</a> (免費註冊使用)</li>
+<li><a href="https://rails.ruby.tw/debugging_rails_applications.html#logger" target="_blank" rel="noopener">除錯Rails 應用程式— Ruby on Rails 指南</a></li>
+<li><a href="https://ihower.tw/rails/deployment.html#sec9" target="_blank" rel="noopener">Ruby on Rails 實戰聖經#整理 Log 檔案</a></li>
 </ol>
 <hr>
-<h2 id="nvm-安裝">nvm 安裝</h2>
-<p>完成上述基本環境建置後，需先安裝 <a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener">nvm</a> 才能安裝 Hexo，先在 Ubuntu 輸入</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/nvm</span>-sh/nvm/v<span class="number">0</span>.<span class="number">35.0</span>/install.sh <span class="params">| bash</span></span><br><span class="line"><span class="params"></span></span><br><span class="line"><span class="params"># 安裝 nvm</span></span><br><span class="line"><span class="params"># 接著重開 Ubuntu</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/rezazFO.png" alt></p>
-<p>確認 nvm 是否安裝</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ command -v nvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># nvm</span></span><br></pre></td></tr></table></figure></p>
-<p>列出所有可以安裝的 nvm 版本</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ nvm ls-remote</span><br></pre></td></tr></table></figure></p>
-<p>安裝 node 12.13.0</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ nvm install <span class="number">12.13</span>.<span class="number">0</span></span><br><span class="line">$ nvm install &lt;version&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截止至今，最新版本為 12.13.0</span></span><br></pre></td></tr></table></figure></p>
-<p>檢視本地端可以使用的版本</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ nvm ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下為顯示結果</span></span><br><span class="line">-&gt;     v12.<span class="number">13.0</span></span><br><span class="line">         system</span><br><span class="line">default -&gt; <span class="number">12.13</span>.<span class="number">0</span> (-&gt; v12.<span class="number">13.0</span>)</span><br><span class="line">node -&gt; stable (-&gt; v12.<span class="number">13.0</span>) (default)</span><br><span class="line">stable -&gt; <span class="number">12.13</span> (-&gt; v12.<span class="number">13.0</span>) (default)</span><br><span class="line">iojs -&gt; N/A (default)</span><br><span class="line">unstable -&gt; N/A (default)</span><br><span class="line">lts/* -&gt; lts/erbium (-&gt; v12.<span class="number">13.0</span>)</span><br><span class="line">lts/argon -&gt; v4.<span class="number">9.1</span> (-&gt; N/A)</span><br><span class="line">lts/boron -&gt; v6.<span class="number">17.1</span> (-&gt; N/A)</span><br><span class="line">lts/carbon -&gt; v8.<span class="number">16.2</span> (-&gt; N/A)</span><br><span class="line">lts/dubnium -&gt; v1<span class="number">0</span>.<span class="number">16.3</span> (-&gt; N/A)</span><br><span class="line">lts/erbium -&gt; v12.<span class="number">13.0</span></span><br><span class="line"><span class="comment"># 以上為顯示結果</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/gaXlW0S.png" alt></p>
-<p>確認 node 路徑來源</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ which node</span><br><span class="line"><span class="comment"># /home/river/.nvm/versions/node/v12.13.0/bin/node</span></span><br><span class="line"></span><br><span class="line">$ nvm use system</span><br><span class="line"><span class="comment"># 切換回系統的 Node.js</span></span><br><span class="line"><span class="comment"># Now using system version of node: v12.11.1 (npm v6.11.3)</span></span><br><span class="line"></span><br><span class="line">$ which node</span><br><span class="line"><span class="comment"># /usr/bin/node</span></span><br><span class="line"></span><br><span class="line">$ nvm use <span class="number">12.13</span>.<span class="number">0</span></span><br><span class="line"><span class="comment"># 切換 nvm 版本</span></span><br><span class="line"><span class="comment"># Now using node v12.13.0 (npm v6.12.0)</span></span><br><span class="line"></span><br><span class="line">$ which node</span><br><span class="line"><span class="comment"># /home/river/.nvm/versions/node/v12.13.0/bin/node</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/il2HvsH.png" alt></p>
+<h2 id="小結">小結</h2>
+<p>Log 可說是非常重要的小細節，也能客製化格式，Google 下便有相關資源可參考，除了上述範例使用到的 <code>:info</code> 外，還有 <code>:debug</code> 、 <code>:warn</code> 、 <code>:error</code> 、 <code>:fatal</code> 以及 <code>:unknown</code> 可以使用，差異可參考上述提供的參考資料連結</p>
+<p>雖說很方便，但也不要過於氾濫什麼都儲存，除了會影響效能外，容量也會用很兇</p>
 <hr>
-<h2 id="安裝-hexo">安裝 Hexo</h2>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>查詢 Hexo 版本</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下為顯示結果</span></span><br><span class="line">hexo-<span class="symbol">cli:</span> <span class="number">3.1</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">os:</span> Linux <span class="number">4.4</span>.<span class="number">0</span>-<span class="number">18362</span>-Microsoft linux x64</span><br><span class="line"><span class="symbol">node:</span> <span class="number">12.13</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">v8:</span> <span class="number">7.7</span>.<span class="number">299.13</span>-node.<span class="number">12</span></span><br><span class="line"><span class="symbol">uv:</span> <span class="number">1.32</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">zlib:</span> <span class="number">1.2</span>.<span class="number">11</span></span><br><span class="line"><span class="symbol">brotli:</span> <span class="number">1.0</span>.<span class="number">7</span></span><br><span class="line"><span class="symbol">ares:</span> <span class="number">1.15</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">modules:</span> <span class="number">72</span></span><br><span class="line"><span class="symbol">nghttp2:</span> <span class="number">1.39</span>.<span class="number">2</span></span><br><span class="line"><span class="symbol">napi:</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">llhttp:</span> <span class="number">1.1</span>.<span class="number">4</span></span><br><span class="line"><span class="symbol">http_parser:</span> <span class="number">2.8</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">openssl:</span> <span class="number">1.1</span>.<span class="number">1</span>d</span><br><span class="line"><span class="symbol">cldr:</span> <span class="number">35.1</span></span><br><span class="line"><span class="symbol">icu:</span> <span class="number">64.2</span></span><br><span class="line"><span class="symbol">tz:</span> <span class="number">2019</span>a</span><br><span class="line"><span class="symbol">unicode:</span> <span class="number">12.1</span></span><br><span class="line"><span class="comment"># 以上為顯示結果</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/Ra7FZmI.png" alt></p>
-<p>初始化這個部落格</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;資料夾名稱&gt;</span><br><span class="line">$ hexo init RiverBlog</span><br><span class="line"># 自由命名</span><br><span class="line"></span><br><span class="line">$ npm install</span><br><span class="line"># 安裝相關套件</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/K8yL7nD.png" alt></p>
-<p>執行 Hexo server</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 瀏覽器輸入 http://localhost:4000</span></span><br><span class="line"><span class="comment"># 預設 port 4000 想更換可改輸入 $ hexo s -p XXXX</span></span><br><span class="line"><span class="comment"># XXXX 可換成想輸入的數字</span></span><br><span class="line"><span class="comment"># 關閉 hexo server 指令 Ctrl + C</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/KCgdXng.png" alt></p>
-<p><img src="https://i.imgur.com/hjEhPtU.png" alt></p>
-<hr>
-<h2 id="更換主題">更換主題</h2>
-<p>預設 themes 不喜歡的話，可到 <a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">Hexo Themes</a> 挑喜歡的主題</p>
-<p>備註：挑選喜歡的主題後，務必詳讀該主題 GitHub 及 <a href="https://hexo.io/zh-tw/api/index.html" target="_blank" rel="noopener">Hexo 官方文件</a>，後續才知道如何改 (各主題修改方式不盡相同，依該主題 GitHub 文件說明為主)</p>
-<p>以「<a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>」主題為例</p>
-<p><img src="https://i.imgur.com/di5fei5.png" alt></p>
-<p>進入 <a href="https://github.com/zhwangart/hexo-theme-ocean" target="_blank" rel="noopener">GitHub</a> 後，複製下載連結</p>
-<p><img src="https://i.imgur.com/O3GNCcr.png" alt></p>
-<p>切換到 themes 資料夾</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ cd themes</span><br><span class="line"><span class="comment"># 切換到 themes 資料夾</span></span><br><span class="line"></span><br><span class="line">$ git clone &lt;URL&gt;</span><br><span class="line">$ git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/zhwangart</span><span class="regexp">/hexo-theme-ocean.git</span></span><br><span class="line"><span class="regexp"># 將想要的主題 clone 下來</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">$ cd ..</span></span><br><span class="line"><span class="regexp"># 回上一層資料夾</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">$ code .</span></span><br><span class="line"><span class="regexp"># 開啟 VScode 編輯軟體</span></span><br></pre></td></tr></table></figure></p>
-<p>備註：<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code 官方網站</a></p>
-<p><img src="https://i.imgur.com/3dvHaet.png" alt></p>
-<p><strong>修改「_config.yml」前，先把 hexo server 關閉</strong></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改前</span></span><br><span class="line"><span class="symbol">theme:</span> landscape</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改後</span></span><br><span class="line"><span class="symbol">theme:</span> hexo-theme-ocean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 改的是「RiverBlog」底下的「_config.yml」</span></span><br><span class="line"><span class="comment"># 而非「themes」底下的「_config.yml」</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/37gv33Y.png" alt></p>
-<p>theme 主題替換後，再次執行</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 開啟瀏覽器，會發現主題已更換</span></span><br><span class="line"><span class="comment"># 若預設主題確定不會再使用，可把「themes」底下的資料夾「landscape」刪除</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/4DuZGry.png" alt></p>
-<hr>
-<h2 id="新增文章">新增文章</h2>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"&lt;title&gt;"</span></span><br><span class="line">$ hexo new <span class="string">"標題寫在這裡，Hello World"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 這指令很常用，每次新增文章都要這麼做</span></span><br></pre></td></tr></table></figure></p>
-<p>Hexo 支援 <a href="https://markdown.tw/" target="_blank" rel="noopener">Markdown 語法</a>，使用方法自行翻閱 API</p>
-<p><img src="https://i.imgur.com/2V6sZUo.png" alt></p>
-<p><strong>編輯文章時 <code>$ hexo s</code> 免關，可直接重新整理瀏覽器，即時觀看內容</strong></p>
-<p><img src="https://i.imgur.com/8TZSfNG.png" alt></p>
-<hr>
-<h2 id="部署-github">部署 GitHub</h2>
-<p>當 Blog 改成想要的形狀後，接下來要部署到 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></p>
-<h3 id="安装-deploy-git-插件">安装 deploy git 插件</h3>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 要在對的路徑做這件事情喔</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/USbCTZ1.png" alt></p>
-<h3 id="登入-github-後選new-repository">登入 GitHub 後，選「New repository」</h3>
-<p><img src="https://i.imgur.com/w4qJh0t.png" alt></p>
-<p>在 GitHub 新增一個名稱為 &lt;username&gt;.github.io 的專案</p>
-<p>範例：<br>
-Repository name：RiverBlog.github.io</p>
-<p><strong>備註：username 須與 GitHub 名稱一樣，後面「.github.io」不可省略，以免 CSS、JavaScript 效果吃不到 (這超重要!!!)</strong></p>
-<p><img src="https://i.imgur.com/JCrh1bh.png" alt></p>
-<p>產生的「.git」連結複製起來，「_config.yml」檔案會用到</p>
-<p>備註：此網頁先不要關，後面會用到</p>
-<p><img src="https://i.imgur.com/VYodIO4.png" alt></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改前</span></span><br><span class="line"><span class="symbol">deploy:</span></span><br><span class="line">  <span class="symbol">type:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改後</span></span><br><span class="line"><span class="symbol">deploy:</span></span><br><span class="line">  <span class="symbol">type:</span> git</span><br><span class="line">  <span class="symbol">repo:</span> <span class="symbol">https:</span>/<span class="regexp">/github.com/</span>River-Ye/riverye.github.io.git</span><br><span class="line">  <span class="symbol">branch:</span> master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 空格不能省略</span></span><br><span class="line"><span class="comment"># 其中 repo 換成自己的 GitHub 連結</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/SCHMLfO.png" alt></p>
-<p>在 Ubuntu 及 Git Bash 皆輸入</p>
-<p>備註：已經有再用 git push 者，可省略此步驟</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 輸入 GitHub 名稱、信箱</span></span><br><span class="line">$ git config --global user.name <span class="string">"your_name"</span></span><br><span class="line">$ git config --global user.email <span class="string">"your_email"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">$ git config --global user.name <span class="string">"River-Ye"</span></span><br><span class="line">$ git config --global user.email <span class="string">"xxxx@gmail.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 檢視目前設定</span></span><br><span class="line">$ git config --list</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/WyJKAFC.png" alt></p>
-<p><img src="https://i.imgur.com/ygqrLBQ.png" alt></p>
-<p>完成 GitHub 設定後，接下來要部署到 GitHub</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 產生靜態檔後就部署</span></span><br><span class="line"><span class="comment"># 這指令會很常用，每次有新文章或修改內容時，都會用到!!!</span></span><br><span class="line"><span class="comment"># 之前提過 Windows 底下的 Ubuntu push GitHub 輸入帳號密碼時，會說驗證錯誤</span></span><br><span class="line"><span class="comment"># 因此需透過 Git Bash push</span></span><br><span class="line"><span class="comment"># Mac 則無此問題</span></span><br></pre></td></tr></table></figure></p>
-<p>備註：Mac 使用者，執行完 <code>$ hexo g -d</code> 即完成部署並推上 GitHub，可直接跳到「<a href="#rang-lian-jie-zheng-chang-hua">讓連結正常化</a>」開始觀看</p>
-<p><img src="https://i.imgur.com/nE61zVL.png" alt></p>
-<p>忽略此錯誤訊息，接下來改用 Git Bash push</p>
-<p><img src="https://i.imgur.com/hXR1FAN.png" alt></p>
-<p>Git Bash 輸入</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ cd /c/demo/RiverBlog/.deploy_git/</span><br><span class="line"><span class="comment"># 切換到 「.deploy_git」 資料夾</span></span><br><span class="line"></span><br><span class="line">$ git remote add river_blog <span class="symbol">https:</span>/<span class="regexp">/github.com/</span>River-Ye/RiverBlog.github.io.git</span><br><span class="line">$ git remote add &lt;遠端 branch 名稱，自由命名&gt; &lt;遠端連結&gt;</span><br><span class="line"><span class="comment"># 手動新增 GitHub 遠端 branch 名稱、連結</span></span><br><span class="line"></span><br><span class="line">$ git remote -v</span><br><span class="line"><span class="comment"># 查詢 remote 有哪些</span></span><br><span class="line"></span><br><span class="line">$ git push -u river_blog master</span><br><span class="line">$ git push -u &lt;遠端 branch 名稱&gt; &lt;本地端 branch 名稱&gt;</span><br><span class="line"><span class="comment"># push 到 GitHub</span></span><br><span class="line"><span class="comment"># Windwos 第一次 push 以後，之後指令改成</span></span><br><span class="line"><span class="comment"># $ git push &lt;遠端 branch 名稱&gt; &lt;本地端 branch 名稱&gt; -f</span></span><br><span class="line"><span class="comment"># 範例：</span></span><br><span class="line"><span class="comment"># $ git push river master -f</span></span><br><span class="line"></span><br><span class="line">$ git log</span><br><span class="line"><span class="comment"># 查看 git log</span></span><br></pre></td></tr></table></figure></p>
-<p>過程中，會需要輸入 GitHub 名稱、密碼</p>
-<p>備註：第一次會需要輸入 GitHub 名稱、密碼，之後不用再輸入</p>
-<p><img src="https://i.imgur.com/ncKGKVX.png" alt></p>
-<p>打開 <a href="https://github.com/river-demo/river-demo.github.io" target="_blank" rel="noopener">GitHub project</a> 的 Settings，下方即可看到 GitHub 網址連結 <a href="https://river-demo.github.io/" target="_blank" rel="noopener">https://river-demo.github.io/</a></p>
-<p><img src="https://i.imgur.com/l0Hp88A.png" alt></p>
-<p>完成以上步驟即可獲得 username.github.io 的網址</p>
-<hr>
-<h2 id="讓連結正常化">讓連結正常化</h2>
-<p><strong>此時會發現 Blog 中的連結幾乎失效</strong>，回到「_config.yml」中設定</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改前</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">http:</span>/<span class="regexp">/yoursite.com/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 修改後</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">https:</span>/<span class="regexp">/river-demo.github.io/</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">https:</span>/<span class="regexp">/riverye.com/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可用 username.github.io 或自己的 domain</span></span><br><span class="line"><span class="comment"># 看需求調整</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/anXPrIa.png" alt></p>
-<hr>
-<h2 id="客製化-domain">客製化 domain</h2>
-<p>有了 <a href="https://river-demo.github.io/" target="_blank" rel="noopener">https://river-demo.github.io/</a> 後，想把網址換成專屬網域名稱，以下兩個方法可供參考：</p>
-<ol>
-<li><a href="https://www.gandi.net/zh-hant" target="_blank" rel="noopener">Gandi.net</a> ( <a href="https://riverye.com">riverye.com</a> 在這買的)</li>
-<li><a href="https://www.freenom.com/" target="_blank" rel="noopener">freenom</a> ( <a href="https://river-demo.tk" target="_blank" rel="noopener">river-demo.tk</a> 在這挑的，教學用，免費，但網址比較醜)</li>
-</ol>
-<hr>
-<h3 id="gandinet"><a href="https://www.gandi.net/zh-hant" target="_blank" rel="noopener">Gandi.net</a></h3>
-<p>搜尋想買的網域名稱後，信用卡刷一波就有了</p>
-<p><img src="https://i.imgur.com/1FiBwYb.png" alt></p>
-<p>新增 DNS 紀錄</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">類型： A</span><br><span class="line">TTL： <span class="number">1800</span></span><br><span class="line">IPv4： <span class="number">185.199</span>.<span class="number">108.153</span></span><br></pre></td></tr></table></figure></p>
-<p>參考：<a href="https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-a-records-with-your-dns-provider" target="_blank" rel="noopener">GitHub 官方列表</a></p>
-<p><img src="https://i.imgur.com/NB3FJGB.png" alt></p>
-<p>GitHub 設定如下</p>
-<p><img src="https://i.imgur.com/xLTmPfr.png" alt></p>
-<p>稍等片刻即完成 <a href="https://riverye.com">riverye.com</a></p>
-<hr>
-<h3 id="freenom"><a href="https://www.freenom.com/" target="_blank" rel="noopener">freenom</a></h3>
-<p>搜尋想要的網域名稱後，可選擇信用卡刷一波，或挑免費的使用</p>
-<p>備註： freenom 註冊按鈕藏在購物車內<br>
-跟著使用體驗流程走，便會看到註冊畫面 (很隱藏)</p>
-<p><img src="https://i.imgur.com/N57PuPO.jpg" alt></p>
-<p>購買完成後，從首頁上方「Services」點選「My Domains」接著設定「Manage Domain」中的「Manage Freenom DNS」</p>
-<p><img src="https://i.imgur.com/A5nYfDo.png" alt></p>
-<p>Manage Freenom DNS 設定如下</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">| Name |</span> Type  <span class="params">| TTL  |</span>     Target      <span class="params">|</span></span><br><span class="line"><span class="params">|</span> ---- <span class="params">| ----- |</span> ---- <span class="params">| --------------- |</span></span><br><span class="line"><span class="params">|      |</span>   A   <span class="params">| 1800 |</span> <span class="number">185.199</span>.<span class="number">108.153</span> <span class="params">|</span></span><br><span class="line"><span class="params">|</span> ---- <span class="params">| ----- |</span> ---- <span class="params">| --------------- |</span></span><br><span class="line"><span class="params">|  WWW |</span> CNAME <span class="params">| 1800 |</span> river-demo.tk   <span class="params">|</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/jXWONT1.png" alt></p>
-<p>GitHub 設定如下</p>
-<p><img src="https://i.imgur.com/X3ZUwhD.png" alt></p>
-<p>稍等片刻即完成 <a href="https://river-demo.tk" target="_blank" rel="noopener">river-demo.tk</a></p>
-<h2 id="完成以上步驟恭喜有專屬-domain-blog-灑花">完成以上步驟，恭喜有專屬 domain Blog (灑花</h2>
-<hr>
-<h2 id="q-amp-a">Q &amp; A</h2>
-<h3 id="1-之前裝過-nodejs-為何還要裝-nvm">1. 之前裝過 Node.js 為何還要裝 NVM ?</h3>
-<p>先前我們有使用 Ubuntu 本身的 apt-get 安裝 Node.js<br>
-不過那是被安裝到 /usr/bin/node<br>
-有時候安裝套件需要 sudo 提供管理者權限<br>
-非常麻煩，因此我們使用 nvm 來安裝另一個 Node.js<br>
-這個 Node.js 的執行檔就任我們使用，不需要提供管理者權限了</p>
-<h3 id="2-hexo-上沒喜歡的-themes有別的選擇嗎">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</h3>
-<p>沒關係，給你滿滿的選擇：<br>
-jekyll <a href="https://jekyllrb.com/" target="_blank" rel="noopener">https://jekyllrb.com/</a><br>
-Ghost <a href="https://ghost.org" target="_blank" rel="noopener">https://ghost.org</a><br>
-Hugo <a href="https://gohugo.io" target="_blank" rel="noopener">https://gohugo.io</a><br>
-Hexo <a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a><br>
-Octopress <a href="http://octopress.org/" target="_blank" rel="noopener">http://octopress.org/</a><br>
-VuePress <a href="https://vuepress.vuejs.org" target="_blank" rel="noopener">https://vuepress.vuejs.org</a></p>
-<p>附上：<a href="https://www.staticgen.com/" target="_blank" rel="noopener">靜態頁面產生器的比較</a></p>
-<h3 id="3-為什麼你-github-settings-中的enforce-https可以勾">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</h3>
-<p>讓子彈飛一回，就有了 (約半小時左右)</p>
-<h3 id="4-為什麼更新-github-後原本-domain-會失效">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</h3>
-<p>GitHub 的 Settings 跑掉，手動改回原本 domain 即可</p>
-<p><img src="https://i.imgur.com/fdrStDS.png" alt></p>
-<hr>
-<h2 id="最後的最後">最後的最後</h2>
-<p>照著上面操作，或許能畫葫蘆出一個 Blog，但沒相關知識 (HTML5、Git、Linux 指令...等) 的話，會發現改不太動，甚至玩壞時不知該如何處理，這時請擅用 Google 自行解決問題</p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10242280" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10242280</a><br>
+medium 文章連結：<a href="https://link.medium.com/9T7n8giyZ9" target="_blank" rel="noopener">https://link.medium.com/9T7n8giyZ9</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Logger-%E7%B4%80%E9%8C%84%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/10/23/從無到有的-Blog-建置教學-含-domain-購買轉址/">https://riverye.com/2019/10/23/從無到有的-Blog-建置教學-含-domain-購買轉址/</a></p>
-    <p>發表日期：2019-10-23</p>
-    <p>更新日期：2019-10-25</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/">https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/</a></p>
+    <p>發表日期：2020-09-23</p>
+    <p>更新日期：2020-09-23</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/10/27/如何在不重灌的情況下修復-Ubuntu-OS/" title="如何在不重灌的情況下修復 Ubuntu OS">
-        <div class="nextTitle">如何在不重灌的情況下修復 Ubuntu OS</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/10/12/Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql/" title="Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql">
-        <div class="prevTitle">Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql</div>
+      <a href="/2020/09/22/Day17-Ruby-on-Rails-中的-awesome-print-讓你的-console-更好閱讀/" title="Day17 - Ruby on Rails 中的 awesome_print 讓你的 console 更好閱讀">
+        <div class="prevTitle">Day17 - Ruby on Rails 中的 awesome_print 讓你的 console 更好閱讀</div>
       </a>
       
     </li>
@@ -632,8 +493,8 @@ VuePress <a href="https://vuepress.vuejs.org" target="_blank" rel="noopener">htt
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/10/23/從無到有的-Blog-建置教學-含-domain-購買轉址/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "從無到有的 Blog 建置教學 (含 domain 購買轉址)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -752,7 +613,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#說在前面"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#環境建置"><span class="toc-number">2.</span> <span class="toc-text">環境建置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nvm-安裝"><span class="toc-number">3.</span> <span class="toc-text">nvm 安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-hexo"><span class="toc-number">4.</span> <span class="toc-text">安裝 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更換主題"><span class="toc-number">5.</span> <span class="toc-text">更換主題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增文章"><span class="toc-number">6.</span> <span class="toc-text">新增文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署-github"><span class="toc-number">7.</span> <span class="toc-text">部署 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-deploy-git-插件"><span class="toc-number">7.1.</span> <span class="toc-text">安装 deploy git 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登入-github-後選new-repository"><span class="toc-number">7.2.</span> <span class="toc-text">登入 GitHub 後，選「New repository」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讓連結正常化"><span class="toc-number">8.</span> <span class="toc-text">讓連結正常化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客製化-domain"><span class="toc-number">9.</span> <span class="toc-text">客製化 domain</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gandinet"><span class="toc-number">9.1.</span> <span class="toc-text">Gandi.net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freenom"><span class="toc-number">9.2.</span> <span class="toc-text">freenom</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成以上步驟恭喜有專屬-domain-blog-灑花"><span class="toc-number">10.</span> <span class="toc-text">完成以上步驟，恭喜有專屬 domain Blog (灑花</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q-amp-a"><span class="toc-number">11.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-之前裝過-nodejs-為何還要裝-nvm"><span class="toc-number">11.1.</span> <span class="toc-text">1. 之前裝過 Node.js 為何還要裝 NVM ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-hexo-上沒喜歡的-themes有別的選擇嗎"><span class="toc-number">11.2.</span> <span class="toc-text">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-為什麼你-github-settings-中的enforce-https可以勾"><span class="toc-number">11.3.</span> <span class="toc-text">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-為什麼更新-github-後原本-domain-會失效"><span class="toc-number">11.4.</span> <span class="toc-text">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最後的最後"><span class="toc-number">12.</span> <span class="toc-text">最後的最後</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何產生-log"><span class="toc-number">2.</span> <span class="toc-text">如何產生 Log</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在-development-操作的-log"><span class="toc-number">2.0.1.</span> <span class="toc-text">在 development 操作的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#development-增加時間戳"><span class="toc-number">3.</span> <span class="toc-text">development 增加時間戳</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#增加時間戳的-log"><span class="toc-number">3.0.1.</span> <span class="toc-text">增加時間戳的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在指定位置增加-log"><span class="toc-number">4.</span> <span class="toc-text">如何在指定位置增加 Log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#將-log-存到指定路徑檔案中"><span class="toc-number">5.</span> <span class="toc-text">將 Log 存到指定路徑檔案中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

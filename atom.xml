@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-09-21T23:59:55.513Z</updated>
+  <updated>2020-09-22T16:02:47.064Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用</title>
+    <link href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Logger-%E7%B4%80%E9%8C%84%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/"/>
+    <id>https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/</id>
+    <published>2020-09-22T16:00:00.000Z</published>
+    <updated>2020-09-22T16:02:47.064Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題<br>像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等<br>若都沒有儲存 Log 紀錄的話，就...好自為之 QQ</p><p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><hr><h2 id="如何產生-log">如何產生 Log</h2><p>使用者在操作時，本身就會產生制式 Log 被記錄，並存在 Log 資料夾底下，依照當下環境，存在對應的檔案中</p><h4 id="在-development-操作的-log">在 development 操作的 Log</h4><p><img src="https://i.imgur.com/lwrV4PN.jpg" alt></p><h2 id="development-增加時間戳">development 增加時間戳</h2><p>上面那張圖雖然有自動存成 Log，但沒時間戳挺不方便的</p><p>增加方法如下，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/e384552e8e4f616854f38fe87be71998f3e612c6" target="_blank" rel="noopener">commit</a></p><p>備註: production 預設就有記錄時間戳 (<code>config/environments/production.rb</code>)，故不用調整，而 development 則依需求是否需要增加</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line"></span><br><span class="line">config.log_formatter = <span class="symbol">:</span><span class="symbol">:Logger</span><span class="symbol">:</span><span class="symbol">:Formatter</span>.new</span><br></pre></td></tr></table></figure></p><h4 id="增加時間戳的-log">增加時間戳的 Log</h4><p><img src="https://i.imgur.com/i4pCCKD.png" alt></p><h2 id="如何在指定位置增加-log">如何在指定位置增加 Log</h2><p>情境: 打 API 的 request 和 response 建議可以儲存，以及針對錯誤訊息也要記錄，方便後續追蹤</p><p>示範如何紀錄，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/a7c4b3d52485ee08dee4d7518ffb53713b1acd7b" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line"></span><br><span class="line">Rails.logger.info <span class="string">"params: <span class="subst">#&#123;user_params&#125;</span>, <span class="subst">#&#123;@user.inspect&#125;</span>"</span></span><br></pre></td></tr></table></figure></p><h2 id="將-log-存到指定路徑檔案中">將 Log 存到指定路徑檔案中</h2><p>將所有 Log 都存在預設路徑檔案中，會導致原本的檔案過於肥大，且要尋找時會比較麻煩，可依需求分類存在不同檔案中，像是打 A API 的統一存在 A 路徑，B API 的統一存在 B 路徑中...</p><p>範例可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/add096871d024f3f6e5f8cb6121c5e5c1e3c8c5e" target="_blank" rel="noopener">commit</a><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/services/file_log.rb</span></span><br><span class="line"><span class="comment"># 有不同寫法，歡迎在底下留言交流</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileLog</span></span></span><br><span class="line">  @loggers <span class="params">||</span>= &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">logger</span><span class="params">(location)</span></span></span><br><span class="line">    @loggers[location] <span class="params">||</span>= create_logger(location)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_logger</span><span class="params">(location)</span></span></span><br><span class="line">    <span class="keyword">if</span> ENV[<span class="string">'RAILS_LOG_TO_STDOUT'</span>]</span><br><span class="line">      logger = Logger.new(STDOUT)</span><br><span class="line">      logger.progname = File.basename(location, <span class="string">'.log'</span>)</span><br><span class="line">      logger.formatter = Rails.configuration.log_formatter</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      FileUtils.mkdir_p(Rails.root.join(<span class="string">'log'</span>, File.dirname(location)))</span><br><span class="line">      logger = Logger.new(Rails.root.join(<span class="string">'log'</span>, location))</span><br><span class="line">      logger.formatter = proc <span class="keyword">do</span> <span class="params">|severity, datetime, _progname, msg|</span></span><br><span class="line">        <span class="string">"<span class="subst">#&#123;severity&#125;</span> [<span class="subst">#&#123;datetime.strftime(<span class="string">'%Y-%m-%d %H:%M:%S.%6N'</span>)&#125;</span>]: <span class="subst">#&#123;msg&#125;</span>\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ActiveSupport::TaggedLogging.new(logger)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2 id="參考資料">參考資料</h2><ol><li><a href="https://rails.ruby.tw/debugging_rails_applications.html#logger" target="_blank" rel="noopener">除錯Rails 應用程式— Ruby on Rails 指南</a></li><li><a href="https://ihower.tw/rails/deployment.html#sec9" target="_blank" rel="noopener">Ruby on Rails 實戰聖經#整理 Log 檔案</a></li></ol><hr><h2 id="小結">小結</h2><p>Log 可說是非常重要的小細節，也能客製化格式，Google 下便有相關資源可參考，除了上述範例使用到的 <code>:info</code> 外，還有 <code>:debug</code> 、 <code>:warn</code> 、 <code>:error</code> 、 <code>:fatal</code> 以及 <code>:unknown</code> 可以使用，差異可參考上述提供的參考資料連結</p><p>雖說很方便，但也不要過於氾濫什麼都儲存，除了會影響效能外，容量也會用很兇</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10242280" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10242280</a><br>medium 文章連結：<a href="https://link.medium.com/9T7n8giyZ9" target="_blank" rel="noopener">https://link.medium.com/9T7n8giyZ9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Logger-%E7%B4%80%E9%8C%84%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題&lt;br&gt;
+像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等&lt;br&gt;
+若都沒有儲存 Log 紀錄的話，就...好自為之 QQ&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Day17 - Ruby on Rails 中的 awesome_print 讓你的 console 更好閱讀</title>
     <link href="https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-awesome-print-%E8%AE%93%E4%BD%A0%E7%9A%84-console-%E6%9B%B4%E5%A5%BD%E9%96%B1%E8%AE%80/"/>
     <id>https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-中的-awesome-print-讓你的-console-更好閱讀/</id>
     <published>2020-09-21T16:00:00.000Z</published>
-    <updated>2020-09-21T23:59:55.513Z</updated>
+    <updated>2020-09-22T15:32:14.978Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>awesome_print 這套蠻實用的，對客戶來說無感，對工程師卻是有感的存在 (至少對我來說是啦 XD)，能讓 console 畫面比較美，看起來也比較賞心悅目，當 table 欄位比較多時，也比較好閱讀</p><p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><hr><h2 id="awesome-print">Awesome Print</h2><p><a href="https://github.com/awesome-print/awesome_print" target="_blank" rel="noopener">官方網站</a>有提到即將發佈的 2.0 版本<br>將只支援 Ruby v1.9.3 之後及 Rails v3.0 之後，若本身專案使用的版本比較舊的話，要特別留意</p><h2 id="如何安裝">如何安裝</h2><p>在 Gemfile 加入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/2/commits/f95351f95ce0ea2cbf2560f60a090e3016b38ef0" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile 檔案</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'awesome_print'</span>, <span class="string">'~&gt; 1.8'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p><h2 id="讓-console-預設使用-awesome-print">讓 console 預設使用 Awesome Print</h2><p><a href="https://github.com/awesome-print/awesome_print" target="_blank" rel="noopener">官方網站</a>內文有寫如何設定，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/2/commits/45c73c4e88cf177a57eec65ac2695f7c58efac53" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .gitignore</span></span><br><span class="line">.irb_history</span><br><span class="line"></span><br><span class="line"><span class="comment"># .irbrc</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'awesome_print'</span></span><br><span class="line">AwesomePrint.irb!</span><br><span class="line"></span><br><span class="line"><span class="comment"># config/initializers/awesome_print.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AwesomePrint</span></span></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">Formatters</span></span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BaseFormatter</span></span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">indented</span><span class="params">(&amp;block)</span></span></span><br><span class="line">        inspector.increase_indentation(&amp;block)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Inspector</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">increase_indentation</span><span class="params">(&amp;block)</span></span></span><br><span class="line">      indentator.indent(&amp;block)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2 id="如何使用">如何使用</h2><p>與一般操作一樣，差別在於看起來比較賞心悅目 XD</p><p>直接看以下圖片，便知其差異</p><h4 id="console-預設-無-awesome_print">console 預設 (無 awesome_print)</h4><p><img src="https://i.imgur.com/WYUTX3L.png" alt></p><h4 id="有開啟-awesome_print">有開啟 awesome_print</h4><p><img src="https://i.imgur.com/YNNzysx.png" alt></p><hr><h2 id="小結">小結</h2><p>可讀性變高以後，心情也會跟著上升，眼睛也比較不會這麼吃力，開發也跟著變快惹(!?</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10241726" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10241726</a><br>medium 文章連結：<a href="https://link.medium.com/RDfLdOCrY9" target="_blank" rel="noopener">https://link.medium.com/RDfLdOCrY9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-awesome-print-%E8%AE%93%E4%BD%A0%E7%9A%84-console-%E6%9B%B4%E5%A5%BD%E9%96%B1%E8%AE%80/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
     
@@ -578,39 +607,6 @@
       <category term="Pry" scheme="https://riverye.com/tags/Pry/"/>
     
       <category term="rails console" scheme="https://riverye.com/tags/rails-console/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu sudo 免輸入密碼 no password 設定</title>
-    <link href="https://riverye.com/2019/11/22/Ubuntu-sudo-%E5%85%8D%E8%BC%B8%E5%85%A5%E5%AF%86%E7%A2%BC-no-password-%E8%A8%AD%E5%AE%9A/"/>
-    <id>https://riverye.com/2019/11/22/Ubuntu-sudo-免輸入密碼-no-password-設定/</id>
-    <published>2019-11-21T16:00:00.000Z</published>
-    <updated>2019-11-25T15:18:13.908Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="說明">說明</h1><p>在 Ubuntu 使用 sudo 權限時，總需要輸入密碼，好麻煩，透過以下設定，能一勞永逸。</p><p><img src="https://i.imgur.com/dWkifdp.png" alt></p><h1 id="步驟">步驟</h1><p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ sudo vi /etc/sudoers</span><br></pre></td></tr></table></figure></p><p>將約第 26 行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure></p><p>改成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%sudo   ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p><p><img src="https://i.imgur.com/ohoumhT.png" alt></p><p>存檔，大功告成！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;說明&quot;&gt;說明&lt;/h1&gt;
-&lt;p&gt;在 Ubuntu 使用 sudo 權限時，總需要輸入密碼，好麻煩，透過以下設定，能一勞永逸。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/dWkifdp.png&quot; alt&gt;&lt;/p&gt;
-&lt;h1 id=&quot;步驟&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
-    
-    
-      <category term="Ubuntu" scheme="https://riverye.com/tags/Ubuntu/"/>
-    
-      <category term="sudo" scheme="https://riverye.com/tags/sudo/"/>
-    
-      <category term="no password" scheme="https://riverye.com/tags/no-password/"/>
     
   </entry>
   
