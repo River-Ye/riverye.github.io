@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>壓線前逼自己刷一題 Codewars · 小菜的 Blog</title>
+    <title>Day19 - Ruby on Rails 測試篇 - RSpec · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">壓線前逼自己刷一題 Codewars</a>
+                <a href="#" class="post-name">Day19 - Ruby on Rails 測試篇 - RSpec</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       壓線前逼自己刷一題 Codewars
+       Day19 - Ruby on Rails 測試篇 - RSpec
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/17</span
+          >2020/09/24</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >225</span
+            >711</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >2 min</span
           ></span
         >
       </div>
@@ -419,47 +419,69 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>今天整個忙翻，回到家打開電腦已經 22:30 左右<br>
-逼自己要在 12:00 前 po<s>廢</s>文<br>
-給你自己承諾要堅持下去<br>
-怕來不及 po 文，因此今天題目比較簡單些<br>
-挑戰的是<a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV7 的題目</p>
+    <h2 id="前言">前言</h2>
+<p>身為一名 Ruby on Rails 工程師，幾乎都有寫過 <a href="https://github.com/rspec/rspec-rails" target="_blank" rel="noopener">RSpec</a>，<br>
+測試本身與開發是一樣重要的，有聽過一詞是開發時間緊迫，沒時間寫測試，<br>
+要趕在截止日前完成功能，都要來不及了，有空再補...<s>(通常就是沒下文</s><br>
+後續的維護成本、技術債反而會更高，<br>
+且要修改時，若有測試涵蓋的話，也比較不用擔心改 A 壞 B，<br>
+還能幫助你避開低級錯誤 (像是語法錯誤等)</p>
+<p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<p><a href="https://www.codewars.com/kata/isograms/train/ruby" target="_blank" rel="noopener">題目</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">An isogram is a word that has no repeating letters, consecutive <span class="keyword">or</span> non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter <span class="keyword">case</span>.</span><br><span class="line"></span><br><span class="line">is_isogram(<span class="string">"Dermatoglyphics"</span> ) == <span class="literal">true</span></span><br><span class="line">is_isogram(<span class="string">"aba"</span> ) == <span class="literal">false</span></span><br><span class="line">is_isogram(<span class="string">"moOse"</span> ) == <span class="literal">false</span> <span class="comment"># -- ignore letter case</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_isogram</span><span class="params">(string)</span></span></span><br><span class="line">  <span class="comment">#your code here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">"Dermatoglyphics"</span>), <span class="literal">true</span> )</span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">"isogram"</span>), <span class="literal">true</span> )</span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">"aba"</span>), <span class="literal">false</span>, <span class="string">"same chars may not be adjacent"</span> )</span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">"moOse"</span>), <span class="literal">false</span>, <span class="string">"same chars may not be same case"</span> )</span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">"isIsogram"</span>), <span class="literal">false</span> )</span><br><span class="line">Test.assert_equals(is_isogram(<span class="string">""</span>), <span class="literal">true</span>, <span class="string">"an empty string is a valid isogram"</span> )</span><br></pre></td></tr></table></figure></p>
+<h2 id="如何安裝">如何安裝</h2>
+<p>放在 <code>:development, :test</code> group 裡面，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/40e8c4680dfe192104bd2051c22d0ea8eff106b1" target="_blank" rel="noopener">commit</a></p>
+<p>參考資料: <a href="https://relishapp.com/rspec/rspec-rails/docs" target="_blank" rel="noopener">https://relishapp.com/rspec/rspec-rails/docs</a><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
+<p>接著再終端機輸入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/69fb29236766f40978def698774af235eb8877e4" target="_blank" rel="noopener">commit</a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rails generate rspec:install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可縮寫成</span></span><br><span class="line">rails g rspec:install</span><br></pre></td></tr></table></figure></p>
+<h2 id="產生範例-spec">產生範例 spec</h2>
+<p>由於之前已經透過 <code>scaffold</code> 建立 User<br>
+欲透過指令補產生相關測試檔案的話，在終端機輸入以下<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails g rspec:scaffold user</span><br></pre></td></tr></table></figure></p>
+<p>若不透過指令，也可手動新增檔案，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/ecc69165e1cfff8a2124cb94b8460d0960b78d56" target="_blank" rel="noopener">commit</a></p>
+<h4 id="備註">備註:</h4>
+<ol>
+<li>原本我也不知道要這樣下指令，透過 <code>rails g -h</code> 的技巧，看有哪些參數可以使用 (若不清楚，可以看前面寫的 Linux 指令文章 <code>man</code>、<code>help</code>、<code>tldr</code>，非常受用的技巧)</li>
+<li>若已經有先裝 RSpec ，透過 scaffold 產生檔案時，便會一起產生 spec.rb 的相關檔案</li>
+</ol>
+<h2 id="如何執行">如何執行</h2>
+<p>終端機輸入<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跑全部的測試</span></span><br><span class="line">rspec</span><br><span class="line">rspec spec</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定資料夾的測試</span></span><br><span class="line">rspec spec/routing/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案的測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案某一個測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb:22</span><br></pre></td></tr></table></figure></p>
+<h2 id="如何讓-ci-也能跑-rspec">如何讓 CI 也能跑 rspec</h2>
+<p>將原本 CI 設定檔新增以下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/707897e611d3a6a4b8f5e0d026bd3494274b1305" target="_blank" rel="noopener">commit</a><br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rspec</span><br></pre></td></tr></table></figure></p>
+<h2 id="推薦網站">推薦網站</h2>
+<p>想提升自己 RSpec 寫法的話，可參考 <a href="https://www.betterspecs.org/" target="_blank" rel="noopener">Better Specs</a> 此網站</p>
 <hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=FwmJUjd5diw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/FwmJUjd5diw/0.jpg" alt="Yes"></a></p>
+<h2 id="小結">小結</h2>
+<p>測試非常的重要，但也別把測試當萬靈丹，它只能幫忙測出有涵蓋到的情境 (假設測試的情境、準備的答案、寫的測試都是對的)，依然無法測出沒想到的情境，未來再修改 code 時，也可能發現原本考量的情境已經變了，這時便需要調整測試本身</p>
+<p>測試本身，其實就可以寫成 30 天的文章，自成一個生態圈，且還有許多相關的 <a href="https://rubygems.org/" target="_blank" rel="noopener">Gem</a> 相輔相成，像是 <a href="https://github.com/thoughtbot/factory_bot" target="_blank" rel="noopener">factory_bot</a>、<a href="https://github.com/DatabaseCleaner/database_cleaner" target="_blank" rel="noopener">Database Cleaner</a>、<a href="https://github.com/travisjeffery/timecop" target="_blank" rel="noopener">timecop</a>、<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="noopener">Capybara</a>、<a href="https://github.com/simplecov-ruby/simplecov" target="_blank" rel="noopener">SimpleCov</a>、<a href="https://github.com/guilleiguaran/fakeredis" target="_blank" rel="noopener">FakeRedis</a>...等，將來有機會再視情況寫成文章...</p>
+<p>本篇其實寫的蠻精簡的 XD <s>(逃</s>，下篇會講另一個測試套件 <a href="https://github.com/cucumber/cucumber-ruby" target="_blank" rel="noopener">Cucumber</a></p>
 <hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isIsogram</span><span class="params">(string)</span></span></span><br><span class="line">  <span class="comment"># if string.downcase.chars.uniq == string.downcase.chars</span></span><br><span class="line">  <span class="comment">#   true</span></span><br><span class="line">  <span class="comment"># else</span></span><br><span class="line">  <span class="comment">#   false</span></span><br><span class="line">  <span class="comment"># end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># return true if string.downcase.chars.uniq == string.downcase.chars</span></span><br><span class="line">  <span class="comment"># false</span></span><br><span class="line"></span><br><span class="line">  string.downcase.chars.uniq == string.downcase.chars</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10242906" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10242906</a><br>
+medium 文章連結：<a href="https://link.medium.com/M8qWBUbd19" target="_blank" rel="noopener">https://link.medium.com/M8qWBUbd19</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-%E6%B8%AC%E8%A9%A6%E7%AF%87-RSpec/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/17/壓線前逼自己刷一題-Codewars/">https://riverye.com/2019/09/17/壓線前逼自己刷一題-Codewars/</a></p>
-    <p>發表日期：2019-09-17</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/">https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/</a></p>
+    <p>發表日期：2020-09-24</p>
+    <p>更新日期：2020-09-24</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/18/連續刷題看-7-分鐘能刷幾題-Codewars/" title="連續刷題看 7 分鐘能刷幾題 Codewars">
-        <div class="nextTitle">連續刷題看 7 分鐘能刷幾題 Codewars</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/16/刷一週題目了，有變強一些嗎/" title="刷一週題目了，有變強一些嗎?">
-        <div class="prevTitle">刷一週題目了，有變強一些嗎?</div>
+      <a href="/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/" title="Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用">
+        <div class="prevTitle">Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用</div>
       </a>
       
     </li>
@@ -475,8 +497,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/17/壓線前逼自己刷一題-Codewars/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "壓線前逼自己刷一題 Codewars"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day19 - Ruby on Rails 測試篇 - RSpec"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -595,7 +617,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#產生範例-spec"><span class="toc-number">3.</span> <span class="toc-text">產生範例 spec</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#備註"><span class="toc-number">3.0.1.</span> <span class="toc-text">備註:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何讓-ci-也能跑-rspec"><span class="toc-number">5.</span> <span class="toc-text">如何讓 CI 也能跑 rspec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推薦網站"><span class="toc-number">6.</span> <span class="toc-text">推薦網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
