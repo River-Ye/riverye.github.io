@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day19 - Ruby on Rails 測試篇 - RSpec · 小菜的 Blog</title>
+    <title>Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試) · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day19 - Ruby on Rails 測試篇 - RSpec</a>
+                <a href="#" class="post-name">Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試)</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day19 - Ruby on Rails 測試篇 - RSpec
+       Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試)
       <!-- 404 -->
       
     </h1>
@@ -300,17 +300,17 @@ height:50vh;
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2020/09/24</span
+          >2020/09/25</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >711</span
+            >923</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >3 min</span
           ></span
         >
       </div>
@@ -420,73 +420,78 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <h2 id="前言">前言</h2>
-<p>身為一名 Ruby on Rails 工程師，幾乎都有寫過 <a href="https://github.com/rspec/rspec-rails" target="_blank" rel="noopener">RSpec</a>，<br>
-測試本身與開發是一樣重要的，有聽過一詞是開發時間緊迫，沒時間寫測試，<br>
-要趕在截止日前完成功能，都要來不及了，有空再補...<s>(通常就是沒下文</s><br>
-後續的維護成本、技術債反而會更高，<br>
-且要修改時，若有測試涵蓋的話，也比較不用擔心改 A 壞 B，<br>
-還能幫助你避開低級錯誤 (像是語法錯誤等)</p>
+<p>前一篇介紹了 <a href="https://github.com/rspec/rspec-rails" target="_blank" rel="noopener">RSpec</a> <a href="https://rubygems.org/gems/rspec-rails" target="_blank" rel="noopener">Gem</a>，這次換介紹 <a href="https://github.com/cucumber/cucumber-ruby" target="_blank" rel="noopener">Cucumber</a> 這個 <a href="https://rubygems.org/gems/cucumber-rails" target="_blank" rel="noopener">Gem</a></p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
+<h2 id="介紹">介紹</h2>
+<h4 id="q1-心中或許會有疑問說已經有-rspec-為何還需要-cucumber-增加測試的複雜度">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</h4>
+<p>Cucumber 更像是讓人類看得懂的語言，來描述要測試的事情，且支援多種語系寫法，像是可以用中文寫測試，讓 PM 與客戶看得懂，也能成為將來驗收的依據</p>
+<h4 id="q2-可以只寫-cucumber-不寫-rspec-嗎">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</h4>
+<p>小孩紙才做選擇，我全都要，這就要問施主你的選擇惹 XD</p>
 <h2 id="如何安裝">如何安裝</h2>
-<p>放在 <code>:development, :test</code> group 裡面，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/40e8c4680dfe192104bd2051c22d0ea8eff106b1" target="_blank" rel="noopener">commit</a></p>
-<p>參考資料: <a href="https://relishapp.com/rspec/rspec-rails/docs" target="_blank" rel="noopener">https://relishapp.com/rspec/rspec-rails/docs</a><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
-<p>接著再終端機輸入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/69fb29236766f40978def698774af235eb8877e4" target="_blank" rel="noopener">commit</a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rails generate rspec:install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可縮寫成</span></span><br><span class="line">rails g rspec:install</span><br></pre></td></tr></table></figure></p>
-<h2 id="產生範例-spec">產生範例 spec</h2>
-<p>由於之前已經透過 <code>scaffold</code> 建立 User<br>
-欲透過指令補產生相關測試檔案的話，在終端機輸入以下<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails g rspec:scaffold user</span><br></pre></td></tr></table></figure></p>
-<p>若不透過指令，也可手動新增檔案，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/ecc69165e1cfff8a2124cb94b8460d0960b78d56" target="_blank" rel="noopener">commit</a></p>
-<h4 id="備註">備註:</h4>
-<ol>
-<li>原本我也不知道要這樣下指令，透過 <code>rails g -h</code> 的技巧，看有哪些參數可以使用 (若不清楚，可以看前面寫的 Linux 指令文章 <code>man</code>、<code>help</code>、<code>tldr</code>，非常受用的技巧)</li>
-<li>若已經有先裝 RSpec ，透過 scaffold 產生檔案時，便會一起產生 spec.rb 的相關檔案</li>
-</ol>
+<p>放在 <code>:test</code> 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/6ffbf593399e7dc4522c73d68aafba6a47d340bd" target="_blank" rel="noopener">commit</a></p>
+<p>參考資料: <a href="https://cucumber.io/docs/installation/ruby/" target="_blank" rel="noopener">Cucumber Installation</a>，<strong>官方文件有提醒 Ruby on Rails 的安裝方式與 Ruby 安裝方式不同喔!!</strong><br>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'cucumber-rails'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">gem <span class="string">'database_cleaner'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
+<p>上述 <code>bundle</code> 完成後，可輸入 <code>rails g -h</code> 會看到以下資訊
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 也可輸入 rails g -h | grep -B 2 cucumber</span></span><br><span class="line"></span><br><span class="line">Cucumber:</span><br><span class="line">  cucumber:install</span><br></pre></td></tr></table></figure></p>
+<p>接著再終端機輸入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/172e3b230dd9c9cb350959c5388d99998b73e2b8" target="_blank" rel="noopener">commit</a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rails generate cucumber:install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可縮寫成</span></span><br><span class="line">rails g cucumber:install</span><br></pre></td></tr></table></figure></p>
+<h2 id="寫個-cucumber-中文測試範例">寫個 Cucumber 中文測試範例</h2>
+<p>由於之前已經透過 <code>scaffold</code> 建立 User</p>
+<p>以下示範寫個中文測試，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/61b7859c504fda88b457ece8fc2144bdfe17febd" target="_blank" rel="noopener">commit</a>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># features/user.feature</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#language: zh-TW</span></span><br><span class="line">@user</span><br><span class="line">功能: 建立使用者</span><br><span class="line">  這是示範的範例</span><br><span class="line">  支援中英文寫法</span><br><span class="line"></span><br><span class="line">  場景: 能建立使用者</span><br><span class="line">    假如 一開始沒有使用者</span><br><span class="line">    假如 有一位使用者的姓名是<span class="string">"小菜"</span></span><br><span class="line">    而且 該使用者的信箱是<span class="string">"river@riverye.com"</span></span><br><span class="line">    而且 該使用者的電話與地址資訊如下<span class="symbol">:</span></span><br><span class="line">      <span class="params">|phone      |</span>address  <span class="params">|</span></span><br><span class="line"><span class="params">      |</span>0987654321 <span class="params">|台北市某處 |</span></span><br><span class="line">    當 使用者被建立時</span><br><span class="line">    那麼 使用者會有<span class="number">1</span>位</span><br><span class="line">    而且 使用者的資訊會是正確的<span class="symbol">:</span></span><br><span class="line">      <span class="params">|name |</span>email             <span class="params">|phone      |</span>address  <span class="params">|</span></span><br><span class="line"><span class="params">      |</span>小菜  <span class="params">|river@riverye.com |</span>0987654321 <span class="params">|台北市某處 |</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="空的測試-先寫規格還沒準備答案">空的測試 (先寫規格，還沒準備答案)</h4>
+<p><img src="https://i.imgur.com/RVohq2G.gif" alt></p>
 <h2 id="如何執行">如何執行</h2>
-<p>終端機輸入<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跑全部的測試</span></span><br><span class="line">rspec</span><br><span class="line">rspec spec</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定資料夾的測試</span></span><br><span class="line">rspec spec/routing/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案的測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案某一個測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb:22</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何讓-ci-也能跑-rspec">如何讓 CI 也能跑 rspec</h2>
-<p>將原本 CI 設定檔新增以下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/707897e611d3a6a4b8f5e0d026bd3494274b1305" target="_blank" rel="noopener">commit</a><br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rspec</span><br></pre></td></tr></table></figure></p>
-<h2 id="推薦網站">推薦網站</h2>
-<p>想提升自己 RSpec 寫法的話，可參考 <a href="https://www.betterspecs.org/" target="_blank" rel="noopener">Better Specs</a> 此網站</p>
+<p>終端機輸入
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跑全部檔案</span></span><br><span class="line">cucumber</span><br><span class="line">bundle <span class="built_in">exec</span> cucumber</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定 tag</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber -t @user</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定資料夾</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber features</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定檔案</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber features/user.feature</span><br></pre></td></tr></table></figure></p>
+<p>更多操作範例輸入
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cucumber -h</span><br><span class="line"></span><br><span class="line">Usage: cucumber [options] [ [FILE|DIR|URL][:LINE[:LINE]*] ]+</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cucumber examples/i18n/en/features</span><br><span class="line">cucumber @rerun.txt (See --format rerun)</span><br><span class="line">cucumber examples/i18n/it/features/somma.feature:6:98:113</span><br><span class="line">cucumber -s -i http://rubyurl.com/eeCl</span><br></pre></td></tr></table></figure></p>
+<h4 id="準備的測試答案">準備的測試答案</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># features/step_definitions/user_step.rb</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'一開始沒有使用者'</span>) <span class="keyword">do</span></span><br><span class="line">  expect(User.count).to eq(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'有一位使用者的姓名是&#123;string&#125;'</span>) <span class="keyword">do</span> <span class="params">|name|</span></span><br><span class="line">  @user = &#123;&#125;</span><br><span class="line">  @user.merge!(<span class="symbol">name:</span> name)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'該使用者的信箱是&#123;string&#125;'</span>) <span class="keyword">do</span> <span class="params">|email|</span></span><br><span class="line">  @user.merge!(<span class="symbol">email:</span> email)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'該使用者的電話與地址資訊如下:'</span>) <span class="keyword">do</span> <span class="params">|table|</span></span><br><span class="line">  table.hashes.each <span class="keyword">do</span> <span class="params">|hash|</span></span><br><span class="line">    phone = hash[<span class="string">'phone'</span>]</span><br><span class="line">    address = hash[<span class="string">'address'</span>]</span><br><span class="line">    @user.merge!(<span class="symbol">phone:</span> phone, <span class="symbol">address:</span> address)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">當(<span class="string">'使用者被建立時'</span>) <span class="keyword">do</span></span><br><span class="line">  @user = User.create(@user)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">那麼(<span class="string">'使用者會有&#123;int&#125;位'</span>) <span class="keyword">do</span> <span class="params">|count|</span></span><br><span class="line">  expect(User.count).to eq(count)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'使用者的資訊會是正確的:'</span>) <span class="keyword">do</span> <span class="params">|table|</span></span><br><span class="line">  table.hashes.each <span class="keyword">do</span> <span class="params">|hash|</span></span><br><span class="line">    hash.each <span class="keyword">do</span> <span class="params">|key, value|</span></span><br><span class="line">      expect(@user[key]).to eq(value)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="執行結果">執行結果</h4>
+<p><img src="https://i.imgur.com/cMNQlI9.gif" alt></p>
+<h2 id="如何讓-ci-也能跑-cucumber">如何讓 CI 也能跑 Cucumber</h2>
+<p>將原本 CI 設定檔新增以下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/8f55936c2956031d8517196979b4a9a4b15782e8" target="_blank" rel="noopener">commit</a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> cucumber</span><br></pre></td></tr></table></figure></p>
+<h2 id="官方網站">官方網站</h2>
+<p><a href="https://cucumber.io/docs/cucumber/" target="_blank" rel="noopener">https://cucumber.io/docs/cucumber/</a></p>
+<h2 id="參考資料">參考資料</h2>
+<p><a href="https://ihower.tw/presentation/cucumber-coscup2009.pdf" target="_blank" rel="noopener">Cucumber 小黃瓜驗收測試工具 - ihower</a></p>
 <hr>
 <h2 id="小結">小結</h2>
-<p>測試非常的重要，但也別把測試當萬靈丹，它只能幫忙測出有涵蓋到的情境 (假設測試的情境、準備的答案、寫的測試都是對的)，依然無法測出沒想到的情境，未來再修改 code 時，也可能發現原本考量的情境已經變了，這時便需要調整測試本身</p>
-<p>測試本身，其實就可以寫成 30 天的文章，自成一個生態圈，且還有許多相關的 <a href="https://rubygems.org/" target="_blank" rel="noopener">Gem</a> 相輔相成，像是 <a href="https://github.com/thoughtbot/factory_bot" target="_blank" rel="noopener">factory_bot</a>、<a href="https://github.com/DatabaseCleaner/database_cleaner" target="_blank" rel="noopener">Database Cleaner</a>、<a href="https://github.com/travisjeffery/timecop" target="_blank" rel="noopener">timecop</a>、<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="noopener">Capybara</a>、<a href="https://github.com/simplecov-ruby/simplecov" target="_blank" rel="noopener">SimpleCov</a>、<a href="https://github.com/guilleiguaran/fakeredis" target="_blank" rel="noopener">FakeRedis</a>...等，將來有機會再視情況寫成文章...</p>
-<p>本篇其實寫的蠻精簡的 XD <s>(逃</s>，下篇會講另一個測試套件 <a href="https://github.com/cucumber/cucumber-ruby" target="_blank" rel="noopener">Cucumber</a></p>
+<p>想不到測試可以寫中文吧 XD<br>
+有沒有覺得很親切? <s>(噁心</s><br>
+瞬間人類都能看懂這份規格<br>
+且每一個測試都能重複使用<br>
+將來接手的工程師要改 code 時<br>
+也能看到原本的規格是如何制定<br>
+不用再通靈啦 (欣慰</p>
 <hr>
-<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10242906" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10242906</a><br>
-medium 文章連結：<a href="https://link.medium.com/M8qWBUbd19" target="_blank" rel="noopener">https://link.medium.com/M8qWBUbd19</a><br>
-本文同步發布於 <a href="https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-%E6%B8%AC%E8%A9%A6%E7%AF%87-RSpec/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10243344" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10243344</a><br>
+medium 文章連結：<a href="https://link.medium.com/uP1cmw5R29" target="_blank" rel="noopener">https://link.medium.com/uP1cmw5R29</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/09/25/Day20-Ruby-on-Rails-%E6%B8%AC%E8%A9%A6%E7%AF%87-Cucumber-%E5%85%A7%E6%96%87%E6%9C%89%E7%AF%84%E4%BE%8B%E6%95%99%E5%A6%82%E4%BD%95%E5%AF%AB%E4%B8%AD%E6%96%87%E6%B8%AC%E8%A9%A6/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
 <p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/">https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/</a></p>
-    <p>發表日期：2020-09-24</p>
-    <p>更新日期：2020-09-24</p>
+    <p>原文連結：<a href="https://riverye.com/2020/09/25/Day20-Ruby-on-Rails-測試篇-Cucumber-內文有範例教如何寫中文測試/">https://riverye.com/2020/09/25/Day20-Ruby-on-Rails-測試篇-Cucumber-內文有範例教如何寫中文測試/</a></p>
+    <p>發表日期：2020-09-25</p>
+    <p>更新日期：2020-09-25</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2020/09/25/Day20-Ruby-on-Rails-測試篇-Cucumber-內文有範例教如何寫中文測試/" title="Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試)">
-        <div class="nextTitle">Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試)</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/" title="Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用">
-        <div class="prevTitle">Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用</div>
+      <a href="/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/" title="Day19 - Ruby on Rails 測試篇 - RSpec">
+        <div class="prevTitle">Day19 - Ruby on Rails 測試篇 - RSpec</div>
       </a>
       
     </li>
@@ -502,8 +507,8 @@ medium 文章連結：<a href="https://link.medium.com/M8qWBUbd19" target="_blan
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day19 - Ruby on Rails 測試篇 - RSpec"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/09/25/Day20-Ruby-on-Rails-測試篇-Cucumber-內文有範例教如何寫中文測試/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day20 - Ruby on Rails 測試篇 - Cucumber (內文有範例教如何寫中文測試)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -622,7 +627,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#產生範例-spec"><span class="toc-number">3.</span> <span class="toc-text">產生範例 spec</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#備註"><span class="toc-number">3.0.1.</span> <span class="toc-text">備註:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何讓-ci-也能跑-rspec"><span class="toc-number">5.</span> <span class="toc-text">如何讓 CI 也能跑 rspec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推薦網站"><span class="toc-number">6.</span> <span class="toc-text">推薦網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#介紹"><span class="toc-number">2.</span> <span class="toc-text">介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#q1-心中或許會有疑問說已經有-rspec-為何還需要-cucumber-增加測試的複雜度"><span class="toc-number">2.0.1.</span> <span class="toc-text">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q2-可以只寫-cucumber-不寫-rspec-嗎"><span class="toc-number">2.0.2.</span> <span class="toc-text">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#寫個-cucumber-中文測試範例"><span class="toc-number">4.</span> <span class="toc-text">寫個 Cucumber 中文測試範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#空的測試-先寫規格還沒準備答案"><span class="toc-number">4.0.1.</span> <span class="toc-text">空的測試 (先寫規格，還沒準備答案)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">5.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#準備的測試答案"><span class="toc-number">5.0.1.</span> <span class="toc-text">準備的測試答案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#執行結果"><span class="toc-number">5.0.2.</span> <span class="toc-text">執行結果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何讓-ci-也能跑-cucumber"><span class="toc-number">6.</span> <span class="toc-text">如何讓 CI 也能跑 Cucumber</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#官方網站"><span class="toc-number">7.</span> <span class="toc-text">官方網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">8.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
