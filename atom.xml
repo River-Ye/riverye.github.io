@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-10-01T07:52:43.299Z</updated>
+  <updated>2020-10-01T16:00:36.943Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day27 - Ruby on Rails 中使用 Foreman 打包所有要啟動的 server</title>
+    <link href="https://riverye.com/2020/10/02/Day27-Ruby-on-Rails-%E4%B8%AD%E4%BD%BF%E7%94%A8-Foreman-%E6%89%93%E5%8C%85%E6%89%80%E6%9C%89%E8%A6%81%E5%95%9F%E5%8B%95%E7%9A%84-server/"/>
+    <id>https://riverye.com/2020/10/02/Day27-Ruby-on-Rails-中使用-Foreman-打包所有要啟動的-server/</id>
+    <published>2020-10-01T16:00:00.000Z</published>
+    <updated>2020-10-01T16:00:36.943Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>從原本啟動 Rails server 、 Webpacker 外，後續增加了 <a href="https://ithelp.ithome.com.tw/articles/10245939" target="_blank" rel="noopener">Resque</a>、<a href="https://ithelp.ithome.com.tw/articles/10246607" target="_blank" rel="noopener">Sidekiq</a> ，變成要開四個視窗啟動，有時還會忘記要開其中一個...</p><p>這時可透過領班 (<a href="https://github.com/ddollar/foreman" target="_blank" rel="noopener">foreman</a>) 解決此痛點，啟動一個抵全部 :-)</p><p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><hr><h2 id="如何安裝">如何安裝</h2><p>放在 <code>:development</code> 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/16/commits/88c45325076ce0043daa536653061b37f44ba66e" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'foreman'</span>, <span class="string">'~&gt; 0.87.2'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p><p>接著在專案的目錄新增 <code>Procfile</code> 檔案，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/16/commits/5c8e74823b4cd3d8133e83878cc15625c0a5cb30" target="_blank" rel="noopener">commit</a></p><p>備註: 前面 <code>web</code>、<code>webpack</code>、<code>resque</code>、<code>sidekiq</code> 名稱可自取<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Procfile</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">web:</span> ./bin/rails s -p <span class="number">3000</span></span><br><span class="line"><span class="symbol">webpack:</span> ./bin/webpack-dev-server</span><br><span class="line"><span class="symbol">resque:</span> QUEUE=* INTERVAL=<span class="number">1</span> rake <span class="symbol">resque:</span>work</span><br><span class="line"><span class="symbol">sidekiq:</span> bundle exec sidekiq</span><br></pre></td></tr></table></figure></p><h2 id="如何執行">如何執行</h2><p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">foreman start</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">foreman s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只執行指定 PROCESS</span></span><br><span class="line">foreman start [PROCESS]</span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">foreman start web</span><br><span class="line"></span><br><span class="line"><span class="comment"># 檔名不想取 Procfile，需指定檔案才能執行</span></span><br><span class="line">foreman start -f file</span><br><span class="line"><span class="comment"># 範例 (檔名為 hello)</span></span><br><span class="line">foreman start -f hello</span><br></pre></td></tr></table></figure></p><h3 id="增加-foreman-前需開-4-個視窗啟動">增加 Foreman 前，需開 4 個視窗啟動</h3><p><img src="https://i.imgur.com/gaZl8D7.jpg" alt></p><h3 id="增加-foreman-後只需啟動-foreman-start">增加 Foreman 後，只需啟動 <code>foreman start</code></h3><p><img src="https://i.imgur.com/pJvRZt7.jpg" alt></p><h2 id="更多指令">更多指令</h2><p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">foreman -h</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  foreman check                   <span class="comment"># Validate your application's Procfile</span></span><br><span class="line">  foreman <span class="built_in">export</span> FORMAT LOCATION  <span class="comment"># Export the application to another process management format</span></span><br><span class="line">  foreman <span class="built_in">help</span> [COMMAND]          <span class="comment"># Describe available commands or one specific command</span></span><br><span class="line">  foreman run COMMAND [ARGS...]   <span class="comment"># Run a command using your application's environment</span></span><br><span class="line">  foreman start [PROCESS]         <span class="comment"># Start the application (or a specific PROCESS)</span></span><br><span class="line">  foreman version                 <span class="comment"># Display Foreman gem version</span></span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -f, [--procfile=PROCFILE]  <span class="comment"># Default: Procfile</span></span><br><span class="line">  -d, [--root=ROOT]          <span class="comment"># Default: Procfile directory</span></span><br></pre></td></tr></table></figure></p><h2 id="小結">小結</h2><p>Foreman 是蠻好用的工具，當有多個要啟動時，挺有感的，且突然忘記某個啟動指令怎輸入的話，還能看下 <code>Procfile</code> 檔案</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10247491" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10247491</a><br>medium 文章連結：<a href="https://link.medium.com/bWT6dLpueab" target="_blank" rel="noopener">https://link.medium.com/bWT6dLpueab</a><br>本文同步發布於 <a href="https://riverye.com/2020/10/02/Day27-Ruby-on-Rails-%E4%B8%AD%E4%BD%BF%E7%94%A8-Foreman-%E6%89%93%E5%8C%85%E6%89%80%E6%9C%89%E8%A6%81%E5%95%9F%E5%8B%95%E7%9A%84-server/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;從原本啟動 Rails server 、 Webpacker 外，後續增加了 &lt;a href=&quot;https://ithelp.ithome.com.tw/articles/10245939&quot; target=&quot;_blank&quot; rel=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day26 - Ruby on Rails 中使用 FFmpeg 處理影音轉檔、合併、上字幕</title>
@@ -543,36 +570,6 @@
 &lt;h2 id=&quot;cat&quot;&gt;cat&lt;/h2&gt;
 &lt;p&gt;將該檔案內容印在終端機上&lt;br&gt;
 &lt;figure class=&quot;high
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day07 - 一些常用 Linux 指令 - 2-7 (ps、top、htop、free、df、du、kill)</title>
-    <link href="https://riverye.com/2020/09/12/Day07-%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8-Linux-%E6%8C%87%E4%BB%A4-2-7-ps%E3%80%81top%E3%80%81htop%E3%80%81free%E3%80%81df%E3%80%81du%E3%80%81kill/"/>
-    <id>https://riverye.com/2020/09/12/Day07-一些常用-Linux-指令-2-7-ps、top、htop、free、df、du、kill/</id>
-    <published>2020-09-11T16:00:00.000Z</published>
-    <updated>2020-09-11T16:02:59.189Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>此為 Linux 相關的 2-7 篇，除了內建指令外，開始會介紹些不錯套件，需另外安裝的，會備註並附上官方連結</p><h2 id="ps">ps</h2><p>顯示運行中的程式相關資訊<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">ps aux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只顯示符合 chrome 關鍵字的資訊</span></span><br><span class="line">ps aux | grep chrome</span><br></pre></td></tr></table></figure></p><h4 id="幾個常用參數說明">幾個常用參數說明：</h4><p>列出所有正在執行中的程式： <code>aux</code><br>只找符合特定關鍵字的內容： <code>| grep string</code></p><h2 id="top">top</h2><p>即時持續地顯示運行中的程式資訊<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 離開方式為 鍵盤Q</span></span><br></pre></td></tr></table></figure></p><h2 id="htop">htop</h2><p>即時持續地顯示運行中的程式資訊<br><code>top</code> 的加強版，外觀、功能也更強</p><p>備註: 需另外安裝 <a href="https://github.com/hishamhm/htop" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install htop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 執行方式</span></span><br><span class="line">htop</span><br></pre></td></tr></table></figure></p><p>htop 介面<br><img src="https://i.imgur.com/Xe5t1ZG.png" alt></p><h2 id="free">free</h2><p>顯示記憶體使用狀況<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">free</span><br></pre></td></tr></table></figure></p><p>(謎之聲，有了 <code>htop</code> 之後，<code>top</code> 和 <code>free</code> 可以洗洗睡了?</p><h2 id="df">df</h2><p>從 Filesystem (檔案系統) 取得目前的空間分配資訊，完整顯示目前檔案系統上還可以使用的容量大小<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br><span class="line">df .</span><br><span class="line">df -h ~/Documents/demo</span><br></pre></td></tr></table></figure></p><h4 id="幾個常用參數說明">幾個常用參數說明：</h4><p>以較易閱讀方式呈現： <code>-h</code></p><h2 id="du">du</h2><p>掃描當前目錄結構，並逐一累加檔案大小<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">du -h</span><br><span class="line">du -hm ~/Documents/demo</span><br><span class="line">du -h -m ~/Documents/demo</span><br></pre></td></tr></table></figure></p><h4 id="幾個常用參數說明">幾個常用參數說明：</h4><p>以較易閱讀方式呈現： <code>-h</code><br>單位以 KB： <code>-k</code><br>單位以 MB： <code>-m</code><br>單位以 GB： <code>-g</code></p><h2 id="kill">kill</h2><p>強制終止程式執行</p><p>情境：遇到程式當掉，卻無如預期關閉程式，甚至導致 CPU 飆高，需透過 <code>kill</code> 來處理<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 PID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="built_in">kill</span> -9 9527</span><br></pre></td></tr></table></figure></p><h2 id="總整理">總整理</h2><table><thead><tr><th>MacOS / Linux 指令</th><th>說明</th><th>範例</th></tr></thead><tbody><tr><td>ps</td><td>顯示運行中的程式相關資訊</td><td><code>ps aux</code></td></tr><tr><td>top</td><td>即時持續地顯示運行中的程式資訊</td><td><code>top</code></td></tr><tr><td>htop</td><td>即時持續地顯示運行中的程式資訊</td><td><code>htop</code></td></tr><tr><td>free</td><td>顯示記憶體使用狀況</td><td><code>free</code></td></tr><tr><td>df</td><td>顯示目前還可以使用的容量大小</td><td><code>df</code></td></tr><tr><td>du</td><td>掃描當前目錄結構，並逐一累加檔案大小</td><td><code>du -h</code></td></tr><tr><td>kill</td><td>強制終止程式執行</td><td><code>kill -9 9527</code></td></tr></tbody></table><h2 id="小結">小結</h2><p><code>htop</code> 真的很實用，畫面看起來也比較炫砲，也能直接 <code>kill</code> PID，推薦必裝的套件之一。<br>其實每個指令都能寫成一篇，網路查下便能找到各指令的深入說明，更多細節參數設定等，本篇以應用為主。</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10235798" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10235798</a><br>medium 文章連結：<a href="https://link.medium.com/KnBM0DriH9" target="_blank" rel="noopener">https://link.medium.com/KnBM0DriH9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/12/Day07-%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8-Linux-%E6%8C%87%E4%BB%A4-2-7-ps%E3%80%81top%E3%80%81htop%E3%80%81free%E3%80%81df%E3%80%81du%E3%80%81kill/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;此為 Linux 相關的 2-7 篇，除了內建指令外，開始會介紹些不錯套件，需另外安裝的，會備註並附上官方連結&lt;/p&gt;
-&lt;h2 id=&quot;ps&quot;&gt;ps&lt;/h2&gt;
-&lt;p&gt;顯示運行中的程式相關資訊&lt;br&gt;
-&lt;figure class=&quot;hi
       
     
     </summary>
