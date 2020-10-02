@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://riverye.com/2020/10/03/Day28-Ruby-on-Rails-%E4%B8%AD%E4%B8%B2-Slack-%E9%80%9A%E7%9F%A5/</loc>
+    
+    <lastmod>2020-10-02T16:42:32.386Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://riverye.com/2020/10/02/Day27-Ruby-on-Rails-%E4%B8%AD%E4%BD%BF%E7%94%A8-Foreman-%E6%89%93%E5%8C%85%E6%89%80%E6%9C%89%E8%A6%81%E5%95%9F%E5%8B%95%E7%9A%84-server/</loc>
     
     <lastmod>2020-10-01T16:00:36.943Z</lastmod>
@@ -373,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/25/Day16-Codewars-%E5%88%B7%E9%A1%8C/</loc>
+    <loc>https://riverye.com/2019/09/24/Day15-Codewars-%E5%88%B7%E9%A1%8C/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/24/Day15-Codewars-%E5%88%B7%E9%A1%8C/</loc>
+    <loc>https://riverye.com/2019/09/25/Day16-Codewars-%E5%88%B7%E9%A1%8C/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
@@ -401,14 +408,14 @@
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/29/Day20-Codewars-%E5%88%B7%E9%A1%8C/</loc>
+    <loc>https://riverye.com/2019/09/27/Day18-Codewars-%E5%88%B7%E9%A1%8C/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/17/%E5%A3%93%E7%B7%9A%E5%89%8D%E9%80%BC%E8%87%AA%E5%B7%B1%E5%88%B7%E4%B8%80%E9%A1%8C-Codewars/</loc>
+    <loc>https://riverye.com/2019/09/29/Day20-Codewars-%E5%88%B7%E9%A1%8C/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
@@ -422,7 +429,7 @@
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/27/Day18-Codewars-%E5%88%B7%E9%A1%8C/</loc>
+    <loc>https://riverye.com/2019/09/17/%E5%A3%93%E7%B7%9A%E5%89%8D%E9%80%BC%E8%87%AA%E5%B7%B1%E5%88%B7%E4%B8%80%E9%A1%8C-Codewars/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
@@ -443,14 +450,14 @@
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/13/%E7%94%A8-TDD-%E5%88%B7-Codewars-Reverse-words/</loc>
+    <loc>https://riverye.com/2019/09/18/%E9%80%A3%E7%BA%8C%E5%88%B7%E9%A1%8C%E7%9C%8B-7-%E5%88%86%E9%90%98%E8%83%BD%E5%88%B7%E5%B9%BE%E9%A1%8C-Codewars/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/18/%E9%80%A3%E7%BA%8C%E5%88%B7%E9%A1%8C%E7%9C%8B-7-%E5%88%86%E9%90%98%E8%83%BD%E5%88%B7%E5%B9%BE%E9%A1%8C-Codewars/</loc>
+    <loc>https://riverye.com/2019/09/13/%E7%94%A8-TDD-%E5%88%B7-Codewars-Reverse-words/</loc>
     
     <lastmod>2019-10-08T17:16:39.594Z</lastmod>
     
@@ -464,13 +471,6 @@
   </url>
   
   <url>
-    <loc>https://riverye.com/2019/09/21/%E5%88%B7%E9%A1%8C%E7%9A%84%E6%A8%99%E9%A1%8C%E5%A5%BD%E9%9B%A3%E6%83%B3-%E6%B2%92%E6%A2%97%E4%BA%86-XD/</loc>
-    
-    <lastmod>2019-10-08T17:16:39.593Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://riverye.com/2019/09/11/%E5%BE%9E%E7%B6%93%E5%85%B8-LeetCode-%E9%96%8B%E5%A7%8B%E5%90%A7-Two-Sum/</loc>
     
     <lastmod>2019-10-08T17:16:39.593Z</lastmod>
@@ -479,6 +479,13 @@
   
   <url>
     <loc>https://riverye.com/2019/09/12/%E6%8F%9B%E5%88%B7-Codewars-Find-the-next-perfect-square/</loc>
+    
+    <lastmod>2019-10-08T17:16:39.593Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://riverye.com/2019/09/21/%E5%88%B7%E9%A1%8C%E7%9A%84%E6%A8%99%E9%A1%8C%E5%A5%BD%E9%9B%A3%E6%83%B3-%E6%B2%92%E6%A2%97%E4%BA%86-XD/</loc>
     
     <lastmod>2019-10-08T17:16:39.593Z</lastmod>
     
