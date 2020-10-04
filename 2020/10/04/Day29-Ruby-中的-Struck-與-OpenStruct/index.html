@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day21 - Codewars 刷題 · 小菜的 Blog</title>
+    <title>Day29 - Ruby 中的 Struck 與 OpenStruct · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day21 - Codewars 刷題</a>
+                <a href="#" class="post-name">Day29 - Ruby 中的 Struck 與 OpenStruct</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day21 - Codewars 刷題
+       Day29 - Ruby 中的 Struck 與 OpenStruct
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/30</span
+          >2020/10/04</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >125</span
+            >868</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >1 min</span
+            >3 min</span
           ></span
         >
       </div>
@@ -419,45 +419,68 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>假日來塊蛋糕<br>
-複習下二進制及 Ruby 內建好用方法</p>
-<p><a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV7</p>
+    <h2 id="前言">前言</h2>
+<p>Ruby 是物件化非常徹底的程式語言，幾乎所有東西都是物件 (除了 <code>block</code> 外)，<br>
+很常使用 <code>class</code> 來實現物件導向，但每次都要寫 <code>class xxx</code> 建立新的類別挺麻煩的，這時可以使用 <code>Struct</code> 和 <code>OpenStruct</code></p>
 <hr>
-<p><a href="https://www.codewars.com/kata/binary-addition/train/ruby" target="_blank" rel="noopener">題目(Binary Addition)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Implement a function that adds two numbers together <span class="keyword">and</span> returns their sum <span class="keyword">in</span> binary. The conversion can be done before, <span class="keyword">or</span> after the addition.</span><br><span class="line"></span><br><span class="line">The binary number returned should be a string.</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_binary</span><span class="params">(a,b)</span></span></span><br><span class="line">  <span class="comment">#your code here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(add_binary(<span class="number">1</span>,<span class="number">1</span>),<span class="string">"10"</span>)</span><br><span class="line">Test.assert_equals(add_binary(<span class="number">0</span>,<span class="number">1</span>),<span class="string">"1"</span>)</span><br><span class="line">Test.assert_equals(add_binary(<span class="number">1</span>,<span class="number">0</span>),<span class="string">"1"</span>)</span><br><span class="line">Test.assert_equals(add_binary(<span class="number">2</span>,<span class="number">2</span>),<span class="string">"100"</span>)</span><br><span class="line">Test.assert_equals(add_binary(<span class="number">51</span>,<span class="number">12</span>),<span class="string">"111111"</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="openstruct">OpenStruct</h2>
+<p>比 Struct 更有彈性, 可以任意增加 Attribute，不像 Struct 需先定義好有哪些 Attribute，無法定義 method，相對效能會較差些</p>
+<h4 id="openstruct-的祖先分別是">OpenStruct 的祖先分別是</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">irb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 irb 中，使用 OpenStruct 需 require 'ostruct'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></span><br><span class="line">OpenStruct.ancestors</span><br><span class="line"><span class="comment"># [OpenStruct, Object, Kernel, BasicObject]</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="如何使用">如何使用</h2>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 irb 中，使用 OpenStruct 需 require 'ostruct'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">Book = OpenStruct.new</span><br><span class="line">Book.<span class="keyword">class</span>    <span class="comment"># OpenStruct</span></span><br><span class="line">Book.name = <span class="string">'Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book.url = <span class="string">'https://riverye.com/'</span></span><br><span class="line">Book.price = <span class="number">999</span></span><br><span class="line">Book.isbn = <span class="string">'987-654-321-0'</span></span><br><span class="line">Book          <span class="comment">#&lt;OpenStruct name="Ruby on Rails 與它們相關的東西", url="https://riverye.com/", price=999, isbn="987-654-321-0"&gt;</span></span><br><span class="line"></span><br><span class="line">Book.name     <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book[<span class="symbol">:name</span>]   <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book[<span class="string">'name'</span>]  <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">Book = OpenStruct.new(<span class="symbol">name:</span> <span class="string">'Ruby on Rails 與它們相關的東西'</span>, <span class="symbol">isbn:</span> <span class="string">'987-654-321-0'</span>)</span><br><span class="line">Book.name     <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book[<span class="symbol">:name</span>]   <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book[<span class="string">'name'</span>]  <span class="comment"># Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">Book.name = <span class="string">'小菜'</span></span><br><span class="line">Book.price = <span class="number">999</span></span><br><span class="line">Book.name     <span class="comment"># 小菜</span></span><br><span class="line">Book[<span class="symbol">:name</span>]   <span class="comment"># 小菜</span></span><br><span class="line">Book[<span class="string">'name'</span>]  <span class="comment"># 小菜</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="刪除某一個元素">刪除某一個元素</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Book</span><br><span class="line"><span class="comment">#&lt;OpenStruct name="小菜", isbn="987-654-321-0", price=999, hello=13&gt;</span></span><br><span class="line"></span><br><span class="line">Book.delete_field(<span class="symbol">:price</span>)</span><br><span class="line"><span class="comment">#&lt;OpenStruct name="小菜", isbn="987-654-321-0", hello=13&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="struct">Struct</h2>
+<p>使用前，需先定義好 Attribute，不像 OpenStruct 那麼彈性(較嚴謹)，但可以定義方法 (method) ，相對效能較好些</p>
+<h4 id="struct-的祖先分別是">Struct 的祖先分別是</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Book = Struct.new(<span class="symbol">:name</span>)</span><br><span class="line">Book.ancestors</span><br><span class="line">[#&lt;Class:0x00007fa7ee9bb048&gt;, Struct, Enumerable, Object, Kernel, BasicObject]</span><br></pre></td></tr></table></figure></p>
+<h2 id="如何使用">如何使用</h2>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 irb 中可直接使用</span></span><br><span class="line">Book = Struct.new(<span class="symbol">:name</span>, <span class="symbol">:price</span>, <span class="symbol">:url</span>, <span class="symbol">:isbn</span>)</span><br><span class="line">book_1 = Book.new(<span class="string">'Ruby on Rails 與它們相關的東西'</span>, <span class="number">999</span>, <span class="string">'https://riverye.com/'</span>, <span class="string">'987-654-321-0'</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="需要照順序放-attribute-喔若不想照順序放-attribute-的話可使用-keyword_init-true">需要照順序放 Attribute 喔，若不想照順序放 Attribute 的話，可使用 <code>keyword_init: true</code></h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Book = Struct.new(<span class="symbol">:name</span>, <span class="symbol">:price</span>, <span class="symbol">:url</span>, <span class="symbol">:isbn</span>, <span class="symbol">keyword_init:</span> <span class="literal">true</span>)</span><br><span class="line">book_hash = &#123; <span class="symbol">url:</span> <span class="string">'https://riverye.com/'</span>, <span class="symbol">isbn:</span> <span class="string">'987-654-321-0'</span>, <span class="symbol">name:</span> <span class="string">'Ruby on Rails 與它們相關的東西'</span>, <span class="symbol">price:</span> <span class="number">999</span>&#125;</span><br><span class="line">book_1 = Book.new(book_hash)</span><br><span class="line"><span class="comment">#&lt;Struct:Book:0x00000168</span></span><br><span class="line">  <span class="comment"># isbn = "987-654-321-0",</span></span><br><span class="line">  <span class="comment"># name = "Ruby on Rails 與它們相關的東西",</span></span><br><span class="line">  <span class="comment"># price = 999,</span></span><br><span class="line">  <span class="comment"># url = "https://riverye.com/"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="struct-可以定義方法">Struct 可以定義方法</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Book = Struct.new(<span class="string">'Book'</span>, <span class="symbol">:price</span>) <span class="keyword">do</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">over_thousand?</span></span></span><br><span class="line">    price &gt;= <span class="number">1000</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Book.new(<span class="number">1000</span>).over_thousand?</span><br><span class="line"><span class="comment"># true</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="struct-比較嚴謹">Struct 比較嚴謹</h4>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Book = Struct.new(<span class="symbol">:name</span>, <span class="symbol">:url</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 未帶入的變數會自動變成 nil</span></span><br><span class="line">book_1 = Book.new(<span class="string">'Ruby on Rails 與它們相關的東西'</span>)</span><br><span class="line">book_1.name <span class="comment"># 'Ruby on Rails 與它們相關的東西'</span></span><br><span class="line">book_1.url  <span class="comment"># nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 無法隨時新增屬性</span></span><br><span class="line">Book.tatal = <span class="number">1</span></span><br><span class="line"><span class="comment"># NoMethodError (undefined method `total=' for Book:Class)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 宣告時帶入太多參數會產生錯誤，比 OpenStruct 嚴謹許多</span></span><br><span class="line">book_1 = Book.new(<span class="string">'Ruby on Rails 與它們相關的東西'</span>, <span class="symbol">isbn:</span> <span class="string">'987-654-321-0'</span>)</span><br><span class="line"><span class="comment"># ArgumentError (struct size differs)</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="openstruct-vs-struct-比較">OpenStruct VS. Struct 比較</h2>
+<p>效能上兩者差異蠻大的，可參考 <a href="https://stackoverflow.com/questions/1177594/when-should-i-use-struct-vs-openstruct#answer-4459132" target="_blank" rel="noopener">Stack Overflow</a> 這篇，個人也是比較常用 Struct</p>
+<h2 id="參考資料">參考資料</h2>
+<ol>
+<li><a href="https://ckmarkoh.github.io/blog/2014/03/12/ruby-struct-vs-openstruct/" target="_blank" rel="noopener">Ruby -- Struct v.s openStruct</a></li>
+<li><a href="https://adlerhsieh.com/blog/20150406-ruby-struct-and-ostruct" target="_blank" rel="noopener">模擬class物件：Ruby當中Struct及OpenStruct的使用</a></li>
+<li><a href="https://mgleon08.github.io/blog/2016/05/29/struct-vs-openstruct/" target="_blank" rel="noopener">Ruby - Struct vs OpenStruct</a></li>
+<li><a href="https://link.medium.com/qdxuTxIjjab" target="_blank" rel="noopener">OpenStruct in Ruby</a></li>
+<li><a href="https://www.codenong.com/1177594/" target="_blank" rel="noopener">关于ruby：何时应该使用Struct vs. OpenStruct？</a></li>
+</ol>
 <hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=wdTs0vwfF6g" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/wdTs0vwfF6g/0.jpg" alt="Yes"></a></p>
+<h2 id="小結">小結</h2>
+<p>個人蠻常在測試中使用，像是要要測試 Sidekiq 的 <a href="https://github.com/mperham/sidekiq/blob/master/lib/sidekiq/api.rb#L681" target="_blank" rel="noopener"><code>Sidekiq::RetrySet.new</code></a>，使用 Struct 來模擬，挺方便的，也會用在不同地方，下一篇會是鐵人賽總結(終於~~</p>
 <hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Binary Addition</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_binary</span><span class="params">(a,b)</span></span></span><br><span class="line">  (a + b).to_s(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10249081" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10249081</a><br>
+medium 文章連結：<a href="https://link.medium.com/YGEc5Qnqjab" target="_blank" rel="noopener">https://link.medium.com/YGEc5Qnqjab</a><br>
+本文同步發布於 <a href="https://riverye.com/2020/10/04/Day29-Ruby-%E4%B8%AD%E7%9A%84-Struck-%E8%88%87-OpenStruct/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/30/Day21-Codewars-刷題/">https://riverye.com/2019/09/30/Day21-Codewars-刷題/</a></p>
-    <p>發表日期：2019-09-30</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2020/10/04/Day29-Ruby-中的-Struck-與-OpenStruct/">https://riverye.com/2020/10/04/Day29-Ruby-中的-Struck-與-OpenStruct/</a></p>
+    <p>發表日期：2020-10-04</p>
+    <p>更新日期：2020-10-04</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/10/01/Day22-Codewars-刷題/" title="Day22 - Codewars 刷題">
-        <div class="nextTitle">Day22 - Codewars 刷題</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/29/Day20-Codewars-刷題/" title="Day20 - Codewars 刷題">
-        <div class="prevTitle">Day20 - Codewars 刷題</div>
+      <a href="/2020/10/03/Day28-Ruby-on-Rails-中串-Slack-通知/" title="Day28 - Ruby on Rails 中串 Slack 通知">
+        <div class="prevTitle">Day28 - Ruby on Rails 中串 Slack 通知</div>
       </a>
       
     </li>
@@ -473,8 +496,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/30/Day21-Codewars-刷題/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day21 - Codewars 刷題"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2020/10/04/Day29-Ruby-中的-Struck-與-OpenStruct/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day29 - Ruby 中的 Struck 與 OpenStruct"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -593,7 +616,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#openstruct"><span class="toc-number">2.</span> <span class="toc-text">OpenStruct</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#openstruct-的祖先分別是"><span class="toc-number">2.0.1.</span> <span class="toc-text">OpenStruct 的祖先分別是</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">3.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刪除某一個元素"><span class="toc-number">3.0.1.</span> <span class="toc-text">刪除某一個元素</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#struct"><span class="toc-number">4.</span> <span class="toc-text">Struct</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#struct-的祖先分別是"><span class="toc-number">4.0.1.</span> <span class="toc-text">Struct 的祖先分別是</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-number">5.</span> <span class="toc-text">如何使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#需要照順序放-attribute-喔若不想照順序放-attribute-的話可使用-keyword_init-true"><span class="toc-number">5.0.1.</span> <span class="toc-text">需要照順序放 Attribute 喔，若不想照順序放 Attribute 的話，可使用 keyword_init: true</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#struct-可以定義方法"><span class="toc-number">5.0.2.</span> <span class="toc-text">Struct 可以定義方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#struct-比較嚴謹"><span class="toc-number">5.0.3.</span> <span class="toc-text">Struct 比較嚴謹</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#openstruct-vs-struct-比較"><span class="toc-number">6.</span> <span class="toc-text">OpenStruct VS. Struct 比較</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">7.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">8.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
