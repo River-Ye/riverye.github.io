@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2020-10-05T06:41:03.560Z</updated>
+  <updated>2020-10-12T17:35:38.351Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在 Windows 10 底下的 Ubuntu 18.04 LTS 執行 Ruby on Rails 的 RSpec Capybara 能顯示 Chrome 瀏覽器 (selenium-webdriver) 跑 E2E 測試</title>
+    <link href="https://riverye.com/2020/10/13/%E5%9C%A8-Windows-10-%E5%BA%95%E4%B8%8B%E7%9A%84-Ubuntu-18-04-LTS-%E5%9F%B7%E8%A1%8C-Ruby-on-Rails-%E7%9A%84-RSpec-Capybara-%E8%83%BD%E9%A1%AF%E7%A4%BA-Chrome-%E7%80%8F%E8%A6%BD%E5%99%A8-selenium-webdriver-%E8%B7%91-E2E-%E6%B8%AC%E8%A9%A6/"/>
+    <id>https://riverye.com/2020/10/13/在-Windows-10-底下的-Ubuntu-18-04-LTS-執行-Ruby-on-Rails-的-RSpec-Capybara-能顯示-Chrome-瀏覽器-selenium-webdriver-跑-E2E-測試/</id>
+    <published>2020-10-12T16:00:00.000Z</published>
+    <updated>2020-10-12T17:35:38.351Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言">前言</h2><blockquote><p>在 Windows 10 底下的 Ubuntu 18.04 LTS 執行 Ruby on Rails 的 RSpec Capybara 能顯示 Chrome 瀏覽器 (selenium-webdriver) 跑 E2E 測試</p></blockquote><p>這標題真的很長 XD</p><p>希望在 Windows 環境下的 Ruby on Rails 文章能多些 (雷真的很多...)，別老是霸凌 Windows 啊... (雖然我工作上也是用 Mac)</p><p>之前看 Mac 電腦，直接執行 <code>rspec spec</code> 就能有效果，換成在 Windows 上時，卻變得很艱辛，過程中很多環境的雷，且相關資源真的很少，之前搞過一陣子，如今終於可以順利執行 (撒花</p><p>此篇為鐵人賽加碼文章，本文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><h2 id="環境介紹">環境介紹</h2><p>以下為個人在 Windows 電腦使用的環境，Ruby on Rails 相關版本，可參考 <a href="https://github.com/River-Ye/ironman_12th_2020/blob/master/Gemfile.lock" target="_blank" rel="noopener">repo 中的 Gemfile.lock</a></p><p>備註: 若還沒在 Windows 安裝 Ruby on Rails 環境，<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">可參考這篇文章</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">作業系統: Windows 10 家用版 1909 版 (OS 組建 18363.1082)</span><br><span class="line"></span><br><span class="line">Ubuntu: Ubuntu 18.04 LTS</span><br><span class="line"></span><br><span class="line">瀏覽器: Google Chrome 版本 86.0.4240.75 (正式版本) (64 位元)</span><br></pre></td></tr></table></figure></p><h2 id="如何安裝">如何安裝</h2><p>以 Ruby on Rails -v 6.0.3.3 版本為例，建立專案時，在 <code>Gemfile</code> 的 <code>test</code> group 中，已經有 <code>capybara</code> 、 <code>selenium-webdriver</code> 、 <code>webdrivers</code> 這三個 Gem，可參考 <a href="https://github.com/River-Ye/ironman_12th_2020/blob/master/Gemfile#L68" target="_blank" rel="noopener">repo 中的 Gemfile</a><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile 檔案</span></span><br><span class="line"></span><br><span class="line">group <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line">  gem <span class="string">'capybara'</span>, <span class="string">'&gt;= 2.15'</span></span><br><span class="line">  gem <span class="string">'selenium-webdriver'</span></span><br><span class="line">  gem <span class="string">'webdrivers'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p><h2 id="如何設定">如何設定</h2><p>可將下方寫在 <code>spec/support/capybara.rb</code> 的設定，統一寫在 <code>spec/rails_helper.rb</code> 的檔案中，兩種方式都可以，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/19/commits/a2e90488c50a3c61389baa735c9c0ca4d87e9db3" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># spec/rails_helper.rb</span></span><br><span class="line">Dir[Rails.root.join(<span class="string">'spec'</span>, <span class="string">'support'</span>, <span class="string">'**'</span>, <span class="string">'*.rb'</span>)].sort.each &#123; <span class="params">|f|</span> <span class="keyword">require</span> f &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># spec/support/capybara.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'capybara'</span></span><br><span class="line"></span><br><span class="line">Capybara.register_driver <span class="symbol">:chrome</span> <span class="keyword">do</span> <span class="params">|app|</span></span><br><span class="line">  Capybara::Selenium::Driver.new(app, <span class="symbol">browser:</span> <span class="symbol">:chrome</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Capybara.javascript_driver = <span class="symbol">:chrome</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># .travis.yml</span></span><br><span class="line">  - xvfb</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># spec/features/sign_in_spec.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails_helper'</span></span><br><span class="line"></span><br><span class="line">RSpec.feature <span class="string">'test'</span>, <span class="symbol">type:</span> <span class="symbol">:feature</span>, <span class="symbol">driver:</span> <span class="symbol">:chrome</span>, <span class="symbol">js:</span> <span class="literal">true</span>, <span class="symbol">slow:</span> <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line">  describe <span class="string">'Feature spec/功能測試'</span> <span class="keyword">do</span></span><br><span class="line">    before(<span class="symbol">:each</span>) <span class="keyword">do</span></span><br><span class="line">      visit users_path</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    scenario <span class="string">'User CRUD'</span> <span class="keyword">do</span></span><br><span class="line">      expect(User.count).to eq(<span class="number">0</span>)</span><br><span class="line">      click_on(<span class="string">'New User'</span>)</span><br><span class="line">      fill_in(<span class="string">'Name'</span>, <span class="symbol">with:</span> <span class="string">'小菜'</span>)</span><br><span class="line">      fill_in(<span class="string">'Email'</span>, <span class="symbol">with:</span> <span class="string">'river@riverye.com'</span>)</span><br><span class="line">      fill_in(<span class="string">'Phone'</span>, <span class="symbol">with:</span> <span class="string">'0987654321'</span>)</span><br><span class="line">      fill_in(<span class="string">'Address'</span>, <span class="symbol">with:</span> <span class="string">'某個地方'</span>)</span><br><span class="line">      click_button(<span class="string">'Create User'</span>)</span><br><span class="line">      expect(User.count).to eq(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2 id="travis-ci-設定">Travis CI 設定</h2><p>實際 Travis CI 跑的 log 紀錄可參考這個 <a href="https://travis-ci.com/github/River-Ye/ironman_12th_2020/builds/189393212" target="_blank" rel="noopener">Job log 紀錄</a></p><p>更多設定可參考 <a href="https://docs.travis-ci.com/user/chrome" target="_blank" rel="noopener">Travis CI Docs</a><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .travis.yml</span></span><br><span class="line">  - xvfb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 別懷疑，就是這麼簡單 XD</span></span><br></pre></td></tr></table></figure></p><h2 id="在-windows-的-ubuntu-執行-rspec-會顯示-chrome-瀏覽器模擬操作">在 Windows 的 Ubuntu 執行 RSpec 會顯示 Chrome 瀏覽器模擬操作</h2><p>備註: <a href="https://youtu.be/uNOmOK2FOYs" target="_blank" rel="noopener">影片版</a><br><img src="https://i.imgur.com/hyyNxeZ.gif" alt></p><h2 id="參考資料">參考資料</h2><p><a href="https://qiita.com/jnchito/items/c7e6e7abf83598a6516d" target="_blank" rel="noopener">rspec-rails 3.7の新機能！System Specを使ってみた</a></p><h2 id="小結">小結</h2><p>此方法也有在 MacOS 測試過，確認能在 Windows 、 MacOS 環境執行，前面鐵人賽文章幾乎都是在 MacOS 環境寫的，偶爾要替 Windows 平反下 XD</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10252686" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10252686</a><br>medium 文章連結：<a href="https://link.medium.com/hn69TJ6Qwab" target="_blank" rel="noopener">https://link.medium.com/hn69TJ6Qwab</a><br>本文同步發布於 <a href="https://riverye.com/2020/10/13/%E5%9C%A8-Windows-10-%E5%BA%95%E4%B8%8B%E7%9A%84-Ubuntu-18-04-LTS-%E5%9F%B7%E8%A1%8C-Ruby-on-Rails-%E7%9A%84-RSpec-Capybara-%E8%83%BD%E9%A1%AF%E7%A4%BA-Chrome-%E7%80%8F%E8%A6%BD%E5%99%A8-selenium-webdriver-%E8%B7%91-E2E-%E6%B8%AC%E8%A9%A6/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在 Windows 10 底下的 Ubuntu 18.04 LTS 執行 Ruby on Rails 的 RSpec Capybara 能顯示 Chrome 瀏覽器 (selenium-webdriver) 
+      
+    
+    </summary>
+    
+    
+      <category term="環境建置" scheme="https://riverye.com/categories/%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE/"/>
+    
+    
+      <category term="Rails" scheme="https://riverye.com/tags/Rails/"/>
+    
+      <category term="Ruby" scheme="https://riverye.com/tags/Ruby/"/>
+    
+      <category term="Ubuntu" scheme="https://riverye.com/tags/Ubuntu/"/>
+    
+      <category term="RSpec" scheme="https://riverye.com/tags/RSpec/"/>
+    
+      <category term="Windows" scheme="https://riverye.com/tags/Windows/"/>
+    
+      <category term="Capybara" scheme="https://riverye.com/tags/Capybara/"/>
+    
+      <category term="selenium-webdriver" scheme="https://riverye.com/tags/selenium-webdriver/"/>
+    
+  </entry>
   
   <entry>
     <title>Day30 - 不免俗一定要來一下的完賽心得</title>
@@ -535,36 +575,6 @@
 有時自己會邊看邊笑 (廢到笑的那種 XD&lt;/p&gt;
 &lt;h2 id=&quot;cowsay&quot;&gt;cowsay&lt;/h2&gt;
 
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day11 - 一些 Linux 套件 - 6-7 - 實用篇 (fzf、tldr)</title>
-    <link href="https://riverye.com/2020/09/16/Day11-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-6-7-%E5%AF%A6%E7%94%A8%E7%AF%87-fzf%E3%80%81tldr/"/>
-    <id>https://riverye.com/2020/09/16/Day11-一些-Linux-套件-6-7-實用篇-fzf、tldr/</id>
-    <published>2020-09-15T16:00:00.000Z</published>
-    <updated>2020-09-16T15:47:00.368Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="前言">前言</h2><p>此為 Linux 相關的 6-7 篇，後 2 篇我自己是比較期待 <s>(才不會承認是因為需要寫得比較少呢</s><br>本篇以實用套件為主，幾乎每天都在使用的</p><h2 id="fzf">fzf</h2><p>指令模糊搜尋器<br>能快速搜尋「曾經輸入過」的指令<br>像平常起 rails server 指令是 <code>./bin/rails s -p 4000</code><br>輸入全部實在太長了<br>透過 <code>fzf</code> 只需輸入 <code>sp4</code> 就能快速找到</p><p>備註：需另外安裝 <a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install fzf</span><br></pre></td></tr></table></figure></p><p>使用方式： <code>Control（或 Ctrl）鍵 ⌃</code> + <code>R</code> + <code>command</code>離開方式： <code>ESC</code></p><h4 id="透過-fzf-搜尋曾輸入過的指令">透過 <code>fzf</code> 搜尋曾輸入過的指令</h4><p><img src="https://i.imgur.com/cIjlXSZ.gif" alt></p><h2 id="tldr">tldr</h2><p>查詢指令簡易說明與範例的工具<br>不瞞各位說，這 7 篇文章中，許多參數和範例，是透過 <code>tldr</code> 在參考的 XD</p><p>備註：需另外安裝 <a href="https://github.com/tldr-pages/tldr" target="_blank" rel="noopener">官方網站</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install tldr</span><br><span class="line"></span><br><span class="line">tldr <span class="built_in">command</span></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">tldr tldr</span><br><span class="line">tldr cat</span><br><span class="line">tldr ps</span><br><span class="line">tldr grep</span><br></pre></td></tr></table></figure></p><h4 id="tldr-查詢的畫面"><code>tldr</code> 查詢的畫面</h4><p><img src="https://i.imgur.com/SU1mdpo.png" alt></p><h2 id="總整理">總整理</h2><table><thead><tr><th>MacOS / Linux 指令</th><th>說明</th><th>範例</th></tr></thead><tbody><tr><td>fzf</td><td>指令模糊搜尋器</td><td><code>Control（或 Ctrl）鍵 ⌃</code> + <code>R</code> + <code>command</code></td></tr><tr><td>tldr</td><td>查詢指令簡易說明與範例的工具</td><td><code>tldr cat</code></td></tr></tbody></table><h2 id="小結">小結</h2><p>除了用 <code>fzf</code> 快速找曾經輸入過的指令外<br>也可將常用指令寫成 alias (像我自己將 <code>git status</code> 改成只需輸入 <code>git s</code> 即可)<br>若有不錯的套件，也歡迎在下方留言交流喔</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10237413" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10237413</a><br>medium 文章連結：<a href="https://link.medium.com/W5OE67YVN9" target="_blank" rel="noopener">https://link.medium.com/W5OE67YVN9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/16/Day11-%E4%B8%80%E4%BA%9B-Linux-%E5%A5%97%E4%BB%B6-6-7-%E5%AF%A6%E7%94%A8%E7%AF%87-fzf%E3%80%81tldr/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;此為 Linux 相關的 6-7 篇，後 2 篇我自己是比較期待 &lt;s&gt;(才不會承認是因為需要寫得比較少呢&lt;/s&gt;&lt;br&gt;
-本篇以實用套件為主，幾乎每天都在使用的&lt;/p&gt;
-&lt;h2 id=&quot;fzf&quot;&gt;fzf&lt;/h2&gt;
-&lt;p&gt;指令模糊搜尋
       
     
     </summary>
