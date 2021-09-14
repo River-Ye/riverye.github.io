@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-14T15:51:10.162Z</updated>
+  <updated>2021-09-14T16:42:21.931Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://riverye.com/2021/09/14/Day01-%E9%90%B5%E4%BA%BA%E8%B3%BD%E6%88%91%E5%8F%88%E4%BE%86%E5%9B%89/"/>
     <id>https://riverye.com/2021/09/14/Day01-鐵人賽我又來囉/</id>
     <published>2021-09-13T16:00:00.000Z</published>
-    <updated>2021-09-14T15:51:10.162Z</updated>
+    <updated>2021-09-14T16:42:21.931Z</updated>
     
-    <content type="html"><![CDATA[<p>避免像去年一樣焦頭爛額，這次提前至 7 月開始準備鐵人賽，<br>即便提早準備，也不知要寫什麼...<br>只準備了幾篇文章的庫存，<br>期許這次能迎刃有餘的完賽。</p><hr><h2><span id="目前想到的-30-天內容如下">目前想到的 30 天內容如下：</span></h2><p>Day01 - 參賽心得<br>Day02 - 修改 Rails console edit 編輯模式<br>Day03 - Gem-strip_attributes 介紹與應用<br>Day04 - Gem-activerecord-import 批次建立介紹與應用<br>Day05 - Gem-paranoia 軟刪除介紹與應用<br>Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)<br>Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量<br>Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs<br>Day09 - Gem-jwt 介紹與應用<br>Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案<br>Day11 - Gem-rqrcode 或 barby 產 QR Code<br>Day12 - 解析圖片中的 QR Code 資料<br>Day13 - Gem-grape 介紹與應用 3-1 應用篇<br>Day14 - Gem-grape 介紹與應用 3-2 應用篇<br>Day15 - Gem-grape 介紹與應用 3-3 應用篇<br>Day16 - Gem-grape 測試篇<br>Day17 - Gem-grape 測試篇<br>Day18 - PDF 解密與處理<br>Day19 - PDF 加浮水印<br>Day20 - 匯出 PDF<br>Day21 - 匯入 excel-應用篇<br>Day22 - 匯入 excel-測試篇<br>Day23 - 匯出 excel-應用篇<br>Day24 - 匯出 excel-測試篇<br>Day25 - 簡訊 API-三竹-應用篇<br>Day26 - 簡訊 API-三竹-測試篇<br>Day27 - 簡訊 API-Every8d-應用篇<br>Day28 - 簡訊 API-Every8d-測試篇<br>Day29 - 簡訊服務不中斷，自動切換<br>Day30 - 完賽心得</p><h3><span id="備註-以上標題-順序僅供參考依當天發文為主-xd">備註: 以上標題、順序僅供參考，依當天發文為主 XD</span></h3><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264068" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264068</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href>小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    <content type="html"><![CDATA[<p>避免像去年一樣焦頭爛額，這次提前至 7 月開始準備鐵人賽，<br>即便提早準備，也不知要寫什麼...<br>只準備了幾篇文章的庫存，<br>期許這次能迎刃有餘的完賽。</p><hr><h2><span id="目前想到的-30-天內容如下">目前想到的 30 天內容如下：</span></h2><p>Day01 - 參賽心得<br>Day02 - 修改 Rails console edit 編輯模式<br>Day03 - Gem-strip_attributes 介紹與應用<br>Day04 - Gem-activerecord-import 批次建立介紹與應用<br>Day05 - Gem-paranoia 軟刪除介紹與應用<br>Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)<br>Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量<br>Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs<br>Day09 - Gem-jwt 介紹與應用<br>Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案<br>Day11 - Gem-rqrcode 或 barby 產 QR Code<br>Day12 - 解析圖片中的 QR Code 資料<br>Day13 - Gem-grape 介紹與應用 3-1 應用篇<br>Day14 - Gem-grape 介紹與應用 3-2 應用篇<br>Day15 - Gem-grape 介紹與應用 3-3 應用篇<br>Day16 - Gem-grape 測試篇<br>Day17 - Gem-grape 測試篇<br>Day18 - PDF 解密與處理<br>Day19 - PDF 加浮水印<br>Day20 - 匯出 PDF<br>Day21 - 匯入 excel-應用篇<br>Day22 - 匯入 excel-測試篇<br>Day23 - 匯出 excel-應用篇<br>Day24 - 匯出 excel-測試篇<br>Day25 - 簡訊 API-三竹-應用篇<br>Day26 - 簡訊 API-三竹-測試篇<br>Day27 - 簡訊 API-Every8d-應用篇<br>Day28 - 簡訊 API-Every8d-測試篇<br>Day29 - 簡訊服務不中斷，自動切換<br>Day30 - 完賽心得</p><h3><span id="備註-以上標題-順序僅供參考依當天發文為主-xd">備註: 以上標題、順序僅供參考，依當天發文為主 XD</span></h3><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264068" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264068</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href="http://localhost:4000/2021/09/14/Day01-%E9%90%B5%E4%BA%BA%E8%B3%BD%E6%88%91%E5%8F%88%E4%BE%86%E5%9B%89/" target="_blank" rel="noopener">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
     
     <summary type="html">
     
