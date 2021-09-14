@@ -419,46 +419,46 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>此為 Linux 相關的 2-7 篇，除了內建指令外，開始會介紹些不錯套件，需另外安裝的，會備註並附上官方連結</p>
-<h2 id="ps">ps</h2>
+<h2><span id="ps">ps</span></h2>
 <p>顯示運行中的程式相關資訊<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">ps aux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只顯示符合 chrome 關鍵字的資訊</span></span><br><span class="line">ps aux | grep chrome</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>列出所有正在執行中的程式： <code>aux</code><br>
 只找符合特定關鍵字的內容： <code>| grep string</code></p>
-<h2 id="top">top</h2>
+<h2><span id="top">top</span></h2>
 <p>即時持續地顯示運行中的程式資訊<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">top</span><br><span class="line"></span><br><span class="line"><span class="comment"># 離開方式為 鍵盤Q</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="htop">htop</h2>
+<h2><span id="htop">htop</span></h2>
 <p>即時持續地顯示運行中的程式資訊<br>
 <code>top</code> 的加強版，外觀、功能也更強</p>
 <p>備註: 需另外安裝 <a href="https://github.com/hishamhm/htop" target="_blank" rel="noopener">官方網站</a><br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install htop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 執行方式</span></span><br><span class="line">htop</span><br></pre></td></tr></table></figure></p>
 <p>htop 介面<br>
 <img src="https://i.imgur.com/Xe5t1ZG.png" alt></p>
-<h2 id="free">free</h2>
+<h2><span id="free">free</span></h2>
 <p>顯示記憶體使用狀況<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">free</span><br></pre></td></tr></table></figure></p>
 <p>(謎之聲，有了 <code>htop</code> 之後，<code>top</code> 和 <code>free</code> 可以洗洗睡了?</p>
-<h2 id="df">df</h2>
+<h2><span id="df">df</span></h2>
 <p>從 Filesystem (檔案系統) 取得目前的空間分配資訊，完整顯示目前檔案系統上還可以使用的容量大小<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br><span class="line">df .</span><br><span class="line">df -h ~/Documents/demo</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>以較易閱讀方式呈現： <code>-h</code></p>
-<h2 id="du">du</h2>
+<h2><span id="du">du</span></h2>
 <p>掃描當前目錄結構，並逐一累加檔案大小<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">du -h</span><br><span class="line">du -hm ~/Documents/demo</span><br><span class="line">du -h -m ~/Documents/demo</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>以較易閱讀方式呈現： <code>-h</code><br>
 單位以 KB： <code>-k</code><br>
 單位以 MB： <code>-m</code><br>
 單位以 GB： <code>-g</code></p>
-<h2 id="kill">kill</h2>
+<h2><span id="kill">kill</span></h2>
 <p>強制終止程式執行</p>
 <p>情境：遇到程式當掉，卻無如預期關閉程式，甚至導致 CPU 飆高，需透過 <code>kill</code> 來處理<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 PID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="built_in">kill</span> -9 9527</span><br></pre></td></tr></table></figure></p>
-<h2 id="總整理">總整理</h2>
+<h2><span id="總整理">總整理</span></h2>
 <table>
 <thead>
 <tr>
@@ -505,7 +505,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p><code>htop</code> 真的很實用，畫面看起來也比較炫砲，也能直接 <code>kill</code> PID，推薦必裝的套件之一。<br>
 其實每個指令都能寫成一篇，網路查下便能找到各指令的深入說明，更多細節參數設定等，本篇以應用為主。</p>
 <hr>
@@ -673,7 +673,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ps"><span class="toc-number">2.</span> <span class="toc-text">ps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#top"><span class="toc-number">3.</span> <span class="toc-text">top</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htop"><span class="toc-number">4.</span> <span class="toc-text">htop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#free"><span class="toc-number">5.</span> <span class="toc-text">free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#df"><span class="toc-number">6.</span> <span class="toc-text">df</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#du"><span class="toc-number">7.</span> <span class="toc-text">du</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kill"><span class="toc-number">8.</span> <span class="toc-text">kill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">9.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">10.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">ps</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">top</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">htop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">df</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">du</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">kill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">10.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1873,36 +1873,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1916,6 +1889,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2301,17 +2288,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2346,6 +2333,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2362,10 +2351,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2378,17 +2363,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2398,11 +2393,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2416,21 +2411,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2440,15 +2433,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2489,17 +2478,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

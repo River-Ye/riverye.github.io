@@ -419,11 +419,11 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p><a href="https://slack.com/" target="_blank" rel="noopener">Slack</a> 是工程師常用的通訊軟體之一，能貼程式碼、分成多個頻道 (Channel) 管理等，比 Line 更適合在工作上應用，這次分享如何串 Slack 服務，並設定機器人傳送訊息</p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="介紹">介紹</h2>
+<h2><span id="介紹">介紹</span></h2>
 <p>開始前，你要先有 <a href="https://slack.com/ssb/get-started#/create" target="_blank" rel="noopener">Slack 帳號</a>，若想測試的話，可創一人 workspace ，並新增頻道 (Add channels)，以 <code>river-demo</code> 為例<br>
 <img src="https://i.imgur.com/dTbtnyc.png" alt></p>
 <p>這次會用到三個 Gem ，分別是</p>
@@ -462,43 +462,43 @@ height:50vh;
 </tbody>
 </table>
 <p>備註: 其中 <code>slack-ruby-client</code> 與 <code>slack-notifier</code> 擇一安裝即可，那為何會介紹兩個類似的? 因為第一個已經寫完，索性都寫好惹 XD</p>
-<h2 id="如何安裝">如何安裝</h2>
-<h3 id="一-slack-ruby-client">一、<code>slack-ruby-client</code></h3>
+<h2><span id="如何安裝">如何安裝</span></h2>
+<h3><span id="一-slack-ruby-client">一、<code>slack-ruby-client</code></span></h3>
 <p>放在 Gemfile 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/17/commits/866ab4164f46ade870504c5e436b1510fcd7302d" target="_blank" rel="noopener">commit</a><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'slack-ruby-client'</span>, <span class="string">'~&gt; 0.15.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="1-接著到-slack-api-網站-create-new-app">1. 接著到 Slack API 網站 <a href="https://api.slack.com/apps?new_app=1" target="_blank" rel="noopener">Create New App</a></h4>
+<h4><span id="1-接著到-slack-api-網站-create-new-app">1. 接著到 Slack API 網站 </span></h4>
 <p><img src="https://i.imgur.com/ZcUprrh.png" alt></p>
-<h4 id="2-選oauth-amp-permissions的bot-token-scopes並新增send-messages-as-lt你取的名稱gt要是chatwrite這個喔完成後拉到該頁面上面的tokens-for-your-workspace才能點install-app-to-workspace這個按鈕並取得一組bot-user-oauth-access-token">2. 選「OAuth &amp; Permissions」的「Bot Token Scopes」，並新增「Send messages as &lt;你取的名稱&gt;」，要是「chat:write」這個喔，完成後，拉到該頁面上面的「Tokens for Your Workspace」才能點「Install App to Workspace」這個按鈕，並取得一組「Bot User OAuth Access Token」</h4>
+<h4><span id="2-選oauth-amp-permissions的bot-token-scopes並新增send-messages-as-lt你取的名稱gt要是chatwrite這個喔完成後拉到該頁面上面的tokens-for-your-workspace才能點install-app-to-workspace這個按鈕並取得一組bot-user-oauth-access-token">2. 選「OAuth &amp; Permissions」的「Bot Token Scopes」，並新增「Send messages as &lt;你取的名稱&gt;」，要是「chat:write」這個喔，完成後，拉到該頁面上面的「Tokens for Your Workspace」才能點「Install App to Workspace」這個按鈕，並取得一組「Bot User OAuth Access Token」</span></h4>
 <p><img src="https://i.imgur.com/N8dZMdA.png" alt></p>
-<h4 id="3-回到-slack-app-的該頻道-channel選右上角show-channel-detailsmore中的add-apps將建立的-bot-加入至該頻道中">3. 回到 Slack App 的該頻道 (Channel)，選右上角「Show channel details」「More」中的「Add apps」將建立的 Bot 加入至該頻道中</h4>
+<h4><span id="3-回到-slack-app-的該頻道-channel選右上角show-channel-detailsmore中的add-apps將建立的-bot-加入至該頻道中">3. 回到 Slack App 的該頻道 (Channel)，選右上角「Show channel details」「More」中的「Add apps」將建立的 Bot 加入至該頻道中</span></h4>
 <p><img src="https://i.imgur.com/xPpmL6y.png" alt></p>
 <p><img src="https://i.imgur.com/TqkJGAh.png" alt></p>
-<h4 id="4-將取得的-slack-token-bot-user-oauth-access-token-放在專案中">4. 將取得的 Slack token (Bot User OAuth Access Token) 放在專案中</h4>
+<h4><span id="4-將取得的-slack-token-bot-user-oauth-access-token-放在專案中">4. 將取得的 Slack token (Bot User OAuth Access Token) 放在專案中</span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/initializers/slack_bot.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'slack-ruby-client'</span></span><br><span class="line"></span><br><span class="line">Slack.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.token = <span class="string">'xoxb-xxxxxx-xxxx-xxxx'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建議 token 不要直接貼在這，可放 ENV 或其他地方</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="5-若想-tag-人的話至profilemore便可看到member-id">5. 若想 Tag 人的話，至「Profile」「More」便可看到「member ID」</h4>
+<h4><span id="5-若想-tag-人的話至profilemore便可看到member-id">5. 若想 Tag 人的話，至「Profile」「More」便可看到「member ID」</span></h4>
 <p><img src="https://i.imgur.com/SbYillD.png" alt></p>
-<h4 id="6-在-rails-console-測試看能否正常傳送訊息">6. 在 <code>rails console</code> 測試，看能否正常傳送訊息</h4>
+<h4><span id="6-在-rails-console-測試看能否正常傳送訊息">6. 在 <code>rails console</code> 測試，看能否正常傳送訊息</span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">client = Slack::Web::Client.new</span><br><span class="line">client.auth_test</span><br><span class="line">client.chat_postMessage(<span class="symbol">channel:</span> <span class="string">'#river-demo'</span>, <span class="symbol">text:</span> <span class="string">'Hello World'</span>, <span class="symbol">as_user:</span> <span class="literal">true</span>)</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/sTWsULP.jpg" alt></p>
-<h4 id="7-確認可以傳送訊息後示範寫在-sidekiq-worker-執行可參考此-commit">7. 確認可以傳送訊息後，示範寫在 Sidekiq worker 執行，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/17/commits/58d2c3d7d5f69d10a5e66aa870a7dd66da913e33" target="_blank" rel="noopener">commit</a></h4>
+<h4><span id="7-確認可以傳送訊息後示範寫在-sidekiq-worker-執行可參考此-commit">7. 確認可以傳送訊息後，示範寫在 Sidekiq worker 執行，可參考此 </span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/initializers/slack_bot.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'slack-ruby-client'</span></span><br><span class="line"></span><br><span class="line">Slack.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.token = Rails.application.secrets.slack[<span class="symbol">:slack_api_token</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/secrets.yml</span></span><br><span class="line"><span class="symbol">development:</span></span><br><span class="line">  <span class="symbol">slack:</span></span><br><span class="line">    <span class="symbol">slack_api_token:</span> <span class="string">'xoxb-xxxxxx-xxxx-xxxx'</span></span><br><span class="line">    <span class="symbol">river:</span> <span class="string">'UXXXXXX4'</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">test:</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">production:</span></span><br><span class="line">  <span class="symbol">slack:</span></span><br><span class="line">    <span class="symbol">slack_api_token:</span> <span class="string">''</span></span><br><span class="line">    <span class="symbol">river:</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line">- [<span class="string">'robot'</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/worker/slack_bot_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SlackBotWorker</span></span></span><br><span class="line">  <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line">  sidekiq_options <span class="symbol">queue:</span> <span class="string">'robot'</span>, <span class="symbol">retry:</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line">  DEFAULT_CHANNEL = <span class="string">'river-demo'</span></span><br><span class="line">  SLACK_ID_TABLE = &#123; <span class="symbol">river:</span> Rails.application.secrets.slack[<span class="symbol">:river</span>] &#125;.freeze</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">perform</span><span class="params">(msg, options = &#123;&#125;)</span></span></span><br><span class="line">    hostname = Socket.gethostname</span><br><span class="line">    ip_address = Socket.ip_address_list.find &#123; <span class="params">|ai|</span> ai.ipv4? &amp;&amp; !ai.ipv4_loopback? &#125;.ip_address</span><br><span class="line">    slack_bot = Slack::Web::Client.new</span><br><span class="line">    channel = options[<span class="string">'channel'</span>].presence <span class="params">||</span> DEFAULT_CHANNEL</span><br><span class="line">    names = options[<span class="string">'names'</span>].present? ? [options[<span class="string">'names'</span>]].flatten : []</span><br><span class="line">    names_tags = names.map &#123; <span class="params">|name|</span> <span class="string">"&lt;@<span class="subst">#&#123;SLACK_ID_TABLE[name.to_sym]&#125;</span>&gt;"</span> &#125;.join(<span class="string">''</span>)</span><br><span class="line">    slack_bot.chat_postMessage(</span><br><span class="line">      <span class="symbol">channel:</span> channel,</span><br><span class="line">      <span class="symbol">text:</span> <span class="string">"[<span class="subst">#&#123;hostname&#125;</span>][<span class="subst">#&#123;ip_address&#125;</span>] <span class="subst">#&#123;names_tags&#125;</span><span class="subst">#&#123;msg&#125;</span>"</span>,</span><br><span class="line">      <span class="symbol">as_user:</span> <span class="literal">true</span>,</span><br><span class="line">    )</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line"><span class="comment"># 想 Tag 人的話</span></span><br><span class="line">SlackBotWorker.perform_async(<span class="string">'Hello World'</span>, <span class="symbol">names:</span> <span class="string">'river'</span>)</span><br><span class="line"><span class="comment"># 不想 Tag 人的話</span></span><br><span class="line">SlackBotWorker.perform_async(<span class="string">'Hello World'</span>)</span><br></pre></td></tr></table></figure></p>
-<h4 id="參考資料">參考資料</h4>
+<h4><span id="參考資料">參考資料</span></h4>
 <p><a href="https://encr.jp/blog/posts/20200311_morning/" target="_blank" rel="noopener">lambdaからslackにメッセージ送信してみる</a></p>
 <hr>
-<h3 id="二-slack-notifier">二、<code>slack-notifier</code></h3>
+<h3><span id="二-slack-notifier">二、<code>slack-notifier</code></span></h3>
 <p>放在 Gemfile 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/17/commits/866ab4164f46ade870504c5e436b1510fcd7302d" target="_blank" rel="noopener">commit</a><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'slack-notifier'</span>, <span class="string">'~&gt; 2.3'</span>, <span class="string">'&gt;= 2.3.2'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="1-接著到-slack-api-網站-create-new-app">1. 接著到 Slack API 網站 <a href="https://api.slack.com/apps?new_app=1" target="_blank" rel="noopener">Create New App</a></h4>
+<h4><span id="1-接著到-slack-api-網站-create-new-app">1. 接著到 Slack API 網站 </span></h4>
 <p><img src="https://i.imgur.com/v5PfYuz.png" alt></p>
-<h4 id="2-選incoming-webhooks將activate-incoming-webhooks開啟並點add-new-webhook-to-workspace按鈕">2. 選「Incoming Webhooks」將「Activate Incoming Webhooks」開啟，並點「Add New Webhook to Workspace」按鈕</h4>
+<h4><span id="2-選incoming-webhooks將activate-incoming-webhooks開啟並點add-new-webhook-to-workspace按鈕">2. 選「Incoming Webhooks」將「Activate Incoming Webhooks」開啟，並點「Add New Webhook to Workspace」按鈕</span></h4>
 <p><img src="https://i.imgur.com/E6Usuqp.png" alt></p>
-<h4 id="3-選allow-謎之聲允許啦哪次不允許-xd">3. 選「Allow」 (謎之聲，允許啦，哪次不允許 XD</h4>
+<h4><span id="3-選allow-謎之聲允許啦哪次不允許-xd">3. 選「Allow」 (謎之聲，允許啦，哪次不允許 XD</span></h4>
 <p><img src="https://i.imgur.com/NuXhRdF.png" alt></p>
-<h4 id="4-將取得webhook-url複製在-rails-console-測試">4. 將取得「Webhook URL」複製，在 <code>rails console</code> 測試</h4>
+<h4><span id="4-將取得webhook-url複製在-rails-console-測試">4. 將取得「Webhook URL」複製，在 <code>rails console</code> 測試</span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">notifier = Slack::Notifier.new <span class="string">"https://hooks.slack.com/services/xxxx/xxxx/xxxx"</span></span><br><span class="line">notifier.ping <span class="string">"Hello World"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 就是這麼簡單 XD</span></span><br><span class="line"><span class="comment"># 這個就不寫範例了...</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/Yq0Z8je.png" alt></p>
 <hr>
-<h3 id="三-exception_notification">三、<code>exception_notification</code></h3>
+<h3><span id="三-exception_notification">三、<code>exception_notification</code></span></h3>
 <p>放在 Gemfile 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/17/commits/ea9a88054fe12c74068b2a3619e366c20cdf49b9" target="_blank" rel="noopener">commit</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'exception_notification'</span>, <span class="string">'~&gt; 4.4'</span>, <span class="string">'&gt;= 4.4.3'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
 <p>將剛才取得的 Slack Webhook URL 放在 <code>exception_notification.rb</code> ，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/17/commits/00d8e261fe2b287d80a0fedccce325ad33f4ed92" target="_blank" rel="noopener">commit</a></p>
@@ -506,7 +506,7 @@ height:50vh;
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/initializers/exception_notification.rb</span></span><br><span class="line">Rails.application.config.middleware.use ExceptionNotification::Rack, <span class="symbol">slack:</span> &#123;</span><br><span class="line">  <span class="symbol">webhook_url:</span> <span class="string">'https://hooks.slack.com/services/xxx/xxx'</span>,</span><br><span class="line">  <span class="symbol">channel:</span> <span class="string">'river-demo'</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可直接將 Rails.application.secrets.slack[:webhook_url] 換成 Webhook URL</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/n0fgllv.png" alt></p>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>想省事的話，可直接用 <code>slack-notifier</code> 這個 Gem 即可，步驟簡單，再寫一個 worker 處理即可，有了 <code>exception_notification</code> 後，發生預期外的錯誤訊息時，Slack 會即時通知，也能增加 Email 通知 (可至官方 GitHub 看文件，蠻簡單的)，三個 Gem 的使用皆是看文件寫出來的，記得，別把 Token 或密碼暴露在公開場合，包括不要 push 到 GitHub 或 GitLab 上...</p>
 <p>鐵人賽這系列文章接近尾聲，有幫助到你的地方，可在底下留言，有任何錯誤也歡迎指正，我會很感激的!!</p>
 <hr>
@@ -674,7 +674,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#介紹"><span class="toc-number">2.</span> <span class="toc-text">介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-slack-ruby-client"><span class="toc-number">3.1.</span> <span class="toc-text">一、slack-ruby-client</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-接著到-slack-api-網站-create-new-app"><span class="toc-number">3.1.1.</span> <span class="toc-text">1. 接著到 Slack API 網站 Create New App</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-選oauth-amp-permissions的bot-token-scopes並新增send-messages-as-lt你取的名稱gt要是chatwrite這個喔完成後拉到該頁面上面的tokens-for-your-workspace才能點install-app-to-workspace這個按鈕並取得一組bot-user-oauth-access-token"><span class="toc-number">3.1.2.</span> <span class="toc-text">2. 選「OAuth &amp; Permissions」的「Bot Token Scopes」，並新增「Send messages as &lt;你取的名稱&gt;」，要是「chat:write」這個喔，完成後，拉到該頁面上面的「Tokens for Your Workspace」才能點「Install App to Workspace」這個按鈕，並取得一組「Bot User OAuth Access Token」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-回到-slack-app-的該頻道-channel選右上角show-channel-detailsmore中的add-apps將建立的-bot-加入至該頻道中"><span class="toc-number">3.1.3.</span> <span class="toc-text">3. 回到 Slack App 的該頻道 (Channel)，選右上角「Show channel details」「More」中的「Add apps」將建立的 Bot 加入至該頻道中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-將取得的-slack-token-bot-user-oauth-access-token-放在專案中"><span class="toc-number">3.1.4.</span> <span class="toc-text">4. 將取得的 Slack token (Bot User OAuth Access Token) 放在專案中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-若想-tag-人的話至profilemore便可看到member-id"><span class="toc-number">3.1.5.</span> <span class="toc-text">5. 若想 Tag 人的話，至「Profile」「More」便可看到「member ID」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-在-rails-console-測試看能否正常傳送訊息"><span class="toc-number">3.1.6.</span> <span class="toc-text">6. 在 rails console 測試，看能否正常傳送訊息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-確認可以傳送訊息後示範寫在-sidekiq-worker-執行可參考此-commit"><span class="toc-number">3.1.7.</span> <span class="toc-text">7. 確認可以傳送訊息後，示範寫在 Sidekiq worker 執行，可參考此 commit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#參考資料"><span class="toc-number">3.1.8.</span> <span class="toc-text">參考資料</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-slack-notifier"><span class="toc-number">3.2.</span> <span class="toc-text">二、slack-notifier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-接著到-slack-api-網站-create-new-app"><span class="toc-number">3.2.1.</span> <span class="toc-text">1. 接著到 Slack API 網站 Create New App</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-選incoming-webhooks將activate-incoming-webhooks開啟並點add-new-webhook-to-workspace按鈕"><span class="toc-number">3.2.2.</span> <span class="toc-text">2. 選「Incoming Webhooks」將「Activate Incoming Webhooks」開啟，並點「Add New Webhook to Workspace」按鈕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-選allow-謎之聲允許啦哪次不允許-xd"><span class="toc-number">3.2.3.</span> <span class="toc-text">3. 選「Allow」 (謎之聲，允許啦，哪次不允許 XD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-將取得webhook-url複製在-rails-console-測試"><span class="toc-number">3.2.4.</span> <span class="toc-text">4. 將取得「Webhook URL」複製，在 rails console 測試</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-exception_notification"><span class="toc-number">3.3.</span> <span class="toc-text">三、exception_notification</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">介紹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">一、slack-ruby-client</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.1.</span> <span class="toc-text">1. 接著到 Slack API 網站 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.2.</span> <span class="toc-text">2. 選「OAuth &amp; Permissions」的「Bot Token Scopes」，並新增「Send messages as &lt;你取的名稱&gt;」，要是「chat:write」這個喔，完成後，拉到該頁面上面的「Tokens for Your Workspace」才能點「Install App to Workspace」這個按鈕，並取得一組「Bot User OAuth Access Token」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.3.</span> <span class="toc-text">3. 回到 Slack App 的該頻道 (Channel)，選右上角「Show channel details」「More」中的「Add apps」將建立的 Bot 加入至該頻道中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.4.</span> <span class="toc-text">4. 將取得的 Slack token (Bot User OAuth Access Token) 放在專案中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.5.</span> <span class="toc-text">5. 若想 Tag 人的話，至「Profile」「More」便可看到「member ID」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.6.</span> <span class="toc-text">6. 在 rails console 測試，看能否正常傳送訊息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.7.</span> <span class="toc-text">7. 確認可以傳送訊息後，示範寫在 Sidekiq worker 執行，可參考此 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.8.</span> <span class="toc-text">參考資料</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">二、slack-notifier</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.2.1.</span> <span class="toc-text">1. 接著到 Slack API 網站 </span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.2.2.</span> <span class="toc-text">2. 選「Incoming Webhooks」將「Activate Incoming Webhooks」開啟，並點「Add New Webhook to Workspace」按鈕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.2.3.</span> <span class="toc-text">3. 選「Allow」 (謎之聲，允許啦，哪次不允許 XD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.2.4.</span> <span class="toc-text">4. 將取得「Webhook URL」複製，在 rails console 測試</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.3.</span> <span class="toc-text">三、exception_notification</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1874,36 +1874,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1917,6 +1890,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2302,17 +2289,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2347,6 +2334,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2363,10 +2352,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2379,17 +2364,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2399,11 +2394,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2417,21 +2412,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2441,15 +2434,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2490,17 +2479,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

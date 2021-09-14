@@ -313,7 +313,7 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >616</span
+            >611</span
           >閱讀時間:
           <span class="post-count reading-time"
             >2 min</span
@@ -425,54 +425,54 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1 id="說明">說明</h1>
+    <h1><span id="說明">說明</span></h1>
 <p>如何在 GitHub 設定 Travis CI，以 Ruby on Rails 專案為例</p>
-<h1 id="環境介紹">環境介紹</h1>
+<h1><span id="環境介紹">環境介紹</span></h1>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ruby version 2.6.3</span><br><span class="line">Rails version 5.2.3</span><br><span class="line">Git version 2.23.0</span><br></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/River-Ye/travis_ci_test" target="_blank" rel="noopener">教學範例 GitHub</a></p>
-<h1 id="travis-ci">Travis CI</h1>
+<h1><span id="travis-ci">Travis CI</span></h1>
 <p><a href="https://travis-ci.org" target="_blank" rel="noopener">Travis CI</a> 是在軟體開發領域中的一個在線的，分布式的持續集成服務，用來構建及測試在 GitHub 託管的代碼。</p>
 <p>它提供了多種程式語言的支持，包括 Ruby、JavaScript、Java、Scala、PHP、Haskell 和 Erlang 在內的多種語言。許多知名的開源項目使用它來在每次提交的時候進行構建測試，比如 Ruby on Rails，Ruby 和 Node.js。</p>
 <p>出處：<a href="https://zh.wikipedia.org/wiki/Travis_CI" target="_blank" rel="noopener">維基百科</a></p>
-<h1 id="開始前">開始前</h1>
+<h1><span id="開始前">開始前</span></h1>
 <p>你要有：</p>
 <ol>
 <li>Ruby、Rails、Git、Postgresql 等的基本環境(<a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">沒有可參考這篇建置</a>)</li>
 <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a> 及 <a href="https://travis-ci.org" target="_blank" rel="noopener">Travis CI</a> 的帳號密碼 (免費註冊)</li>
 </ol>
-<h1 id="如何設定-ruby-on-rails-專案">如何設定 Ruby on Rails 專案</h1>
-<h3 id="1-裝-rspec-rails-gem">1. 裝 <a href="https://rubygems.org/gems/rspec-rails" target="_blank" rel="noopener">rspec-rails gem</a></h3>
+<h1><span id="如何設定-ruby-on-rails-專案">如何設定 Ruby on Rails 專案</span></h1>
+<h3><span id="1-裝-rspec-rails-gem">1. 裝 </span></h3>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 3.9'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 <p>換好資料庫後，終端機輸入
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bundle</span><br><span class="line">$ rails g rspec:install</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-將原本-sqlite-換成-pg-gem">2. 將原本 sqlite 換成 <a href="https://rubygems.org/gems/pg" target="_blank" rel="noopener">pg gem</a></h3>
+<h3><span id="2-將原本-sqlite-換成-pg-gem">2. 將原本 sqlite 換成 </span></h3>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'pg'</span>, <span class="string">'~&gt; 1.1'</span>, <span class="string">'&gt;= 1.1.4'</span></span><br></pre></td></tr></table></figure></p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/database.yml</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">default:</span> &amp;default</span><br><span class="line">  <span class="symbol">adapter:</span> postgresql</span><br><span class="line">  <span class="symbol">encoding:</span> unicode</span><br><span class="line">  <span class="symbol">pool:</span> &lt;%= ENV.fetch(<span class="string">"RAILS_MAX_THREADS"</span>) &#123; <span class="number">5</span> &#125; %&gt;</span><br><span class="line">  <span class="symbol">timeout:</span> <span class="number">5000</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">development:</span></span><br><span class="line">  &lt;&lt;: *default</span><br><span class="line">  <span class="symbol">database:</span> travis_ci_test_development</span><br><span class="line"></span><br><span class="line"><span class="symbol">test:</span></span><br><span class="line">  &lt;&lt;: *default</span><br><span class="line">  <span class="symbol">database:</span> travis_ci_test_test</span><br><span class="line"></span><br><span class="line"><span class="symbol">production:</span></span><br><span class="line">  &lt;&lt;: *default</span><br><span class="line">  <span class="symbol">database:</span> travis_ci_test_production</span><br><span class="line"></span><br><span class="line"><span class="comment"># database 名稱自取</span></span><br></pre></td></tr></table></figure></p>
 <p>換完資料庫後，記得要<br>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ bundle</span><br><span class="line">$ rails db:migrate:reset</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-以-rails-scaffold-測試為例-可忽略">3. 以 Rails scaffold 測試為例 (可忽略)</h3>
+<h3><span id="3-以-rails-scaffold-測試為例-可忽略">3. 以 Rails scaffold 測試為例 (可忽略)</span></h3>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ rails g scaffold User name role:integer email gender:integer tel</span><br><span class="line">$ rails db:migrate</span><br><span class="line">$ rspec</span><br></pre></td></tr></table></figure></p>
 <p>顯示如下</p>
 <p><img src="https://i.imgur.com/Erf8NC3.png" alt></p>
-<h3 id="4-在專案目錄底下新增travisyml">4. 在專案目錄底下新增「.travis.yml」</h3>
+<h3><span id="4-在專案目錄底下新增travisyml">4. 在專案目錄底下新增「.travis.yml」</span></h3>
 <p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .travis.yml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">language:</span> <span class="string">ruby</span></span><br><span class="line"><span class="attr">rvm:</span></span><br><span class="line"><span class="bullet">-</span> <span class="number">2.6</span><span class="number">.3</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">bundle</span> <span class="string">install</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">nvm</span> <span class="string">install</span> <span class="number">10</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">npm</span> <span class="string">i</span> <span class="bullet">-g</span> <span class="string">yarn</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">yarn</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">postgresql</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rake</span> <span class="attr">db:migrate:reset</span> <span class="string">RAILS_ENV=test</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rspec</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 可依需求調整</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="5-建立-github-專案-或在現有的專案-push-上去也可以">5. 建立 GitHub 專案 (或在現有的專案 push 上去也可以)</h3>
+<h3><span id="5-建立-github-專案-或在現有的專案-push-上去也可以">5. 建立 GitHub 專案 (或在現有的專案 push 上去也可以)</span></h3>
 <p><strong>要先有 GitHub 專案，Travis CI 同步時才能找到喔。</strong></p>
-<h3 id="6-設定-travis-ci-與-github-同步專案">6. 設定 Travis CI 與 GitHub 同步專案</h3>
+<h3><span id="6-設定-travis-ci-與-github-同步專案">6. 設定 Travis CI 與 GitHub 同步專案</span></h3>
 <p>Travis CI 登入後，右上角 <a href="https://travis-ci.org/account/repositories" target="_blank" rel="noopener">Settings</a> 即可設定。</p>
 <p><img src="https://i.imgur.com/XIbBSOf.png" alt></p>
-<h3 id="7-回-travis-ci-首頁點左側邊專案名稱">7. 回 Travis CI 首頁，點左側邊專案名稱</h3>
+<h3><span id="7-回-travis-ci-首頁點左側邊專案名稱">7. 回 Travis CI 首頁，點左側邊專案名稱</span></h3>
 <p><img src="https://i.imgur.com/ZGM49x7.png" alt></p>
-<h3 id="8-將帶有travisyml的-commit-push-至-github">8. 將帶有「.travis.yml」的 commit push 至 GitHub</h3>
+<h3><span id="8-將帶有travisyml的-commit-push-至-github">8. 將帶有「.travis.yml」的 commit push 至 GitHub</span></h3>
 <p><img src="https://i.imgur.com/joWXDI1.png" alt></p>
-<h3 id="9-push-至-github-後在-travis-ci-會看見正在執行的畫面">9. push 至 GitHub 後，在 Travis CI 會看見正在執行的畫面</h3>
+<h3><span id="9-push-至-github-後在-travis-ci-會看見正在執行的畫面">9. push 至 GitHub 後，在 Travis CI 會看見正在執行的畫面</span></h3>
 <p>需要跑一些時間(幾分鐘不等)，基本上有在執行，代表有順利載入 Travis CI</p>
 <p><img src="https://i.imgur.com/hpHdPhK.jpg" alt></p>
-<h3 id="10-回-github-點-commits-能看見已執行通過有綠色v">10. 回 GitHub 點 commits 能看見已執行通過(有綠色V)</h3>
+<h3><span id="10-回-github-點-commits-能看見已執行通過有綠色v">10. 回 GitHub 點 commits 能看見已執行通過(有綠色V)</span></h3>
 <p><img src="https://i.imgur.com/myAhzQU.png" alt></p>
-<h3 id="11-將-test_ci-branch-push-至-github-發-pr">11. 將 test_ci branch push 至 GitHub 發 pr</h3>
+<h3><span id="11-將-test_ci-branch-push-至-github-發-pr">11. 將 test_ci branch push 至 GitHub 發 pr</span></h3>
 <p><img src="https://i.imgur.com/9XEwOUw.png" alt></p>
-<h1 id="小結">小結</h1>
+<h1><span id="小結">小結</span></h1>
 <p>設定過一次再回想時，會發現比想像中簡單，精簡流程如下：</p>
 <ol>
 <li>設定「.travis.yml」檔</li>
@@ -643,7 +643,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說明"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#環境介紹"><span class="toc-number">2.</span> <span class="toc-text">環境介紹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#travis-ci"><span class="toc-number">3.</span> <span class="toc-text">Travis CI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#開始前"><span class="toc-number">4.</span> <span class="toc-text">開始前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何設定-ruby-on-rails-專案"><span class="toc-number">5.</span> <span class="toc-text">如何設定 Ruby on Rails 專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-裝-rspec-rails-gem"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 裝 rspec-rails gem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-將原本-sqlite-換成-pg-gem"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 將原本 sqlite 換成 pg gem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-以-rails-scaffold-測試為例-可忽略"><span class="toc-number">5.0.3.</span> <span class="toc-text">3. 以 Rails scaffold 測試為例 (可忽略)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在專案目錄底下新增travisyml"><span class="toc-number">5.0.4.</span> <span class="toc-text">4. 在專案目錄底下新增「.travis.yml」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-建立-github-專案-或在現有的專案-push-上去也可以"><span class="toc-number">5.0.5.</span> <span class="toc-text">5. 建立 GitHub 專案 (或在現有的專案 push 上去也可以)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-設定-travis-ci-與-github-同步專案"><span class="toc-number">5.0.6.</span> <span class="toc-text">6. 設定 Travis CI 與 GitHub 同步專案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-回-travis-ci-首頁點左側邊專案名稱"><span class="toc-number">5.0.7.</span> <span class="toc-text">7. 回 Travis CI 首頁，點左側邊專案名稱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-將帶有travisyml的-commit-push-至-github"><span class="toc-number">5.0.8.</span> <span class="toc-text">8. 將帶有「.travis.yml」的 commit push 至 GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-push-至-github-後在-travis-ci-會看見正在執行的畫面"><span class="toc-number">5.0.9.</span> <span class="toc-text">9. push 至 GitHub 後，在 Travis CI 會看見正在執行的畫面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-回-github-點-commits-能看見已執行通過有綠色v"><span class="toc-number">5.0.10.</span> <span class="toc-text">10. 回 GitHub 點 commits 能看見已執行通過(有綠色V)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-將-test_ci-branch-push-至-github-發-pr"><span class="toc-number">5.0.11.</span> <span class="toc-text">11. 將 test_ci branch push 至 GitHub 發 pr</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">6.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">環境介紹</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">Travis CI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">開始前</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">如何設定 Ruby on Rails 專案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 裝 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 將原本 sqlite 換成 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.3.</span> <span class="toc-text">3. 以 Rails scaffold 測試為例 (可忽略)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.4.</span> <span class="toc-text">4. 在專案目錄底下新增「.travis.yml」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.5.</span> <span class="toc-text">5. 建立 GitHub 專案 (或在現有的專案 push 上去也可以)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.6.</span> <span class="toc-text">6. 設定 Travis CI 與 GitHub 同步專案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.7.</span> <span class="toc-text">7. 回 Travis CI 首頁，點左側邊專案名稱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.8.</span> <span class="toc-text">8. 將帶有「.travis.yml」的 commit push 至 GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.9.</span> <span class="toc-text">9. push 至 GitHub 後，在 Travis CI 會看見正在執行的畫面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.10.</span> <span class="toc-text">10. 回 GitHub 點 commits 能看見已執行通過(有綠色V)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">5.0.11.</span> <span class="toc-text">11. 將 test_ci branch push 至 GitHub 發 pr</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1843,36 +1843,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1886,6 +1859,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2271,17 +2258,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2316,6 +2303,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2332,10 +2321,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2348,17 +2333,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2368,11 +2363,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2386,21 +2381,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2410,15 +2403,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2459,17 +2448,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

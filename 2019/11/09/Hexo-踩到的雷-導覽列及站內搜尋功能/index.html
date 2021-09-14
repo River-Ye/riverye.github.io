@@ -423,23 +423,23 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1 id="說在前面">說在前面</h1>
+    <h1><span id="說在前面">說在前面</span></h1>
 <blockquote>
 <p>越小的細節，雷說不定越多</p>
 </blockquote>
 <p>最近對這段很有感觸，偶爾會遇到預料外的雷，需要花時間 debug，這次遇到的問題，之前踩過一次並解決，但沒記錄下來，隨<a href="https://zh.wikipedia.org/wiki/%E9%81%BA%E5%BF%98%E6%9B%B2%E7%B7%9A" target="_blank" rel="noopener">遺忘曲線</a>，生疏或健忘是可能的。</p>
 <p><img src="https://i.imgur.com/2ICL0V9.png" alt></p>
 <hr>
-<h1 id="遇到的問題">遇到的問題</h1>
+<h1><span id="遇到的問題">遇到的問題</span></h1>
 <ol>
 <li>Blog 文章的側邊欄導覽列 Catalog 點擊時無法跳到對應位置，會顯示 null</li>
 <li>Blog 站內搜尋突然失效無法使用</li>
 </ol>
-<h1 id="分析問題">分析問題</h1>
+<h1><span id="分析問題">分析問題</span></h1>
 <p>新增「<a href="https://riverye.com/2019/11/08/%E6%9C%89%E8%B6%A3%E7%9A%84-4-%E9%A1%8C%E7%99%BD%E6%9D%BF%E9%A1%8C/">文章加密</a>」功能後，誤動到原本的 code。</p>
-<h1 id="解決方法">解決方法</h1>
-<h2 id="導覽列問題">導覽列問題</h2>
-<h3 id="markdown-it-套件的-bug">markdown-it 套件的 bug</h3>
+<h1><span id="解決方法">解決方法</span></h1>
+<h2><span id="導覽列問題">導覽列問題</span></h2>
+<h3><span id="markdown-it-套件的-bug">markdown-it 套件的 bug</span></h3>
 <p>安装 markdown-it-named-headings 來修復原本套件的 bug<br>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install markdown-it-named-headings --save</span><br></pre></td></tr></table></figure></p>
 <p>進入 Blog 的根目錄修改 <code>node_modules\hexo-renderer-markdown-it\lib\renderer.js</code> 檔案，並在第 9 行後面新增如下：<br>
@@ -454,7 +454,7 @@ height:50vh;
 <blockquote>
 <p>修改後，記得 <code>hexo clean</code> 及 <code>hexo server</code> ，「用無痕模式測試」，確保不受暫存檔影響。</p>
 </blockquote>
-<h3 id="造成原因">造成原因</h3>
+<h3><span id="造成原因">造成原因</span></h3>
 <p>找的 theme 已經很久沒更新了，更新後導致 <code>hexo-toc</code> 不相容的問題。</p>
 <p>沒踩到此雷的可能原因：</p>
 <ol>
@@ -462,8 +462,8 @@ height:50vh;
 <li>舊版本沒更新</li>
 </ol>
 <hr>
-<h2 id="站內搜尋失效的問題">站內搜尋失效的問題</h2>
-<h3 id="algolia-服務">Algolia 服務</h3>
+<h2><span id="站內搜尋失效的問題">站內搜尋失效的問題</span></h2>
+<h3><span id="algolia-服務">Algolia 服務</span></h3>
 <p>站內搜尋使用 <a href="https://www.algolia.com/" target="_blank" rel="noopener">Algolia</a> 服務製作而成，註冊後享有 14 天內所有功能免費使用，到期後需「手動」選擇免費方案，否則無法繼續使用。</p>
 <p>解決方法其實已經在描述中，到 Algolia 選擇免費方案即可。</p>
 <p>補充紀錄 <code>_config.yml</code> 設定：<br>
@@ -472,7 +472,7 @@ height:50vh;
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ export HEXO_ALGOLIA_INDEXING_KEY=eXXXXXXXXXXXXXXXXXXXXXXXXXXXX5</span><br><span class="line">$ hexo algolia</span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/vJsVr3O.png" alt></p>
 <hr>
-<h1 id="小結">小結</h1>
+<h1><span id="小結">小結</span></h1>
 <p>透過 <a href="https://zh.wikipedia.org/wiki/%E9%B4%A8%E5%AD%90%E9%A1%9E%E5%9E%8B" target="_blank" rel="noopener">Duck typing</a> 的方式，在描述問題的過程中，答案說不定就在裡面~</p>
 
   </article>
@@ -634,7 +634,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說在前面"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的問題"><span class="toc-number">2.</span> <span class="toc-text">遇到的問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分析問題"><span class="toc-number">3.</span> <span class="toc-text">分析問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解決方法"><span class="toc-number">4.</span> <span class="toc-text">解決方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#導覽列問題"><span class="toc-number">4.1.</span> <span class="toc-text">導覽列問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-it-套件的-bug"><span class="toc-number">4.1.1.</span> <span class="toc-text">markdown-it 套件的 bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#造成原因"><span class="toc-number">4.1.2.</span> <span class="toc-text">造成原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#站內搜尋失效的問題"><span class="toc-number">4.2.</span> <span class="toc-text">站內搜尋失效的問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#algolia-服務"><span class="toc-number">4.2.1.</span> <span class="toc-text">Algolia 服務</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">遇到的問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">分析問題</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">解決方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">導覽列問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.1.1.</span> <span class="toc-text">markdown-it 套件的 bug</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.1.2.</span> <span class="toc-text">造成原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.2.</span> <span class="toc-text">站內搜尋失效的問題</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.2.1.</span> <span class="toc-text">Algolia 服務</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1834,36 +1834,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1877,6 +1850,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2262,17 +2249,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2307,6 +2294,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2323,10 +2312,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2339,17 +2324,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2359,11 +2354,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2377,21 +2372,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2401,15 +2394,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2450,17 +2439,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

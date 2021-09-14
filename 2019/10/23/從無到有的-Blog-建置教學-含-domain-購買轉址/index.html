@@ -427,10 +427,10 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="說在前面">說在前面</h2>
+    <h2><span id="說在前面">說在前面</span></h2>
 <p>本篇以 Windows 環境架設 Blog，同時記錄自己 Blog 建立的過程。</p>
 <hr>
-<h2 id="環境建置">環境建置</h2>
+<h2><span id="環境建置">環境建置</span></h2>
 <p>開始前，你要先有：</p>
 <ol>
 <li>Node.js</li>
@@ -438,7 +438,7 @@ height:50vh;
 <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub 帳號</a> (免費註冊使用)</li>
 </ol>
 <hr>
-<h2 id="nvm-安裝">nvm 安裝</h2>
+<h2><span id="nvm-安裝">nvm 安裝</span></h2>
 <p>完成上述基本環境建置後，需先安裝 <a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener">nvm</a> 才能安裝 Hexo，先在 Ubuntu 輸入</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -o- <span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/nvm</span>-sh/nvm/v<span class="number">0</span>.<span class="number">35.0</span>/install.sh <span class="params">| bash</span></span><br><span class="line"><span class="params"></span></span><br><span class="line"><span class="params"># 安裝 nvm</span></span><br><span class="line"><span class="params"># 接著重開 Ubuntu</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/rezazFO.png" alt></p>
@@ -455,7 +455,7 @@ height:50vh;
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ which node</span><br><span class="line"><span class="comment"># /home/river/.nvm/versions/node/v12.13.0/bin/node</span></span><br><span class="line"></span><br><span class="line">$ nvm use system</span><br><span class="line"><span class="comment"># 切換回系統的 Node.js</span></span><br><span class="line"><span class="comment"># Now using system version of node: v12.11.1 (npm v6.11.3)</span></span><br><span class="line"></span><br><span class="line">$ which node</span><br><span class="line"><span class="comment"># /usr/bin/node</span></span><br><span class="line"></span><br><span class="line">$ nvm use <span class="number">12.13</span>.<span class="number">0</span></span><br><span class="line"><span class="comment"># 切換 nvm 版本</span></span><br><span class="line"><span class="comment"># Now using node v12.13.0 (npm v6.12.0)</span></span><br><span class="line"></span><br><span class="line">$ which node</span><br><span class="line"><span class="comment"># /home/river/.nvm/versions/node/v12.13.0/bin/node</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/il2HvsH.png" alt></p>
 <hr>
-<h2 id="安裝-hexo">安裝 Hexo</h2>
+<h2><span id="安裝-hexo">安裝 Hexo</span></h2>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>查詢 Hexo 版本</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ hexo --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下為顯示結果</span></span><br><span class="line">hexo-<span class="symbol">cli:</span> <span class="number">3.1</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">os:</span> Linux <span class="number">4.4</span>.<span class="number">0</span>-<span class="number">18362</span>-Microsoft linux x64</span><br><span class="line"><span class="symbol">node:</span> <span class="number">12.13</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">v8:</span> <span class="number">7.7</span>.<span class="number">299.13</span>-node.<span class="number">12</span></span><br><span class="line"><span class="symbol">uv:</span> <span class="number">1.32</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">zlib:</span> <span class="number">1.2</span>.<span class="number">11</span></span><br><span class="line"><span class="symbol">brotli:</span> <span class="number">1.0</span>.<span class="number">7</span></span><br><span class="line"><span class="symbol">ares:</span> <span class="number">1.15</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">modules:</span> <span class="number">72</span></span><br><span class="line"><span class="symbol">nghttp2:</span> <span class="number">1.39</span>.<span class="number">2</span></span><br><span class="line"><span class="symbol">napi:</span> <span class="number">5</span></span><br><span class="line"><span class="symbol">llhttp:</span> <span class="number">1.1</span>.<span class="number">4</span></span><br><span class="line"><span class="symbol">http_parser:</span> <span class="number">2.8</span>.<span class="number">0</span></span><br><span class="line"><span class="symbol">openssl:</span> <span class="number">1.1</span>.<span class="number">1</span>d</span><br><span class="line"><span class="symbol">cldr:</span> <span class="number">35.1</span></span><br><span class="line"><span class="symbol">icu:</span> <span class="number">64.2</span></span><br><span class="line"><span class="symbol">tz:</span> <span class="number">2019</span>a</span><br><span class="line"><span class="symbol">unicode:</span> <span class="number">12.1</span></span><br><span class="line"><span class="comment"># 以上為顯示結果</span></span><br></pre></td></tr></table></figure></p>
@@ -468,7 +468,7 @@ height:50vh;
 <p><img src="https://i.imgur.com/KCgdXng.png" alt></p>
 <p><img src="https://i.imgur.com/hjEhPtU.png" alt></p>
 <hr>
-<h2 id="更換主題">更換主題</h2>
+<h2><span id="更換主題">更換主題</span></h2>
 <p>預設 themes 不喜歡的話，可到 <a href="https://hexo.io/themes/index.html" target="_blank" rel="noopener">Hexo Themes</a> 挑喜歡的主題</p>
 <p>備註：挑選喜歡的主題後，務必詳讀該主題 GitHub 及 <a href="https://hexo.io/zh-tw/api/index.html" target="_blank" rel="noopener">Hexo 官方文件</a>，後續才知道如何改 (各主題修改方式不盡相同，依該主題 GitHub 文件說明為主)</p>
 <p>以「<a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>」主題為例</p>
@@ -486,19 +486,19 @@ height:50vh;
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 開啟瀏覽器，會發現主題已更換</span></span><br><span class="line"><span class="comment"># 若預設主題確定不會再使用，可把「themes」底下的資料夾「landscape」刪除</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/4DuZGry.png" alt></p>
 <hr>
-<h2 id="新增文章">新增文章</h2>
+<h2><span id="新增文章">新增文章</span></h2>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"&lt;title&gt;"</span></span><br><span class="line">$ hexo new <span class="string">"標題寫在這裡，Hello World"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 這指令很常用，每次新增文章都要這麼做</span></span><br></pre></td></tr></table></figure></p>
 <p>Hexo 支援 <a href="https://markdown.tw/" target="_blank" rel="noopener">Markdown 語法</a>，使用方法自行翻閱 API</p>
 <p><img src="https://i.imgur.com/2V6sZUo.png" alt></p>
 <p><strong>編輯文章時 <code>$ hexo s</code> 免關，可直接重新整理瀏覽器，即時觀看內容</strong></p>
 <p><img src="https://i.imgur.com/8TZSfNG.png" alt></p>
 <hr>
-<h2 id="部署-github">部署 GitHub</h2>
+<h2><span id="部署-github">部署 GitHub</span></h2>
 <p>當 Blog 改成想要的形狀後，接下來要部署到 <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></p>
-<h3 id="安装-deploy-git-插件">安装 deploy git 插件</h3>
+<h3><span id="安装-deploy-git-插件">安装 deploy git 插件</span></h3>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 要在對的路徑做這件事情喔</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/USbCTZ1.png" alt></p>
-<h3 id="登入-github-後選new-repository">登入 GitHub 後，選「New repository」</h3>
+<h3><span id="登入-github-後選new-repository">登入 GitHub 後，選「New repository」</span></h3>
 <p><img src="https://i.imgur.com/w4qJh0t.png" alt></p>
 <p>在 GitHub 新增一個名稱為 &lt;username&gt;.github.io 的專案</p>
 <p>範例：<br>
@@ -530,19 +530,19 @@ Repository name：RiverBlog.github.io</p>
 <p><img src="https://i.imgur.com/l0Hp88A.png" alt></p>
 <p>完成以上步驟即可獲得 username.github.io 的網址</p>
 <hr>
-<h2 id="讓連結正常化">讓連結正常化</h2>
+<h2><span id="讓連結正常化">讓連結正常化</span></h2>
 <p><strong>此時會發現 Blog 中的連結幾乎失效</strong>，回到「_config.yml」中設定</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改前</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">http:</span>/<span class="regexp">/yoursite.com/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 修改後</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">https:</span>/<span class="regexp">/river-demo.github.io/</span></span><br><span class="line"><span class="symbol">url:</span> <span class="symbol">https:</span>/<span class="regexp">/riverye.com/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可用 username.github.io 或自己的 domain</span></span><br><span class="line"><span class="comment"># 看需求調整</span></span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/anXPrIa.png" alt></p>
 <hr>
-<h2 id="客製化-domain">客製化 domain</h2>
+<h2><span id="客製化-domain">客製化 domain</span></h2>
 <p>有了 <a href="https://river-demo.github.io/" target="_blank" rel="noopener">https://river-demo.github.io/</a> 後，想把網址換成專屬網域名稱，以下兩個方法可供參考：</p>
 <ol>
 <li><a href="https://www.gandi.net/zh-hant" target="_blank" rel="noopener">Gandi.net</a> ( <a href="https://riverye.com">riverye.com</a> 在這買的)</li>
 <li><a href="https://www.freenom.com/" target="_blank" rel="noopener">freenom</a> ( <a href="https://river-demo.tk" target="_blank" rel="noopener">river-demo.tk</a> 在這挑的，教學用，免費，但網址比較醜)</li>
 </ol>
 <hr>
-<h3 id="gandinet"><a href="https://www.gandi.net/zh-hant" target="_blank" rel="noopener">Gandi.net</a></h3>
+<h3><span id="gandinet"></span></h3>
 <p>搜尋想買的網域名稱後，信用卡刷一波就有了</p>
 <p><img src="https://i.imgur.com/1FiBwYb.png" alt></p>
 <p>新增 DNS 紀錄</p>
@@ -553,7 +553,7 @@ Repository name：RiverBlog.github.io</p>
 <p><img src="https://i.imgur.com/xLTmPfr.png" alt></p>
 <p>稍等片刻即完成 <a href="https://riverye.com">riverye.com</a></p>
 <hr>
-<h3 id="freenom"><a href="https://www.freenom.com/" target="_blank" rel="noopener">freenom</a></h3>
+<h3><span id="freenom"></span></h3>
 <p>搜尋想要的網域名稱後，可選擇信用卡刷一波，或挑免費的使用</p>
 <p>備註： freenom 註冊按鈕藏在購物車內<br>
 跟著使用體驗流程走，便會看到註冊畫面 (很隱藏)</p>
@@ -566,16 +566,16 @@ Repository name：RiverBlog.github.io</p>
 <p>GitHub 設定如下</p>
 <p><img src="https://i.imgur.com/X3ZUwhD.png" alt></p>
 <p>稍等片刻即完成 <a href="https://river-demo.tk" target="_blank" rel="noopener">river-demo.tk</a></p>
-<h2 id="完成以上步驟恭喜有專屬-domain-blog-灑花">完成以上步驟，恭喜有專屬 domain Blog (灑花</h2>
+<h2><span id="完成以上步驟恭喜有專屬-domain-blog-灑花">完成以上步驟，恭喜有專屬 domain Blog (灑花</span></h2>
 <hr>
-<h2 id="q-amp-a">Q &amp; A</h2>
-<h3 id="1-之前裝過-nodejs-為何還要裝-nvm">1. 之前裝過 Node.js 為何還要裝 NVM ?</h3>
+<h2><span id="q-amp-a">Q &amp; A</span></h2>
+<h3><span id="1-之前裝過-nodejs-為何還要裝-nvm">1. 之前裝過 Node.js 為何還要裝 NVM ?</span></h3>
 <p>先前我們有使用 Ubuntu 本身的 apt-get 安裝 Node.js<br>
 不過那是被安裝到 /usr/bin/node<br>
 有時候安裝套件需要 sudo 提供管理者權限<br>
 非常麻煩，因此我們使用 nvm 來安裝另一個 Node.js<br>
 這個 Node.js 的執行檔就任我們使用，不需要提供管理者權限了</p>
-<h3 id="2-hexo-上沒喜歡的-themes有別的選擇嗎">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</h3>
+<h3><span id="2-hexo-上沒喜歡的-themes有別的選擇嗎">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</span></h3>
 <p>沒關係，給你滿滿的選擇：<br>
 jekyll <a href="https://jekyllrb.com/" target="_blank" rel="noopener">https://jekyllrb.com/</a><br>
 Ghost <a href="https://ghost.org" target="_blank" rel="noopener">https://ghost.org</a><br>
@@ -584,13 +584,13 @@ Hexo <a href="https://hexo.io" target="_blank" rel="noopener">https://hexo.io</a
 Octopress <a href="http://octopress.org/" target="_blank" rel="noopener">http://octopress.org/</a><br>
 VuePress <a href="https://vuepress.vuejs.org" target="_blank" rel="noopener">https://vuepress.vuejs.org</a></p>
 <p>附上：<a href="https://www.staticgen.com/" target="_blank" rel="noopener">靜態頁面產生器的比較</a></p>
-<h3 id="3-為什麼你-github-settings-中的enforce-https可以勾">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</h3>
+<h3><span id="3-為什麼你-github-settings-中的enforce-https可以勾">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</span></h3>
 <p>讓子彈飛一回，就有了 (約半小時左右)</p>
-<h3 id="4-為什麼更新-github-後原本-domain-會失效">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</h3>
+<h3><span id="4-為什麼更新-github-後原本-domain-會失效">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</span></h3>
 <p>GitHub 的 Settings 跑掉，手動改回原本 domain 即可</p>
 <p><img src="https://i.imgur.com/fdrStDS.png" alt></p>
 <hr>
-<h2 id="最後的最後">最後的最後</h2>
+<h2><span id="最後的最後">最後的最後</span></h2>
 <p>照著上面操作，或許能畫葫蘆出一個 Blog，但沒相關知識 (HTML5、Git、Linux 指令...等) 的話，會發現改不太動，甚至玩壞時不知該如何處理，這時請擅用 Google 自行解決問題</p>
 
   </article>
@@ -752,7 +752,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#說在前面"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#環境建置"><span class="toc-number">2.</span> <span class="toc-text">環境建置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nvm-安裝"><span class="toc-number">3.</span> <span class="toc-text">nvm 安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-hexo"><span class="toc-number">4.</span> <span class="toc-text">安裝 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更換主題"><span class="toc-number">5.</span> <span class="toc-text">更換主題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新增文章"><span class="toc-number">6.</span> <span class="toc-text">新增文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署-github"><span class="toc-number">7.</span> <span class="toc-text">部署 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-deploy-git-插件"><span class="toc-number">7.1.</span> <span class="toc-text">安装 deploy git 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#登入-github-後選new-repository"><span class="toc-number">7.2.</span> <span class="toc-text">登入 GitHub 後，選「New repository」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#讓連結正常化"><span class="toc-number">8.</span> <span class="toc-text">讓連結正常化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客製化-domain"><span class="toc-number">9.</span> <span class="toc-text">客製化 domain</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gandinet"><span class="toc-number">9.1.</span> <span class="toc-text">Gandi.net</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freenom"><span class="toc-number">9.2.</span> <span class="toc-text">freenom</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成以上步驟恭喜有專屬-domain-blog-灑花"><span class="toc-number">10.</span> <span class="toc-text">完成以上步驟，恭喜有專屬 domain Blog (灑花</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q-amp-a"><span class="toc-number">11.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-之前裝過-nodejs-為何還要裝-nvm"><span class="toc-number">11.1.</span> <span class="toc-text">1. 之前裝過 Node.js 為何還要裝 NVM ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-hexo-上沒喜歡的-themes有別的選擇嗎"><span class="toc-number">11.2.</span> <span class="toc-text">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-為什麼你-github-settings-中的enforce-https可以勾"><span class="toc-number">11.3.</span> <span class="toc-text">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-為什麼更新-github-後原本-domain-會失效"><span class="toc-number">11.4.</span> <span class="toc-text">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最後的最後"><span class="toc-number">12.</span> <span class="toc-text">最後的最後</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">說在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">環境建置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">nvm 安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">安裝 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">更換主題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">新增文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">部署 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">7.1.</span> <span class="toc-text">安装 deploy git 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">7.2.</span> <span class="toc-text">登入 GitHub 後，選「New repository」</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">讓連結正常化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">客製化 domain</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">9.1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">9.2.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">10.</span> <span class="toc-text">完成以上步驟，恭喜有專屬 domain Blog (灑花</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">11.</span> <span class="toc-text">Q &amp; A</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">11.1.</span> <span class="toc-text">1. 之前裝過 Node.js 為何還要裝 NVM ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">11.2.</span> <span class="toc-text">2. Hexo 上沒喜歡的 themes，有別的選擇嗎 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">11.3.</span> <span class="toc-text">3. 為什麼你 GitHub Settings 中的「Enforce HTTPS」可以勾 ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">11.4.</span> <span class="toc-text">4. 為什麼更新 GitHub 後，原本 domain 會失效 ?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">12.</span> <span class="toc-text">最後的最後</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1952,36 +1952,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1995,6 +1968,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2380,17 +2367,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2425,6 +2412,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2441,10 +2430,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2457,17 +2442,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2477,11 +2472,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2495,21 +2490,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2519,15 +2512,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2568,17 +2557,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

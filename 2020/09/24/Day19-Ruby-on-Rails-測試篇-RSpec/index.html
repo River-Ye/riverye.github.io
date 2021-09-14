@@ -419,7 +419,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>身為一名 Ruby on Rails 工程師，幾乎都有寫過 <a href="https://github.com/rspec/rspec-rails" target="_blank" rel="noopener">RSpec</a>，<br>
 測試本身與開發是一樣重要的，有聽過一詞是開發時間緊迫，沒時間寫測試，<br>
 要趕在截止日前完成功能，都要來不及了，有空再補...<s>(通常就是沒下文</s><br>
@@ -428,32 +428,32 @@ height:50vh;
 還能幫助你避開低級錯誤 (像是語法錯誤等)</p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="如何安裝">如何安裝</h2>
+<h2><span id="如何安裝">如何安裝</span></h2>
 <p>放在 <code>:development, :test</code> group 裡面，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/40e8c4680dfe192104bd2051c22d0ea8eff106b1" target="_blank" rel="noopener">commit</a></p>
 <p>參考資料: <a href="https://relishapp.com/rspec/rspec-rails/docs" target="_blank" rel="noopener">https://relishapp.com/rspec/rspec-rails/docs</a><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'rspec-rails'</span>, <span class="string">'~&gt; 4.0.0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
 <p>接著再終端機輸入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/69fb29236766f40978def698774af235eb8877e4" target="_blank" rel="noopener">commit</a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rails generate rspec:install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可縮寫成</span></span><br><span class="line">rails g rspec:install</span><br></pre></td></tr></table></figure></p>
-<h2 id="產生範例-spec">產生範例 spec</h2>
+<h2><span id="產生範例-spec">產生範例 spec</span></h2>
 <p>由於之前已經透過 <code>scaffold</code> 建立 User<br>
 欲透過指令補產生相關測試檔案的話，在終端機輸入以下<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails g rspec:scaffold user</span><br></pre></td></tr></table></figure></p>
 <p>若不透過指令，也可手動新增檔案，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/ecc69165e1cfff8a2124cb94b8460d0960b78d56" target="_blank" rel="noopener">commit</a></p>
-<h4 id="備註">備註:</h4>
+<h4><span id="備註">備註:</span></h4>
 <ol>
 <li>原本我也不知道要這樣下指令，透過 <code>rails g -h</code> 的技巧，看有哪些參數可以使用 (若不清楚，可以看前面寫的 Linux 指令文章 <code>man</code>、<code>help</code>、<code>tldr</code>，非常受用的技巧)</li>
 <li>若已經有先裝 RSpec ，透過 scaffold 產生檔案時，便會一起產生 spec.rb 的相關檔案</li>
 </ol>
-<h2 id="如何執行">如何執行</h2>
+<h2><span id="如何執行">如何執行</span></h2>
 <p>終端機輸入<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跑全部的測試</span></span><br><span class="line">rspec</span><br><span class="line">rspec spec</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定資料夾的測試</span></span><br><span class="line">rspec spec/routing/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案的測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑特定檔案某一個測試</span></span><br><span class="line">rspec spec/routing/users_routing_spec.rb:22</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何讓-ci-也能跑-rspec">如何讓 CI 也能跑 rspec</h2>
+<h2><span id="如何讓-ci-也能跑-rspec">如何讓 CI 也能跑 rspec</span></h2>
 <p>將原本 CI 設定檔新增以下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/5/commits/707897e611d3a6a4b8f5e0d026bd3494274b1305" target="_blank" rel="noopener">commit</a><br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rspec</span><br></pre></td></tr></table></figure></p>
-<h2 id="推薦網站">推薦網站</h2>
+<h2><span id="推薦網站">推薦網站</span></h2>
 <p>想提升自己 RSpec 寫法的話，可參考 <a href="https://www.betterspecs.org/" target="_blank" rel="noopener">Better Specs</a> 此網站</p>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>測試非常的重要，但也別把測試當萬靈丹，它只能幫忙測出有涵蓋到的情境 (假設測試的情境、準備的答案、寫的測試都是對的)，依然無法測出沒想到的情境，未來再修改 code 時，也可能發現原本考量的情境已經變了，這時便需要調整測試本身</p>
 <p>測試本身，其實就可以寫成 30 天的文章，自成一個生態圈，且還有許多相關的 <a href="https://rubygems.org/" target="_blank" rel="noopener">Gem</a> 相輔相成，像是 <a href="https://github.com/thoughtbot/factory_bot" target="_blank" rel="noopener">factory_bot</a>、<a href="https://github.com/DatabaseCleaner/database_cleaner" target="_blank" rel="noopener">Database Cleaner</a>、<a href="https://github.com/travisjeffery/timecop" target="_blank" rel="noopener">timecop</a>、<a href="https://github.com/teamcapybara/capybara" target="_blank" rel="noopener">Capybara</a>、<a href="https://github.com/simplecov-ruby/simplecov" target="_blank" rel="noopener">SimpleCov</a>、<a href="https://github.com/guilleiguaran/fakeredis" target="_blank" rel="noopener">FakeRedis</a>...等，將來有機會再視情況寫成文章...</p>
 <p>本篇其實寫的蠻精簡的 XD <s>(逃</s>，下篇會講另一個測試套件 <a href="https://github.com/cucumber/cucumber-ruby" target="_blank" rel="noopener">Cucumber</a></p>
@@ -469,7 +469,7 @@ medium 文章連結：<a href="https://link.medium.com/M8qWBUbd19" target="_blan
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/">https://riverye.com/2020/09/24/Day19-Ruby-on-Rails-測試篇-RSpec/</a></p>
     <p>發表日期：2020-09-24</p>
-    <p>更新日期：2020-09-24</p>
+    <p>更新日期：2021-08-14</p>
   </div>
   
   <!-- paginator  -->
@@ -622,7 +622,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#產生範例-spec"><span class="toc-number">3.</span> <span class="toc-text">產生範例 spec</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#備註"><span class="toc-number">3.0.1.</span> <span class="toc-text">備註:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何讓-ci-也能跑-rspec"><span class="toc-number">5.</span> <span class="toc-text">如何讓 CI 也能跑 rspec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推薦網站"><span class="toc-number">6.</span> <span class="toc-text">推薦網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">產生範例 spec</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.0.1.</span> <span class="toc-text">備註:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">如何讓 CI 也能跑 rspec</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">推薦網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1822,36 +1822,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1865,6 +1838,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2250,17 +2237,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2295,6 +2282,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2311,10 +2300,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2327,17 +2312,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2347,11 +2342,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2365,21 +2360,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2389,15 +2382,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2438,17 +2427,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

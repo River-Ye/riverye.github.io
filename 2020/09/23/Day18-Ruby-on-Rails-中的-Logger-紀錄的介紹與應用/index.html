@@ -419,38 +419,38 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題<br>
 像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等<br>
 若都沒有儲存 Log 紀錄的話，就...好自為之 QQ</p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="如何產生-log">如何產生 Log</h2>
+<h2><span id="如何產生-log">如何產生 Log</span></h2>
 <p>使用者在操作時，本身就會產生制式 Log 被記錄，並存在 Log 資料夾底下，依照當下環境，存在對應的檔案中</p>
-<h4 id="在-development-操作的-log">在 development 操作的 Log</h4>
+<h4><span id="在-development-操作的-log">在 development 操作的 Log</span></h4>
 <p><img src="https://i.imgur.com/lwrV4PN.jpg" alt></p>
-<h2 id="development-增加時間戳">development 增加時間戳</h2>
+<h2><span id="development-增加時間戳">development 增加時間戳</span></h2>
 <p>上面那張圖雖然有自動存成 Log，但沒時間戳挺不方便的</p>
 <p>增加方法如下，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/e384552e8e4f616854f38fe87be71998f3e612c6" target="_blank" rel="noopener">commit</a></p>
 <p>備註: production 預設就有記錄時間戳 (<code>config/environments/production.rb</code>)，故不用調整，而 development 則依需求是否需要增加</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line"></span><br><span class="line">config.log_formatter = <span class="symbol">:</span><span class="symbol">:Logger</span><span class="symbol">:</span><span class="symbol">:Formatter</span>.new</span><br></pre></td></tr></table></figure></p>
-<h4 id="增加時間戳的-log">增加時間戳的 Log</h4>
+<h4><span id="增加時間戳的-log">增加時間戳的 Log</span></h4>
 <p><img src="https://i.imgur.com/i4pCCKD.png" alt></p>
-<h2 id="如何在指定位置增加-log">如何在指定位置增加 Log</h2>
+<h2><span id="如何在指定位置增加-log">如何在指定位置增加 Log</span></h2>
 <p>情境: 打 API 的 request 和 response 建議可以儲存，以及針對錯誤訊息也要記錄，方便後續追蹤</p>
 <p>示範如何紀錄，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/a7c4b3d52485ee08dee4d7518ffb53713b1acd7b" target="_blank" rel="noopener">commit</a><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line"></span><br><span class="line">Rails.logger.info <span class="string">"params: <span class="subst">#&#123;user_params&#125;</span>, <span class="subst">#&#123;@user.inspect&#125;</span>"</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="將-log-存到指定路徑檔案中">將 Log 存到指定路徑檔案中</h2>
+<h2><span id="將-log-存到指定路徑檔案中">將 Log 存到指定路徑檔案中</span></h2>
 <p>將所有 Log 都存在預設路徑檔案中，會導致原本的檔案過於肥大，且要尋找時會比較麻煩，可依需求分類存在不同檔案中，像是打 A API 的統一存在 A 路徑，B API 的統一存在 B 路徑中...</p>
 <p>範例可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/add096871d024f3f6e5f8cb6121c5e5c1e3c8c5e" target="_blank" rel="noopener">commit</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/services/file_log.rb</span></span><br><span class="line"><span class="comment"># 有不同寫法，歡迎在底下留言交流</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileLog</span></span></span><br><span class="line">  @loggers <span class="params">||</span>= &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">logger</span><span class="params">(location)</span></span></span><br><span class="line">    @loggers[location] <span class="params">||</span>= create_logger(location)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_logger</span><span class="params">(location)</span></span></span><br><span class="line">    <span class="keyword">if</span> ENV[<span class="string">'RAILS_LOG_TO_STDOUT'</span>]</span><br><span class="line">      logger = Logger.new(STDOUT)</span><br><span class="line">      logger.progname = File.basename(location, <span class="string">'.log'</span>)</span><br><span class="line">      logger.formatter = Rails.configuration.log_formatter</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      FileUtils.mkdir_p(Rails.root.join(<span class="string">'log'</span>, File.dirname(location)))</span><br><span class="line">      logger = Logger.new(Rails.root.join(<span class="string">'log'</span>, location))</span><br><span class="line">      logger.formatter = proc <span class="keyword">do</span> <span class="params">|severity, datetime, _progname, msg|</span></span><br><span class="line">        <span class="string">"<span class="subst">#&#123;severity&#125;</span> [<span class="subst">#&#123;datetime.strftime(<span class="string">'%Y-%m-%d %H:%M:%S.%6N'</span>)&#125;</span>]: <span class="subst">#&#123;msg&#125;</span>\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ActiveSupport::TaggedLogging.new(logger)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="參考資料">參考資料</h2>
+<h2><span id="參考資料">參考資料</span></h2>
 <ol>
 <li><a href="https://rails.ruby.tw/debugging_rails_applications.html#logger" target="_blank" rel="noopener">除錯Rails 應用程式— Ruby on Rails 指南</a></li>
 <li><a href="https://ihower.tw/rails/deployment.html#sec9" target="_blank" rel="noopener">Ruby on Rails 實戰聖經#整理 Log 檔案</a></li>
 </ol>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>Log 可說是非常重要的小細節，也能客製化格式，Google 下便有相關資源可參考，除了上述範例使用到的 <code>:info</code> 外，還有 <code>:debug</code> 、 <code>:warn</code> 、 <code>:error</code> 、 <code>:fatal</code> 以及 <code>:unknown</code> 可以使用，差異可參考上述提供的參考資料連結</p>
 <p>雖說很方便，但也不要過於氾濫什麼都儲存，除了會影響效能外，容量也會用很兇</p>
 <hr>
@@ -465,7 +465,7 @@ medium 文章連結：<a href="https://link.medium.com/9T7n8giyZ9" target="_blan
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/">https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/</a></p>
     <p>發表日期：2020-09-23</p>
-    <p>更新日期：2020-09-23</p>
+    <p>更新日期：2021-08-14</p>
   </div>
   
   <!-- paginator  -->
@@ -618,7 +618,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何產生-log"><span class="toc-number">2.</span> <span class="toc-text">如何產生 Log</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在-development-操作的-log"><span class="toc-number">2.0.1.</span> <span class="toc-text">在 development 操作的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#development-增加時間戳"><span class="toc-number">3.</span> <span class="toc-text">development 增加時間戳</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#增加時間戳的-log"><span class="toc-number">3.0.1.</span> <span class="toc-text">增加時間戳的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在指定位置增加-log"><span class="toc-number">4.</span> <span class="toc-text">如何在指定位置增加 Log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#將-log-存到指定路徑檔案中"><span class="toc-number">5.</span> <span class="toc-text">將 Log 存到指定路徑檔案中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何產生 Log</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">在 development 操作的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">development 增加時間戳</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.0.1.</span> <span class="toc-text">增加時間戳的 Log</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">如何在指定位置增加 Log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">將 Log 存到指定路徑檔案中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1818,36 +1818,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1861,6 +1834,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2246,17 +2233,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2291,6 +2278,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2307,10 +2296,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2323,17 +2308,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2343,11 +2338,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2361,21 +2356,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2385,15 +2378,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2434,17 +2423,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

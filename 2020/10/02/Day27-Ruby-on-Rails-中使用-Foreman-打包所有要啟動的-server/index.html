@@ -419,26 +419,26 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>從原本啟動 Rails server 、 Webpacker 外，後續增加了 <a href="https://ithelp.ithome.com.tw/articles/10245939" target="_blank" rel="noopener">Resque</a>、<a href="https://ithelp.ithome.com.tw/articles/10246607" target="_blank" rel="noopener">Sidekiq</a> ，變成要開四個視窗啟動，有時還會忘記要開其中一個...</p>
 <p>這時可透過領班 (<a href="https://github.com/ddollar/foreman" target="_blank" rel="noopener">foreman</a>) 解決此痛點，啟動一個抵全部 :-)</p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="如何安裝">如何安裝</h2>
+<h2><span id="如何安裝">如何安裝</span></h2>
 <p>放在 <code>:development</code> 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/16/commits/88c45325076ce0043daa536653061b37f44ba66e" target="_blank" rel="noopener">commit</a><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'foreman'</span>, <span class="string">'~&gt; 0.87.2'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
 <p>接著在專案的目錄新增 <code>Procfile</code> 檔案，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/16/commits/5c8e74823b4cd3d8133e83878cc15625c0a5cb30" target="_blank" rel="noopener">commit</a></p>
 <p>備註: 前面 <code>web</code>、<code>webpack</code>、<code>resque</code>、<code>sidekiq</code> 名稱可自取<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Procfile</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">web:</span> ./bin/rails s -p <span class="number">3000</span></span><br><span class="line"><span class="symbol">webpack:</span> ./bin/webpack-dev-server</span><br><span class="line"><span class="symbol">resque:</span> QUEUE=* INTERVAL=<span class="number">1</span> rake <span class="symbol">resque:</span>work</span><br><span class="line"><span class="symbol">sidekiq:</span> bundle exec sidekiq</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何執行">如何執行</h2>
+<h2><span id="如何執行">如何執行</span></h2>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">foreman start</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">foreman s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只執行指定 PROCESS</span></span><br><span class="line">foreman start [PROCESS]</span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">foreman start web</span><br><span class="line"></span><br><span class="line"><span class="comment"># 檔名不想取 Procfile，需指定檔案才能執行</span></span><br><span class="line">foreman start -f file</span><br><span class="line"><span class="comment"># 範例 (檔名為 hello)</span></span><br><span class="line">foreman start -f hello</span><br></pre></td></tr></table></figure></p>
-<h3 id="增加-foreman-前需開-4-個視窗啟動">增加 Foreman 前，需開 4 個視窗啟動</h3>
+<h3><span id="增加-foreman-前需開-4-個視窗啟動">增加 Foreman 前，需開 4 個視窗啟動</span></h3>
 <p><img src="https://i.imgur.com/gaZl8D7.jpg" alt></p>
-<h3 id="增加-foreman-後只需啟動-foreman-start">增加 Foreman 後，只需啟動 <code>foreman start</code></h3>
+<h3><span id="增加-foreman-後只需啟動-foreman-start">增加 Foreman 後，只需啟動 <code>foreman start</code></span></h3>
 <p><img src="https://i.imgur.com/pJvRZt7.jpg" alt></p>
-<h2 id="更多指令">更多指令</h2>
+<h2><span id="更多指令">更多指令</span></h2>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">foreman -h</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  foreman check                   <span class="comment"># Validate your application's Procfile</span></span><br><span class="line">  foreman <span class="built_in">export</span> FORMAT LOCATION  <span class="comment"># Export the application to another process management format</span></span><br><span class="line">  foreman <span class="built_in">help</span> [COMMAND]          <span class="comment"># Describe available commands or one specific command</span></span><br><span class="line">  foreman run COMMAND [ARGS...]   <span class="comment"># Run a command using your application's environment</span></span><br><span class="line">  foreman start [PROCESS]         <span class="comment"># Start the application (or a specific PROCESS)</span></span><br><span class="line">  foreman version                 <span class="comment"># Display Foreman gem version</span></span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -f, [--procfile=PROCFILE]  <span class="comment"># Default: Procfile</span></span><br><span class="line">  -d, [--root=ROOT]          <span class="comment"># Default: Procfile directory</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>Foreman 是蠻好用的工具，當有多個要啟動時，挺有感的，且突然忘記某個啟動指令怎輸入的話，還能看下 <code>Procfile</code> 檔案</p>
 <hr>
 <p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10247491" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10247491</a><br>
@@ -605,7 +605,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">3.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加-foreman-前需開-4-個視窗啟動"><span class="toc-number">3.1.</span> <span class="toc-text">增加 Foreman 前，需開 4 個視窗啟動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加-foreman-後只需啟動-foreman-start"><span class="toc-number">3.2.</span> <span class="toc-text">增加 Foreman 後，只需啟動 foreman start</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多指令"><span class="toc-number">4.</span> <span class="toc-text">更多指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">增加 Foreman 前，需開 4 個視窗啟動</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">增加 Foreman 後，只需啟動 foreman start</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">更多指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1805,36 +1805,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1848,6 +1821,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2233,17 +2220,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2278,6 +2265,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2294,10 +2283,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2310,17 +2295,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2330,11 +2325,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2348,21 +2343,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2372,15 +2365,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2421,17 +2410,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

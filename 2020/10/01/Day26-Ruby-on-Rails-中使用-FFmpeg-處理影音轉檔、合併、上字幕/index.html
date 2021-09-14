@@ -419,37 +419,37 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <blockquote>
 <p><a href="https://ffmpeg.org/" target="_blank" rel="noopener">FFmpeg</a> 是一個開放原始碼的自由軟體，可以執行音訊和視訊多種格式的錄影、轉檔、串流功能，包含了libavcodec——這是一個用於多個專案中音訊和視訊的解碼器函式庫，以及libavformat——一個音訊與視訊格式轉換函式庫。 「FFmpeg」這個單詞中的「FF」指的是「Fast Forward」。</p>
 </blockquote>
 <p>以上擷取自 <a href="https://zh.wikipedia.org/zh-tw/FFmpeg" target="_blank" rel="noopener">Wiki</a> 介紹</p>
 <p>前陣子在處理影片時，以 Ruby on Rails 實作，將多個影片合併、剪輯指定時間範圍 (ex: 影片長度 00:30 ，只保留 00:05 ~ 00:15 的畫面)、上字幕、合併成一個檔案，透過 FFmpeg 來處理</p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
-<h4 id="備註-本文以此影片為例-digital-countdown-timer-出處-videvo">備註: 本文以此影片為例 <a href="https://www.videvo.net/video/digital-countdown-timer/1325/" target="_blank" rel="noopener">Digital Countdown Timer</a> (出處: <a href="https://www.videvo.net/" target="_blank" rel="noopener">Videvo</a>)</h4>
-<h2 id="如何安裝">如何安裝</h2>
+<h4><span id="備註-本文以此影片為例-digital-countdown-timer-出處-videvo">備註: 本文以此影片為例  (出處: )</span></h4>
+<h2><span id="如何安裝">如何安裝</span></h2>
 <p>雖然在 <a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a> 中搜尋「<a href="https://rubygems.org/search?utf8=%E2%9C%93&amp;query=ffmpeg" target="_blank" rel="noopener">FFmpeg</a>」能找到一些 Gem 使用，但這次不透過 Gem ，直接在 MacOS / Linux 環境直接安裝 FFmpeg 使用，在終端機輸入</p>
 <p>備註: 此文以 <code>ffmpeg version 4.3.1</code> 版本為範例<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install ffmpeg</span><br><span class="line"></span><br><span class="line"><span class="comment"># note: 安裝完成後，輸入 ffmpeg -v 確認版本及是否安裝成功</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="如何轉檔">如何轉檔</h2>
+<h2><span id="如何轉檔">如何轉檔</span></h2>
 <p>終端機輸入<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i input_video.mkv -codec copy output_video.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例:</span></span><br><span class="line">ffmpeg -i DigitalCountdownTimerVidevo.mov -codec copy test.mp4</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何合併">如何合併</h2>
+<h2><span id="如何合併">如何合併</span></h2>
 <p>例如想把多支影片合併，將 <a href="https://www.videvo.net/video/milky-way-timelapse/2659/" target="_blank" rel="noopener">Milky Way Timelapse</a> 、 <a href="https://www.videvo.net/video/digital-countdown-timer/1325/" target="_blank" rel="noopener">Digital Countdown Timer</a> 合併，可用以下方法，或參考 <a href="https://stackoverflow.com/questions/7333232/how-to-concatenate-two-mp4-files-using-ffmpeg" target="_blank" rel="noopener">Stack Overflow</a> 這篇<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 檔案名稱不要有空格 (檔案路徑要是正確的喔)</span></span><br><span class="line"><span class="comment"># list.txt</span></span><br><span class="line">file Saint_Barthelemy.mov</span><br><span class="line">file DigitalCountdownTimerVidevo.mov</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line">ffmpeg -f concat -i list.txt -c copy output.mp4</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何剪輯指定時間範圍">如何剪輯指定時間範圍</h2>
+<h2><span id="如何剪輯指定時間範圍">如何剪輯指定時間範圍</span></h2>
 <p>需特別留意計算方式是從 <code>mm:ss</code> (格式為 00:04 ，4 碼) 開始，接著計算保留的「長度」，不是直接寫該影片想結束的位置喔<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss mm:ss -to mm2:ss2 -i video.mp4 -codec copy output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="comment"># 從該影片 00:03 秒開始，保留長度為 5 秒 (至該影片 00:08 秒位置，不能直接寫 00:08 喔)</span></span><br><span class="line">ffmpeg -ss 00:03 -t 00:05 -i DigitalCountdownTimerVidevo.mov output.mp4</span><br></pre></td></tr></table></figure></p>
-<h2 id="如何上字幕">如何上字幕</h2>
+<h2><span id="如何上字幕">如何上字幕</span></h2>
 <p><a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E5%B9%95%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener">字幕格式</a>有多種，常見有 SRT、SSA、ASS、SUB、TTS、WebVTT...等，單純上字幕不加任何效果，可用 SRT，若想要調整字形、字體大小、顏色、位置...等比較進階處理的話，可考慮直接用 ASS</p>
 <p>備註: 以 <code>ffmpeg version 4.3.1</code> 為例，原生不支援 WebVTT<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># srt.srt</span></span><br><span class="line">1</span><br><span class="line">00:00:00,000 --&gt; 00:00:05,000</span><br><span class="line">Hello World</span><br><span class="line">2</span><br><span class="line">00:00:05,000 --&gt; 00:00:10,000</span><br><span class="line">看得到</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將字幕嵌入影片中</span></span><br><span class="line">ffmpeg -i DigitalCountdownTimerVidevo.mov -vf <span class="string">'subtitles=srt.srt'</span> output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定字幕大小</span></span><br><span class="line">ffmpeg -i DigitalCountdownTimerVidevo.mov -vf <span class="string">"subtitles=srt.srt:force_style='Fontsize=32'"</span> output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 備註: 針對字幕要做比較多處理的話，建議直接用 ASS 先調好，再嵌入比較方便</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="如何限制-cpu-使用量-非必要">如何限制 CPU 使用量 (非必要)</h2>
+<h2><span id="如何限制-cpu-使用量-非必要">如何限制 CPU 使用量 (非必要)</span></h2>
 <p><a href="https://ithelp.ithome.com.tw/articles/10236845" target="_blank" rel="noopener">Linux 文章系列</a>，有提到 nice 與 cpulimit 指令，若想限制 CPU 使用量的話，可結合使用<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 說明: CPU 上限為 30% ，且使用雙核心處理 (threads 2)</span></span><br><span class="line">nice -n 20 cpulimit -l 30 ffmpeg -threads 2 -i DigitalCountdownTimerVidevo.mov output.mp4</span><br></pre></td></tr></table></figure></p>
-<h4 id="實際轉檔過程htop-畫面">實際轉檔過程，<code>htop</code> 畫面</h4>
+<h4><span id="實際轉檔過程htop-畫面">實際轉檔過程，<code>htop</code> 畫面</span></h4>
 <p><img src="https://i.imgur.com/kLcJzYo.png" alt></p>
-<h2 id="實作範例">實作範例</h2>
+<h2><span id="實作範例">實作範例</span></h2>
 <p>上面都是在終端機操作，以下示範在 Sidekiq 上使用 FFmpeg 處理，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/15/commits/74e18ae7eb6c111923a25dd4cd8b94ff5909683f" target="_blank" rel="noopener">commit</a></p>
 <p>備註:</p>
 <ol>
@@ -457,13 +457,13 @@ height:50vh;
 <li>若想測試，可在 <code>rails console</code> 輸入 <code>Video::HandleVideoWorker.new.perform</code> 或先 <code>cd Video::HandleVideoWorker.new</code> 再接著輸入 <code>perform</code><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line">- [<span class="string">'video_worker'</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/worker/video/handle_video_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Video</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">HandleVideoWorker</span></span></span><br><span class="line">    <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line">    sidekiq_options <span class="symbol">retry:</span> <span class="number">0</span>, <span class="symbol">dead:</span> <span class="literal">true</span>, <span class="symbol">queue:</span> <span class="string">'video_worker'</span></span><br><span class="line"></span><br><span class="line">    VIDEO_PATH = Rails.root.join(<span class="string">'data/attachments/videos'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># <span class="doctag">NOTE:</span></span></span><br><span class="line">    <span class="comment"># need install ffmpeg, url: https://github.com/FFmpeg/FFmpeg</span></span><br><span class="line">    <span class="comment"># need install cpulimit, url: https://github.com/opsengine/cpulimit</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform</span><span class="params">(url = <span class="literal">nil</span>)</span></span></span><br><span class="line">      <span class="comment"># 以此影片為範例，出處: Videvo</span></span><br><span class="line">      url = <span class="string">'https://cdn.videvo.net/videvo_files/video/free/2013-05/originalContent/DigitalCountdownTimerVidevo.mov'</span></span><br><span class="line">      video_name = parse_video_name(url)</span><br><span class="line">      video_file_path(video_name)</span><br><span class="line">      download_video(url)</span><br><span class="line">      converter</span><br><span class="line">    <span class="keyword">rescue</span> StandardError =&gt; e</span><br><span class="line">      logger.error <span class="string">"[Video::HandleVideoWorker] ERROR:\n <span class="subst">#&#123;e.inspect&#125;</span>\n <span class="subst">#&#123;e.backtrace&#125;</span>"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    private</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logger</span></span></span><br><span class="line">      FileLog.logger(<span class="string">'worker/video/video_worker.log'</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_video_name</span><span class="params">(url)</span></span></span><br><span class="line">      url.split(<span class="string">'/'</span>)[-<span class="number">1</span>] <span class="comment"># "DigitalCountdownTimerVidevo.mov"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">video_file_path</span><span class="params">(video_name)</span></span></span><br><span class="line">      @input_file = VIDEO_PATH.join(video_name)</span><br><span class="line">      mp4_format = video_name.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">'.mp4'</span></span><br><span class="line">      @output_file = VIDEO_PATH.join(<span class="string">"converted-<span class="subst">#&#123;mp4_format&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download_video</span><span class="params">(url)</span></span></span><br><span class="line">      resp = HTTP.get(url)</span><br><span class="line">      save_origin_video(resp)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_origin_video</span><span class="params">(video_response)</span></span></span><br><span class="line">      FileUtils.mkdir_p(VIDEO_PATH)</span><br><span class="line">      File.write(@input_file, video_response.to_s.force_encoding(<span class="string">'UTF-8'</span>))</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">converter</span></span></span><br><span class="line">      priority = <span class="string">'nice -n 20 cpulimit -l 80'</span> <span class="comment"># cpulimit: 限制 CPU usage (目前上限設 80%)</span></span><br><span class="line">      ffmpeg_threads = <span class="string">'ffmpeg -threads 2'</span>   <span class="comment"># ffmpeg -threads: 設定 CPU 核心數 (目前設定 2)</span></span><br><span class="line">      <span class="string">`<span class="subst">#&#123;priority&#125;</span> -i <span class="subst">#&#123;ffmpeg_threads&#125;</span> -i <span class="subst">#&#123;@input_file&#125;</span> <span class="subst">#&#123;@output_file&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h4 id="指令範例-tldr">指令範例 (tldr)</h4>
+<h4><span id="指令範例-tldr">指令範例 (tldr)</span></h4>
 <p><a href="https://ithelp.ithome.com.tw/articles/10237413" target="_blank" rel="noopener">在 Linux 文章系列</a>，有提到 <code>tldr</code> ，非常實用<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">tldr ffmpeg</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line">ffmpeg</span><br><span class="line"></span><br><span class="line">Video conversion tool.</span><br><span class="line">More information: &lt;https://ffmpeg.org&gt;.</span><br><span class="line"></span><br><span class="line">- Extract the sound from a video and save it as MP3:</span><br><span class="line">    ffmpeg -i video.mp4 -vn sound.mp3</span><br><span class="line"></span><br><span class="line">- Convert frames from a video or GIF into individual numbered images:</span><br><span class="line">    ffmpeg -i video.mpg|video.gif frame_%d.png</span><br><span class="line"></span><br><span class="line">- Combine numbered images (frame_1.jpg, frame_2.jpg, etc) into a video or GIF:</span><br><span class="line">    ffmpeg -i frame_%d.jpg -f image2 video.mpg|video.gif</span><br><span class="line"></span><br><span class="line">- Quickly extract a single frame from a video at time mm:ss and save it as a 128x128 resolution image:</span><br><span class="line">    ffmpeg -ss mm:ss -i video.mp4 -frames 1 -s 128x128 -f image2 image.png</span><br><span class="line"></span><br><span class="line">- Trim a video from a given start time mm:ss to an end time mm2:ss2 (omit the -to flag to trim till the end):</span><br><span class="line">    ffmpeg -ss mm:ss -to mm2:ss2 -i video.mp4 -codec copy output.mp4</span><br><span class="line"></span><br><span class="line">- Convert AVI video to MP4. AAC Audio @ 128kbit, h264 Video @ CRF 23:</span><br><span class="line">    ffmpeg -i input_video.avi -codec:audio aac -b:audio 128k -codec:video libx264 -crf 23 output_video.mp4</span><br><span class="line"></span><br><span class="line">- Remux MKV video to MP4 without re-encoding audio or video streams:</span><br><span class="line">    ffmpeg -i input_video.mkv -codec copy output_video.mp4</span><br><span class="line"></span><br><span class="line">- Convert MP4 video to VP9 codec. For the best quality, use a CRF value (recommended range 15-35) and -b:video MUST be 0:</span><br><span class="line">    ffmpeg -i input_video.mp4 -codec:video libvpx-vp9 -crf 30 -b:video 0 -codec:audio libopus -vbr on -threads number_of_threads output_video.webm</span><br></pre></td></tr></table></figure></p>
-<h4 id="更多指令">更多指令</h4>
+<h4><span id="更多指令">更多指令</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -h</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ffmpeg version 4.3.1 Copyright (c) 2000-2020 the FFmpeg developers</span><br><span class="line">  built with Apple clang version 11.0.3 (clang-1103.0.32.62)</span><br><span class="line">  configuration: --prefix=/usr/<span class="built_in">local</span>/Cellar/ffmpeg/4.3.1 --<span class="built_in">enable</span>-shared --<span class="built_in">enable</span>-pthreads --<span class="built_in">enable</span>-version3 --<span class="built_in">enable</span>-avresample --cc=clang --host-cflags= --host-ldflags= --<span class="built_in">enable</span>-ffplay --<span class="built_in">enable</span>-gnutls --<span class="built_in">enable</span>-gpl --<span class="built_in">enable</span>-libaom --<span class="built_in">enable</span>-libbluray --<span class="built_in">enable</span>-libdav1d --<span class="built_in">enable</span>-libmp3lame --<span class="built_in">enable</span>-libopus --<span class="built_in">enable</span>-librav1e --<span class="built_in">enable</span>-librubberband --<span class="built_in">enable</span>-libsnappy --<span class="built_in">enable</span>-libsrt --<span class="built_in">enable</span>-libtesseract --<span class="built_in">enable</span>-libtheora --<span class="built_in">enable</span>-libvidstab --<span class="built_in">enable</span>-libvorbis --<span class="built_in">enable</span>-libvpx --<span class="built_in">enable</span>-libwebp --<span class="built_in">enable</span>-libx264 --<span class="built_in">enable</span>-libx265 --<span class="built_in">enable</span>-libxml2 --<span class="built_in">enable</span>-libxvid --<span class="built_in">enable</span>-lzma --<span class="built_in">enable</span>-libfontconfig --<span class="built_in">enable</span>-libfreetype --<span class="built_in">enable</span>-frei0r --<span class="built_in">enable</span>-libass --<span class="built_in">enable</span>-libopencore-amrnb --<span class="built_in">enable</span>-libopencore-amrwb --<span class="built_in">enable</span>-libopenjpeg --<span class="built_in">enable</span>-librtmp --<span class="built_in">enable</span>-libspeex --<span class="built_in">enable</span>-libsoxr --<span class="built_in">enable</span>-videotoolbox --<span class="built_in">disable</span>-libjack --<span class="built_in">disable</span>-indev=jack</span><br><span class="line">  libavutil      56. 51.100 / 56. 51.100</span><br><span class="line">  libavcodec     58. 91.100 / 58. 91.100</span><br><span class="line">  libavformat    58. 45.100 / 58. 45.100</span><br><span class="line">  libavdevice    58. 10.100 / 58. 10.100</span><br><span class="line">  libavfilter     7. 85.100 /  7. 85.100</span><br><span class="line">  libavresample   4.  0.  0 /  4.  0.  0</span><br><span class="line">  libswscale      5.  7.100 /  5.  7.100</span><br><span class="line">  libswresample   3.  7.100 /  3.  7.100</span><br><span class="line">  libpostproc    55.  7.100 / 55.  7.100</span><br><span class="line">Hyper fast Audio and Video encoder</span><br><span class="line">usage: ffmpeg [options] [[infile options] -i infile]... &#123;[outfile options] outfile&#125;...</span><br><span class="line"></span><br><span class="line">Getting <span class="built_in">help</span>:</span><br><span class="line">    -h      -- <span class="built_in">print</span> basic options</span><br><span class="line">    -h long -- <span class="built_in">print</span> more options</span><br><span class="line">    -h full -- <span class="built_in">print</span> all options (including all format and codec specific options, very long)</span><br><span class="line">    -h <span class="built_in">type</span>=name -- <span class="built_in">print</span> all options <span class="keyword">for</span> the named decoder/encoder/demuxer/muxer/filter/bsf/protocol</span><br><span class="line">    See man ffmpeg <span class="keyword">for</span> detailed description of the options.</span><br><span class="line"></span><br><span class="line">Print <span class="built_in">help</span> / information / capabilities:</span><br><span class="line">-L                  show license</span><br><span class="line">-h topic            show <span class="built_in">help</span></span><br><span class="line">-? topic            show <span class="built_in">help</span></span><br><span class="line">-<span class="built_in">help</span> topic         show <span class="built_in">help</span></span><br><span class="line">--<span class="built_in">help</span> topic        show <span class="built_in">help</span></span><br><span class="line">-version            show version</span><br><span class="line">-buildconf          show build configuration</span><br><span class="line">-formats            show available formats</span><br><span class="line">-muxers             show available muxers</span><br><span class="line">-demuxers           show available demuxers</span><br><span class="line">-devices            show available devices</span><br><span class="line">-codecs             show available codecs</span><br><span class="line">-decoders           show available decoders</span><br><span class="line">-encoders           show available encoders</span><br><span class="line">-bsfs               show available bit stream filters</span><br><span class="line">-protocols          show available protocols</span><br><span class="line">-filters            show available filters</span><br><span class="line">-pix_fmts           show available pixel formats</span><br><span class="line">-layouts            show standard channel layouts</span><br><span class="line">-sample_fmts        show available audio sample formats</span><br><span class="line">-colors             show available color names</span><br><span class="line">-sources device     list sources of the input device</span><br><span class="line">-sinks device       list sinks of the output device</span><br><span class="line">-hwaccels           show available HW acceleration methods</span><br><span class="line"></span><br><span class="line">Global options (affect whole program instead of just one file):</span><br><span class="line">-loglevel loglevel  <span class="built_in">set</span> logging level</span><br><span class="line">-v loglevel         <span class="built_in">set</span> logging level</span><br><span class="line">-report             generate a report</span><br><span class="line">-max_alloc bytes    <span class="built_in">set</span> maximum size of a single allocated block</span><br><span class="line">-y                  overwrite output files</span><br><span class="line">-n                  never overwrite output files</span><br><span class="line">-ignore_unknown     Ignore unknown stream types</span><br><span class="line">-filter_threads     number of non-complex filter threads</span><br><span class="line">-filter_complex_threads  number of threads <span class="keyword">for</span> -filter_complex</span><br><span class="line">-stats              <span class="built_in">print</span> progress report during encoding</span><br><span class="line">-max_error_rate maximum error rate  ratio of errors (0.0: no errors, 1.0: 100% errors) above <span class="built_in">which</span> ffmpeg returns an error instead of success.</span><br><span class="line">-bits_per_raw_sample number  <span class="built_in">set</span> the number of bits per raw sample</span><br><span class="line">-vol volume         change audio volume (256=normal)</span><br><span class="line"></span><br><span class="line">Per-file main options:</span><br><span class="line">-f fmt              force format</span><br><span class="line">-c codec            codec name</span><br><span class="line">-codec codec        codec name</span><br><span class="line">-pre preset         preset name</span><br><span class="line">-map_metadata outfile[,metadata]:infile[,metadata]  <span class="built_in">set</span> metadata information of outfile from infile</span><br><span class="line">-t duration         record or transcode <span class="string">"duration"</span> seconds of audio/video</span><br><span class="line">-to time_stop       record or transcode stop time</span><br><span class="line">-fs limit_size      <span class="built_in">set</span> the <span class="built_in">limit</span> file size <span class="keyword">in</span> bytes</span><br><span class="line">-ss time_off        <span class="built_in">set</span> the start time offset</span><br><span class="line">-sseof time_off     <span class="built_in">set</span> the start time offset relative to EOF</span><br><span class="line">-seek_timestamp     <span class="built_in">enable</span>/<span class="built_in">disable</span> seeking by timestamp with -ss</span><br><span class="line">-timestamp time     <span class="built_in">set</span> the recording timestamp (<span class="string">'now'</span> to <span class="built_in">set</span> the current time)</span><br><span class="line">-metadata string=string  add metadata</span><br><span class="line">-program title=string:st=number...  add program with specified streams</span><br><span class="line">-target <span class="built_in">type</span>        specify target file <span class="built_in">type</span> (<span class="string">"vcd"</span>, <span class="string">"svcd"</span>, <span class="string">"dvd"</span>, <span class="string">"dv"</span> or <span class="string">"dv50"</span> with optional prefixes <span class="string">"pal-"</span>, <span class="string">"ntsc-"</span> or <span class="string">"film-"</span>)</span><br><span class="line">-apad               audio pad</span><br><span class="line">-frames number      <span class="built_in">set</span> the number of frames to output</span><br><span class="line">-filter filter_graph  <span class="built_in">set</span> stream filtergraph</span><br><span class="line">-filter_script filename  <span class="built_in">read</span> stream filtergraph description from a file</span><br><span class="line">-reinit_filter      reinit filtergraph on input parameter changes</span><br><span class="line">-discard            discard</span><br><span class="line">-disposition        disposition</span><br><span class="line"></span><br><span class="line">Video options:</span><br><span class="line">-vframes number     <span class="built_in">set</span> the number of video frames to output</span><br><span class="line">-r rate             <span class="built_in">set</span> frame rate (Hz value, fraction or abbreviation)</span><br><span class="line">-s size             <span class="built_in">set</span> frame size (WxH or abbreviation)</span><br><span class="line">-aspect aspect      <span class="built_in">set</span> aspect ratio (4:3, 16:9 or 1.3333, 1.7777)</span><br><span class="line">-bits_per_raw_sample number  <span class="built_in">set</span> the number of bits per raw sample</span><br><span class="line">-vn                 <span class="built_in">disable</span> video</span><br><span class="line">-vcodec codec       force video codec (<span class="string">'copy'</span> to copy stream)</span><br><span class="line">-timecode hh:mm:ss[:;.]ff  <span class="built_in">set</span> initial TimeCode value.</span><br><span class="line">-pass n             select the pass number (1 to 3)</span><br><span class="line">-vf filter_graph    <span class="built_in">set</span> video filters</span><br><span class="line">-ab bitrate         audio bitrate (please use -b:a)</span><br><span class="line">-b bitrate          video bitrate (please use -b:v)</span><br><span class="line">-dn                 <span class="built_in">disable</span> data</span><br><span class="line"></span><br><span class="line">Audio options:</span><br><span class="line">-aframes number     <span class="built_in">set</span> the number of audio frames to output</span><br><span class="line">-aq quality         <span class="built_in">set</span> audio quality (codec-specific)</span><br><span class="line">-ar rate            <span class="built_in">set</span> audio sampling rate (<span class="keyword">in</span> Hz)</span><br><span class="line">-ac channels        <span class="built_in">set</span> number of audio channels</span><br><span class="line">-an                 <span class="built_in">disable</span> audio</span><br><span class="line">-acodec codec       force audio codec (<span class="string">'copy'</span> to copy stream)</span><br><span class="line">-vol volume         change audio volume (256=normal)</span><br><span class="line">-af filter_graph    <span class="built_in">set</span> audio filters</span><br><span class="line"></span><br><span class="line">Subtitle options:</span><br><span class="line">-s size             <span class="built_in">set</span> frame size (WxH or abbreviation)</span><br><span class="line">-sn                 <span class="built_in">disable</span> subtitle</span><br><span class="line">-scodec codec       force subtitle codec (<span class="string">'copy'</span> to copy stream)</span><br><span class="line">-stag fourcc/tag    force subtitle tag/fourcc</span><br><span class="line">-fix_sub_duration   fix subtitles duration</span><br><span class="line">-canvas_size size   <span class="built_in">set</span> canvas size (WxH or abbreviation)</span><br><span class="line">-spre preset        <span class="built_in">set</span> the subtitle options to the indicated preset</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>會發現影像處理，其實蠻有趣的，許多參數說明都是帶過，以實用為主，若對各參數細節調整有興趣，再自行 Google，FFmpeg 相關的文章挺多的，中文的資料也不少可參考，若想在 <code>rails console</code> 中執行 Linux 指令，可使用以下三種方法<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>] pry(main)&gt; system(<span class="string">"echo 我是小菜"</span>)</span><br><span class="line">我是小菜</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">[<span class="number">2</span>] pry(main)&gt; <span class="string">`echo 我是小菜`</span></span><br><span class="line"><span class="string">"我是小菜\n"</span></span><br><span class="line">[<span class="number">3</span>] pry(main)&gt; .echo <span class="string">'我是小菜'</span></span><br><span class="line">我是小菜</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/5bxSdQT.png" alt></p>
@@ -632,7 +632,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#備註-本文以此影片為例-digital-countdown-timer-出處-videvo"><span class="toc-number">1.0.1.</span> <span class="toc-text">備註: 本文以此影片為例 Digital Countdown Timer (出處: Videvo)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何轉檔"><span class="toc-number">3.</span> <span class="toc-text">如何轉檔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何合併"><span class="toc-number">4.</span> <span class="toc-text">如何合併</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何剪輯指定時間範圍"><span class="toc-number">5.</span> <span class="toc-text">如何剪輯指定時間範圍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何上字幕"><span class="toc-number">6.</span> <span class="toc-text">如何上字幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何限制-cpu-使用量-非必要"><span class="toc-number">7.</span> <span class="toc-text">如何限制 CPU 使用量 (非必要)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#實際轉檔過程htop-畫面"><span class="toc-number">7.0.1.</span> <span class="toc-text">實際轉檔過程，htop 畫面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#實作範例"><span class="toc-number">8.</span> <span class="toc-text">實作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#指令範例-tldr"><span class="toc-number">8.0.1.</span> <span class="toc-text">指令範例 (tldr)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更多指令"><span class="toc-number">8.0.2.</span> <span class="toc-text">更多指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">1.0.1.</span> <span class="toc-text">備註: 本文以此影片為例  (出處: )</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何轉檔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">如何合併</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">如何剪輯指定時間範圍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">如何上字幕</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">如何限制 CPU 使用量 (非必要)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.0.1.</span> <span class="toc-text">實際轉檔過程，htop 畫面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">實作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.0.1.</span> <span class="toc-text">指令範例 (tldr)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.0.2.</span> <span class="toc-text">更多指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1832,36 +1832,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1875,6 +1848,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2260,17 +2247,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2305,6 +2292,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2321,10 +2310,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2337,17 +2322,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2357,11 +2352,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2375,21 +2370,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2399,15 +2392,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2448,17 +2437,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

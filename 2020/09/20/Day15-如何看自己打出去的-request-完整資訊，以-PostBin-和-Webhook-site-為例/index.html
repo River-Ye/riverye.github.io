@@ -419,34 +419,34 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>串接 API 時，通常會取得對方的文件，沒有就...通靈吧 XD</p>
 <p>若想看自己發送的 request 完整資訊，可使用 <a href="https://postb.in/" target="_blank" rel="noopener">PostBin</a> 或 <a href="https://webhook.site/" target="_blank" rel="noopener">Webhook.site</a> 這兩個網站進行查看</p>
 <p>以下分別使用 Runy on Rails 的 <code>Net::HTTP</code> 、 <code>REST Client</code> 、 <code>HTTP</code> 進行示範，皆能做到一樣的事情</p>
 <hr>
-<h2 id="nethttp">Net::HTTP</h2>
+<h2><span id="nethttp">Net::HTTP</span></h2>
 <p>為 Ruby 內建的 library ，無需額外安裝 gem<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'net/http'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 網址要記得換</span></span><br><span class="line">url = <span class="string">"https://postb.in/ooo-xxx"</span></span><br><span class="line">uri = URI.parse(url)</span><br><span class="line">params = &#123; <span class="symbol">name:</span> <span class="string">'river'</span>, <span class="symbol">content:</span> <span class="string">'hello world'</span> &#125;</span><br><span class="line">response = Net::HTTP.post_form(uri, params)</span><br><span class="line">response.code</span><br></pre></td></tr></table></figure></p>
-<h4 id="示範在-irb-中使用-nethttp-打-api-到-postbin">示範在 <code>irb</code> 中使用 <code>Net::HTTP</code> 打 API 到 PostBin</h4>
+<h4><span id="示範在-irb-中使用-nethttp-打-api-到-postbin">示範在 <code>irb</code> 中使用 <code>Net::HTTP</code> 打 API 到 PostBin</span></h4>
 <p><img src="https://i.imgur.com/NHIf31U.gif" alt></p>
-<h4 id="示範在-irb-中使用-nethttp-打-api-到-webhooksite">示範在 <code>irb</code> 中使用 <code>Net::HTTP</code> 打 API 到 Webhook.site</h4>
+<h4><span id="示範在-irb-中使用-nethttp-打-api-到-webhooksite">示範在 <code>irb</code> 中使用 <code>Net::HTTP</code> 打 API 到 Webhook.site</span></h4>
 <p><img src="https://i.imgur.com/JLgMxSv.gif" alt></p>
-<h4 id="由於另外-2-套操作手感與截圖大同小異故不另外製作-gif-操作範例">由於另外 2 套操作手感與截圖大同小異，故不另外製作 Gif 操作範例</h4>
+<h4><span id="由於另外-2-套操作手感與截圖大同小異故不另外製作-gif-操作範例">由於另外 2 套操作手感與截圖大同小異，故不另外製作 Gif 操作範例</span></h4>
 <p>參考資料: <a href="https://ruby-doc.org/stdlib-2.7.0/libdoc/net/http/rdoc/Net/HTTP.html" target="_blank" rel="noopener">Net::HTTP</a></p>
 <hr>
-<h2 id="rest-client">REST Client</h2>
+<h2><span id="rest-client">REST Client</span></h2>
 <p>在 <a href="https://rubygems.org/gems/rest-client" target="_blank" rel="noopener">RubyGems</a> 的下載高達 1.5 億次以上，非常驚人的下載次數!!</p>
 <p>且官方 GitHub 有提供範例，非常清楚易懂</p>
 <p>備註: <a href="https://github.com/rest-client/rest-client" target="_blank" rel="noopener">官方網站</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Ruby on Rails 專案中的 Gemfile 加入以下這段</span></span><br><span class="line">gem <span class="string">'rest-client'</span>, <span class="string">'~&gt; 2.1'</span></span><br><span class="line"><span class="comment"># 記得要 bundle 才能使用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下為在 rails console 操作</span></span><br><span class="line"><span class="comment"># 網址要記得換</span></span><br><span class="line">url = <span class="string">"https://postb.in/ooo-xxx"</span></span><br><span class="line">payload = &#123; <span class="symbol">name:</span> <span class="string">'river'</span>, <span class="symbol">content:</span> <span class="string">'hello world'</span> &#125;</span><br><span class="line">response = RestClient.post(url, payload.to_json, <span class="symbol">content_type:</span> <span class="symbol">:json</span>, <span class="symbol">accept:</span> <span class="symbol">:json</span>, <span class="symbol">user_agent:</span> <span class="string">'myagent'</span>)</span><br><span class="line">response.code</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="http">HTTP</h2>
+<h2><span id="http">HTTP</span></h2>
 <p>在 <a href="https://rubygems.org/gems/http" target="_blank" rel="noopener">RubyGems</a> 的下載超過 3600 萬次以上，也是很驚人的下載次數</p>
 <p>最後更新時間比 REST Client 還新，且 <a href="https://github.com/httprb/http" target="_blank" rel="noopener">GitHub</a> 上有將 Ruby 生態圈中常見的 HTTP library 比較一輪</p>
 <p>三個相比下，也是我個人比較常用的 Gem</p>
 <p>備註: <a href="https://github.com/httprb/http" target="_blank" rel="noopener">官方網站</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 Ruby on Rails 專案中的 Gemfile 加入以下這段</span></span><br><span class="line">gem <span class="string">'http'</span>, <span class="string">'~&gt; 4.4'</span>, <span class="string">'&gt;= 4.4.1'</span></span><br><span class="line"><span class="comment"># 記得要 bundle 才能使用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下為在 rails console 操作</span></span><br><span class="line"><span class="comment"># 網址要記得換</span></span><br><span class="line">url = <span class="string">'https://postb.in/ooo-xxx'</span></span><br><span class="line">body = &#123; <span class="symbol">name:</span> <span class="string">'river'</span>, <span class="symbol">content:</span> <span class="string">'hello world'</span> &#125;</span><br><span class="line">response = HTTP.post(url, <span class="symbol">json:</span> body)</span><br><span class="line">response.code</span><br></pre></td></tr></table></figure></p>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>主要是介紹如何透過工具查詢自己 request 的完整資訊 (Headers、Body等)</p>
 <p>並沒有針對 response 的處理說明，畢竟 <code>response.body</code> 每個 API 回傳皆不同</p>
 <p>先從拿到 HTTP 200 開始，後續怎處理 response 依需求而定</p>
@@ -462,7 +462,7 @@ medium 文章連結：<a href="https://link.medium.com/jTboFdd7U9" target="_blan
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2020/09/20/Day15-如何看自己打出去的-request-完整資訊，以-PostBin-和-Webhook-site-為例/">https://riverye.com/2020/09/20/Day15-如何看自己打出去的-request-完整資訊，以-PostBin-和-Webhook-site-為例/</a></p>
     <p>發表日期：2020-09-20</p>
-    <p>更新日期：2020-09-20</p>
+    <p>更新日期：2021-08-14</p>
   </div>
   
   <!-- paginator  -->
@@ -615,7 +615,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nethttp"><span class="toc-number">2.</span> <span class="toc-text">Net::HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示範在-irb-中使用-nethttp-打-api-到-postbin"><span class="toc-number">2.0.1.</span> <span class="toc-text">示範在 irb 中使用 Net::HTTP 打 API 到 PostBin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示範在-irb-中使用-nethttp-打-api-到-webhooksite"><span class="toc-number">2.0.2.</span> <span class="toc-text">示範在 irb 中使用 Net::HTTP 打 API 到 Webhook.site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#由於另外-2-套操作手感與截圖大同小異故不另外製作-gif-操作範例"><span class="toc-number">2.0.3.</span> <span class="toc-text">由於另外 2 套操作手感與截圖大同小異，故不另外製作 Gif 操作範例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rest-client"><span class="toc-number">3.</span> <span class="toc-text">REST Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">Net::HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">示範在 irb 中使用 Net::HTTP 打 API 到 PostBin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.2.</span> <span class="toc-text">示範在 irb 中使用 Net::HTTP 打 API 到 Webhook.site</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.3.</span> <span class="toc-text">由於另外 2 套操作手感與截圖大同小異，故不另外製作 Gif 操作範例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">REST Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1815,36 +1815,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1858,6 +1831,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2243,17 +2230,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2288,6 +2275,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2304,10 +2293,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2320,17 +2305,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2340,11 +2335,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2358,21 +2353,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2382,15 +2375,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2431,17 +2420,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

@@ -419,40 +419,40 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>此為 Linux 相關的 3-7 篇，都是很常用的指令，每天學一點，並常使用，便會記下成為反射動作之一</p>
-<h2 id="cat">cat</h2>
+<h2><span id="cat">cat</span></h2>
 <p>將該檔案內容印在終端機上<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> | cat</span><br><span class="line">cat -n file</span><br><span class="line">cat file</span><br><span class="line">cat file1 file2</span><br><span class="line">cat file1 &gt; target_file</span><br><span class="line">cat file1 &gt;&gt; target_file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git <span class="built_in">log</span> | cat</span><br><span class="line">cat -n 001.log</span><br><span class="line">cat 001.log &gt; 002.log</span><br><span class="line">cat 001.log &gt;&gt; 002.log</span><br><span class="line">cat 001.log 002.log &gt; 003.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>將輸入指令執行結果顯示在終端機上： <code>| cat</code><br>
 顯示行數： <code>-n</code><br>
 將多個文件覆蓋到目標文件中： <code>&gt;</code><br>
 將多個文件追加到目標文件中： <code>&gt;&gt;</code><br>
 備註: 目標文件若原本不存在，則直接建立新檔案</p>
-<h2 id="tac">tac</h2>
+<h2><span id="tac">tac</span></h2>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tac file</span><br><span class="line"><span class="built_in">command</span> | tac</span><br><span class="line">tac file1 file2 &gt; target_file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">git <span class="built_in">log</span> --oneline --all --graph | tac</span><br><span class="line">tac 001.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>將輸入指令執行結果顯示在終端機上： <code>| tac</code><br>
 將多個文件覆蓋到目標文件中： <code>&gt;</code><br>
 將多個文件追加到目標文件中： <code>&gt;&gt;</code><br>
 備註: 目標文件若原本不存在，則直接建立新檔案</p>
-<h2 id="head">head</h2>
+<h2><span id="head">head</span></h2>
 <p>看該檔案頭部 (預設為 10 行)<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">head file</span><br><span class="line">head -n 30 file</span><br><span class="line">head -c 25 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">head 001.log</span><br><span class="line">head -n 30 001.log</span><br><span class="line">head -c 25 001.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>顯示前 N 行的訊息 (N 為數字)： <code>-n 30</code><br>
 顯示前 N bytes 的字元 (N 為數字)： <code>-c 25</code></p>
-<h2 id="tail">tail</h2>
+<h2><span id="tail">tail</span></h2>
 <p>看該檔案尾部 (預設為 10 行)<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tail file</span><br><span class="line">tail -n 15 file</span><br><span class="line">tail -f file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">tail 001.log</span><br><span class="line">tail -n 001.log</span><br><span class="line">tail -f 001.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>顯示最後 N 行的訊息 (N 為數字)： <code>-n 30</code><br>
 持續讀取檔案，直到按 <code>Ctrl + c</code> 為止 (可觀察檔案持續更新的內容)： <code>-f</code></p>
-<h2 id="vi">vi</h2>
+<h2><span id="vi">vi</span></h2>
 <p>vi 編輯器，可新增、修改檔案、搜尋並取代文字等<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi 001.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用指令說明">幾個常用指令說明：</h4>
+<h4><span id="幾個常用指令說明">幾個常用指令說明：</span></h4>
 <p>新增、編輯檔案： <code>vi file_name</code><br>
 編輯模式： 進入 vi 後，鍵盤 <code>i</code><br>
 離開編輯模式 (並非離開 vi 編輯器喔)： <code>ESC</code><br>
@@ -462,20 +462,20 @@ height:50vh;
 將檔案還原到最初狀態(進入 vi 後一開始的樣貌) ： <code>:e!</code><br>
 針對特定行數，搜尋並取代： <code>:s/string/new_string/g</code><br>
 針對整份文件，搜尋並取代： <code>:%s/string/new_string/g</code></p>
-<h3 id="示範如何針對特定行數及整份文件進行搜尋並取代文字">示範如何針對特定行數及整份文件進行搜尋並取代文字</h3>
+<h3><span id="示範如何針對特定行數及整份文件進行搜尋並取代文字">示範如何針對特定行數及整份文件進行搜尋並取代文字</span></h3>
 <p><img src="https://i.imgur.com/drxy63J.gif" alt></p>
 <p>備註:  除了 vi 編輯器外，Linux 上知名編輯器還有 vim、nano</p>
-<h2 id="sed">sed</h2>
+<h2><span id="sed">sed</span></h2>
 <p>檔案處理工具，是一個管道命令，以行為單位處理，能做到字串取代、複製、刪除等<br>
 在寫這段時，發現網路上已經有許多不錯的文章及詳細說明，故省略撰寫 XD<br>
 挑了幾篇覺得不錯的，放下方參考文件，跟著練習，會更有感覺及上手喔 :)</p>
-<h4 id="參考資料">參考資料</h4>
+<h4><span id="參考資料">參考資料</span></h4>
 <ol>
 <li><a href="http://linux.vbird.org/linux_basic/0330regularex.php#sed" target="_blank" rel="noopener">鳥哥的 Linux 私房菜 -- 第十一章、正規表示法與文件格式化處理</a></li>
 <li><a href="https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/392291/" target="_blank" rel="noopener">Linux中 sed 和 awk的用法詳解</a></li>
 <li><a href="https://terryl.in/zh/linux-sed-command/" target="_blank" rel="noopener">Linux 指令 SED 用法教學、取代範例、詳解</a></li>
 </ol>
-<h2 id="總整理">總整理</h2>
+<h2><span id="總整理">總整理</span></h2>
 <table>
 <thead>
 <tr>
@@ -517,7 +517,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>在搜尋取代整份文件時，習慣以 <code>vi</code> 進行操作，<code>sed</code> 反而比較少用，<br>
 之前在批次改 SQL 資料庫的某字串時，覺得蠻方便的，與使用習慣有關</p>
 <hr>
@@ -685,7 +685,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cat"><span class="toc-number">2.</span> <span class="toc-text">cat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tac"><span class="toc-number">3.</span> <span class="toc-text">tac</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#head"><span class="toc-number">4.</span> <span class="toc-text">head</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tail"><span class="toc-number">5.</span> <span class="toc-text">tail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vi"><span class="toc-number">6.</span> <span class="toc-text">vi</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用指令說明"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用指令說明：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示範如何針對特定行數及整份文件進行搜尋並取代文字"><span class="toc-number">6.1.</span> <span class="toc-text">示範如何針對特定行數及整份文件進行搜尋並取代文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed"><span class="toc-number">7.</span> <span class="toc-text">sed</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#參考資料"><span class="toc-number">7.0.1.</span> <span class="toc-text">參考資料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">cat</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">tac</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">head</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">tail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">vi</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用指令說明：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">6.1.</span> <span class="toc-text">示範如何針對特定行數及整份文件進行搜尋並取代文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">sed</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.0.1.</span> <span class="toc-text">參考資料</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1885,36 +1885,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1928,6 +1901,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2313,17 +2300,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2358,6 +2345,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2374,10 +2363,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2390,17 +2375,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2410,11 +2405,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2428,21 +2423,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2452,15 +2445,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2501,17 +2490,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

@@ -421,8 +421,8 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h3 id="自-rails-41-以後採用-spring-來預載應用程式">自 Rails 4.1 以後，採用 Spring 來預載應用程式</h3>
-<h3 id="保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</h3>
+    <h3><span id="自-rails-41-以後採用-spring-來預載應用程式">自 Rails 4.1 以後，採用 Spring 來預載應用程式</span></h3>
+<h3><span id="保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</span></h3>
 <p>特徵：</p>
 <ul>
 <li>自動化，毋須特別啟動或停止背景程序</li>
@@ -451,18 +451,18 @@ height:50vh;
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ spring</span><br><span class="line">Version: 2.1.0</span><br><span class="line">Usage: spring COMMAND [ARGS]</span><br><span class="line">Commands <span class="keyword">for</span> Spring itself:</span><br><span class="line">binstub         Generate Spring based binstubs. Use --all to generate a binstub <span class="keyword">for</span> all known commands. Use --remove to revert.</span><br><span class="line">  <span class="built_in">help</span>            Print available commands.</span><br><span class="line">  server          Explicitly start a Spring server <span class="keyword">in</span> the foreground</span><br><span class="line">  status          Show current status.</span><br><span class="line">  stop            Stop all Spring processes <span class="keyword">for</span> this project.</span><br><span class="line">Commands <span class="keyword">for</span> your application:</span><br><span class="line">rails           Run a rails <span class="built_in">command</span>. The following sub commands will use Spring: console, runner, generate, destroy, <span class="built_in">test</span>.</span><br><span class="line">  rake            Runs the rake <span class="built_in">command</span></span><br></pre></td></tr></table></figure></p>
 <p>很貼心地 show 出所有指令，能透過同樣技巧查詢 rails 指令有哪些喔~</p>
 <hr>
-<h3 id="如何加速-rails-c-rails-t第二次以上執行速度">如何加速 <code>rails c</code>、<code>rails -T</code>，第二次以上執行速度?</h3>
+<h3><span id="如何加速-rails-c-rails-t第二次以上執行速度">如何加速 <code>rails c</code>、<code>rails -T</code>，第二次以上執行速度?</span></h3>
 <p>可參考 <a href="https://github.com/rails/spring/blob/master/README.md#setup" target="_blank" rel="noopener">Spring 的官方文件</a> 或以下操作步驟:</p>
-<h4 id="1-確認-gemfile-有安裝-spring-並-bundle-過">1. 確認 Gemfile 有安裝 <code>spring</code> 並 <code>bundle</code> 過</h4>
-<h4 id="2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下">2. 檢查專案資料夾底下是否有 <code>bin/rails</code> 和 <code>bin/rake</code> 這兩個檔案，且資訊會如下：</h4>
+<h4><span id="1-確認-gemfile-有安裝-spring-並-bundle-過">1. 確認 Gemfile 有安裝 <code>spring</code> 並 <code>bundle</code> 過</span></h4>
+<h4><span id="2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下">2. 檢查專案資料夾底下是否有 <code>bin/rails</code> 和 <code>bin/rake</code> 這兩個檔案，且資訊會如下：</span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rails</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">APP_PATH = File.expand_path(<span class="string">'../config/application'</span>, __dir_<span class="number">_</span>)</span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails/commands'</span></span><br></pre></td></tr></table></figure></p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 路徑: 專案資料夾底下的 /bin/rake</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  load File.expand_path(<span class="string">'../spring'</span>, __FILE_<span class="number">_</span>)</span><br><span class="line"><span class="keyword">rescue</span> LoadError =&gt; e</span><br><span class="line">  raise <span class="keyword">unless</span> e.message.<span class="keyword">include</span>?(<span class="string">'spring'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">require_relative <span class="string">'../config/boot'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rake'</span></span><br><span class="line">Rake.application.run</span><br></pre></td></tr></table></figure></p>
-<h4 id="3-如果有缺檔案或部分內容的話可在終端機輸入">3. 如果有缺檔案或部分內容的話，可在終端機輸入</h4>
+<h4><span id="3-如果有缺檔案或部分內容的話可在終端機輸入">3. 如果有缺檔案或部分內容的話，可在終端機輸入</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ spring binstub</span><br><span class="line">$ bundle <span class="built_in">exec</span> spring binstub --all</span><br></pre></td></tr></table></figure></p>
 <p>會幫你檢查上述 2 個檔案是否有缺，並幫你補上所缺的部分，可用 Git 觀察被增加了什麼檔案和內容</p>
-<h4 id="4-將原本-rails-c-進入的方式改成">4. 將原本 <code>rails c</code> 進入的方式，改成</h4>
+<h4><span id="4-將原本-rails-c-進入的方式改成">4. 將原本 <code>rails c</code> 進入的方式，改成</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./bin/rails c</span><br></pre></td></tr></table></figure></p>
-<h4 id="5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了">5. 進入後再離開，接著再輸入一次 <code>./bin/rails c</code> ，會發現第二次起，進入變快了！</h4>
+<h4><span id="5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了">5. 進入後再離開，接著再輸入一次 <code>./bin/rails c</code> ，會發現第二次起，進入變快了！</span></h4>
 <hr>
 <p>參考：</p>
 <ol>
@@ -484,8 +484,8 @@ height:50vh;
     <li class="next">
       
       <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/14/Rails-在建立表單的時候，form-for-跟-form-with-有什麼不同？/" title="Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？">
-        <div class="nextTitle">Rails 在建立表單的時候，form_for 跟 form_with 有什麼不同？</div>
+      <a href="/2019/09/14/Ruby-裡的-self-是什麼意思/" title="Ruby 裡的 self 是什麼意思">
+        <div class="nextTitle">Ruby 裡的 self 是什麼意思</div>
       </a>
       
     </li>
@@ -629,7 +629,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#自-rails-41-以後採用-spring-來預載應用程式"><span class="toc-number">1.</span> <span class="toc-text">自 Rails 4.1 以後，採用 Spring 來預載應用程式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保持應用程式在背景執行如此一來在執行-rails-命令時如跑測試-rake-migrate-時不用每次都重啟-rails-應用程式加速你的開發流程"><span class="toc-number">2.</span> <span class="toc-text">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何加速-rails-c-rails-t第二次以上執行速度"><span class="toc-number">3.</span> <span class="toc-text">如何加速 rails c、rails -T，第二次以上執行速度?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-確認-gemfile-有安裝-spring-並-bundle-過"><span class="toc-number">3.1.</span> <span class="toc-text">1. 確認 Gemfile 有安裝 spring 並 bundle 過</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-檢查專案資料夾底下是否有-binrails-和-binrake-這兩個檔案且資訊會如下"><span class="toc-number">3.2.</span> <span class="toc-text">2. 檢查專案資料夾底下是否有 bin/rails 和 bin/rake 這兩個檔案，且資訊會如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-如果有缺檔案或部分內容的話可在終端機輸入"><span class="toc-number">3.3.</span> <span class="toc-text">3. 如果有缺檔案或部分內容的話，可在終端機輸入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-將原本-rails-c-進入的方式改成"><span class="toc-number">3.4.</span> <span class="toc-text">4. 將原本 rails c 進入的方式，改成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-進入後再離開接著再輸入一次-binrails-c-會發現第二次起進入變快了"><span class="toc-number">3.5.</span> <span class="toc-text">5. 進入後再離開，接著再輸入一次 ./bin/rails c ，會發現第二次起，進入變快了！</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">自 Rails 4.1 以後，採用 Spring 來預載應用程式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何加速 rails c、rails -T，第二次以上執行速度?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">1. 確認 Gemfile 有安裝 spring 並 bundle 過</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">2. 檢查專案資料夾底下是否有 bin/rails 和 bin/rake 這兩個檔案，且資訊會如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.3.</span> <span class="toc-text">3. 如果有缺檔案或部分內容的話，可在終端機輸入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.4.</span> <span class="toc-text">4. 將原本 rails c 進入的方式，改成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.5.</span> <span class="toc-text">5. 進入後再離開，接著再輸入一次 ./bin/rails c ，會發現第二次起，進入變快了！</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1829,36 +1829,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1872,6 +1845,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2257,17 +2244,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2302,6 +2289,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2318,10 +2307,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2334,17 +2319,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2354,11 +2349,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2372,21 +2367,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2396,15 +2389,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2445,17 +2434,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

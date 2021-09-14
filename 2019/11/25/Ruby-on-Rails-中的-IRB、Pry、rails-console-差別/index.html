@@ -427,9 +427,9 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1 id="說明">說明</h1>
+    <h1><span id="說明">說明</span></h1>
 <p>欲測試想法(但懶得開新檔案)或抓 bug 時，最常使用的工具，將針對 <code>irb</code> 、 <code>pry</code> 、 <code>rails console</code> 進行介紹。</p>
-<h1 id="irb">IRB</h1>
+<h1><span id="irb">IRB</span></h1>
 <p>Ruby 內建一個名為 IRB (Interactive
 Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果，只需在終端機輸入 <code>irb</code> 即可進入。(前提要有安裝 Ruby)</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在終端機輸入</span></span><br><span class="line">$ irb</span><br><span class="line"></span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Human</span></span></span><br><span class="line">&gt;   <span class="function"><span class="keyword">def</span> <span class="title">going_to_travel</span></span></span><br><span class="line">&gt;     <span class="string">"好想出國旅遊"</span></span><br><span class="line">&gt;   <span class="keyword">end</span></span><br><span class="line">&gt; <span class="keyword">end</span></span><br><span class="line"> =&gt; <span class="symbol">:going_to_travel</span></span><br><span class="line">&gt; Human.new.going_to_travel</span><br><span class="line"> =&gt; <span class="string">"好想出國旅遊"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 為註解</span></span><br><span class="line"><span class="comment"># $ 為終端機輸入 ($ 免輸入)</span></span><br><span class="line"><span class="comment"># &gt; 為 IRB 介面 (&gt; 免輸入)</span></span><br><span class="line"><span class="comment"># =&gt; 為回傳值</span></span><br></pre></td></tr></table></figure></p>
@@ -440,9 +440,9 @@ Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果�
 <p>在這裡我遇到了 NoMethodError，因為我使用錯誤的方法名稱，我把 <code>going_to_travel</code> 換成 <code>.go_to_travel</code>，它會準確告訴我問題出在哪裡，Ruby 甚至會把它找到與輸入內容接近的方法給我參考，有沒有覺得 Ruby 實在太強大了!! 感謝 Ruby ，讚嘆 Ruby。</p>
 <p>要退出 IRB 很簡單，只需輸入 <code>exit</code> 或 <code>quit</code> 或 <code>Ctrl + D</code> ，即退回終端機介面。</p>
 <p>盡管 IRB 非常適合快速檢查某些內容，但它不允許在方法或循環中進行測試，此時用 Pry 較適合。</p>
-<h1 id="pry">Pry</h1>
+<h1><span id="pry">Pry</span></h1>
 <p><a href="https://github.com/pry/pry" target="_blank" rel="noopener">Pry</a> 是 IRB 的加強版，有大量附加的功能(ex: 更漂亮的介面、可以使用 <code>show-method</code> 等)。雖說 Pry 更加強大，但蠻多時候，我仍以 IRB 進行測試，直到需要在 <strong>classes, methods, hashes, iterations</strong> 中進行測試時，Pry 會是你的好夥伴。</p>
-<h2 id="安裝-pry">安裝 Pry</h2>
+<h2><span id="安裝-pry">安裝 Pry</span></h2>
 <p>可以透過安裝取得 Pry<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ gem install pry</span><br></pre></td></tr></table></figure></p>
 <p>或在檔案中加入 <code>require 'pry'</code>，並使用
@@ -455,14 +455,14 @@ Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果�
 <p>要退出 Pry 並繼續執行後面程式碼的話，只需輸入 <code>exit</code> 或 <code>quit</code> 或 <code>Ctrl + D</code> 。</p>
 <p>退出 Pry 並中止後面程式碼執行，輸入 <code>!!!</code></p>
 <p><img src="https://i.imgur.com/Fsw9K9P.png" alt></p>
-<h2 id="從-irb-進-pry">從 IRB 進 Pry</h2>
+<h2><span id="從-irb-進-pry">從 IRB 進 Pry</span></h2>
 <p>要從 IRB 中進入 Pry 的話，先輸入 <code>require 'pry'</code> 再輸入 <code>binding.pry</code> 或 <code>pry</code> 即進入 Pry。<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ irb</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">require</span> <span class="string">'pry'</span></span><br><span class="line"> =&gt; true</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 1:</span></span><br><span class="line">&gt; binding.pry</span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; exit</span><br><span class="line"> =&gt; nil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 2:</span></span><br><span class="line">&gt; pry</span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; quit</span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://i.imgur.com/iVBDBTm.png" alt></p>
-<h2 id="從-pry-進-irb">從 Pry 進 IRB</h2>
+<h2><span id="從-pry-進-irb">從 Pry 進 IRB</span></h2>
 <p>要從 Pry 中進入 IRB 的話，輸入 <code>binding.irb</code> 即可。</p>
 <p><img src="https://i.imgur.com/rllvvSE.png" alt></p>
-<h1 id="rails-console">Rails console</h1>
+<h1><span id="rails-console">Rails console</span></h1>
 <p>類似 Ruby 的 IRB 介面，並載入整個 Rails 專案的環境，可以在這裡直接操作資料，快速驗證想法且不用到網站便能修改伺服器上的資料：<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 要在 Rails 專案資料夾底下</span></span><br><span class="line">$ rails console</span><br><span class="line"><span class="comment"># 縮寫為 rails c</span></span><br><span class="line"></span><br><span class="line">&gt; t = Task.find(<span class="number">1</span>)  <span class="comment"># 括號可省略</span></span><br><span class="line">&gt; t.title</span><br><span class="line"> =&gt; <span class="string">"看書"</span></span><br><span class="line">&gt; t.title = <span class="string">"跑步 30 分鐘"</span></span><br><span class="line"> =&gt; <span class="string">"跑步 30 分鐘"</span></span><br><span class="line">&gt; t.title</span><br><span class="line"> =&gt; <span class="string">"跑步 30 分鐘"</span></span><br></pre></td></tr></table></figure></p>
 <p>預設 <code>rails c</code> 是進入 development 環境，若想進入 production 或 test 環境，只要在 <code>rails c</code> 後面加入對應單字即可：<br>
@@ -470,14 +470,14 @@ Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果�
 <p>若只想測試，但不想修改資料，可以使用：<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ rails c --sandbox</span><br><span class="line"></span><br><span class="line">Loading development environment <span class="keyword">in</span> sandbox (Rails <span class="number">5.2</span>.<span class="number">3</span>)</span><br><span class="line">Any modifications you make will be rolled back on exit</span><br></pre></td></tr></table></figure></p>
 <p>要退出 <code>rails console</code> 的話，只需輸入 exit 或 quit 或 Ctrl + D 。</p>
-<h2 id="用-pry-執行-rails-c">用 Pry 執行 <code>rails c</code></h2>
+<h2><span id="用-pry-執行-rails-c">用 Pry 執行 <code>rails c</code></span></h2>
 <p>在 Rails 中，如果不想更改 Gemfile ，可以使用 <code>pry -r</code> 在應用程序環境中運行 Pry：<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pry -r ./config/environment</span><br></pre></td></tr></table></figure></p>
 <p>安裝 Gemfile 的話，使用「<a href="https://github.com/rweng/pry-rails" target="_blank" rel="noopener">pry-rails</a>」gem<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'pry-rails'</span>, <span class="symbol">:group</span> =&gt; <span class="symbol">:development</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="小結">小結</h1>
+<h1><span id="小結">小結</span></h1>
 <p>這三個 <code>irb</code>、<code>pry</code>、<code>rails console</code> 沒有好壞之分，依不同情境需求，選擇不同工具處理即可。</p>
-<h1 id="參考">參考</h1>
+<h1><span id="參考">參考</span></h1>
 <ol>
 <li><a href="https://github.com/pry/pry" target="_blank" rel="noopener">Pry GitHub</a></li>
 <li><a href="http://pryrepl.org/" target="_blank" rel="noopener">Pry - an IRB alternative and runtime developer console</a></li>
@@ -491,7 +491,7 @@ Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果�
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2019/11/25/Ruby-on-Rails-中的-IRB、Pry、rails-console-差別/">https://riverye.com/2019/11/25/Ruby-on-Rails-中的-IRB、Pry、rails-console-差別/</a></p>
     <p>發表日期：2019-11-25</p>
-    <p>更新日期：2020-03-07</p>
+    <p>更新日期：2021-08-14</p>
   </div>
   
   <!-- paginator  -->
@@ -644,7 +644,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#說明"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#irb"><span class="toc-number">2.</span> <span class="toc-text">IRB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pry"><span class="toc-number">3.</span> <span class="toc-text">Pry</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝-pry"><span class="toc-number">3.1.</span> <span class="toc-text">安裝 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從-irb-進-pry"><span class="toc-number">3.2.</span> <span class="toc-text">從 IRB 進 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#從-pry-進-irb"><span class="toc-number">3.3.</span> <span class="toc-text">從 Pry 進 IRB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rails-console"><span class="toc-number">4.</span> <span class="toc-text">Rails console</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用-pry-執行-rails-c"><span class="toc-number">4.1.</span> <span class="toc-text">用 Pry 執行 rails c</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#參考"><span class="toc-number">6.</span> <span class="toc-text">參考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">IRB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">Pry</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">安裝 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">從 IRB 進 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.3.</span> <span class="toc-text">從 Pry 進 IRB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">Rails console</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">用 Pry 執行 rails c</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1844,36 +1844,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1887,6 +1860,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2272,17 +2259,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2317,6 +2304,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2333,10 +2322,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2349,17 +2334,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2369,11 +2364,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2387,21 +2382,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2411,15 +2404,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2460,17 +2449,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

@@ -419,7 +419,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p><a href="https://redis.io/" target="_blank" rel="noopener">Redis</a> 是 <a href="https://zh.wikipedia.org/wiki/BSD%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">BSD 授權</a>的開源軟體，屬於 NoSQL 家族成員之一，是 in-memory 的 key-value 資料庫，基於資料存在記憶體的特性，其存取速度比硬碟快許多，常被應用在需要快取 (Cache) 的場合，也可使用在 Database 及簡單的 Message broker，與 Memcached 比，穩定性更好</p>
 <p>以下擷取自 <a href="https://zh.wikipedia.org/wiki/Redis" target="_blank" rel="noopener">Wiki</a> 介紹</p>
 <blockquote>
@@ -427,7 +427,7 @@ height:50vh;
 </blockquote>
 <p>(謎之聲，有興趣想知道記憶體與硬碟的速度差異，可 <a href="https://www.google.com/search?q=ram+ssd+speed+comparison" target="_blank" rel="noopener">Google</a> 下，題外話，之前會用 RAM disk 在上面執行作業系統、軟體等，速度有感提升</p>
 <hr>
-<h2 id="特色">特色</h2>
+<h2><span id="特色">特色</span></h2>
 <ol>
 <li>效能好 (與 database 比)、穩定性高 (與 Memcached 比)</li>
 <li>資料是儲存在 Memory (記憶體)</li>
@@ -437,44 +437,44 @@ height:50vh;
 <p>Redis 是 Single Thread，這點非常重要，不論 Server CPU Core (核心) 為幾核，1 個 Redis 只會使用到 1 個 CPU Core (核心)，無法同時運算多個 request，當有 1 個 request 佔用 CPU 太久時，會導致無法回應其他 connection request 而造成後面塞車。</p>
 <p>(謎之聲，Redis 背後運作原理、處理機制等，網路上有許多資料可以參考，不在這一一描述</p>
 <hr>
-<h2 id="如何安裝">如何安裝</h2>
+<h2><span id="如何安裝">如何安裝</span></h2>
 <p>在終端機輸入<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install redis</span><br></pre></td></tr></table></figure></p>
 <p>在 Ruby on Rails 專案的 Gemfile 加入<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'redis'</span>, <span class="string">'~&gt; 4.2'</span>, <span class="string">'&gt;= 4.2.2'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以 Rails 6.0.3.3 為例，預設 Gemfile 中，是註解，取消註解，再 bundle 即可</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="常用指令介紹">常用指令介紹</h2>
-<h4 id="進入-redis-終端機-command-line-interface-畫面">進入 Redis 終端機 (Command-Line Interface) 畫面</h4>
+<h2><span id="常用指令介紹">常用指令介紹</span></h2>
+<h4><span id="進入-redis-終端機-command-line-interface-畫面">進入 Redis 終端機 (Command-Line Interface) 畫面</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在終端機輸入</span></span><br><span class="line"></span><br><span class="line">redis-cli</span><br></pre></td></tr></table></figure></p>
-<h4 id="開啟-redis-server">開啟 redis server</h4>
+<h4><span id="開啟-redis-server">開啟 redis server</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在終端機輸入</span></span><br><span class="line"></span><br><span class="line">redis-server</span><br></pre></td></tr></table></figure></p>
-<h4 id="redis-性能測試">redis 性能測試</h4>
+<h4><span id="redis-性能測試">redis 性能測試</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在終端機輸入</span></span><br><span class="line"></span><br><span class="line">redis-benchmark</span><br></pre></td></tr></table></figure></p>
-<h4 id="查看-redis-資訊-information">查看 redis 資訊 (information)</h4>
+<h4><span id="查看-redis-資訊-information">查看 redis 資訊 (information)</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 進入 redis-cli 後，輸入</span></span><br><span class="line"></span><br><span class="line">info</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Server</span></span><br><span class="line">redis_version:6.0.8</span><br><span class="line">redis_git_sha1:00000000</span><br><span class="line">redis_git_dirty:0</span><br><span class="line">redis_build_id:25b38681eed52ae</span><br><span class="line">redis_mode:standalone</span><br><span class="line">os:Darwin 19.6.0 x86_64</span><br><span class="line">arch_bits:64</span><br><span class="line">multiplexing_api:kqueue</span><br><span class="line">atomicvar_api:atomic-builtin</span><br><span class="line">gcc_version:4.2.1</span><br><span class="line">process_id:1552</span><br><span class="line">run_id:1ea27ec21bc37fea806bb2ccf213132176f</span><br><span class="line">tcp_port:6379</span><br><span class="line">uptime_in_seconds:15272</span><br><span class="line">uptime_in_days:0</span><br><span class="line">hz:10</span><br><span class="line">configured_hz:10</span><br><span class="line">lru_clock:7122746</span><br><span class="line">executable:/usr/<span class="built_in">local</span>/opt/redis/bin/redis-server</span><br><span class="line">config_file:/usr/<span class="built_in">local</span>/etc/redis.conf</span><br><span class="line">io_threads_active:0</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<h4 id="設定-redis-相關參數配置">設定 Redis 相關參數(配置)</h4>
+<h4><span id="設定-redis-相關參數配置">設定 Redis 相關參數(配置)</span></h4>
 <p>從 <code>info</code> 的 <code>config_file</code> 這欄，可看到 <code>redis.conf</code> 檔案路徑，該檔案內的註解很詳細，Google 下也有相關參數設定說明可參考</p>
-<h3 id="set-get">SET, GET</h3>
+<h3><span id="set-get">SET, GET</span></h3>
 <p><code>SET</code> 設定 key-value</p>
 <p><code>GET</code> 從 key 取 value<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET river <span class="string">'hi'</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; GET river</span><br><span class="line"><span class="string">"hi"</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="hset-hget">HSET, HGET</h3>
+<h3><span id="hset-hget">HSET, HGET</span></h3>
 <p><code>HSET</code> 設定 hash key-value</p>
 <p><code>HGET</code> 取 hash key 的 value<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; HSET order1 name <span class="string">'order_name'</span> price 500 note <span class="string">'nothing'</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; HGET order1 note</span><br><span class="line"><span class="string">"nothing"</span></span><br><span class="line">127.0.0.1:6379&gt; HGET order1 price</span><br><span class="line"><span class="string">"500"</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="incr-decr">INCR, DECR</h3>
+<h3><span id="incr-decr">INCR, DECR</span></h3>
 <p>針對指定 key 的 value 進行數字加減</p>
 <p><code>INCR</code> 針對 key 的 value +1</p>
 <p><code>DECR</code> 針對 key 的 value -1</p>
 <p>備註: 若 value 型別不是數字，會回 <code>(error) WRONGTYPE Operation against a key holding the wrong kind of value</code><br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; SET num <span class="string">'4'</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; DECR num</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line">127.0.0.1:6379&gt; INCR num</span><br><span class="line">(<span class="built_in">integer</span>) 4</span><br></pre></td></tr></table></figure></p>
 <p>更多指令請參考<a href="https://redis.io/commands" target="_blank" rel="noopener">官方commands</a> (文件有針對每個指令提供範本與說明)</p>
-<h2 id="操作範例">操作範例</h2>
+<h2><span id="操作範例">操作範例</span></h2>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入，進入 Redis Command-Line Interface</span></span><br><span class="line">redis-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line">127.0.0.1:6379&gt; ping                             <span class="comment"># 測試連線是否正常，回傳 PONG 代表正常</span></span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> river <span class="string">'https://riverye.com/'</span> <span class="comment"># 設定 key 是 "river", value 是 "https://riverye.com/"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get river                        <span class="comment"># 讀取 key "river"</span></span><br><span class="line"><span class="string">"https://riverye.com/"</span></span><br><span class="line">127.0.0.1:6379&gt; del river                        <span class="comment"># 刪除 key "river"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; get river</span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> say hi EX 5                  <span class="comment"># 設定 key "set" 存在 5 秒, EX 為設定期限 (單位是秒)</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get say                          <span class="comment"># 上面設定好，在 5 秒內查詢</span></span><br><span class="line"><span class="string">"hi"</span></span><br><span class="line">127.0.0.1:6379&gt; get say                          <span class="comment"># 5 秒後，讀取 key "say" ，會變 nil</span></span><br><span class="line">(nil)</span><br><span class="line">127.0.0.1:6379&gt; hmset order name <span class="string">'order_name'</span> price 999 note <span class="string">'不知寫什麼'</span> <span class="comment"># 設定 雜湊表 "order"</span></span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hgetall order <span class="comment"># 讀取 雜湊表 "order"</span></span><br><span class="line">1) <span class="string">"name"</span></span><br><span class="line">2) <span class="string">"order_name"</span></span><br><span class="line">3) <span class="string">"price"</span></span><br><span class="line">4) <span class="string">"999"</span></span><br><span class="line">5) <span class="string">"note"</span></span><br><span class="line">6) <span class="string">"\xe4\xb8\x8d\xe7\x9f\xa5\xe5\xaf\xab\xe4\xbb\x80\xe9\xba\xbc"</span></span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure></p>
 <p>在 <code>rails console</code> 操作 Redis
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">rails c</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line">r = Redis.new</span><br><span class="line">r.hgetall(<span class="string">"order"</span>)</span><br><span class="line"><span class="comment"># &#123;</span></span><br><span class="line"><span class="comment">#      "name" =&gt; "order_name",</span></span><br><span class="line"><span class="comment">#     "price" =&gt; "999",</span></span><br><span class="line"><span class="comment">#      "note" =&gt; "不知寫什麼"</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="示範在-rails-console-操作-redis">示範在 Rails console 操作 Redis</h4>
+<h4><span id="示範在-rails-console-操作-redis">示範在 Rails console 操作 Redis</span></h4>
 <p><img src="https://i.imgur.com/uHfCF2N.png" alt></p>
-<h2 id="參考資料">參考資料</h2>
+<h2><span id="參考資料">參考資料</span></h2>
 <ol>
 <li><a href="https://www.jianshu.com/p/238372c25669" target="_blank" rel="noopener">深入分析Redis特点及应用场景</a></li>
 <li><a href="https://jed1978.github.io/2018/05/11/Redis-Programming-CSharp-Basic-1.html" target="_blank" rel="noopener">Redis系列 - C#存取Redis (上)</a></li>
@@ -485,7 +485,7 @@ height:50vh;
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU2ODcwMzk2MQ==&amp;mid=2247483746&amp;idx=1&amp;sn=5ce6047ef7367965b52fd46513f1dc2f" target="_blank" rel="noopener">Redis常见面试题连环问，你能回答到第几问？（下）</a></li>
 </ol>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>會在許多場景看到 Redis 出沒，全端與後端必備技能之一，舉個例子來說，之前在處理不同頁面皆要顯示同資訊「未處理訂單數量」，是透過打 API 詢問未處理的訂單資訊，接著與 Database 比對該訂單名稱是否被建立過、訂單的商品數量與 Database 中商品庫存是否足夠...等，由 worker 處理，經過一連串處理後，才能計算出實際「未處理訂單數量」，另個頁面是儀表板頁面，只需顯示「未處理訂單數量」，這時透過 Redis 處理，將計算結果存在 Redis ，另個頁面直接取值顯示即可</p>
 <p>上述例子為實際應用過的情境之一，若對 Redis 還不熟悉也不用太緊張，上方參考連結的文章，由淺入深的排序，可以從數字 1 開始往下看，過程中搭配實際操作練習，會更快上手喔</p>
 <hr>
@@ -653,7 +653,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特色"><span class="toc-number">2.</span> <span class="toc-text">特色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用指令介紹"><span class="toc-number">4.</span> <span class="toc-text">常用指令介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#進入-redis-終端機-command-line-interface-畫面"><span class="toc-number">4.0.1.</span> <span class="toc-text">進入 Redis 終端機 (Command-Line Interface) 畫面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#開啟-redis-server"><span class="toc-number">4.0.2.</span> <span class="toc-text">開啟 redis server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redis-性能測試"><span class="toc-number">4.0.3.</span> <span class="toc-text">redis 性能測試</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看-redis-資訊-information"><span class="toc-number">4.0.4.</span> <span class="toc-text">查看 redis 資訊 (information)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#設定-redis-相關參數配置"><span class="toc-number">4.0.5.</span> <span class="toc-text">設定 Redis 相關參數(配置)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set-get"><span class="toc-number">4.1.</span> <span class="toc-text">SET, GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hset-hget"><span class="toc-number">4.2.</span> <span class="toc-text">HSET, HGET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incr-decr"><span class="toc-number">4.3.</span> <span class="toc-text">INCR, DECR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作範例"><span class="toc-number">5.</span> <span class="toc-text">操作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#示範在-rails-console-操作-redis"><span class="toc-number">5.0.1.</span> <span class="toc-text">示範在 Rails console 操作 Redis</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">特色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">常用指令介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.1.</span> <span class="toc-text">進入 Redis 終端機 (Command-Line Interface) 畫面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.2.</span> <span class="toc-text">開啟 redis server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.3.</span> <span class="toc-text">redis 性能測試</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.4.</span> <span class="toc-text">查看 redis 資訊 (information)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.5.</span> <span class="toc-text">設定 Redis 相關參數(配置)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">SET, GET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.2.</span> <span class="toc-text">HSET, HGET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.3.</span> <span class="toc-text">INCR, DECR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">操作範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">示範在 Rails console 操作 Redis</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1853,36 +1853,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1896,6 +1869,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2281,17 +2268,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2326,6 +2313,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2342,10 +2331,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2358,17 +2343,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2378,11 +2373,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2396,21 +2391,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2420,15 +2413,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2469,17 +2458,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

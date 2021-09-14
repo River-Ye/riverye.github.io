@@ -419,83 +419,83 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>預計會有 7 篇介紹 Linux 指令與套件，並提供一些範例讓大家可以更快了解及如何應用，那麼，直接開始吧</p>
 <hr>
-<h2 id="exit">exit</h2>
+<h2><span id="exit">exit</span></h2>
 <p>嗯，就是離開，沒什麼好說的 XD<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="pwd">pwd</h2>
+<h2><span id="pwd">pwd</span></h2>
 <p>取得目前的路徑<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># /Users/user/Documents/demo/</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="ls">ls</h2>
+<h2><span id="ls">ls</span></h2>
 <p>取得當前資料夾與檔案名稱<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">ls -la</span><br><span class="line">ls -laSrt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可依需求調整參數</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>以行的方式成列： <code>-l</code><br>
 顯示隱藏檔案： <code>-a</code><br>
 按照檔案大小排序： <code>-S</code><br>
 反向排序： <code>-r</code><br>
 按照修改時間排序： <code>-t</code></p>
-<h4 id="查詢電腦規格-lshw">查詢電腦規格 <code>lshw</code></h4>
+<h4><span id="查詢電腦規格-lshw">查詢電腦規格 <code>lshw</code></span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">lshw</span><br></pre></td></tr></table></figure></p>
-<h4 id="查詢-cpu-規格-lscpu">查詢 CPU 規格 <code>lscpu</code></h4>
+<h4><span id="查詢-cpu-規格-lscpu">查詢 CPU 規格 <code>lscpu</code></span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line">lscpu</span><br></pre></td></tr></table></figure></p>
-<h2 id="cd">cd</h2>
+<h2><span id="cd">cd</span></h2>
 <p>切換目錄<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切到桌面</span></span><br><span class="line"><span class="built_in">cd</span> ~/Desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切到上一層</span></span><br><span class="line"><span class="built_in">cd</span> ../</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切回上一次的目錄</span></span><br><span class="line"><span class="built_in">cd</span> -</span><br></pre></td></tr></table></figure></p>
-<h2 id="touch">touch</h2>
+<h2><span id="touch">touch</span></h2>
 <p>建立檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch test.log</span><br><span class="line">touch hello.html</span><br></pre></td></tr></table></figure></p>
 <p>建立指定日期時間檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">touch -t YYYYMMDDHHMM.SS filename</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">touch -t 202009011800.11 test.log</span><br></pre></td></tr></table></figure></p>
-<h2 id="mkdir">mkdir</h2>
+<h2><span id="mkdir">mkdir</span></h2>
 <p>建立資料夾<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir directory</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">mkdir hello_world</span><br></pre></td></tr></table></figure></p>
-<h2 id="rm">rm</h2>
+<h2><span id="rm">rm</span></h2>
 <p>刪除檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm filename</span><br><span class="line">rm -i filename</span><br><span class="line">rm -r directory</span><br><span class="line">rm -d directory</span><br><span class="line">rm -rf anything</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>刪除前會再次確認： <code>-i</code><br>
 刪除資料夾(含裡面的檔案)： <code>-r</code><br>
 強制刪除(不會有提示)： <code>-f</code><br>
 只刪除空資料夾： <code>-d</code></p>
-<h2 id="cp">cp</h2>
+<h2><span id="cp">cp</span></h2>
 <p>複製檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp 來源檔案 目的地(可以是不同路徑並換檔名)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cp test.TXT /tmp/<span class="built_in">test</span>-1.TXT</span><br></pre></td></tr></table></figure></p>
-<h3 id="scp">scp</h3>
+<h3><span id="scp">scp</span></h3>
 <p>在不同的 Linux 主機之間複製檔案</p>
 <p>備註： 在不同 Linux 主機之間使用 scp 指令複製檔案時，遠端的 Linux 主機必須要開啟 SSH 遠端登入服務，否則無法使用 scp 指令複製檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">scp [帳號@來源主機]:來源檔案 目的地</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下指示為範例，直接輸入不會有反應</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 將遠端「考試100分.pdf」下載到「本地桌面」</span></span><br><span class="line">scp user_name@riverye.com:/home/data/考試100分.pdf ~/Desktop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 將遠端「本地桌面」的「考試100分.pdf」上傳到遠端</span></span><br><span class="line">scp ~/Desktop/考試100分.pdf user_name@riverye.com:/home/data/</span><br></pre></td></tr></table></figure></p>
-<h2 id="mv">mv</h2>
+<h2><span id="mv">mv</span></h2>
 <p>移動檔案<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mv source_file target</span><br><span class="line">mv -f source_file target</span><br><span class="line">mv -i source_file target</span><br><span class="line">mv -n source_file target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">mv -i test.rb /tmp/</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>遇到同樣檔名要覆蓋前，不提示： <code>-f</code><br>
 遇到同樣檔名要覆蓋前，會有提示： <code>-i</code><br>
 不覆蓋同樣檔名： <code>-n</code></p>
-<h2 id="sudo">sudo</h2>
+<h2><span id="sudo">sudo</span></h2>
 <p>使用最高權限執行<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo 你要下的指令</span><br></pre></td></tr></table></figure></p>
-<h2 id="man">man</h2>
+<h2><span id="man">man</span></h2>
 <p>查看指令說明文件</p>
 <p>備註： 不知別的指令怎麼用，可以用這個查詢，很常用的小技巧!!!<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">man 指令</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">man ls</span><br><span class="line">man rm</span><br><span class="line">man sudo</span><br></pre></td></tr></table></figure></p>
-<h2 id="help">help</h2>
+<h2><span id="help">help</span></h2>
 <p>查看指令說明</p>
 <p>備註： 很常用的小技巧!!
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">指令 --<span class="built_in">help</span></span><br><span class="line">指令 -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cp --<span class="built_in">help</span></span><br><span class="line">cp -h</span><br></pre></td></tr></table></figure></p>
-<h2 id="clear">clear</h2>
+<h2><span id="clear">clear</span></h2>
 <p>清除終端機上的訊息 (往上捲看得到)<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clear</span><br></pre></td></tr></table></figure></p>
-<h2 id="which">which</h2>
+<h2><span id="which">which</span></h2>
 <p>查詢指令的來源路徑<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> executable</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line"><span class="built_in">which</span> sudo</span><br><span class="line"><span class="built_in">which</span> ruby</span><br><span class="line"><span class="built_in">which</span> rails</span><br></pre></td></tr></table></figure></p>
-<h2 id="find">find</h2>
+<h2><span id="find">find</span></h2>
 <p>找出符合條件的檔案或資料夾<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 只找特定檔案大小範圍且符合關鍵字的檔案</span></span><br><span class="line">find <span class="built_in">test</span> -size +10k -size -10M</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="總整理">總整理</h2>
+<h2><span id="總整理">總整理</span></h2>
 <table>
 <thead>
 <tr>
@@ -588,7 +588,7 @@ height:50vh;
 </tbody>
 </table>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>這篇不知不覺就花了 5 小時左右準備和撰寫，<br>
 寫到眼睛快花了，過程中不停用 <code>man</code> 與  <code>help</code> 查詢其他指令的參數說明，<br>
 針對比較常用的提出來說明，若有不錯的組合技，歡迎下方留言交流 :)</p>
@@ -604,7 +604,7 @@ medium 文章連結：<a href="https://link.medium.com/fi1zYzsEF9" target="_blan
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2020/09/11/Day06-一些常用-Linux-指令-1-7-基礎篇-exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find/">https://riverye.com/2020/09/11/Day06-一些常用-Linux-指令-1-7-基礎篇-exit、pwd、ls、cd、touch、mkdir、rm、cp、scp、mv、sudo、man、help、clear、which、find/</a></p>
     <p>發表日期：2020-09-11</p>
-    <p>更新日期：2020-09-11</p>
+    <p>更新日期：2021-08-14</p>
   </div>
   
   <!-- paginator  -->
@@ -757,7 +757,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exit"><span class="toc-number">2.</span> <span class="toc-text">exit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd"><span class="toc-number">3.</span> <span class="toc-text">pwd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ls"><span class="toc-number">4.</span> <span class="toc-text">ls</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查詢電腦規格-lshw"><span class="toc-number">4.0.2.</span> <span class="toc-text">查詢電腦規格 lshw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查詢-cpu-規格-lscpu"><span class="toc-number">4.0.3.</span> <span class="toc-text">查詢 CPU 規格 lscpu</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cd"><span class="toc-number">5.</span> <span class="toc-text">cd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#touch"><span class="toc-number">6.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir"><span class="toc-number">7.</span> <span class="toc-text">mkdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rm"><span class="toc-number">8.</span> <span class="toc-text">rm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">8.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cp"><span class="toc-number">9.</span> <span class="toc-text">cp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scp"><span class="toc-number">9.1.</span> <span class="toc-text">scp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv"><span class="toc-number">10.</span> <span class="toc-text">mv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">10.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo"><span class="toc-number">11.</span> <span class="toc-text">sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#man"><span class="toc-number">12.</span> <span class="toc-text">man</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#help"><span class="toc-number">13.</span> <span class="toc-text">help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clear"><span class="toc-number">14.</span> <span class="toc-text">clear</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#which"><span class="toc-number">15.</span> <span class="toc-text">which</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-number">16.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">17.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">18.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">exit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">pwd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">ls</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.2.</span> <span class="toc-text">查詢電腦規格 lshw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.3.</span> <span class="toc-text">查詢 CPU 規格 lscpu</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">cd</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">touch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">mkdir</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">rm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">cp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">9.1.</span> <span class="toc-text">scp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">10.</span> <span class="toc-text">mv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">10.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">11.</span> <span class="toc-text">sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">12.</span> <span class="toc-text">man</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">13.</span> <span class="toc-text">help</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">14.</span> <span class="toc-text">clear</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">15.</span> <span class="toc-text">which</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">16.</span> <span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">17.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">18.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1957,36 +1957,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -2000,6 +1973,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2385,17 +2372,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2430,6 +2417,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2446,10 +2435,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2462,17 +2447,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2482,11 +2477,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2500,21 +2495,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2524,15 +2517,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2573,17 +2562,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

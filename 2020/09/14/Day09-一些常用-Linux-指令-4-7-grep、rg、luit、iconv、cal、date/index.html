@@ -419,26 +419,26 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>此為 Linux 相關的 4-7 篇，有準備情境讓大家可以練習，開始會有組合技的使用技巧</p>
-<h4 id="情境練習">情境練習</h4>
+<h4><span id="情境練習">情境練習</span></h4>
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將以下資訊儲存成 demo.log</span></span><br><span class="line"></span><br><span class="line">INFO [2099-01-11 13:14:40]: order_id: 0001, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-11 14:15:41]: 其它資訊</span><br><span class="line">INFO [2099-01-11 14:18:42]: order_id: 0002, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:10]: order_id: 0003, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:13]: 其它資訊</span><br><span class="line">INFO [2099-01-12 11:22:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-15 14:15:40]: order_id: 0004, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 23:34:10]: order_id: 0005, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:32]: order_id: 0006, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:33]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:24]: order_id: 0007, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:25]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-16 14:15:29]: order_id: 0008, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:30]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:30]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 08:15:40]: order_id: 0009, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 09:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 10:15:40]: order_id: 0010, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0011, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0012, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 15:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 16:15:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 17:15:40]: order_id: 0013, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 20:15:40]: 其它資訊</span><br></pre></td></tr></table></figure></p>
-<h2 id="grep">grep</h2>
+<h2><span id="grep">grep</span></h2>
 <p>找出符合搜尋條件的訊息<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 關鍵字 路徑</span></span><br><span class="line">grep search_pattern path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出正在運行中的程式，關鍵字為 line</span></span><br><span class="line">ps aux | grep line</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的上文也顯示 15 行</span></span><br><span class="line">grep -A 15 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下文也顯示 20 行</span></span><br><span class="line">grep -B 20 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下下各顯示 5 行</span></span><br><span class="line">grep -C 5 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算關鍵字出現的次數</span></span><br><span class="line">grep -c <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過濾除了關鍵字的訊息</span></span><br><span class="line">grep -v <span class="string">"其它"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A or B 關鍵字的訊息</span></span><br><span class="line">grep -E <span class="string">"2099|成功"</span> demo.log</span><br><span class="line">grep -E <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">grep <span class="string">'2099\|成功'</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A and B 的關鍵字訊息</span></span><br><span class="line">grep <span class="string">"2099"</span> demo.log | grep 成功</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的訂單數量</span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -c 建立成功</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | wc -l</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -v -c <span class="string">'建立失敗\|其它資訊'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的資訊，並反轉印出</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | tac</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
 符合條件的下文也顯示 n 行： <code>-B n</code><br>
 符合條件的上下各顯示 n 行： <code>-C n</code><br>
 計算符合條件的數量： <code>-c</code><br>
 除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
 用正規表示式搜尋 (regexp)： <code>-E</code></p>
-<h2 id="rg">rg</h2>
+<h2><span id="rg">rg</span></h2>
 <p>全名為 ripgrep ，為 <code>grep</code> 加強版，<br>
 用起來手感與 <code>grep</code> 差不多，搜尋速度更快，個人習慣以 <code>rg</code> 取代 <code>grep</code></p>
 <p>備註: 需另外安裝 <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener">官方網站</a><br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install ripgrep</span><br><span class="line"></span><br><span class="line">rg 建立成功</span><br><span class="line">rg -uu 建立成功</span><br><span class="line">rg -C 7 建立失敗</span><br><span class="line">rg <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">rg <span class="string">"2099"</span> demo.log | rg 成功</span><br><span class="line">rg -t <span class="built_in">log</span> 成功</span><br><span class="line"></span><br><span class="line">rg -z <span class="string">"成功"</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
 符合條件的下文也顯示 n 行： <code>-B n</code><br>
 符合條件的上下各顯示 n 行： <code>-C n</code><br>
@@ -448,32 +448,32 @@ height:50vh;
 針對特定副檔名搜尋： <code>-t type</code><br>
 壓縮檔也一併搜尋： <code>-z</code> (支援格式 gzip、bzip2、xz、LZ4、LZMA、Brotli、Zstd)</p>
 <p>(謎之聲，習慣在終端機直接輸入 <code>rg 關鍵字</code>，快速找該目錄底下所有符合條件的檔案及內容</p>
-<h2 id="luit">luit</h2>
+<h2><span id="luit">luit</span></h2>
 <p>將文件編碼轉換成另一種格式<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install luit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">luit -encoding big5 cat demo.txt</span><br><span class="line">luit -encoding big5 rg <span class="string">'訂單'</span> demo.txt</span><br></pre></td></tr></table></figure></p>
-<h2 id="iconv">iconv</h2>
+<h2><span id="iconv">iconv</span></h2>
 <p>多種國際編碼格式之間進行文字內碼的轉換<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iconv -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cat order_info.txt | iconv -f big5</span><br><span class="line">iconv -f UTF-16 demo.log &gt; hello.log</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>顯示所有支援的編碼格式： <code>-l</code><br>
 將檔案進行編碼轉檔後，另存新檔案： <code>-f from_encoding input_file &gt; output_file</code></p>
-<h4 id="以-big5-編碼檔案為例">以 BIG5 編碼檔案為例</h4>
+<h4><span id="以-big5-編碼檔案為例">以 BIG5 編碼檔案為例</span></h4>
 <p><img src="https://i.imgur.com/akmeLJ3.png" alt></p>
-<h2 id="cal">cal</h2>
+<h2><span id="cal">cal</span></h2>
 <p>顯示行事曆資訊<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cal</span><br><span class="line">cal -3</span><br><span class="line">cal -m 12</span><br><span class="line">cal -y 2012</span><br><span class="line">cal 1 2012</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>顯示當月的前後一個月： <code>-3</code><br>
 顯示當年指定月份 (month 為 1-12)： <code>-m month</code><br>
 顯示指定年份月曆 (year 為 1..9999)： <code>-y year</code><br>
 顯示特定月份日曆 (參數範圍如上)： <code>month year</code></p>
-<h2 id="date">date</h2>
+<h2><span id="date">date</span></h2>
 <p>顯示系統日期時間資訊<br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date</span><br><span class="line">date +%s</span><br><span class="line">date -r 1598937256</span><br></pre></td></tr></table></figure></p>
-<h4 id="幾個常用參數說明">幾個常用參數說明：</h4>
+<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
 <p>將當下時間轉成 Unix timestamp： <code>+%s</code><br>
 將 Unix timestamp 轉成人類看得懂的： <code>-r timestamp</code></p>
-<h2 id="總整理">總整理</h2>
+<h2><span id="總整理">總整理</span></h2>
 <table>
 <thead>
 <tr>
@@ -515,7 +515,7 @@ height:50vh;
 </tr>
 </tbody>
 </table>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>這篇花蠻多時間在想情境及準備假資料，透過範例，能更快上手並學會組合技，<br>
 若覺得受用歡迎在下方留言或交流喔</p>
 <hr>
@@ -683,7 +683,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#情境練習"><span class="toc-number">1.0.1.</span> <span class="toc-text">情境練習</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep"><span class="toc-number">2.</span> <span class="toc-text">grep</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rg"><span class="toc-number">3.</span> <span class="toc-text">rg</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#luit"><span class="toc-number">4.</span> <span class="toc-text">luit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iconv"><span class="toc-number">5.</span> <span class="toc-text">iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以-big5-編碼檔案為例"><span class="toc-number">5.0.2.</span> <span class="toc-text">以 BIG5 編碼檔案為例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cal"><span class="toc-number">6.</span> <span class="toc-text">cal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#date"><span class="toc-number">7.</span> <span class="toc-text">date</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#幾個常用參數說明"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#總整理"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">1.0.1.</span> <span class="toc-text">情境練習</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">grep</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">rg</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">luit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.2.</span> <span class="toc-text">以 BIG5 編碼檔案為例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">cal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">date</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1883,36 +1883,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1926,6 +1899,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2311,17 +2298,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2356,6 +2343,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2372,10 +2361,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2388,17 +2373,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2408,11 +2403,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2426,21 +2421,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2450,15 +2443,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2499,17 +2488,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

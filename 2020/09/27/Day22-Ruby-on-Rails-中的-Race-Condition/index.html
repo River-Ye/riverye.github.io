@@ -419,45 +419,45 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p><a href="https://zh.wikipedia.org/wiki/%E7%AB%B6%E7%88%AD%E5%8D%B1%E5%AE%B3" target="_blank" rel="noopener">Race Condition</a> 可翻譯成「競爭條件」，在中文版 <a href="https://zh.wikipedia.org/wiki/%E7%AB%B6%E7%88%AD%E5%8D%B1%E5%AE%B3" target="_blank" rel="noopener">Wiki</a> 上看不懂的話，可看英文版 <a href="https://en.wikipedia.org/wiki/Race_condition" target="_blank" rel="noopener">Wiki</a> 的描述，會比較清楚，以下為白話文翻譯:</p>
 <blockquote>
 <p>同筆資料同時被 2 thread 以上操作，導致結果的不正確</p>
 </blockquote>
-<h3 id="常見情境可能有">常見情境可能有:</h3>
+<h3><span id="常見情境可能有">常見情境可能有:</span></h3>
 <ol>
 <li>搶票系統、搶購限量商品時 (ex: 限量 100 張票，卻賣了 101 張)</li>
 <li>使用者送出資料時，剛好這時 server 負載較重 (處理比較慢)，使用者以為還沒處理完成，於是在前端連點，雖然 <code>model</code> 有做 <code>validates :email, uniqueness: true</code> ，但 DB 沒再次驗證，也有可能發生此問題  (可參考: <a href="https://ihower.tw/rails/activerecord-lifecycle.html" target="_blank" rel="noopener">ActiveRecord - 資料驗證及回呼</a>)</li>
 </ol>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="如何重現-race-condition">如何重現 Race Condition</h2>
+<h2><span id="如何重現-race-condition">如何重現 Race Condition</span></h2>
 <p>以 Ruby on Rails 為例，想看 Race Condition 本人的話</p>
 <p>在 <code>rails console</code> 貼上以下這段 (本文以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a>)<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重現 Race Condition</span></span><br><span class="line"><span class="comment"># 一開始 Order.last.total_price = 0</span></span><br><span class="line">Order.last.update(<span class="symbol">total_price:</span> <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">threads = [<span class="number">100</span>, <span class="number">10</span>].map <span class="keyword">do</span> <span class="params">|n|</span></span><br><span class="line">  Thread.new <span class="keyword">do</span> <span class="params">|_t|</span></span><br><span class="line">    order = Order.last</span><br><span class="line">    order.total_price += n</span><br><span class="line">    order.save</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">threads.each(&amp;<span class="symbol">:join</span>)</span><br><span class="line">puts <span class="string">"預期結果是: 110, 實際結果是: <span class="subst">#&#123;Order.last.total_price&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 預期結果是: 110, 實際結果是: 10</span></span><br><span class="line"><span class="comment"># 預期結果是: 110, 實際結果是: 100</span></span><br><span class="line"><span class="comment"># 預期結果是: 110, 實際結果是: 110</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 上述每次執行，實際結果會不一樣</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="race-condition-本人-上述例子每次執行得到結果會不同">Race Condition 本人 (上述例子，每次執行，得到結果會不同)</h4>
+<h4><span id="race-condition-本人-上述例子每次執行得到結果會不同">Race Condition 本人 (上述例子，每次執行，得到結果會不同)</span></h4>
 <p><img src="https://i.imgur.com/pL0vOzN.gif" alt></p>
-<h2 id="如何處理">如何處理</h2>
+<h2><span id="如何處理">如何處理</span></h2>
 <p>將要進行操作的 table 先鎖住 (<a href="https://en.wikipedia.org/wiki/Lock_(computer_science)" target="_blank" rel="noopener">Lock</a>)，處理方式可分成 2 種：</p>
 <ol>
 <li>悲觀鎖 (Pessimistic locking)</li>
 <li>樂觀鎖 (Optimistic locking)</li>
 </ol>
-<h3 id="悲觀鎖-pessimistic-locking">悲觀鎖 (Pessimistic locking)</h3>
+<h3><span id="悲觀鎖-pessimistic-locking">悲觀鎖 (Pessimistic locking)</span></h3>
 <p>悲觀鎖，如其名，不相信任何人，一次只允許一筆資料針對 table 操作，此時會先鎖住該 table (鎖又可分成表鎖、行鎖，這邊以行鎖為例)，避免被人竄改，其他人要操作只能等他被釋放後，才能進行操作</p>
 <p>白話文就是所有人排隊領號碼牌，叫號依序處理，能解決 Race Condition，但也會影響效能，畢竟一次只能處理一筆資料</p>
 <p>Ruby on Rails 中，悲觀鎖，可使用 <code>with_lock</code> 處理，實作方式如下:<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 悲觀鎖</span></span><br><span class="line"><span class="comment"># 一開始 Order.last.price = 0</span></span><br><span class="line">Order.last.update(<span class="symbol">total_price:</span> <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">threads = [<span class="number">100</span>, <span class="number">10</span>].map <span class="keyword">do</span> <span class="params">|n|</span></span><br><span class="line">  Thread.new <span class="keyword">do</span> <span class="params">|_t|</span></span><br><span class="line">    order = Order.last</span><br><span class="line">    order.with_lock <span class="keyword">do</span></span><br><span class="line">      order.total_price += n</span><br><span class="line">      order.save</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">threads.each(&amp;<span class="symbol">:join</span>)</span><br><span class="line">puts <span class="string">"預期結果是: 110, 實際結果是: <span class="subst">#&#123;Order.last.total_price&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 預期結果是: 110, 實際結果是: 110</span></span><br></pre></td></tr></table></figure></p>
 <p>上述確實解決了 Race Condition ，但變成其他人要排隊等待 (可看下方 GIF)，使用悲觀鎖需在效能與資料正確性之間做取捨，可依問題產生嚴重性、衍伸損失等進行綜合評估決定是否使用</p>
-<h4 id="排隊等待畫面">排隊等待畫面</h4>
+<h4><span id="排隊等待畫面">排隊等待畫面</span></h4>
 <p><img src="https://i.imgur.com/gNwpDiO.gif" alt>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 悲觀鎖</span></span><br><span class="line"><span class="comment"># 示範如何鎖住 table (行鎖)</span></span><br><span class="line"><span class="comment"># console 1</span></span><br><span class="line">Order.last.update(<span class="symbol">total_price:</span> <span class="number">0</span>)</span><br><span class="line">order = Order.last</span><br><span class="line">order.with_lock <span class="keyword">do</span></span><br><span class="line">  puts <span class="string">"total_price is <span class="subst">#&#123;order.total_price&#125;</span>"</span></span><br><span class="line">  order.total_price += <span class="number">10</span></span><br><span class="line">  byebug</span><br><span class="line">  order.save</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># console 2</span></span><br><span class="line">puts <span class="string">"total_price is <span class="subst">#&#123;Order.last.total_price&#125;</span>"</span></span><br><span class="line"><span class="comment"># 行鎖: 其他 Order 不受影響</span></span><br><span class="line">Order.first.update(<span class="symbol">total_price:</span> <span class="number">0</span>)</span><br><span class="line">Order.last.increment!(<span class="symbol">:total_price</span>)</span><br><span class="line"><span class="comment"># 此時應該會卡住，因為 console 1 with_lock 關係，需等 console 1 釋放 order 後， console 2 才能針對該筆資料進行操作</span></span><br><span class="line">puts <span class="string">"預期結果是: 11, 實際結果是: <span class="subst">#&#123;Order.last.total_price&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 預期結果是: 11, 實際結果是: 11</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="樂觀鎖-optimistic-locking">樂觀鎖 (Optimistic locking)</h3>
+<h3><span id="樂觀鎖-optimistic-locking">樂觀鎖 (Optimistic locking)</span></h3>
 <p>與悲觀鎖意思相反，認為資料不會頻繁被操作，因此允多人針對 table 操作，不代表我就爛什麼都不管，在 Ruby on Rails 中有提供 <code>lock_version</code> 這方法，可加在想使用樂觀鎖的 table 上，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/11/commits/cd1853d168d84bc6098efd0148138911335e8e50" target="_blank" rel="noopener">commit</a></p>
 <p>Ruby on Rail 中，樂觀鎖，可使用 <code>lock_version</code> 處理，實作方式如下:<br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 樂觀鎖</span></span><br><span class="line"><span class="comment"># 一開始 Order.last.total_price = 0</span></span><br><span class="line">Order.last.update(<span class="symbol">total_price:</span> <span class="number">0</span>)</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  order1 = Order.last</span><br><span class="line">  order2 = Order.last</span><br><span class="line">  order1.total_price += <span class="number">10</span></span><br><span class="line">  order1.save</span><br><span class="line">  order2.total_price += <span class="number">100</span></span><br><span class="line">  order2.save <span class="comment"># ActiveRecord::StaleObjectError: Attempted to update a stale object: Order.</span></span><br><span class="line"><span class="keyword">rescue</span> ActiveRecord::StaleObjectError =&gt; e</span><br><span class="line">  <span class="comment"># 要自己處理異常</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">puts <span class="string">"預期結果是: 10, 實際結果是: <span class="subst">#&#123;Order.last.reload.total_price&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 預期結果是: 10, 實際結果是: 10</span></span><br></pre></td></tr></table></figure></p>
 <p>樂觀鎖好處是能同時處理多筆資料，但錯誤的話，會收到 <code>ActiveRecord::StaleObjectError</code>，要自己處理，像是可以寫個 <code>retry</code> 或報錯誤訊息，讓工程師知道</p>
-<h2 id="參考資料">參考資料</h2>
+<h2><span id="參考資料">參考資料</span></h2>
 <ol>
 <li><a href="https://rails.ruby.tw/active_record_querying.html#%E6%9B%B4%E6%96%B0%E6%99%82%E9%8E%96%E5%AE%9A%E8%A8%98%E9%8C%84" target="_blank" rel="noopener">Active Record 查詢 — Ruby on Rails 指南</a></li>
 <li><a href="https://mgleon08.github.io/blog/2017/11/01/optimistic-locking-and-pessimistic-locking/" target="_blank" rel="noopener">樂觀鎖 與 悲觀鎖 Optimistic Locking &amp; Pessimistic Locking</a></li>
@@ -467,7 +467,7 @@ height:50vh;
 <li><a href="https://blog.niclin.tw/2020/09/11/avoids-race-condition-best-practice-in-ruby-on-rails-2/" target="_blank" rel="noopener">Rails 中避免 race condition 的最佳實踐(一)</a></li>
 </ol>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>解決 Race Condition 後，需留意是否可能衍伸另個問題，像是 Deadlock 可看 Wiki <a href="https://zh.wikipedia.org/wiki/%E5%93%B2%E5%AD%B8%E5%AE%B6%E5%B0%B1%E9%A4%90%E5%95%8F%E9%A1%8C" target="_blank" rel="noopener">哲學家就餐問題</a> 這篇，推薦看上方參考資料，可看看不同大大們對於 Race Condition 的介紹與解法</p>
 <p>本篇特別感謝 David 、 Johnson(詹昇) 協助 (依英文字母順序排列)</p>
 <hr>
@@ -635,7 +635,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常見情境可能有"><span class="toc-number">1.1.</span> <span class="toc-text">常見情境可能有:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何重現-race-condition"><span class="toc-number">2.</span> <span class="toc-text">如何重現 Race Condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#race-condition-本人-上述例子每次執行得到結果會不同"><span class="toc-number">2.0.1.</span> <span class="toc-text">Race Condition 本人 (上述例子，每次執行，得到結果會不同)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何處理"><span class="toc-number">3.</span> <span class="toc-text">如何處理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#悲觀鎖-pessimistic-locking"><span class="toc-number">3.1.</span> <span class="toc-text">悲觀鎖 (Pessimistic locking)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#排隊等待畫面"><span class="toc-number">3.1.1.</span> <span class="toc-text">排隊等待畫面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#樂觀鎖-optimistic-locking"><span class="toc-number">3.2.</span> <span class="toc-text">樂觀鎖 (Optimistic locking)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">4.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">常見情境可能有:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何重現 Race Condition</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">Race Condition 本人 (上述例子，每次執行，得到結果會不同)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何處理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">悲觀鎖 (Pessimistic locking)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.1.</span> <span class="toc-text">排隊等待畫面</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">樂觀鎖 (Optimistic locking)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1835,36 +1835,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1878,6 +1851,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2263,17 +2250,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2308,6 +2295,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2324,10 +2313,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2340,17 +2325,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2360,11 +2355,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2378,21 +2373,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2402,15 +2395,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2451,17 +2440,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

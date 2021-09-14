@@ -419,16 +419,16 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h2 id="前言">前言</h2>
+    <h2><span id="前言">前言</span></h2>
 <p>前一篇介紹了 <a href="https://github.com/rspec/rspec-rails" target="_blank" rel="noopener">RSpec</a> <a href="https://rubygems.org/gems/rspec-rails" target="_blank" rel="noopener">Gem</a>，這次換介紹 <a href="https://github.com/cucumber/cucumber-ruby" target="_blank" rel="noopener">Cucumber</a> 這個 <a href="https://rubygems.org/gems/cucumber-rails" target="_blank" rel="noopener">Gem</a></p>
 <p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
 <hr>
-<h2 id="介紹">介紹</h2>
-<h4 id="q1-心中或許會有疑問說已經有-rspec-為何還需要-cucumber-增加測試的複雜度">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</h4>
+<h2><span id="介紹">介紹</span></h2>
+<h4><span id="q1-心中或許會有疑問說已經有-rspec-為何還需要-cucumber-增加測試的複雜度">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</span></h4>
 <p>Cucumber 更像是讓人類看得懂的語言，來描述要測試的事情，且支援多種語系寫法，像是可以用中文寫測試，讓 PM 與客戶看得懂，也能成為將來驗收的依據</p>
-<h4 id="q2-可以只寫-cucumber-不寫-rspec-嗎">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</h4>
+<h4><span id="q2-可以只寫-cucumber-不寫-rspec-嗎">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</span></h4>
 <p>小孩紙才做選擇，我全都要，這就要問施主你的選擇惹 XD</p>
-<h2 id="如何安裝">如何安裝</h2>
+<h2><span id="如何安裝">如何安裝</span></h2>
 <p>放在 <code>:test</code> 中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/6ffbf593399e7dc4522c73d68aafba6a47d340bd" target="_blank" rel="noopener">commit</a></p>
 <p>參考資料: <a href="https://cucumber.io/docs/installation/ruby/" target="_blank" rel="noopener">Cucumber Installation</a>，<strong>官方文件有提醒 Ruby on Rails 的安裝方式與 Ruby 安裝方式不同喔!!</strong><br>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'cucumber-rails'</span>, <span class="symbol">require:</span> <span class="literal">false</span></span><br><span class="line">gem <span class="string">'database_cleaner'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
@@ -436,30 +436,30 @@ height:50vh;
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 也可輸入 rails g -h | grep -B 2 cucumber</span></span><br><span class="line"></span><br><span class="line">Cucumber:</span><br><span class="line">  cucumber:install</span><br></pre></td></tr></table></figure></p>
 <p>接著再終端機輸入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/172e3b230dd9c9cb350959c5388d99998b73e2b8" target="_blank" rel="noopener">commit</a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rails generate cucumber:install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可縮寫成</span></span><br><span class="line">rails g cucumber:install</span><br></pre></td></tr></table></figure></p>
-<h2 id="寫個-cucumber-中文測試範例">寫個 Cucumber 中文測試範例</h2>
+<h2><span id="寫個-cucumber-中文測試範例">寫個 Cucumber 中文測試範例</span></h2>
 <p>由於之前已經透過 <code>scaffold</code> 建立 User</p>
 <p>以下示範寫個中文測試，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/61b7859c504fda88b457ece8fc2144bdfe17febd" target="_blank" rel="noopener">commit</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># features/user.feature</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#language: zh-TW</span></span><br><span class="line">@user</span><br><span class="line">功能: 建立使用者</span><br><span class="line">  這是示範的範例</span><br><span class="line">  支援中英文寫法</span><br><span class="line"></span><br><span class="line">  場景: 能建立使用者</span><br><span class="line">    假如 一開始沒有使用者</span><br><span class="line">    假如 有一位使用者的姓名是<span class="string">"小菜"</span></span><br><span class="line">    而且 該使用者的信箱是<span class="string">"river@riverye.com"</span></span><br><span class="line">    而且 該使用者的電話與地址資訊如下<span class="symbol">:</span></span><br><span class="line">      <span class="params">|phone      |</span>address  <span class="params">|</span></span><br><span class="line"><span class="params">      |</span>0987654321 <span class="params">|台北市某處 |</span></span><br><span class="line">    當 使用者被建立時</span><br><span class="line">    那麼 使用者會有<span class="number">1</span>位</span><br><span class="line">    而且 使用者的資訊會是正確的<span class="symbol">:</span></span><br><span class="line">      <span class="params">|name |</span>email             <span class="params">|phone      |</span>address  <span class="params">|</span></span><br><span class="line"><span class="params">      |</span>小菜  <span class="params">|river@riverye.com |</span>0987654321 <span class="params">|台北市某處 |</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="空的測試-先寫規格還沒準備答案">空的測試 (先寫規格，還沒準備答案)</h4>
+<h4><span id="空的測試-先寫規格還沒準備答案">空的測試 (先寫規格，還沒準備答案)</span></h4>
 <p><img src="https://i.imgur.com/RVohq2G.gif" alt></p>
-<h2 id="如何執行">如何執行</h2>
+<h2><span id="如何執行">如何執行</span></h2>
 <p>終端機輸入
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 跑全部檔案</span></span><br><span class="line">cucumber</span><br><span class="line">bundle <span class="built_in">exec</span> cucumber</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定 tag</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber -t @user</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定資料夾</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber features</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跑指定檔案</span></span><br><span class="line">bundle <span class="built_in">exec</span> cucumber features/user.feature</span><br></pre></td></tr></table></figure></p>
 <p>更多操作範例輸入
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cucumber -h</span><br><span class="line"></span><br><span class="line">Usage: cucumber [options] [ [FILE|DIR|URL][:LINE[:LINE]*] ]+</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">cucumber examples/i18n/en/features</span><br><span class="line">cucumber @rerun.txt (See --format rerun)</span><br><span class="line">cucumber examples/i18n/it/features/somma.feature:6:98:113</span><br><span class="line">cucumber -s -i http://rubyurl.com/eeCl</span><br></pre></td></tr></table></figure></p>
-<h4 id="準備的測試答案">準備的測試答案</h4>
+<h4><span id="準備的測試答案">準備的測試答案</span></h4>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># features/step_definitions/user_step.rb</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'一開始沒有使用者'</span>) <span class="keyword">do</span></span><br><span class="line">  expect(User.count).to eq(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'有一位使用者的姓名是&#123;string&#125;'</span>) <span class="keyword">do</span> <span class="params">|name|</span></span><br><span class="line">  @user = &#123;&#125;</span><br><span class="line">  @user.merge!(<span class="symbol">name:</span> name)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'該使用者的信箱是&#123;string&#125;'</span>) <span class="keyword">do</span> <span class="params">|email|</span></span><br><span class="line">  @user.merge!(<span class="symbol">email:</span> email)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'該使用者的電話與地址資訊如下:'</span>) <span class="keyword">do</span> <span class="params">|table|</span></span><br><span class="line">  table.hashes.each <span class="keyword">do</span> <span class="params">|hash|</span></span><br><span class="line">    phone = hash[<span class="string">'phone'</span>]</span><br><span class="line">    address = hash[<span class="string">'address'</span>]</span><br><span class="line">    @user.merge!(<span class="symbol">phone:</span> phone, <span class="symbol">address:</span> address)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">當(<span class="string">'使用者被建立時'</span>) <span class="keyword">do</span></span><br><span class="line">  @user = User.create(@user)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">那麼(<span class="string">'使用者會有&#123;int&#125;位'</span>) <span class="keyword">do</span> <span class="params">|count|</span></span><br><span class="line">  expect(User.count).to eq(count)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">假如(<span class="string">'使用者的資訊會是正確的:'</span>) <span class="keyword">do</span> <span class="params">|table|</span></span><br><span class="line">  table.hashes.each <span class="keyword">do</span> <span class="params">|hash|</span></span><br><span class="line">    hash.each <span class="keyword">do</span> <span class="params">|key, value|</span></span><br><span class="line">      expect(@user[key]).to eq(value)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="執行結果">執行結果</h4>
+<h4><span id="執行結果">執行結果</span></h4>
 <p><img src="https://i.imgur.com/cMNQlI9.gif" alt></p>
-<h2 id="如何讓-ci-也能跑-cucumber">如何讓 CI 也能跑 Cucumber</h2>
+<h2><span id="如何讓-ci-也能跑-cucumber">如何讓 CI 也能跑 Cucumber</span></h2>
 <p>將原本 CI 設定檔新增以下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/7/commits/8f55936c2956031d8517196979b4a9a4b15782e8" target="_blank" rel="noopener">commit</a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> cucumber</span><br></pre></td></tr></table></figure></p>
-<h2 id="官方網站">官方網站</h2>
+<h2><span id="官方網站">官方網站</span></h2>
 <p><a href="https://cucumber.io/docs/cucumber/" target="_blank" rel="noopener">https://cucumber.io/docs/cucumber/</a></p>
-<h2 id="參考資料">參考資料</h2>
+<h2><span id="參考資料">參考資料</span></h2>
 <p><a href="https://ihower.tw/presentation/cucumber-coscup2009.pdf" target="_blank" rel="noopener">Cucumber 小黃瓜驗收測試工具 - ihower</a></p>
 <hr>
-<h2 id="小結">小結</h2>
+<h2><span id="小結">小結</span></h2>
 <p>想不到測試可以寫中文吧 XD<br>
 有沒有覺得很親切? <s>(噁心</s><br>
 瞬間人類都能看懂這份規格<br>
@@ -632,7 +632,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#介紹"><span class="toc-number">2.</span> <span class="toc-text">介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#q1-心中或許會有疑問說已經有-rspec-為何還需要-cucumber-增加測試的複雜度"><span class="toc-number">2.0.1.</span> <span class="toc-text">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#q2-可以只寫-cucumber-不寫-rspec-嗎"><span class="toc-number">2.0.2.</span> <span class="toc-text">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何安裝"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#寫個-cucumber-中文測試範例"><span class="toc-number">4.</span> <span class="toc-text">寫個 Cucumber 中文測試範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#空的測試-先寫規格還沒準備答案"><span class="toc-number">4.0.1.</span> <span class="toc-text">空的測試 (先寫規格，還沒準備答案)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何執行"><span class="toc-number">5.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#準備的測試答案"><span class="toc-number">5.0.1.</span> <span class="toc-text">準備的測試答案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#執行結果"><span class="toc-number">5.0.2.</span> <span class="toc-text">執行結果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何讓-ci-也能跑-cucumber"><span class="toc-number">6.</span> <span class="toc-text">如何讓 CI 也能跑 Cucumber</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#官方網站"><span class="toc-number">7.</span> <span class="toc-text">官方網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">8.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小結"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">介紹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">Q1. 心中或許會有疑問說，已經有 RSpec 為何還需要 Cucumber 增加測試的複雜度?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.2.</span> <span class="toc-text">Q2. 可以只寫 Cucumber 不寫 RSpec 嗎?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">寫個 Cucumber 中文測試範例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.1.</span> <span class="toc-text">空的測試 (先寫規格，還沒準備答案)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">準備的測試答案</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.2.</span> <span class="toc-text">執行結果</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">如何讓 CI 也能跑 Cucumber</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">官方網站</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1832,36 +1832,9 @@ top:50vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 82
+        Total : 83
         </div>
         <!-- search  -->
         
@@ -1875,6 +1848,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2021/09/14/Day01-鐵人賽我又來囉/" >Day01 - 鐵人賽我又來囉</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
@@ -2260,17 +2247,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/在-Rails-裡的-spring-指令是做什麼的？/" >在 Rails 裡的 spring 指令是做什麼的？</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/要刷 1 題還是 2 題呢 小孩子才做選擇，我全都要!!/" >要刷 1 題還是 2 題呢? 小孩子才做選擇，我全都要!!</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2019/09/14/Ruby-裡的-self-是什麼意思/" >Ruby 裡的 self 是什麼意思</a>
         </li>
     
     
@@ -2305,6 +2292,8 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
@@ -2321,10 +2310,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
@@ -2337,17 +2322,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
         <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -2357,11 +2352,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -2375,21 +2370,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+    
+        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
         <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
     
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
     
         <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
-    
-        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
-    
-        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
-    
-        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -2399,15 +2392,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
     
-        <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
+        <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
-        <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
+        <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
-        <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -2448,17 +2437,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
     
-        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
-    
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
+    
+        <span class="sidebar-category-name" data-categories="網頁"><span class="iconfont-archer">&#xe60a;</span>網頁</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
