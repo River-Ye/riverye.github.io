@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-14T16:51:19.056Z</updated>
+  <updated>2021-09-15T16:04:18.382Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day03 - Gem-strip_attributes 介紹與應用</title>
+    <link href="https://riverye.com/2021/09/16/Day03-Gem-strip-attributes-%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/"/>
+    <id>https://riverye.com/2021/09/16/Day03-Gem-strip-attributes-介紹與應用/</id>
+    <published>2021-09-15T16:00:00.000Z</published>
+    <updated>2021-09-15T16:04:18.382Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>當使用者輸入資料時，若不小心輸入跳脫字元 <a href="https://zh.wikipedia.org/wiki/%E8%B7%B3%E8%84%AB%E5%AD%97%E5%85%83" target="_blank" rel="noopener">Escape Character</a>，如 <code>\n</code> or <code>\t</code> 等時，在資料處理與儲存時，應該要過濾，避免日後使用者查不到該資料 (或其它問題)，進而衍伸客服 (or Bug)</p><h2><span id="方法-1">方法 1</span></h2><p>Ruby 內建 <code>strip</code> 這<a href="https://apidock.com/ruby/String/strip" target="_blank" rel="noopener">方法</a>，可以用過該方法過濾</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ irb</span><br><span class="line"></span><br><span class="line"><span class="string">"  hello\t"</span></span><br><span class="line"><span class="comment"># "  hello\t"</span></span><br><span class="line"></span><br><span class="line"><span class="string">"  hello\t"</span>.strip</span><br><span class="line"><span class="comment"># "hello"</span></span><br></pre></td></tr></table></figure></p><h2><span id="方法-2">方法 2</span></h2><p>使用 <code>strip_attributes</code> <a href="https://rubygems.org/gems/strip_attributes" target="_blank" rel="noopener">Gem</a>，可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/commit/cb3894b95b5319b1e088af71750378e364f8bc8f" target="_blank" rel="noopener">commit</a></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在想使用的 Model 中加入 (以 shop 為例)</span></span><br><span class="line"><span class="comment"># app/models/shop.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shop</span> &lt; ApplicationRecord</span></span><br><span class="line">  strip_attributes</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># 寫個測試覆蓋</span></span><br><span class="line"><span class="comment"># spec/models/shop_spec.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails_helper'</span></span><br><span class="line"></span><br><span class="line">RSpec.describe Shop, <span class="symbol">type:</span> <span class="symbol">:model</span> <span class="keyword">do</span></span><br><span class="line">  describe <span class="string">"#strip_attributes"</span> <span class="keyword">do</span></span><br><span class="line">    context <span class="string">"note"</span> <span class="keyword">do</span></span><br><span class="line">      subject <span class="keyword">do</span></span><br><span class="line">        product = Shop.new(<span class="symbol">name:</span> <span class="string">"TEST"</span>, <span class="symbol">email:</span> <span class="string">"TEST"</span>, <span class="symbol">note:</span> <span class="string">"TEST\n"</span>)</span><br><span class="line">        product.valid?</span><br><span class="line">        product.note</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">      it &#123; is_expected.to eq(<span class="string">"TEST"</span>) &#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://apidock.com/ruby/String/strip" target="_blank" rel="noopener">strip (String) - APIdock</a></li><li><a href="https://github.com/rmm5t/strip_attributes" target="_blank" rel="noopener">strip_attributes GitHub</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264570" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264570</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href="http://riverye.com/2021/09/16/Day03-Gem-strip-attributes-%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;當使用者輸入資料時，若不小心輸入跳脫字元 &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E8%B7%B3%E8%84%AB%E5%AD%97%E5%85%83&quot; target
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day02 - 修改 Rails console edit 編輯模式</title>
@@ -546,34 +573,6 @@
         &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;串接 API 時，通常會取得對方的文件，沒有就...通靈吧 XD&lt;/p&gt;
 &lt;p&gt;若想看自己發送的 request 完整資訊，可使用 &lt;a href=&quot;https://postb.in/&quot; target=&quot;_b
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day14 - 在 Ruby 中使用 Benchmark 比較哪個方法比較快</title>
-    <link href="https://riverye.com/2020/09/19/Day14-%E5%9C%A8-Ruby-%E4%B8%AD%E4%BD%BF%E7%94%A8-Benchmark-%E6%AF%94%E8%BC%83%E5%93%AA%E5%80%8B%E6%96%B9%E6%B3%95%E6%AF%94%E8%BC%83%E5%BF%AB/"/>
-    <id>https://riverye.com/2020/09/19/Day14-在-Ruby-中使用-Benchmark-比較哪個方法比較快/</id>
-    <published>2020-09-18T16:00:00.000Z</published>
-    <updated>2020-09-18T16:04:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>總算開始進入 Ruby 程式語言的世界中，再不寫點什麼，都快與鐵人賽報名的題目不相干，變成標題殺人惹 XD</p><p>後續 Ruby on Rails 的相關文章，假定讀者為已經有 CRUD 基礎上(或有工作經驗)，進而分享，故不從環境建置等開始說起 (若有興趣想從頭學，可參考這篇環境建置 <a href="https://riverye.com/2019/10/12/Windows%2010%20%E5%AE%89%E8%A3%9D%20Ruby%20+%20Rails%20+%20Node.js%20+%20Git%20+%20postgresql/">Windows 10 安裝 Ruby + Rails + Node.js + Git + postgresql</a>，然後自學)</p><hr><h2><span id="benchmark">Benchmark</span></h2><p>中文翻譯為「基準測試」，為 Ruby 內建的 <code>module</code>，用於評估程式的效能</p><h3><span id="情境">情境</span></h3><p>寫了一段程式，想到幾種寫法皆能做到一樣的事情，但想知道哪個效能比較好的話，可以用 Benchmark，在 Ruby 或 Ruby on Rails 中皆能使用</p><h3><span id="如何測試">如何測試</span></h3><p>以下這段有 3 種方法可以測試：</p><ol><li>在 Ruby 的 <code>irb</code> 模式中，貼上以下的程式碼</li><li>在 Ruby on Rails 的 <code>rails console</code> (可縮寫成 <code>rails c</code>) 中，貼上以下的程式碼</li><li>將以下這段存成 <code>test.rb</code> 檔，在終端機輸入 <code>ruby test.rb</code><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test.rb</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'benchmark'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"><span class="comment"># n 為要測試的次數</span></span><br><span class="line">  n = <span class="number">5000000</span></span><br><span class="line">  y = Benchmark.bm <span class="keyword">do</span> <span class="params">|x|</span></span><br><span class="line">    x.report(<span class="string">"&lt;&lt;    "</span>) &#123; n.times &#123; [] &lt;&lt; <span class="string">'river'</span> &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"push  "</span>) &#123; n.times &#123; [].push(<span class="string">'river'</span>) &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"concat"</span>) &#123; n.times &#123; [].concat([<span class="string">'river'</span>]) &#125; &#125;</span><br><span class="line">    x.report(<span class="string">"+     "</span>) &#123; n.times &#123; [] + [<span class="string">'river'</span>] &#125; &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li></ol><h4><span id="顯示如下">顯示如下</span></h4><table><thead><tr><th>name</th><th>user</th><th>system</th><th>total</th><th>real</th></tr></thead><tbody><tr><td>&lt;&lt;</td><td>0.600000</td><td>0.000000</td><td>0.600000</td><td>(  0.615966)</td></tr><tr><td>push</td><td>0.650000</td><td>0.000000</td><td>0.650000</td><td>(  0.658296)</td></tr><tr><td>concat</td><td>1.230000</td><td>0.010000</td><td>1.240000</td><td>(  1.234671)</td></tr><tr><td>+</td><td>1.010000</td><td>0.000000</td><td>1.010000</td><td>(  1.034694)</td></tr></tbody></table><h4><span id="irb-測試的畫面"><code>irb</code> 測試的畫面</span></h4><p><img src="https://i.imgur.com/rznoF2B.png" alt></p><h4><span id="rails-c-測試的畫面"><code>rails c</code> 測試的畫面</span></h4><p><img src="https://i.imgur.com/63OEQ41.png" alt></p><h2><span id="小結">小結</span></h2><p>從上述情境中可以發現使用 <code>&lt;&lt;</code> 效能比較好<br>但不等於 <code>&lt;&lt;</code> 這方法是最好的，端看情境應用<br>尤其在 SQL Query 時，更是明顯</p><h2><span id="參考資料">參考資料</span></h2><p><a href="https://ruby-doc.org/stdlib-2.5.0/libdoc/benchmark/rdoc/Benchmark.html" target="_blank" rel="noopener">Benchmark</a></p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10239641" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10239641</a><br>medium 文章連結：<a href="https://link.medium.com/epApulKUS9" target="_blank" rel="noopener">https://link.medium.com/epApulKUS9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/19/Day14-%E5%9C%A8-Ruby-%E4%B8%AD%E4%BD%BF%E7%94%A8-Benchmark-%E6%AF%94%E8%BC%83%E5%93%AA%E5%80%8B%E6%96%B9%E6%B3%95%E6%AF%94%E8%BC%83%E5%BF%AB/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;總算開始進入 Ruby 程式語言的世界中，再不寫點什麼，都快與鐵人賽報名的題目不相干，變成標題殺人惹 XD&lt;/p&gt;
-&lt;p&gt;後續 Ruby on Rails 的相關文章，假定讀者為已經有 CRUD 基礎上(或有
       
     
     </summary>
