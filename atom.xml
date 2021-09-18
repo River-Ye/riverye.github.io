@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-17T15:41:17.658Z</updated>
+  <updated>2021-09-18T07:55:04.446Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)</title>
+    <link href="https://riverye.com/2021/09/19/Day06-%E7%9B%A3%E6%8E%A7-Sidekiq-%E6%9C%89%E7%84%A1%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C-%E6%88%96%E5%9F%B7%E8%A1%8C%E8%B6%85%E9%81%8E%E5%A4%9A%E4%B9%85/"/>
+    <id>https://riverye.com/2021/09/19/Day06-監控-Sidekiq-有無正常運作-或執行超過多久/</id>
+    <published>2021-09-18T16:00:00.000Z</published>
+    <updated>2021-09-18T07:55:04.446Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>去年介紹過 <a href="https://ithelp.ithome.com.tw/articles/10246607" target="_blank" rel="noopener">Day25 - Ruby on Rails 中的 Sidekiq 的介紹與應用</a> ，這次延伸介紹如何自行寫腳本監控 Sidekiq 是否正常運作，以及監控執行超過多久的方法 <s>(絕不承認是擠牙膏策略</s></p><h2><span id="說明">說明</span></h2><p>網站上線後，若有使用像是 Sidekiq 或 Resque 等，非同步處理任務的 Gem 時，不會希望某個服務掛掉而影響使用者，這時可以自行寫腳本監控，看是否正常運作</p><h2><span id="示意圖">示意圖</span></h2><p><img src="https://i.imgur.com/IlrJEdS.png" alt></p><h2><span id="實作">實作</span></h2><p>從 <code>ps aux</code> 中可以看到是否有運作<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 判斷是否有正常運作</span></span><br><span class="line"></span><br><span class="line">out = <span class="string">`ps aux`</span></span><br><span class="line">total_sidekiq_count = <span class="number">1</span></span><br><span class="line"><span class="comment"># Normal: `sidekiq 6.2.1 wms [0 of 10 busy]`</span></span><br><span class="line"><span class="comment"># Quiet:  `sidekiq 6.2.1 wms [0 of 10 busy] stopping`</span></span><br><span class="line">sidekiq_matcher = <span class="regexp">/sidekiq 6\.2\.1 ironman_13th_2021 \[\d+ of \d+ busy\]\s*$/</span></span><br><span class="line">sidekiq_cnt = out.each_line.count &#123; <span class="params">|line|</span> sidekiq_matcher.match(line) &#125;</span><br><span class="line"><span class="keyword">if</span> sidekiq_cnt != total_sidekiq_count</span><br><span class="line">  msg = <span class="string">"Sidekiq 有 <span class="subst">#&#123;sidekiq_cnt&#125;</span> 個，應該是 <span class="subst">#&#123;total_sidekiq_count&#125;</span> 個，請檢查。"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 想做的處理，ex: Slack 通知、寄信...等</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><p>能知道 Sidekiq 是否正常運作，相對也能判斷每個 Job 執行多久<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 執行超過 10 分鐘的 Sidekiq job 要有提醒</span></span><br><span class="line"></span><br><span class="line">current_time = Time.now.to_i</span><br><span class="line">workers = Sidekiq::Workers.new</span><br><span class="line">sidekiq_over_ten_min = <span class="number">0</span></span><br><span class="line"><span class="comment"># workers.first = [</span></span><br><span class="line"><span class="comment">#   [0] "local:41435:a7fojn24m345",</span></span><br><span class="line"><span class="comment">#   [1] "ounxdxzrw",</span></span><br><span class="line"><span class="comment">#   [2] &#123;</span></span><br><span class="line"><span class="comment">#         "queue" =&gt; "default",</span></span><br><span class="line"><span class="comment">#       "payload" =&gt; &#123;</span></span><br><span class="line"><span class="comment">#                 "class" =&gt; "xxx",</span></span><br><span class="line"><span class="comment">#                  "args" =&gt; [],</span></span><br><span class="line"><span class="comment">#                 "retry" =&gt; 0,</span></span><br><span class="line"><span class="comment">#                 "queue" =&gt; "default",</span></span><br><span class="line"><span class="comment">#                   "jid" =&gt; "46b49fg192950dda552h21a0",</span></span><br><span class="line"><span class="comment">#            "created_at" =&gt; 1600743892.457303,</span></span><br><span class="line"><span class="comment">#           "enqueued_at" =&gt; 1600743892.457865</span></span><br><span class="line"><span class="comment">#       &#125;,</span></span><br><span class="line"><span class="comment">#        "run_at" =&gt; 1600743892</span></span><br><span class="line"><span class="comment">#   &#125;</span></span><br><span class="line"><span class="comment"># ]</span></span><br><span class="line">workers.each &#123; <span class="params">|_process_id, _thread_id, work|</span> sidekiq_over_ten_min += <span class="number">1</span> <span class="keyword">if</span> current_time - work[<span class="string">"run_at"</span>] &gt; <span class="number">600</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sidekiq_over_ten_min.positive?</span><br><span class="line">  msg = <span class="string">"Sidekiq 有 <span class="subst">#&#123;sidekiq_over_ten_min&#125;</span> 個執行超過 10 分鐘，請檢查。"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 想做的處理，ex: Slack 通知、寄信...等</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2><span id="小結">小結</span></h2><p>透過腳本監控，搭配 Slack 、寄信通知，當系統異常時，可以第一時間發現並處理，避免災情擴大，但如果所有人都睡著且沒留意到手機通知，結果還是一樣 (笑</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://github.com/mperham/sidekiq/wiki/API#workers" target="_blank" rel="noopener">Sidekiq GitHub Wiki</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264574" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264574</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href="http://riverye.com/2021/09/19/Day06-%E7%9B%A3%E6%8E%A7-Sidekiq-%E6%9C%89%E7%84%A1%E6%AD%A3%E5%B8%B8%E9%81%8B%E4%BD%9C-%E6%88%96%E5%9F%B7%E8%A1%8C%E8%B6%85%E9%81%8E%E5%A4%9A%E4%B9%85/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;去年介紹過 &lt;a href=&quot;https://ithelp.ithome.com.tw/articles/10246607&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Day25 - Ru
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day05 - Gem-paranoia 軟刪除介紹與應用</title>
@@ -544,33 +571,6 @@
 &lt;p&gt;追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題&lt;br&gt;
 像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等&lt;br&gt;
 若都沒有儲存 Log 紀錄的話
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day17 - Ruby on Rails 中的 awesome_print 讓你的 console 更好閱讀</title>
-    <link href="https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-awesome-print-%E8%AE%93%E4%BD%A0%E7%9A%84-console-%E6%9B%B4%E5%A5%BD%E9%96%B1%E8%AE%80/"/>
-    <id>https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-中的-awesome-print-讓你的-console-更好閱讀/</id>
-    <published>2020-09-21T16:00:00.000Z</published>
-    <updated>2020-09-23T15:35:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>awesome_print 這套蠻實用的，對客戶來說無感，對工程師卻是有感的存在 (至少對我來說是啦 XD)，能讓 console 畫面比較美，看起來也比較賞心悅目，當 table 欄位比較多時，也比較好閱讀</p><p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><hr><h2><span id="awesome-print">Awesome Print</span></h2><p><a href="https://github.com/awesome-print/awesome_print" target="_blank" rel="noopener">官方網站</a>有提到即將發佈的 2.0 版本<br>將只支援 Ruby v1.9.3 之後及 Rails v3.0 之後，若本身專案使用的版本比較舊的話，要特別留意</p><h2><span id="如何安裝">如何安裝</span></h2><p>在 Gemfile 加入，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/2/commits/f95351f95ce0ea2cbf2560f60a090e3016b38ef0" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile 檔案</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'awesome_print'</span>, <span class="string">'~&gt; 1.8'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p><h2><span id="讓-console-預設使用-awesome-print">讓 console 預設使用 Awesome Print</span></h2><p><a href="https://github.com/awesome-print/awesome_print" target="_blank" rel="noopener">官方網站</a>內文有寫如何設定，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/2/commits/45c73c4e88cf177a57eec65ac2695f7c58efac53" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .gitignore</span></span><br><span class="line">.irb_history</span><br><span class="line"></span><br><span class="line"><span class="comment"># .irbrc</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'awesome_print'</span></span><br><span class="line">AwesomePrint.irb!</span><br><span class="line"></span><br><span class="line"><span class="comment"># config/initializers/awesome_print.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AwesomePrint</span></span></span><br><span class="line">  <span class="class"><span class="keyword">module</span> <span class="title">Formatters</span></span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">BaseFormatter</span></span></span><br><span class="line">      <span class="function"><span class="keyword">def</span> <span class="title">indented</span><span class="params">(&amp;block)</span></span></span><br><span class="line">        inspector.increase_indentation(&amp;block)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Inspector</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">increase_indentation</span><span class="params">(&amp;block)</span></span></span><br><span class="line">      indentator.indent(&amp;block)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2><span id="如何使用">如何使用</span></h2><p>與一般操作一樣，差別在於看起來比較賞心悅目 XD</p><p>直接看以下圖片，便知其差異</p><h4><span id="console-預設-無-awesome_print">console 預設 (無 awesome_print)</span></h4><p><img src="https://i.imgur.com/WYUTX3L.png" alt></p><h4><span id="有開啟-awesome_print">有開啟 awesome_print</span></h4><p><img src="https://i.imgur.com/YNNzysx.png" alt></p><hr><h2><span id="小結">小結</span></h2><p>可讀性變高以後，心情也會跟著上升，眼睛也比較不會這麼吃力，開發也跟著變快惹(!?</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10241726" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10241726</a><br>medium 文章連結：<a href="https://link.medium.com/RDfLdOCrY9" target="_blank" rel="noopener">https://link.medium.com/RDfLdOCrY9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/22/Day17-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-awesome-print-%E8%AE%93%E4%BD%A0%E7%9A%84-console-%E6%9B%B4%E5%A5%BD%E9%96%B1%E8%AE%80/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;awesome_print 這套蠻實用的，對客戶來說無感，對工程師卻是有感的存在 (至少對我來說是啦 XD)，能讓 console 畫面比較美，看起來也比較賞心悅目，當 table 欄位比較多時，也比較好閱讀
       
     
     </summary>
