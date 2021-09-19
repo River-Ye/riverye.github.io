@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>小菜的 Blog</title>
+    <title>Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -229,12 +229,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >你必須很努力</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>你必須很努力</a>
 </header>
@@ -248,28 +259,63 @@
 
 
 
+
+height:50vh;
 "
 >
   
   <!-- 主页  -->
+   
+  <!-- 404页  -->
   
   <div class="site-intro-placeholder"></div>
   <div
     class="site-intro-img"
-    style="background-image: url(/)"
+    style="background-image: url(/intro/post-bg.jpg)"
   ></div>
   <div class="site-intro-meta">
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
+       Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量
+      <!-- 404 -->
       
     </h1>
     <!-- 副标题 -->
     <p class="intro-subtitle">
       <!-- 主页副标题  -->
+       
+      <!-- 404 -->
       
     </p>
     <!-- 文章页meta -->
+    
+    <div class="post-intros">
+      <!-- 文章页标签  -->
+       <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "13th鐵人賽">13th鐵人賽</a>
+    
+</div>  
+      <div class="post-intro-meta">
+        <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+        <span class="post-intro-time"
+          >2021/09/20</span
+        >
+      </div>
+      <div class="post-intro-read">
+        <span
+          >字數統計:
+          <span class="post-count word-count"
+            >377</span
+          >閱讀時間:
+          <span class="post-count reading-time"
+            >1 min</span
+          ></span
+        >
+      </div>
+      
+    </div>
     
   </div>
 </div>
@@ -371,305 +417,86 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/29/Day20-Codewars-刷題/" >
-            
-                <span>Day20 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/28/Day19-Codewars-刷題/" >
-            
-                <span>Day19 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/28</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/27/Day18-Codewars-刷題/" >
-            
-                <span>Day18 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/27</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/26/Day17-Codewars-刷題/" >
-            
-                <span>Day17 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/25/Day16-Codewars-刷題/" >
-            
-                <span>Day16 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/24/Day15-Codewars-刷題/" >
-            
-                <span>Day15 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/23/Day14-Codewars-刷題/" >
-            
-                <span>Day14 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/22/Day13-Codewars-刷題/" >
-            
-                <span>Day13 - Codewars 刷題</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/21/刷題的標題好難想-沒梗了-XD/" >
-            
-                <span>刷題的標題好難想 (沒梗了 XD)</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2019/09/20/刷題難度逐漸增強/" >
-            
-                <span>刷題難度逐漸增強</span>
-        </a>
-        <div class="abstract-content">
-            
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/tags/11th鐵人賽/">&#60; PREV</a><a class="page-number" href="/tags/11th鐵人賽/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/11th鐵人賽/page/3/">3</a><a class="extend next" rel="next" href="/tags/11th鐵人賽/page/3/">NEXT &#62;</a>
-    </nav>
-    
+            <main class="main post-page">
+  <article class="article-entry">
+    <h2><span id="前言">前言</span></h2>
+<p>上篇介紹如何監控 Sidekiq，這篇介紹如何限制每個 queue 的上限，若是 <a href="https://sidekiq.org/products/enterprise.html" target="_blank" rel="noopener">Sidekiq ENTERPRISE</a> 可以左轉離開了，本身就有提供，免另外透過第三方 Gem 處理</p>
+<h2><span id="說明">說明</span></h2>
+<p>比方說有個 worker 負責處理影像轉檔 (可參考去年<a href="https://ithelp.ithome.com.tw/articles/10247454" target="_blank" rel="noopener">鐵人賽文章</a>)，轉檔時會吃比較多資源，擔心影響 server 其它服務，除了限制 CPU 使用量外，也要限制同時執行的數量，故可透過 <a href="https://rubygems.org/gems/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch Gem</a> 來完成</p>
+<h2><span id="示意圖">示意圖</span></h2>
+<p><img src="https://i.imgur.com/89IaLWc.png" alt></p>
+<h2><span id="實作">實作</span></h2>
+<p>從<a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">官方文件</a>中得知，在需要使用的 worker 中加入 <code>require 'sidekiq-limit_fetch'</code>，並在 <code>sidekiq.yml</code> 檔案中增加 <code>limits</code> 即可，範例可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/commit/8da34278f07bbf8a90f3d53a3f8eb7096628b04d" target="_blank" rel="noopener">commit</a></p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 欲使用的　worker</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'sidekiq-limit_fetch'</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line"><span class="comment"># 若沒幫 worker queue 命名，會使用預設 default</span></span><br><span class="line">  <span class="symbol">:limits</span><span class="symbol">:</span></span><br><span class="line">    <span class="symbol">queue_name1:</span> <span class="number">5</span></span><br><span class="line">    <span class="symbol">queue_name2:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="小結">小結</span></h2>
+<p>起初是為了影像轉檔時，想到要限制 queue(佇列) 的使用上限而使用。</p>
+<p>後續在打 API 至第三方時，遇到會連續觸發 N 個 worker (超過設定最多同時 10 個 concurrency)，同時對方又回應比較慢時 (ex: 每個都數十秒甚至更長時間才回應)，進而影響到其它服務，確認該 worker 不用即時處理時，便透過這個 Gem 來解決問題</p>
+<h2><span id="參考資料">參考資料</span></h2>
+<ol>
+<li><a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch GitHub</a></li>
+</ol>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264576" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264576</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-%E9%99%90%E5%88%B6-sidekiq-queue-%E5%9F%B7%E8%A1%8C%E6%95%B8%E9%87%8F/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
+
+  </article>
+  <!-- license  -->
+  
+  <div class="license-wrapper">
+    <p>原文連結：<a href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/">https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/</a></p>
+    <p>發表日期：2021-09-20</p>
+    <p>更新日期：2021-09-20</p>
+  </div>
+  
+  <!-- paginator  -->
+  <ul class="post-paginator">
+    <li class="next">
+      
+    </li>
+    <li class="previous">
+      
+      <div class="prevSlogan">Previous Post</div>
+      <a href="/2021/09/19/Day06-監控-Sidekiq-有無正常運作-或執行超過多久/" title="Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)">
+        <div class="prevTitle">Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)</div>
+      </a>
+      
+    </li>
+  </ul>
+  <!-- 评论插件 -->
+  <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 --> 
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        
+        var disqus_config = function () {
+        this.page.url = "https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://riverye.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+ 
+  <!-- partial('_partial/comment/changyan') -->
+  <!--PC版-->
+
+  
+
+  <!-- 评论 -->
 </main>
+
             <!-- profile -->
             
         </div>
@@ -752,6 +579,24 @@
 
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">示意圖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">實作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -2748,6 +2593,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

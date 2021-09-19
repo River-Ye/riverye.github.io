@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-18T21:20:26.411Z</updated>
+  <updated>2021-09-19T17:35:44.736Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量</title>
+    <link href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-%E9%99%90%E5%88%B6-sidekiq-queue-%E5%9F%B7%E8%A1%8C%E6%95%B8%E9%87%8F/"/>
+    <id>https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/</id>
+    <published>2021-09-19T16:00:00.000Z</published>
+    <updated>2021-09-19T17:35:44.736Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>上篇介紹如何監控 Sidekiq，這篇介紹如何限制每個 queue 的上限，若是 <a href="https://sidekiq.org/products/enterprise.html" target="_blank" rel="noopener">Sidekiq ENTERPRISE</a> 可以左轉離開了，本身就有提供，免另外透過第三方 Gem 處理</p><h2><span id="說明">說明</span></h2><p>比方說有個 worker 負責處理影像轉檔 (可參考去年<a href="https://ithelp.ithome.com.tw/articles/10247454" target="_blank" rel="noopener">鐵人賽文章</a>)，轉檔時會吃比較多資源，擔心影響 server 其它服務，除了限制 CPU 使用量外，也要限制同時執行的數量，故可透過 <a href="https://rubygems.org/gems/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch Gem</a> 來完成</p><h2><span id="示意圖">示意圖</span></h2><p><img src="https://i.imgur.com/89IaLWc.png" alt></p><h2><span id="實作">實作</span></h2><p>從<a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">官方文件</a>中得知，在需要使用的 worker 中加入 <code>require 'sidekiq-limit_fetch'</code>，並在 <code>sidekiq.yml</code> 檔案中增加 <code>limits</code> 即可，範例可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/commit/8da34278f07bbf8a90f3d53a3f8eb7096628b04d" target="_blank" rel="noopener">commit</a></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 欲使用的　worker</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'sidekiq-limit_fetch'</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line"><span class="comment"># 若沒幫 worker queue 命名，會使用預設 default</span></span><br><span class="line">  <span class="symbol">:limits</span><span class="symbol">:</span></span><br><span class="line">    <span class="symbol">queue_name1:</span> <span class="number">5</span></span><br><span class="line">    <span class="symbol">queue_name2:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p><h2><span id="小結">小結</span></h2><p>起初是為了影像轉檔時，想到要限制 queue(佇列) 的使用上限而使用。</p><p>後續在打 API 至第三方時，遇到會連續觸發 N 個 worker (超過設定最多同時 10 個 concurrency)，同時對方又回應比較慢時 (ex: 每個都數十秒甚至更長時間才回應)，進而影響到其它服務，確認該 worker 不用即時處理時，便透過這個 Gem 來解決問題</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch GitHub</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264576" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264576</a><br>medium 文章連結：<a href></a><br>本文同步發布於 <a href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-%E9%99%90%E5%88%B6-sidekiq-queue-%E5%9F%B7%E8%A1%8C%E6%95%B8%E9%87%8F/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;上篇介紹如何監控 Sidekiq，這篇介紹如何限制每個 queue 的上限，若是 &lt;a href=&quot;https://sidekiq.org/products/enterprise.html&quot; target=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day06 - 監控 Sidekiq 有無正常運作(或執行超過多久)</title>
@@ -542,35 +569,6 @@
       
         &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;身為一名 Ruby on Rails 工程師，幾乎都有寫過 &lt;a href=&quot;https://github.com/rspec/rspec-rails&quot; target=&quot;_blank&quot; rel=&quot;noope
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="12th鐵人賽" scheme="https://riverye.com/tags/12th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day18 - Ruby on Rails 中的 Logger 紀錄的介紹與應用</title>
-    <link href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Logger-%E7%B4%80%E9%8C%84%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/"/>
-    <id>https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-中的-Logger-紀錄的介紹與應用/</id>
-    <published>2020-09-22T16:00:00.000Z</published>
-    <updated>2021-08-14T09:01:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題<br>像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等<br>若都沒有儲存 Log 紀錄的話，就...好自為之 QQ</p><p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p><hr><h2><span id="如何產生-log">如何產生 Log</span></h2><p>使用者在操作時，本身就會產生制式 Log 被記錄，並存在 Log 資料夾底下，依照當下環境，存在對應的檔案中</p><h4><span id="在-development-操作的-log">在 development 操作的 Log</span></h4><p><img src="https://i.imgur.com/lwrV4PN.jpg" alt></p><h2><span id="development-增加時間戳">development 增加時間戳</span></h2><p>上面那張圖雖然有自動存成 Log，但沒時間戳挺不方便的</p><p>增加方法如下，或參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/e384552e8e4f616854f38fe87be71998f3e612c6" target="_blank" rel="noopener">commit</a></p><p>備註: production 預設就有記錄時間戳 (<code>config/environments/production.rb</code>)，故不用調整，而 development 則依需求是否需要增加</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line"></span><br><span class="line">config.log_formatter = <span class="symbol">:</span><span class="symbol">:Logger</span><span class="symbol">:</span><span class="symbol">:Formatter</span>.new</span><br></pre></td></tr></table></figure></p><h4><span id="增加時間戳的-log">增加時間戳的 Log</span></h4><p><img src="https://i.imgur.com/i4pCCKD.png" alt></p><h2><span id="如何在指定位置增加-log">如何在指定位置增加 Log</span></h2><p>情境: 打 API 的 request 和 response 建議可以儲存，以及針對錯誤訊息也要記錄，方便後續追蹤</p><p>示範如何紀錄，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/a7c4b3d52485ee08dee4d7518ffb53713b1acd7b" target="_blank" rel="noopener">commit</a><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line"></span><br><span class="line">Rails.logger.info <span class="string">"params: <span class="subst">#&#123;user_params&#125;</span>, <span class="subst">#&#123;@user.inspect&#125;</span>"</span></span><br></pre></td></tr></table></figure></p><h2><span id="將-log-存到指定路徑檔案中">將 Log 存到指定路徑檔案中</span></h2><p>將所有 Log 都存在預設路徑檔案中，會導致原本的檔案過於肥大，且要尋找時會比較麻煩，可依需求分類存在不同檔案中，像是打 A API 的統一存在 A 路徑，B API 的統一存在 B 路徑中...</p><p>範例可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/3/commits/add096871d024f3f6e5f8cb6121c5e5c1e3c8c5e" target="_blank" rel="noopener">commit</a><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/services/file_log.rb</span></span><br><span class="line"><span class="comment"># 有不同寫法，歡迎在底下留言交流</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileLog</span></span></span><br><span class="line">  @loggers <span class="params">||</span>= &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">logger</span><span class="params">(location)</span></span></span><br><span class="line">    @loggers[location] <span class="params">||</span>= create_logger(location)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_logger</span><span class="params">(location)</span></span></span><br><span class="line">    <span class="keyword">if</span> ENV[<span class="string">'RAILS_LOG_TO_STDOUT'</span>]</span><br><span class="line">      logger = Logger.new(STDOUT)</span><br><span class="line">      logger.progname = File.basename(location, <span class="string">'.log'</span>)</span><br><span class="line">      logger.formatter = Rails.configuration.log_formatter</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      FileUtils.mkdir_p(Rails.root.join(<span class="string">'log'</span>, File.dirname(location)))</span><br><span class="line">      logger = Logger.new(Rails.root.join(<span class="string">'log'</span>, location))</span><br><span class="line">      logger.formatter = proc <span class="keyword">do</span> <span class="params">|severity, datetime, _progname, msg|</span></span><br><span class="line">        <span class="string">"<span class="subst">#&#123;severity&#125;</span> [<span class="subst">#&#123;datetime.strftime(<span class="string">'%Y-%m-%d %H:%M:%S.%6N'</span>)&#125;</span>]: <span class="subst">#&#123;msg&#125;</span>\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ActiveSupport::TaggedLogging.new(logger)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://rails.ruby.tw/debugging_rails_applications.html#logger" target="_blank" rel="noopener">除錯Rails 應用程式— Ruby on Rails 指南</a></li><li><a href="https://ihower.tw/rails/deployment.html#sec9" target="_blank" rel="noopener">Ruby on Rails 實戰聖經#整理 Log 檔案</a></li></ol><hr><h2><span id="小結">小結</span></h2><p>Log 可說是非常重要的小細節，也能客製化格式，Google 下便有相關資源可參考，除了上述範例使用到的 <code>:info</code> 外，還有 <code>:debug</code> 、 <code>:warn</code> 、 <code>:error</code> 、 <code>:fatal</code> 以及 <code>:unknown</code> 可以使用，差異可參考上述提供的參考資料連結</p><p>雖說很方便，但也不要過於氾濫什麼都儲存，除了會影響效能外，容量也會用很兇</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10242280" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10242280</a><br>medium 文章連結：<a href="https://link.medium.com/9T7n8giyZ9" target="_blank" rel="noopener">https://link.medium.com/9T7n8giyZ9</a><br>本文同步發布於 <a href="https://riverye.com/2020/09/23/Day18-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Logger-%E7%B4%80%E9%8C%84%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;追問題 (bug) 時，Log 是非常重要的訊息來源，能知道當時發生了什麼問題&lt;br&gt;
-像是使用者做了什麼操作、帶了哪些參數、request、response 的紀錄等&lt;br&gt;
-若都沒有儲存 Log 紀錄的話
       
     
     </summary>
