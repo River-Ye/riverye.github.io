@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date) · 小菜的 Blog</title>
+    <title>Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)</a>
+                <a href="#" class="post-name">Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)
+       Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "13th鐵人賽">13th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2020/09/14</span
+          >2021/09/21</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.5k</span
+            >379</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >6 min</span
+            >1 min</span
           ></span
         >
       </div>
@@ -420,134 +420,56 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <h2><span id="前言">前言</span></h2>
-<p>此為 Linux 相關的 4-7 篇，有準備情境讓大家可以練習，開始會有組合技的使用技巧</p>
-<h4><span id="情境練習">情境練習</span></h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將以下資訊儲存成 demo.log</span></span><br><span class="line"></span><br><span class="line">INFO [2099-01-11 13:14:40]: order_id: 0001, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-11 14:15:41]: 其它資訊</span><br><span class="line">INFO [2099-01-11 14:18:42]: order_id: 0002, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:10]: order_id: 0003, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:13]: 其它資訊</span><br><span class="line">INFO [2099-01-12 11:22:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-15 14:15:40]: order_id: 0004, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 23:34:10]: order_id: 0005, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:32]: order_id: 0006, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:33]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:24]: order_id: 0007, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:25]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-16 14:15:29]: order_id: 0008, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:30]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:30]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 08:15:40]: order_id: 0009, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 09:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 10:15:40]: order_id: 0010, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0011, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0012, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 15:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 16:15:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 17:15:40]: order_id: 0013, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 20:15:40]: 其它資訊</span><br></pre></td></tr></table></figure></p>
-<h2><span id="grep">grep</span></h2>
-<p>找出符合搜尋條件的訊息<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 關鍵字 路徑</span></span><br><span class="line">grep search_pattern path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出正在運行中的程式，關鍵字為 line</span></span><br><span class="line">ps aux | grep line</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的上文也顯示 15 行</span></span><br><span class="line">grep -A 15 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下文也顯示 20 行</span></span><br><span class="line">grep -B 20 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下下各顯示 5 行</span></span><br><span class="line">grep -C 5 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算關鍵字出現的次數</span></span><br><span class="line">grep -c <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過濾除了關鍵字的訊息</span></span><br><span class="line">grep -v <span class="string">"其它"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A or B 關鍵字的訊息</span></span><br><span class="line">grep -E <span class="string">"2099|成功"</span> demo.log</span><br><span class="line">grep -E <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">grep <span class="string">'2099\|成功'</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A and B 的關鍵字訊息</span></span><br><span class="line">grep <span class="string">"2099"</span> demo.log | grep 成功</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的訂單數量</span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -c 建立成功</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | wc -l</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -v -c <span class="string">'建立失敗\|其它資訊'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的資訊，並反轉印出</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | tac</span><br></pre></td></tr></table></figure></p>
-<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
-符合條件的下文也顯示 n 行： <code>-B n</code><br>
-符合條件的上下各顯示 n 行： <code>-C n</code><br>
-計算符合條件的數量： <code>-c</code><br>
-除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
-用正規表示式搜尋 (regexp)： <code>-E</code></p>
-<h2><span id="rg">rg</span></h2>
-<p>全名為 ripgrep ，為 <code>grep</code> 加強版，<br>
-用起來手感與 <code>grep</code> 差不多，搜尋速度更快，個人習慣以 <code>rg</code> 取代 <code>grep</code></p>
-<p>備註: 需另外安裝 <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener">官方網站</a><br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install ripgrep</span><br><span class="line"></span><br><span class="line">rg 建立成功</span><br><span class="line">rg -uu 建立成功</span><br><span class="line">rg -C 7 建立失敗</span><br><span class="line">rg <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">rg <span class="string">"2099"</span> demo.log | rg 成功</span><br><span class="line">rg -t <span class="built_in">log</span> 成功</span><br><span class="line"></span><br><span class="line">rg -z <span class="string">"成功"</span></span><br></pre></td></tr></table></figure></p>
-<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
-符合條件的下文也顯示 n 行： <code>-B n</code><br>
-符合條件的上下各顯示 n 行： <code>-C n</code><br>
-計算符合條件的數量： <code>-c</code><br>
-除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
-隱藏檔案及 <code>.gitignore</code> 檔也一併搜尋： <code>-uu</code><br>
-針對特定副檔名搜尋： <code>-t type</code><br>
-壓縮檔也一併搜尋： <code>-z</code> (支援格式 gzip、bzip2、xz、LZ4、LZMA、Brotli、Zstd)</p>
-<p>(謎之聲，習慣在終端機直接輸入 <code>rg 關鍵字</code>，快速找該目錄底下所有符合條件的檔案及內容</p>
-<h2><span id="luit">luit</span></h2>
-<p>將文件編碼轉換成另一種格式<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS 原生不支援這指令</span></span><br><span class="line"><span class="comment"># Ubuntu 有支援</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install luit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">luit -encoding big5 cat demo.txt</span><br><span class="line">luit -encoding big5 rg <span class="string">'訂單'</span> demo.txt</span><br></pre></td></tr></table></figure></p>
-<h2><span id="iconv">iconv</span></h2>
-<p>多種國際編碼格式之間進行文字內碼的轉換<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iconv -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">cat order_info.txt | iconv -f big5</span><br><span class="line">iconv -f UTF-16 demo.log &gt; hello.log</span><br></pre></td></tr></table></figure></p>
-<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>顯示所有支援的編碼格式： <code>-l</code><br>
-將檔案進行編碼轉檔後，另存新檔案： <code>-f from_encoding input_file &gt; output_file</code></p>
-<h4><span id="以-big5-編碼檔案為例">以 BIG5 編碼檔案為例</span></h4>
-<p><img src="https://i.imgur.com/akmeLJ3.png" alt></p>
-<h2><span id="cal">cal</span></h2>
-<p>顯示行事曆資訊<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cal</span><br><span class="line">cal -3</span><br><span class="line">cal -m 12</span><br><span class="line">cal -y 2012</span><br><span class="line">cal 1 2012</span><br></pre></td></tr></table></figure></p>
-<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>顯示當月的前後一個月： <code>-3</code><br>
-顯示當年指定月份 (month 為 1-12)： <code>-m month</code><br>
-顯示指定年份月曆 (year 為 1..9999)： <code>-y year</code><br>
-顯示特定月份日曆 (參數範圍如上)： <code>month year</code></p>
-<h2><span id="date">date</span></h2>
-<p>顯示系統日期時間資訊<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date</span><br><span class="line">date +%s</span><br><span class="line">date -r 1598937256</span><br></pre></td></tr></table></figure></p>
-<h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>將當下時間轉成 Unix timestamp： <code>+%s</code><br>
-將 Unix timestamp 轉成人類看得懂的： <code>-r timestamp</code></p>
-<h2><span id="總整理">總整理</span></h2>
-<table>
-<thead>
-<tr>
-<th>MacOS / Linux 指令</th>
-<th>說明</th>
-<th>範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>grep</td>
-<td>找出符合搜尋條件的訊息</td>
-<td><code>rails routes | grep admin</code></td>
-</tr>
-<tr>
-<td>rg</td>
-<td><code>grep</code> 加強版</td>
-<td><code>rg 訂單名稱</code></td>
-</tr>
-<tr>
-<td>luit</td>
-<td>將文件編碼轉換成另一種格式</td>
-<td><code>luit -encoding big5 cat demo.txt</code></td>
-</tr>
-<tr>
-<td>iconv</td>
-<td>多種國際編碼格式之間進行文字內碼的轉換</td>
-<td><code>cat order_info.txt | iconv -f big5</code></td>
-</tr>
-<tr>
-<td>cal</td>
-<td>顯示行事曆資訊</td>
-<td><code>cal -m 7</code></td>
-</tr>
-<tr>
-<td>date</td>
-<td>顯示系統日期時間資訊</td>
-<td><code>date</code></td>
-</tr>
-</tbody>
-</table>
+<blockquote>
+<p>Allows identical sidekiq jobs to be processed with a single background call</p>
+</blockquote>
+<p>上述引用自 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping</a>，能將多個同 queue 的 worker 整合成一個處理</p>
+<h2><span id="說明">說明</span></h2>
+<p>直接以情境舉例，假如要打 API 更新第三方庫存數量，由於更新商品數量有加也有減，因此先 grouped 起來，整合成一個 job 處理</p>
+<h2><span id="實作">實作</span></h2>
+<p>在 Gemfile 中加入該 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping</a>，範例可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/pull/1" target="_blank" rel="noopener">pr</a></p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/routes.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"sidekiq/grouping/web"</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># app/worker/flush_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlushWorker</span></span></span><br><span class="line">  <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line"></span><br><span class="line">  sidekiq_options(</span><br><span class="line">  <span class="symbol">retry:</span> <span class="literal">false</span>,</span><br><span class="line">  <span class="symbol">batch_flush_size:</span> <span class="number">5</span>,      <span class="comment"># 當 Jobs 數量超過 5 個時，將合併作業</span></span><br><span class="line">  <span class="symbol">batch_flush_interval:</span> <span class="number">30</span>, <span class="comment"># 每 30 秒合併作業一次</span></span><br><span class="line">  <span class="symbol">batch_unique:</span> <span class="literal">true</span>,       <span class="comment"># 同參數是否要 unique，無指定預設為 false</span></span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">perform</span><span class="params">(groups = <span class="literal">nil</span>)</span></span></span><br><span class="line">    puts <span class="string">"args: <span class="subst">#&#123;groups&#125;</span>"</span></span><br><span class="line">    puts <span class="string">"execute <span class="subst">#&#123;<span class="keyword">self</span>.<span class="keyword">class</span>&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>接著在 <code>rails console</code> 輸入
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 當 batch_unique: true</span></span><br><span class="line"><span class="number">10</span>.times &#123; FlushWorker.perform_async(<span class="number">1</span>) &#125;</span><br><span class="line"><span class="comment"># args: [[1]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 當 batch_unique: false or 沒指定</span></span><br><span class="line"><span class="number">10</span>.times &#123; FlushWorker.perform_async(<span class="number">1</span>) &#125;</span><br><span class="line"><span class="comment"># args: [[1], [1], [1], [1], [1]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">10</span>.times &#123; <span class="params">|t|</span> FlushWorker.perform_async(t) &#125;</span><br><span class="line"><span class="comment"># args: [[0], [1], [2], [3], [4]]</span></span><br><span class="line"><span class="comment"># args: [[5], [6], [7], [8], [9]]</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="當-batch_unique-true">當 <code>batch_unique: true</code></span></h3>
+<p><img src="https://i.imgur.com/BnqUF82.png" alt></p>
+<h3><span id="當-batch_unique-false-或沒寫">當 <code>batch_unique: false</code> 或沒寫</span></h3>
+<p><img src="https://i.imgur.com/qPFkcx6.png" alt></p>
+<h2><span id="web-ui">Web UI</span></h2>
+<p>在 <code>routes.rb</code> 檔案中加入 <code>require &quot;sidekiq/grouping/web&quot;</code>
+<img src="https://i.imgur.com/izBR53X.png" alt></p>
 <h2><span id="小結">小結</span></h2>
-<p>這篇花蠻多時間在想情境及準備假資料，透過範例，能更快上手並學會組合技，<br>
-若覺得受用歡迎在下方留言或交流喔</p>
+<p>蠻好上手的一個 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">Gem</a>，在 <a href="https://github.com/gzigzigzeo/sidekiq-grouping" target="_blank" rel="noopener">GitHub</a> 的範例也寫得淺顯易懂，連測試也有範例，這邊就不多加贅述</p>
+<h2><span id="參考資料">參考資料</span></h2>
+<ol>
+<li><a href="https://github.com/gzigzigzeo/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping GitHub</a></li>
+<li><a href="https://hant.kaifa99.com/GitHub/article_119365" target="_blank" rel="noopener">sidekiq-grouping, 允許使用單個後台調用處理相同的sidekiq作業</a></li>
+</ol>
 <hr>
-<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10236391" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10236391</a><br>
-medium 文章連結：<a href="https://link.medium.com/YFjvigcCK9" target="_blank" rel="noopener">https://link.medium.com/YFjvigcCK9</a><br>
-本文同步發布於 <a href="https://riverye.com/2020/09/14/Day09-%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8-Linux-%E6%8C%87%E4%BB%A4-4-7-grep%E3%80%81rg%E3%80%81luit%E3%80%81iconv%E3%80%81cal%E3%80%81date/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264578" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264578</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="http://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-%E5%85%81%E8%A8%B1%E5%96%AE%E5%80%8B-sidekiq-%E8%99%95%E7%90%86%E5%A4%9A%E5%80%8B%E7%9B%B8%E4%BC%BC-%E4%B8%80%E6%A8%A3-%E7%9A%84-jobs">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
 <p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/">https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/</a></p>
-    <p>發表日期：2020-09-14</p>
-    <p>更新日期：2020-09-14</p>
+    <p>原文連結：<a href="https://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-允許單個-sidekiq-處理多個相似-一樣-的-jobs/">https://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-允許單個-sidekiq-處理多個相似-一樣-的-jobs/</a></p>
+    <p>發表日期：2021-09-21</p>
+    <p>更新日期：2021-09-21</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2020/09/15/Day10-一些常用-Linux-指令-5-7-lsof、dig、curl、nc、nice、cpulimit/" title="Day10 - 一些常用 Linux 指令 - 5-7 (lsof、dig、curl、nc、nice、cpulimit)">
-        <div class="nextTitle">Day10 - 一些常用 Linux 指令 - 5-7 (lsof、dig、curl、nc、nice、cpulimit)</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2020/09/13/Day08-一些常用-Linux-指令-3-7-cat、tac、head、tail、vi、sed/" title="Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)">
-        <div class="prevTitle">Day08 - 一些常用 Linux 指令 - 3-7 (cat、tac、head、tail、vi、sed)</div>
+      <a href="/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/" title="Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量">
+        <div class="prevTitle">Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量</div>
       </a>
       
     </li>
@@ -563,8 +485,8 @@ medium 文章連結：<a href="https://link.medium.com/YFjvigcCK9" target="_blan
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day09 - 一些常用 Linux 指令 - 4-7 (grep、rg、luit、iconv、cal、date)"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-允許單個-sidekiq-處理多個相似-一樣-的-jobs/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -683,7 +605,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">1.0.1.</span> <span class="toc-text">情境練習</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">grep</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">rg</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">luit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">iconv</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.2.</span> <span class="toc-text">以 BIG5 編碼檔案為例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">cal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">date</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.0.1.</span> <span class="toc-text">幾個常用參數說明：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">8.</span> <span class="toc-text">總整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">9.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">實作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">當 batch_unique: true</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">當 batch_unique: false 或沒寫</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">Web UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
