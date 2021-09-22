@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Ruby on Rails 中的 IRB、Pry、rails console 差別 · 小菜的 Blog</title>
+    <title>Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Ruby on Rails 中的 IRB、Pry、rails console 差別</a>
+                <a href="#" class="post-name">Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Ruby on Rails 中的 IRB、Pry、rails console 差別
+       Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案
       <!-- 404 -->
       
     </h1>
@@ -294,31 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Rails">Rails</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Ruby">Ruby</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "IRB">IRB</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Pry">Pry</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "rails console">rails console</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "13th鐵人賽">13th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/11/25</span
+          >2021/09/23</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.2k</span
+            >537</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >5 min</span
+            >2 min</span
           ></span
         >
       </div>
@@ -427,88 +419,67 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <h1><span id="說明">說明</span></h1>
-<p>欲測試想法(但懶得開新檔案)或抓 bug 時，最常使用的工具，將針對 <code>irb</code> 、 <code>pry</code> 、 <code>rails console</code> 進行介紹。</p>
-<h1><span id="irb">IRB</span></h1>
-<p>Ruby 內建一個名為 IRB (Interactive
-Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果，只需在終端機輸入 <code>irb</code> 即可進入。(前提要有安裝 Ruby)</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在終端機輸入</span></span><br><span class="line">$ irb</span><br><span class="line"></span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Human</span></span></span><br><span class="line">&gt;   <span class="function"><span class="keyword">def</span> <span class="title">going_to_travel</span></span></span><br><span class="line">&gt;     <span class="string">"好想出國旅遊"</span></span><br><span class="line">&gt;   <span class="keyword">end</span></span><br><span class="line">&gt; <span class="keyword">end</span></span><br><span class="line"> =&gt; <span class="symbol">:going_to_travel</span></span><br><span class="line">&gt; Human.new.going_to_travel</span><br><span class="line"> =&gt; <span class="string">"好想出國旅遊"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # 為註解</span></span><br><span class="line"><span class="comment"># $ 為終端機輸入 ($ 免輸入)</span></span><br><span class="line"><span class="comment"># &gt; 為 IRB 介面 (&gt; 免輸入)</span></span><br><span class="line"><span class="comment"># =&gt; 為回傳值</span></span><br></pre></td></tr></table></figure></p>
-<p>像這樣的環境也稱為 REPL (Read-Eval-Print-Loop)(讀取-執行-印出-循環)。</p>
-<p>IRB 使你可以在終端機介面快速執行並測試回傳值，當你遇到錯誤時， IRB 會準確告訴你該錯誤是什麼及該錯誤的位置。</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ irb</span><br><span class="line"></span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Human</span></span></span><br><span class="line">&gt;   <span class="function"><span class="keyword">def</span> <span class="title">going_to_travel</span></span></span><br><span class="line">&gt;     <span class="string">"好想出國旅遊"</span></span><br><span class="line">&gt;   <span class="keyword">end</span></span><br><span class="line">&gt; <span class="keyword">end</span></span><br><span class="line"> =&gt; <span class="symbol">:going_to_travel</span></span><br><span class="line">&gt; Human.new.go_to_travel</span><br><span class="line"></span><br><span class="line">NoMethodError (undefined method <span class="string">`go_to_travel' for #&lt;Human:0x00007fffd74be090&gt;)</span></span><br><span class="line"><span class="string">Did you mean?  going_to_travel</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/prctFYn.png" alt></p>
-<p>在這裡我遇到了 NoMethodError，因為我使用錯誤的方法名稱，我把 <code>going_to_travel</code> 換成 <code>.go_to_travel</code>，它會準確告訴我問題出在哪裡，Ruby 甚至會把它找到與輸入內容接近的方法給我參考，有沒有覺得 Ruby 實在太強大了!! 感謝 Ruby ，讚嘆 Ruby。</p>
-<p>要退出 IRB 很簡單，只需輸入 <code>exit</code> 或 <code>quit</code> 或 <code>Ctrl + D</code> ，即退回終端機介面。</p>
-<p>盡管 IRB 非常適合快速檢查某些內容，但它不允許在方法或循環中進行測試，此時用 Pry 較適合。</p>
-<h1><span id="pry">Pry</span></h1>
-<p><a href="https://github.com/pry/pry" target="_blank" rel="noopener">Pry</a> 是 IRB 的加強版，有大量附加的功能(ex: 更漂亮的介面、可以使用 <code>show-method</code> 等)。雖說 Pry 更加強大，但蠻多時候，我仍以 IRB 進行測試，直到需要在 <strong>classes, methods, hashes, iterations</strong> 中進行測試時，Pry 會是你的好夥伴。</p>
-<h2><span id="安裝-pry">安裝 Pry</span></h2>
-<p>可以透過安裝取得 Pry<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ gem install pry</span><br></pre></td></tr></table></figure></p>
-<p>或在檔案中加入 <code>require 'pry'</code>，並使用
-<code>binding.pry</code> 該方法可以立即將程式碼暫停，以便進行測試。會從 <code>binding.pry</code> 這裡開始，並啟動新的 REPL 介面，只需在 Pry 中測試，無須猜測該程式碼的回傳值是什麼。</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test-pry.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'pry'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span></span></span><br><span class="line">    puts <span class="string">"hello world!"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a = A.new</span><br><span class="line"></span><br><span class="line"><span class="comment"># start a REPL session</span></span><br><span class="line">binding.pry</span><br><span class="line"></span><br><span class="line"><span class="comment"># program resumes here (after pry session)</span></span><br><span class="line">puts <span class="string">"program resumes here."</span></span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ ruby test-pry.rb</span><br><span class="line"></span><br><span class="line"><span class="symbol">From:</span> /mnt/c/code/demo/Ruby/test-pry.rb @ line <span class="number">12</span> <span class="symbol">:</span></span><br><span class="line"></span><br><span class="line">     <span class="number">7</span>: <span class="keyword">end</span></span><br><span class="line">     <span class="number">8</span><span class="symbol">:</span></span><br><span class="line">     <span class="number">9</span>: a = A.new</span><br><span class="line">    <span class="number">10</span><span class="symbol">:</span></span><br><span class="line">    <span class="number">11</span>: <span class="comment"># start a REPL session</span></span><br><span class="line"> =&gt; <span class="number">12</span>: binding.pry</span><br><span class="line">    <span class="number">13</span><span class="symbol">:</span></span><br><span class="line">    <span class="number">14</span>: <span class="comment"># program resumes here (after pry session)</span></span><br><span class="line">    <span class="number">15</span>: puts <span class="string">"program resumes here."</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; a.hello</span><br><span class="line">hello world!</span><br><span class="line">=&gt; nil</span><br><span class="line">[<span class="number">2</span>] pry(main)&gt; <span class="function"><span class="keyword">def</span> <span class="title">a</span>.<span class="title">abc</span></span></span><br><span class="line">[<span class="number">2</span>] pry(main)*   puts <span class="string">"在 pry 中測試，並不會改變原本 test-pry.rb 檔案"</span></span><br><span class="line">[<span class="number">2</span>] pry(main)* <span class="keyword">end</span></span><br><span class="line">=&gt; <span class="symbol">:abc</span></span><br><span class="line">[<span class="number">3</span>] pry(main)&gt; a.abc</span><br><span class="line">在 pry 中測試，並不會改變原本 test-pry.rb 檔案</span><br><span class="line">=&gt; nil</span><br><span class="line">[<span class="number">4</span>] pry(main)&gt; exit</span><br><span class="line">program resumes here.</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/pdrTTZU.png" alt></p>
-<p>也可以直接在終端機輸入 <code>pry</code> 進入操作
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ pry</span><br></pre></td></tr></table></figure></p>
-<p>要退出 Pry 並繼續執行後面程式碼的話，只需輸入 <code>exit</code> 或 <code>quit</code> 或 <code>Ctrl + D</code> 。</p>
-<p>退出 Pry 並中止後面程式碼執行，輸入 <code>!!!</code></p>
-<p><img src="https://i.imgur.com/Fsw9K9P.png" alt></p>
-<h2><span id="從-irb-進-pry">從 IRB 進 Pry</span></h2>
-<p>要從 IRB 中進入 Pry 的話，先輸入 <code>require 'pry'</code> 再輸入 <code>binding.pry</code> 或 <code>pry</code> 即進入 Pry。<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 終端機輸入</span></span><br><span class="line">$ irb</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">require</span> <span class="string">'pry'</span></span><br><span class="line"> =&gt; true</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 1:</span></span><br><span class="line">&gt; binding.pry</span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; exit</span><br><span class="line"> =&gt; nil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方法 2:</span></span><br><span class="line">&gt; pry</span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; quit</span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/iVBDBTm.png" alt></p>
-<h2><span id="從-pry-進-irb">從 Pry 進 IRB</span></h2>
-<p>要從 Pry 中進入 IRB 的話，輸入 <code>binding.irb</code> 即可。</p>
-<p><img src="https://i.imgur.com/rllvvSE.png" alt></p>
-<h1><span id="rails-console">Rails console</span></h1>
-<p>類似 Ruby 的 IRB 介面，並載入整個 Rails 專案的環境，可以在這裡直接操作資料，快速驗證想法且不用到網站便能修改伺服器上的資料：<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 要在 Rails 專案資料夾底下</span></span><br><span class="line">$ rails console</span><br><span class="line"><span class="comment"># 縮寫為 rails c</span></span><br><span class="line"></span><br><span class="line">&gt; t = Task.find(<span class="number">1</span>)  <span class="comment"># 括號可省略</span></span><br><span class="line">&gt; t.title</span><br><span class="line"> =&gt; <span class="string">"看書"</span></span><br><span class="line">&gt; t.title = <span class="string">"跑步 30 分鐘"</span></span><br><span class="line"> =&gt; <span class="string">"跑步 30 分鐘"</span></span><br><span class="line">&gt; t.title</span><br><span class="line"> =&gt; <span class="string">"跑步 30 分鐘"</span></span><br></pre></td></tr></table></figure></p>
-<p>預設 <code>rails c</code> 是進入 development 環境，若想進入 production 或 test 環境，只要在 <code>rails c</code> 後面加入對應單字即可：<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Loading development environment</span></span><br><span class="line">$ rails c</span><br><span class="line"></span><br><span class="line"><span class="comment"># Loading production environment</span></span><br><span class="line">$ rails c production</span><br><span class="line"></span><br><span class="line"><span class="comment"># Loading test environment</span></span><br><span class="line">$ rails c test</span><br></pre></td></tr></table></figure></p>
-<p>若只想測試，但不想修改資料，可以使用：<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ rails c --sandbox</span><br><span class="line"></span><br><span class="line">Loading development environment <span class="keyword">in</span> sandbox (Rails <span class="number">5.2</span>.<span class="number">3</span>)</span><br><span class="line">Any modifications you make will be rolled back on exit</span><br></pre></td></tr></table></figure></p>
-<p>要退出 <code>rails console</code> 的話，只需輸入 exit 或 quit 或 Ctrl + D 。</p>
-<h2><span id="用-pry-執行-rails-c">用 Pry 執行 <code>rails c</code></span></h2>
-<p>在 Rails 中，如果不想更改 Gemfile ，可以使用 <code>pry -r</code> 在應用程序環境中運行 Pry：<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pry -r ./config/environment</span><br></pre></td></tr></table></figure></p>
-<p>安裝 Gemfile 的話，使用「<a href="https://github.com/rweng/pry-rails" target="_blank" rel="noopener">pry-rails</a>」gem<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'pry-rails'</span>, <span class="symbol">:group</span> =&gt; <span class="symbol">:development</span></span><br></pre></td></tr></table></figure></p>
-<h1><span id="小結">小結</span></h1>
-<p>這三個 <code>irb</code>、<code>pry</code>、<code>rails console</code> 沒有好壞之分，依不同情境需求，選擇不同工具處理即可。</p>
-<h1><span id="參考">參考</span></h1>
+    <h2><span id="前言">前言</span></h2>
+<p>在開發時，除了用 Chrome 開發者工具切成不同尺寸確認外，若想在手機上操作的話...</p>
+<h2><span id="說明">說明</span></h2>
+<h3><span id="1-首先電腦和手機都要在同區域網路-lan-白話意思就是連同個-wi-fi">1. 首先，電腦和手機都要在同 (白話意思就是連同個 Wi-Fi)</span></h3>
+<h3><span id="2-電腦的-rails-server-要啟動著輸入以下">2. 電腦的 <code>rails server</code> 要啟動著，輸入以下</span></h3>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若想用別的 port 則把 4000 改掉</span></span><br><span class="line"></span><br><span class="line">rails s -p 4000 -b 0.0.0.0</span><br></pre></td></tr></table></figure></p>
+<h3><span id="3-查詢電腦的區域網路的-ip-位址">3. 查詢電腦的區域網路的 IP 位址</span></h3>
+<h4><span id="mac-查詢方式">Mac 查詢方式</span></h4>
+<h5><span id="方法1">方法1</span></h5>
+<p>在終端機輸入 <code>ipconfig getifaddr en0</code>，便會回傳 IP 位址</p>
+<h5><span id="方法2">方法2</span></h5>
+<p><img src="https://i.imgur.com/o515Uzn.png" alt></p>
+<h4><span id="windows-查詢方式">Windows 查詢方式</span></h4>
+<h5><span id="方法1">方法1</span></h5>
+<p>在「命令提示字元」(cmd) 中，輸入 <code>ipconfig /all</code> ，找到「IPv4 位址」</p>
+<p><img src="https://i.imgur.com/wphTCDU.png" alt></p>
+<h5><span id="方法2">方法2</span></h5>
+<p><img src="https://i.imgur.com/HIVn2P2.png" alt></p>
+<h3><span id="4-手機輸入網址">4. 手機輸入網址</span></h3>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 假設電腦的區域網路 IP 是 192.168.1.52</span></span><br><span class="line"></span><br><span class="line">http://192.168.1.52:4000/</span><br></pre></td></tr></table></figure></p>
+<p>以上便大功告成，可以用手機連 Local 專案了</p>
+<hr>
+<p>若 routes 有設定特定 (constraints) 的 subdomain 才能連線的話，可以透過 <a href="https://nip.io/" target="_blank" rel="noopener">nip.io</a> 或 xip.io ...等 DNS services 處理，網址改輸入以下</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 無指定 subdomain</span></span><br><span class="line">http://192.168.1.52.nip.io:4000/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定 subdomain</span></span><br><span class="line">http://river.192.168.1.52.nip.io:4000/</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># 都是指向 192.168.1.52</span></span><br><span class="line">        192.168.1.52.nip.io   resolves to   192.168.1.52</span><br><span class="line">    www.192.168.1.52.nip.io   resolves to   192.168.1.52</span><br><span class="line"> mysite.192.168.1.52.nip.io   resolves to   192.168.1.52</span><br><span class="line">foo.bar.192.168.1.52.nip.io   resolves to   192.168.1.52</span><br><span class="line">        192.168.1.52.nip.io   resolves to   192.168.1.52</span><br></pre></td></tr></table></figure></p>
+<h2><span id="小結">小結</span></h2>
+<p>在 Rails 6 以上，若遇到 Blocked host ，照著錯誤訊息提示跟著做便可解決，若都不驗證的話，直接加 <code>config.hosts.clear</code> 即可。</p>
+<p>也可以使用 <a href="https://ngrok.com/" target="_blank" rel="noopener">ngrok</a> 來實現同樣的目的</p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/environments/development.rb</span></span><br><span class="line"></span><br><span class="line">Rails.application.configure <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 增加特定白名單</span></span><br><span class="line">  config.hosts &lt;&lt; <span class="string">"river.192.168.1.52.nip.io"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 都不擋 </span></span><br><span class="line">  config.hosts.clear</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改完 config 的檔案，railse server 要重啟</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/wBQ8Ff1.png" alt></p>
+<hr>
+<h2><span id="參考資料">參考資料</span></h2>
 <ol>
-<li><a href="https://github.com/pry/pry" target="_blank" rel="noopener">Pry GitHub</a></li>
-<li><a href="http://pryrepl.org/" target="_blank" rel="noopener">Pry - an IRB alternative and runtime developer console</a></li>
-<li><a href="https://link.medium.com/kgJj0sKZP1" target="_blank" rel="noopener">Testing your Ruby code: IRB vs. Pry</a></li>
-<li><a href="https://www.sitepoint.com/rubyists-time-pry-irb/" target="_blank" rel="noopener">Rubyists, It’s Time to PRY Yourself Off IRB!</a></li>
+<li><a href="https://stackoverflow.com/questions/2019884/how-to-connect-to-a-localhost-rails-site-via-mobile-device-locally" target="_blank" rel="noopener">How to connect to a localhost Rails site via mobile device locally?</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10195920" target="_blank" rel="noopener">第十七天：怎麼讓別人連到我作好的網站？</a></li>
+<li><a href="https://ourcodeworld.com/articles/read/1510/xip-io-a-magic-domain-name-that-provides-wildcard-dns-for-any-ip-address" target="_blank" rel="noopener">XIP.IO: a magic domain name that provides wildcard DNS for any IP address</a></li>
 </ol>
+<hr>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264598" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264598</a><br>
+medium 文章連結：<a href></a><br>
+本文同步發布於 <a href="http://riverye.com/2021/09/23/Day10-%E5%A6%82%E4%BD%95%E7%94%A8%E6%89%8B%E6%A9%9F%E9%80%A3-Ruby-on-Rails-Local-%E9%96%8B%E7%99%BC%E4%B8%AD%E7%9A%84%E5%B0%88%E6%A1%88/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/11/25/Ruby-on-Rails-中的-IRB、Pry、rails-console-差別/">https://riverye.com/2019/11/25/Ruby-on-Rails-中的-IRB、Pry、rails-console-差別/</a></p>
-    <p>發表日期：2019-11-25</p>
-    <p>更新日期：2021-08-14</p>
+    <p>原文連結：<a href="https://riverye.com/2021/09/23/Day10-如何用手機連-Ruby-on-Rails-Local-開發中的專案/">https://riverye.com/2021/09/23/Day10-如何用手機連-Ruby-on-Rails-Local-開發中的專案/</a></p>
+    <p>發表日期：2021-09-23</p>
+    <p>更新日期：2021-09-23</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2020/03/11/從排斥寫程式到轉職成為工程師/" title="從排斥寫程式到轉職成為工程師">
-        <div class="nextTitle">從排斥寫程式到轉職成為工程師</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/11/22/Ubuntu-sudo-免輸入密碼-no-password-設定/" title="Ubuntu sudo 免輸入密碼 no password 設定">
-        <div class="prevTitle">Ubuntu sudo 免輸入密碼 no password 設定</div>
+      <a href="/2021/09/22/Gem-jwt-介紹與應用/" title="Day09 - Gem-jwt 介紹與應用">
+        <div class="prevTitle">Day09 - Gem-jwt 介紹與應用</div>
       </a>
       
     </li>
@@ -524,8 +495,8 @@ Ruby) 的互動式命令列，可以在裡面輸入語法且立即看到結果�
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/11/25/Ruby-on-Rails-中的-IRB、Pry、rails-console-差別/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Ruby on Rails 中的 IRB、Pry、rails console 差別"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2021/09/23/Day10-如何用手機連-Ruby-on-Rails-Local-開發中的專案/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day10 - 如何用手機連 Ruby on Rails Local 開發中的專案"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -644,7 +615,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">IRB</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">Pry</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.1.</span> <span class="toc-text">安裝 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.2.</span> <span class="toc-text">從 IRB 進 Pry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.3.</span> <span class="toc-text">從 Pry 進 IRB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">Rails console</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">用 Pry 執行 rails c</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1. 首先，電腦和手機都要在同 (白話意思就是連同個 Wi-Fi)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">2. 電腦的 rails server 要啟動著，輸入以下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">3. 查詢電腦的區域網路的 IP 位址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.3.1.</span> <span class="toc-text">Mac 查詢方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">方法1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">方法2</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.3.2.</span> <span class="toc-text">Windows 查詢方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">方法1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#null"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">方法2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">4. 手機輸入網址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">參考資料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
