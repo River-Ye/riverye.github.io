@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Day25 - Ruby on Rails 中的 Sidekiq 的介紹與應用 · 小菜的 Blog</title>
+    <title>Day12 - 解析圖片中的 QR Code 資料 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Day25 - Ruby on Rails 中的 Sidekiq 的介紹與應用</a>
+                <a href="#" class="post-name">Day12 - 解析圖片中的 QR Code 資料</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       Day25 - Ruby on Rails 中的 Sidekiq 的介紹與應用
+       Day12 - 解析圖片中的 QR Code 資料
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "12th鐵人賽">12th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "13th鐵人賽">13th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2020/09/30</span
+          >2021/09/25</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.1k</span
+            >347</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >5 min</span
+            >1 min</span
           ></span
         >
       </div>
@@ -420,78 +420,51 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <h2><span id="前言">前言</span></h2>
-<p>Sidekiq 是 Ruby on Rails 中蠻常用的後台任務處理系統，上篇介紹了 <a href="https://github.com/resque/resque" target="_blank" rel="noopener">Resque</a> <a href="https://rubygems.org/gems/resque" target="_blank" rel="noopener">Gem</a>，已知這 2 套 Gem 相比，Sidekiq 的效能比較好...</p>
-<p>本身提供的 API 十分簡潔，連 Source Code 也是易於閱讀 (例如<a href="https://github.com/mperham/sidekiq/blob/master/lib/sidekiq/api.rb#L832" target="_blank" rel="noopener">這段</a>)，Sidekiq 分成 3 種版本 (開源、專業、企業版)，欲知差異可到<a href="https://sidekiq.org/" target="_blank" rel="noopener">官方網站往下滑</a>便能看到差異比較表，本文以 OSS (Open Source Software) 進行操作</p>
-<p>後續的文章會以此 <a href="https://github.com/River-Ye/ironman_12th_2020" target="_blank" rel="noopener">repo 作為範例</a></p>
-<h2><span id="如何安裝">如何安裝</span></h2>
-<p>放在 Gemfile 檔案中，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/14/commits/bab4a4792053fb940222518537b6787949aa3780" target="_blank" rel="noopener">commit</a><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'sidekiq'</span>, <span class="string">'~&gt; 6.1'</span>, <span class="string">'&gt;= 6.1.2'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
-<p>加上 Web 介面，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/14/commits/bfd8065bca5c12388dfc0719677a33e5a9384189" target="_blank" rel="noopener">commit</a><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/routes.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'sidekiq/web'</span></span><br><span class="line">mount Sidekiq::Web =&gt; <span class="string">'/sidekiq'</span></span><br></pre></td></tr></table></figure></p>
-<p>將 ActiveJob 改由 Sidekiq 處理，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/13/commits/1eda4b8920175c14e81e0e189b75755544388e3c" target="_blank" rel="noopener">commit</a></p>
-<p>備註: 預設情況下的佇列 (Queue) 的優先順序都為 <code>1</code>，下方 <code>['default', 1]</code> 和 <code>['mailers', 1]</code> 可縮寫成 <code>default</code> 和 <code>mailers</code><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/application.rb</span></span><br><span class="line">config.active_job.queue_adapter = <span class="symbol">:sidekiq</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line"><span class="symbol">:concurrency</span>: <span class="number">10</span></span><br><span class="line"><span class="symbol">:queues</span><span class="symbol">:</span></span><br><span class="line">  - [<span class="string">'default'</span>, <span class="number">1</span>]</span><br><span class="line">  - [<span class="string">'mailers'</span>, <span class="number">1</span>]</span><br><span class="line"><span class="symbol">:timeout</span>: <span class="number">86400</span></span><br></pre></td></tr></table></figure></p>
-<h2><span id="寫個-worker-確認能否執行">寫個 Worker 確認能否執行</span></h2>
-<p>可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/14/commits/81befca2d386a44d9378b6a51fa17d2a5eb696ed" target="_blank" rel="noopener">commit</a><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/users_controller.rb</span></span><br><span class="line">Api::CreateOrderWorker.perform_async(@user.id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/worker/api/create_order_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Api</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">CreateOrderWorker</span></span></span><br><span class="line">    <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line">    sidekiq_options <span class="symbol">retry:</span> <span class="number">7</span>, <span class="symbol">dead:</span> <span class="literal">true</span>, <span class="symbol">queue:</span> <span class="string">'create_order_worker'</span></span><br><span class="line"></span><br><span class="line">    sidekiq_retry_in &#123; <span class="params">|count|</span> count + <span class="number">86_400</span> &#125;</span><br><span class="line"></span><br><span class="line">    sidekiq_retries_exhausted <span class="keyword">do</span> <span class="params">|msg, _ex|</span></span><br><span class="line">      subject = <span class="string">"[Api::CreateOrderWorker]Out of retries! <span class="subst">#&#123;msg[<span class="string">'class'</span>]&#125;</span> with <span class="subst">#&#123;msg[<span class="string">'args'</span>]&#125;</span>"</span></span><br><span class="line">      _message = <span class="string">"error: <span class="subst">#&#123;msg[<span class="string">'error_message'</span>]&#125;</span>"</span></span><br><span class="line">      FileLog.logger(<span class="string">'worker/api/create_order_worker.log'</span>).error(subject)</span><br><span class="line">      <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform</span><span class="params">(user_id)</span></span></span><br><span class="line">      logger.info <span class="string">"====== start ====== user_id: <span class="subst">#&#123;user_id&#125;</span>"</span></span><br><span class="line">      puts <span class="string">'hello world'</span></span><br><span class="line">      logger.info <span class="string">'====== done ======'</span></span><br><span class="line">    <span class="keyword">rescue</span> StandardError =&gt; e</span><br><span class="line">      logger.error <span class="string">"[Api::CreateOrderWorker] ERROR:\n <span class="subst">#&#123;e.inspect&#125;</span>\n <span class="subst">#&#123;e.backtrace&#125;</span>"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    private</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logger</span></span></span><br><span class="line">      FileLog.logger(<span class="string">'worker/api/create_order_worker.log'</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line">  - [<span class="string">'create_order_worker'</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure></p>
-<h2><span id="如何執行">如何執行</span></h2>
-<p>終端機輸入
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sidekiq</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">bundle <span class="built_in">exec</span> sidekiq</span><br></pre></td></tr></table></figure></p>
-<h4><span id="sidekiq-啟動成功畫面">Sidekiq 啟動成功畫面</span></h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> sidekiq</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">               m,</span><br><span class="line">               `<span class="variable">$b</span></span><br><span class="line">          .ss,  $$:         .,d$</span><br><span class="line">          `$<span class="variable">$P</span>,d<span class="variable">$P</span><span class="string">'    .,md$P"'</span></span><br><span class="line">           ,$$$$<span class="variable">$b</span>/md$$<span class="variable">$P</span>^<span class="string">'</span></span><br><span class="line"><span class="string">         .d$$$$$$/$$$P'</span></span><br><span class="line">         $$^<span class="string">' `"/$$$'</span>       ____  _     _      _    _</span><br><span class="line">         $:     ,$$:       / ___|(_) __| | ___| | _(_) __ _</span><br><span class="line">         `b     :$$        \___ \| |/ _` |/ _ \ |/ / |/ _` |</span><br><span class="line">                $$:         ___) | | (_| |  __/   &lt;| | (_| |</span><br><span class="line">                $$         |____/|_|\__,_|\___|_|\_\_|\__, |</span><br><span class="line">              .d$$                                       |_|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2020-09-27T07:58:31.874Z pid=95276 tid=1z4c INFO: Booted Rails 6.0.3.3 application <span class="keyword">in</span> development environment</span><br><span class="line">2020-09-27T07:58:31.874Z pid=95276 tid=1z4c INFO: Running <span class="keyword">in</span> ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-darwin19]</span><br><span class="line">2020-09-27T07:58:31.874Z pid=95276 tid=1z4c INFO: See LICENSE and the LGPL-3.0 <span class="keyword">for</span> licensing details.</span><br><span class="line">2020-09-27T07:58:31.874Z pid=95276 tid=1z4c INFO: Upgrade to Sidekiq Pro <span class="keyword">for</span> more features and support: https://sidekiq.org</span><br><span class="line">2020-09-27T07:58:31.874Z pid=95276 tid=1z4c INFO: Booting Sidekiq 6.1.2 with redis options &#123;&#125;</span><br><span class="line">2020-09-27T07:58:31.876Z pid=95276 tid=1z4c INFO: Starting processing, hit Ctrl-C to stop</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/Yp4aEP5.png" alt></p>
-<h4><span id="sidekiq-web-介面">Sidekiq Web 介面</span></h4>
-<p><img src="https://i.imgur.com/8qJ5JkE.png" alt></p>
-<h2><span id="指定時間執行-sidekiq">指定時間執行 Sidekiq</span></h2>
-<p>需額外安裝擴充套件 <code>sidekiq-scheduler</code> <a href="https://rubygems.org/gems/sidekiq-scheduler" target="_blank" rel="noopener">Gem</a>，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/14/commits/cf71dd3c9287afb574c9113ef0747562fdcdb89b" target="_blank" rel="noopener">commit</a></p>
-<p>備註: 可參考 <a href="https://github.com/moove-it/sidekiq-scheduler" target="_blank" rel="noopener">sidekiq-scheduler GitHub 官方文件</a><br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Gemfile</span></span><br><span class="line">gem <span class="string">'sidekiq-scheduler'</span>, <span class="string">'~&gt; 3.0'</span>, <span class="string">'&gt;= 3.0.1'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 記得要 bundle</span></span><br></pre></td></tr></table></figure></p>
-<p>相關設定及範例如下，可參考此 <a href="https://github.com/River-Ye/ironman_12th_2020/pull/14/commits/bf2cacbec70e6c56c0a11c3dbef40a2436779e29" target="_blank" rel="noopener">commit</a></p>
-<p>備註: 對 <a href="https://zh.wikipedia.org/wiki/Cron" target="_blank" rel="noopener">Cron</a> 不熟悉的話，可看 Wiki 說明，並搭配 <a href="https://crontab.guru/" target="_blank" rel="noopener">Crontab.guru</a> 這網站使用<br>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/application.rb</span></span><br><span class="line">Redis.exists_returns_integer = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/routes.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'sidekiq-scheduler/web'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line">  - [<span class="string">'scheduler'</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="symbol">:schedule</span><span class="symbol">:</span></span><br><span class="line">  <span class="symbol">CheckWorker:</span></span><br><span class="line">    <span class="symbol">cron:</span> <span class="string">'30 * * * *'</span></span><br><span class="line">    <span class="symbol">queue:</span> scheduler</span><br><span class="line">    <span class="symbol">enabled:</span> <span class="literal">true</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"><span class="comment"># app/worker/check_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CheckWorker</span></span></span><br><span class="line">  <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line">  sidekiq_options <span class="symbol">retry:</span> <span class="number">0</span>, <span class="symbol">queue:</span> <span class="string">'check_worker'</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">perform</span></span></span><br><span class="line">    puts <span class="string">'At minute 30.'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 這範例是每整點的 30 分，會執行一次 CheckWorker</span></span><br></pre></td></tr></table></figure></p>
-<h4><span id="sidekiq-recurring-jobs-畫面">Sidekiq Recurring Jobs 畫面</span></h4>
-<p><img src="https://i.imgur.com/3XyK2tl.png" alt></p>
-<h4><span id="更多指令">更多指令</span></h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sidekiq -h</span><br><span class="line"></span><br><span class="line">INFO: sidekiq [options]</span><br><span class="line">  -c, --concurrency INT            processor threads to use</span><br><span class="line">  -d, --daemon                     Daemonize process</span><br><span class="line">  -e, --environment ENV            Application environment</span><br><span class="line">  -g, --tag TAG                    Process tag <span class="keyword">for</span> procline</span><br><span class="line">  -q, --queue QUEUE[,WEIGHT]       Queues to process with optional weights</span><br><span class="line">  -r, --require [PATH|DIR]         Location of Rails application with workers or file to require</span><br><span class="line">  -t, --timeout NUM                Shutdown timeout</span><br><span class="line">  -v, --verbose                    Print more verbose output</span><br><span class="line">  -C, --config PATH                path to YAML config file</span><br><span class="line">  -L, --logfile PATH               path to writable logfile</span><br><span class="line">  -P, --pidfile PATH               path to pidfile</span><br><span class="line">  -V, --version                    Print version and <span class="built_in">exit</span></span><br><span class="line">  -h, --<span class="built_in">help</span>                       Show <span class="built_in">help</span></span><br></pre></td></tr></table></figure></p>
+<p>前篇講解如何產二維條碼 QR Code，這篇則是示範如何解析(解碼) QR Code，類似工具有 <a href="https://github.com/ZBar/ZBar" target="_blank" rel="noopener">ZBar</a>、<a href="https://github.com/zxing/zxing" target="_blank" rel="noopener">ZXing</a>..等，本篇以 ZBar 做示範</p>
+<h2><span id="說明">說明</span></h2>
+<p>情境說明，打 API 取回的圖片、PDF 中，有包含 QR Code，需要解析 QR Code 的訊息內容 (這邊不示範如何截圖指定位置，可用 <a href="https://github.com/rmagick/rmagick" target="_blank" rel="noopener">RMagick</a> 處理)</p>
+<h2><span id="實作">實作</span></h2>
+<p>需要安裝 <code>zbar</code>，也可以用 <a href="https://rubygems.org/gems/zbar" target="_blank" rel="noopener">zbar Gem</a>，這邊以 Homebrew 安裝為例</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># for macOS</span></span><br><span class="line">brew install zbar</span><br></pre></td></tr></table></figure></p>
+<p>先產一個 QR Code 的圖片檔，接著再用 <code>zbar</code> 來解析(編碼)</p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 產一個 qr_code.png</span></span><br><span class="line">qrcode = RQRCode::QRCode.new(<span class="string">"https://riverye.com/"</span>)</span><br><span class="line">png = qrcode.as_png(<span class="symbol">size:</span> <span class="number">300</span>, <span class="symbol">border_modules:</span> <span class="number">2</span>, <span class="symbol">module_px_size:</span> <span class="number">2</span>)</span><br><span class="line">qrcode_path = Rails.root.join(<span class="string">"qrcode.png"</span>)</span><br><span class="line">IO.binwrite(qrcode_path, png.to_s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解碼 qrcode.png</span></span><br><span class="line">qrcode_path = Rails.root.join(<span class="string">"qrcode.png"</span>)</span><br><span class="line">decoded_qrcode = <span class="string">`zbarimg <span class="subst">#&#123;qrcode_path&#125;</span>`</span>                    <span class="comment"># "QR-Code:https://riverye.com/\n"</span></span><br><span class="line">result = decoded_qrcode.gsub(<span class="string">"QR-Code:"</span>, <span class="string">""</span>).gsub(<span class="string">"/\n"</span>, <span class="string">""</span>) <span class="comment"># "https://riverye.com"</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="範例-qr-code">範例 QR Code</span></h2>
+<p><img src="https://i.imgur.com/IW55kwR.png" alt></p>
+<h2><span id="操作範例">操作範例</span></h2>
+<p><img src="https://i.imgur.com/aQimKjK.png" alt></p>
+<h2><span id="小結">小結</span></h2>
+<p>最初是使用 <a href="https://rubygems.org/gems/zxing_cpp" target="_blank" rel="noopener">zxing_cpp Gem</a> 處理，也能解決問題，但總下載次數與熱門 Gem 動輒數百萬、數千萬次數相比，算是比較冷門的 Gem。</p>
+<p>ZBar 與 ZXing 都能找到類似的 <a href="https://rubygems.org/" target="_blank" rel="noopener">Gem</a> 使用，有需要時，可以看哪個用比較上手~</p>
 <h2><span id="參考資料">參考資料</span></h2>
 <ol>
-<li><a href="http://railscasts.com/episodes/366-sidekiq" target="_blank" rel="noopener">RailsCasts - #366 Sidekiq</a></li>
-<li><a href="https://itw01.com/8ALH6EV.html" target="_blank" rel="noopener">在 Rails 專案中使用 Sidekiq 處理非同步任務</a></li>
-<li><a href="https://itw01.com/VUMREOT.html" target="_blank" rel="noopener">Sidekiq 如何處理非同步任務</a></li>
+<li><a href="https://github.com/ZBar/ZBar" target="_blank" rel="noopener">ZBar GitHub</a></li>
+<li><a href="https://github.com/zxing/zxing" target="_blank" rel="noopener">ZXing GitHub</a></li>
 </ol>
 <hr>
-<h2><span id="小結">小結</span></h2>
-<p>Sidekiq 功能非常強大且容易上手，工作上蠻常使用，舉例來說，它的 <code>retry</code> 機制很實用，像打 API 建立訂單，若過程中發生錯誤的話，透過 <code>retry</code> 機制，能重新執行該 <code>job</code> (能設定 <code>retry</code> 上限、每次間隔時間、超過 <code>retry</code> 上限的話...)，並設定 Slack 與 Email 通知 (這部分要自己實作)，能即時知道發生異常，進而判斷要如何處理，本身的 Wiki 文件也很完整，且網路上有許多文章、影片 (ex: <a href="https://www.youtube.com/results?search_query=sidekiq" target="_blank" rel="noopener">Youtube</a> 等) 可以參考</p>
-<hr>
-<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10246607" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10246607</a><br>
-medium 文章連結：<a href="https://link.medium.com/RPXFvaCabab" target="_blank" rel="noopener">https://link.medium.com/RPXFvaCabab</a><br>
-本文同步發布於 <a href="https://riverye.com/2020/09/30/Day25-Ruby-on-Rails-%E4%B8%AD%E7%9A%84-Sidekiq-%E7%9A%84%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264602" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264602</a><br>
+medium 文章連結：<a href="https://link.medium.com/MDSrOdpGOjb" target="_blank" rel="noopener">https://link.medium.com/MDSrOdpGOjb</a><br>
+本文同步發布於 <a href="http://riverye.com/2021/09/25/Day12-%E8%A7%A3%E6%9E%90%E5%9C%96%E7%89%87%E4%B8%AD%E7%9A%84-QR-Code-%E8%B3%87%E6%96%99/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
 <p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2020/09/30/Day25-Ruby-on-Rails-中的-Sidekiq-的介紹與應用/">https://riverye.com/2020/09/30/Day25-Ruby-on-Rails-中的-Sidekiq-的介紹與應用/</a></p>
-    <p>發表日期：2020-09-30</p>
-    <p>更新日期：2020-09-30</p>
+    <p>原文連結：<a href="https://riverye.com/2021/09/25/Day12-解析圖片中的-QR-Code-資料/">https://riverye.com/2021/09/25/Day12-解析圖片中的-QR-Code-資料/</a></p>
+    <p>發表日期：2021-09-25</p>
+    <p>更新日期：2021-09-25</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2020/10/01/Day26-Ruby-on-Rails-中使用-FFmpeg-處理影音轉檔、合併、上字幕/" title="Day26 - Ruby on Rails 中使用 FFmpeg 處理影音轉檔、合併、上字幕">
-        <div class="nextTitle">Day26 - Ruby on Rails 中使用 FFmpeg 處理影音轉檔、合併、上字幕</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2020/09/29/Day24-Ruby-on-Rails-中的-Resque-的介紹與應用/" title="Day24 - Ruby on Rails 中的 Resque 的介紹與應用">
-        <div class="prevTitle">Day24 - Ruby on Rails 中的 Resque 的介紹與應用</div>
+      <a href="/2021/09/24/Day11-Gem-rqrcode-或-barby-產-QR-Code/" title="Day11 - Gem-rqrcode 或 barby 產 QR Code">
+        <div class="prevTitle">Day11 - Gem-rqrcode 或 barby 產 QR Code</div>
       </a>
       
     </li>
@@ -507,8 +480,8 @@ medium 文章連結：<a href="https://link.medium.com/RPXFvaCabab" target="_bla
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2020/09/30/Day25-Ruby-on-Rails-中的-Sidekiq-的介紹與應用/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "Day25 - Ruby on Rails 中的 Sidekiq 的介紹與應用"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2021/09/25/Day12-解析圖片中的-QR-Code-資料/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day12 - 解析圖片中的 QR Code 資料"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -627,7 +600,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">如何安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">寫個 Worker 確認能否執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">如何執行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.1.</span> <span class="toc-text">Sidekiq 啟動成功畫面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.0.2.</span> <span class="toc-text">Sidekiq Web 介面</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">指定時間執行 Sidekiq</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.1.</span> <span class="toc-text">Sidekiq Recurring Jobs 畫面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.0.2.</span> <span class="toc-text">更多指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">小結</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">實作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">範例 QR Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">操作範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">7.</span> <span class="toc-text">參考資料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
