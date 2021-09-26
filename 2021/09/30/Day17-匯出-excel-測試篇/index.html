@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>連續刷題看 7 分鐘能刷幾題 Codewars · 小菜的 Blog</title>
+    <title>Day17 - 匯出 excel-測試篇 · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">連續刷題看 7 分鐘能刷幾題 Codewars</a>
+                <a href="#" class="post-name">Day17 - 匯出 excel-測試篇</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       連續刷題看 7 分鐘能刷幾題 Codewars
+       Day17 - 匯出 excel-測試篇
       <!-- 404 -->
       
     </h1>
@@ -294,23 +294,23 @@ height:50vh;
       <!-- 文章页标签  -->
        <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "11th鐵人賽">11th鐵人賽</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "13th鐵人賽">13th鐵人賽</a>
     
 </div>  
       <div class="post-intro-meta">
         <span class="post-intro-calander iconfont-archer">&#xe676;</span>
         <span class="post-intro-time"
-          >2019/09/18</span
+          >2021/09/30</span
         >
       </div>
       <div class="post-intro-read">
         <span
           >字數統計:
           <span class="post-count word-count"
-            >439</span
+            >284</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >1 min</span
           ></span
         >
       </div>
@@ -419,54 +419,44 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
   <article class="article-entry">
-    <p>連刷 9 天後，目前對 <a href="https://www.codewars.com/" target="_blank" rel="noopener">Codewars</a> LV7 題目能比較快解出題目<br>
-試著挑戰在短時間內 (5 分鐘左右)<br>
-看能刷幾題，同時講解如何刷題</p>
+    <h2><span id="前言">前言</span></h2>
+<p><a href="https://ithelp.ithome.com.tw/articles/10272151" target="_blank" rel="noopener">上篇</a>題到如何製作產 Excel 檔，這篇以撰寫測試為主</p>
+<h2><span id="說明">說明</span></h2>
+<p>延續<a href="https://ithelp.ithome.com.tw/articles/10272151" target="_blank" rel="noopener">上篇</a>完成的補寫測試，這邊還有額外安裝 <code>factory_bot_rails</code> <a href="https://rubygems.org/gems/factory_bot_rails" target="_blank" rel="noopener">Gem</a> 使用，可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/pull/7" target="_blank" rel="noopener">pr</a></p>
+<h2><span id="實作">實作</span></h2>
+<p>主要測試內容為: 工作列表名稱 (worksheet)、Excel 標題列、內容，確認資料正確性</p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># spec/services/shops_excel/generator_spec.rb</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rails_helper'</span></span><br><span class="line"></span><br><span class="line">RSpec.describe ShopsExcel::Generator <span class="keyword">do</span></span><br><span class="line">  subject &#123; described_class.new.execute &#125;</span><br><span class="line"></span><br><span class="line">  before <span class="keyword">do</span></span><br><span class="line">    @shop = create(<span class="symbol">:shop</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  it <span class="string">'generate rows correctly'</span> <span class="keyword">do</span></span><br><span class="line">    xlsx = subject</span><br><span class="line">    first_sheet = xlsx.workbook.worksheets[<span class="number">0</span>]</span><br><span class="line">    expect(first_sheet.name).to eq(<span class="string">'商家清單'</span>)</span><br><span class="line">    expect(first_sheet.rows[<span class="number">0</span>].cells.map(&amp;<span class="symbol">:value</span>)).to match_array(</span><br><span class="line">      <span class="string">%w[商家名稱 信箱 備註]</span></span><br><span class="line">    )</span><br><span class="line">    expect(first_sheet.rows[<span class="number">1</span>].cells.map(&amp;<span class="symbol">:value</span>)).to match_array(</span><br><span class="line">      [@shop.name, @shop.email, @shop.note]</span><br><span class="line">    )</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<h2><span id="小結">小結</span></h2>
+<p>一開始不熟悉時，會做比較慢，蠻正常的，因為沒做過所以也沒頭緒，多做幾次後，就會逐漸上手，慢慢的就能變成先寫完測試，再開始實作內容了~</p>
+<h2><span id="參考資料">參考資料</span></h2>
+<ol>
+<li><a href="https://github.com/thoughtbot/factory_bot_rails" target="_blank" rel="noopener">factory_bot_rails GitHub</a></li>
+</ol>
 <hr>
-<p><a href="https://www.codewars.com/kata/two-to-one/train/ruby" target="_blank" rel="noopener">題目(Two to One)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Take <span class="number">2</span> strings s1 <span class="keyword">and</span> s2 including only letters from ato z. Return a new sorted string, the longest possible, containing distinct letters, each taken only once - coming from s1 <span class="keyword">or</span> s2.</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longest</span><span class="params">(a1, a2)</span></span></span><br><span class="line">  <span class="comment"># your code</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.describe(<span class="string">"longest"</span>) <span class="keyword">do</span></span><br><span class="line">    Test.it(<span class="string">"Basic tests"</span>) <span class="keyword">do</span></span><br><span class="line">        Test.assert_equals(longest(<span class="string">"aretheyhere"</span>, <span class="string">"yestheyarehere"</span>), <span class="string">"aehrsty"</span>)</span><br><span class="line">        Test.assert_equals(longest(<span class="string">"loopingisfunbutdangerous"</span>, <span class="string">"lessdangerousthancoding"</span>), <span class="string">"abcdefghilnoprstu"</span>)</span><br><span class="line">        Test.assert_equals(longest(<span class="string">"inmanylanguages"</span>, <span class="string">"theresapairoffunctions"</span>), <span class="string">"acefghilmnoprstuy"</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p><a href="https://www.codewars.com/kata/ones-and-zeros/train/ruby" target="_blank" rel="noopener">題目(Ones and Zeros)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Given an array of ones <span class="keyword">and</span> zeroes, convert the equivalent binary value to an integer.</span><br><span class="line"><span class="symbol">Eg:</span> [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>] is treated as <span class="number">0001</span> which is the binary representation of <span class="number">1</span>.</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_array_to_number</span><span class="params">(arr)</span></span></span><br><span class="line">  <span class="comment"># your code here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.describe(<span class="string">"Example tests"</span>) <span class="keyword">do</span></span><br><span class="line">Test.assert_equals(binary_array_to_number([<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>]), <span class="number">1</span>)</span><br><span class="line">Test.assert_equals(binary_array_to_number([<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]), <span class="number">2</span>)</span><br><span class="line">Test.assert_equals(binary_array_to_number([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]), <span class="number">15</span>)</span><br><span class="line">Test.assert_equals(binary_array_to_number([<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>]), <span class="number">6</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p><a href="https://www.codewars.com/kata/square-every-digit/train/ruby" target="_blank" rel="noopener">題目(Square Every Digit)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Welcome. In this kata, you are asked to square every digit of a number.</span><br><span class="line">For example, <span class="keyword">if</span> we run <span class="number">9119</span> through the function, <span class="number">811181</span> will come out, because <span class="number">92</span> is <span class="number">81</span> <span class="keyword">and</span> <span class="number">12</span> is <span class="number">1</span>.</span><br><span class="line"><span class="symbol">Note:</span> The function accepts an integer <span class="keyword">and</span> returns an integer</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_digits</span> <span class="title">num</span></span></span><br><span class="line">  <span class="comment"># code goes here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Test.assert_equals(square_digits(<span class="number">3212</span>), <span class="number">9414</span>)</span><br><span class="line">Test.assert_equals(square_digits(<span class="number">2112</span>), <span class="number">4114</span>)</span><br><span class="line">Test.assert_equals(square_digits(<span class="number">1111</span>), <span class="number">1111</span>)</span><br><span class="line">Test.assert_equals(square_digits(<span class="number">1234321</span>), <span class="number">14916941</span>)</span><br><span class="line">Test.assert_equals(square_digits(<span class="number">0</span>), <span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
-<p><a href="https://www.codewars.com/kata/odd-or-even/train/ruby" target="_blank" rel="noopener">題目(Odd or Even?)</a>：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given an array of numbers (a list <span class="keyword">in</span> groovy), determine whether the sum of all of the numbers is odd <span class="keyword">or</span> even.</span><br><span class="line">Give your answer <span class="keyword">in</span> string format as <span class="string">'odd'</span> <span class="keyword">or</span> <span class="string">'even'</span>.</span><br><span class="line">If the input array is empty consider it <span class="symbol">as:</span> [<span class="number">0</span>] (array with a zero).</span><br></pre></td></tr></table></figure></p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">odd_or_even</span><span class="params">(array)</span></span></span><br><span class="line">  <span class="comment">#your code here</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">describe <span class="string">"Basic tests"</span> <span class="keyword">do</span></span><br><span class="line">Test.assert_equals(odd_or_even([<span class="number">0</span>]), <span class="string">"even"</span>)</span><br><span class="line">Test.assert_equals(odd_or_even([<span class="number">1</span>]), <span class="string">"odd"</span>)</span><br><span class="line">Test.assert_equals(odd_or_even([]), <span class="string">"even"</span>)</span><br><span class="line">Test.assert_equals(odd_or_even([-<span class="number">1023</span>, <span class="number">1</span>, -<span class="number">2</span>]), <span class="string">"even"</span>)</span><br><span class="line">Test.assert_equals(odd_or_even([-<span class="number">1023</span>, -<span class="number">1</span>, <span class="number">3</span>]), <span class="string">"odd"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>影片解題：
-<a href="https://www.youtube.com/watch?v=5oD7X4ADLsw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/5oD7X4ADLsw/0.jpg" alt="Yes"></a></p>
-<hr>
-<p>答案：</p>
-<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Two to One</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longest</span><span class="params">(a1, a2)</span></span></span><br><span class="line">  (a1.chars + a2.chars).sort.uniq.join</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Ones and Zeros</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_array_to_number</span><span class="params">(arr)</span></span></span><br><span class="line">  arr.join.to_i(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Square Every Digit</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_digits</span> <span class="title">num</span></span></span><br><span class="line">  num.to_s.chars.map&#123; <span class="params">|x|</span> x.to_i.pow(<span class="number">2</span>) &#125;.join.to_i</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Odd or Even?</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">odd_or_even</span><span class="params">(array)</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">"odd"</span> <span class="keyword">if</span> array.sum.odd?</span><br><span class="line">  <span class="string">"even"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>本文同步發布於 <a href="https://riverye.com/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10272496" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10272496</a><br>
+medium 文章連結：<a href="https://link.medium.com/H7KaCZbhRjb" target="_blank" rel="noopener">https://link.medium.com/H7KaCZbhRjb</a><br>
+本文同步發布於 <a href="http://riverye.com/2021/09/30/Day17-%E5%8C%AF%E5%87%BA-excel-%E6%B8%AC%E8%A9%A6%E7%AF%87/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2019/09/18/連續刷題看-7-分鐘能刷幾題-Codewars/">https://riverye.com/2019/09/18/連續刷題看-7-分鐘能刷幾題-Codewars/</a></p>
-    <p>發表日期：2019-09-18</p>
-    <p>更新日期：2019-10-09</p>
+    <p>原文連結：<a href="https://riverye.com/2021/09/30/Day17-匯出-excel-測試篇/">https://riverye.com/2021/09/30/Day17-匯出-excel-測試篇/</a></p>
+    <p>發表日期：2021-09-30</p>
+    <p>更新日期：2021-09-26</p>
   </div>
   
   <!-- paginator  -->
   <ul class="post-paginator">
     <li class="next">
       
-      <div class="nextSlogan">Next Post</div>
-      <a href="/2019/09/19/完成-1-3-鐵人賽，調整刷題步調繼續前進/" title="完成 1 / 3 鐵人賽，調整刷題步調繼續前進">
-        <div class="nextTitle">完成 1 / 3 鐵人賽，調整刷題步調繼續前進</div>
-      </a>
-      
     </li>
     <li class="previous">
       
       <div class="prevSlogan">Previous Post</div>
-      <a href="/2019/09/17/壓線前逼自己刷一題-Codewars/" title="壓線前逼自己刷一題 Codewars">
-        <div class="prevTitle">壓線前逼自己刷一題 Codewars</div>
+      <a href="/2021/09/29/Day16-匯出-excel-應用篇/" title="Day16 - 匯出 excel-應用篇">
+        <div class="prevTitle">Day16 - 匯出 excel-應用篇</div>
       </a>
       
     </li>
@@ -482,8 +472,8 @@ height:50vh;
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2019/09/18/連續刷題看-7-分鐘能刷幾題-Codewars/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "連續刷題看 7 分鐘能刷幾題 Codewars"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2021/09/30/Day17-匯出-excel-測試篇/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "Day17 - 匯出 excel-測試篇"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -602,7 +592,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">實作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">參考資料</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
