@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-27T13:46:21.599Z</updated>
+  <updated>2021-09-29T15:18:39.937Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day27 - 如何讓 Google 搜尋到你的網站</title>
+    <link href="https://riverye.com/2021/10/10/Day27-%E5%A6%82%E4%BD%95%E8%AE%93-Google-%E6%90%9C%E5%B0%8B%E5%88%B0%E4%BD%A0%E7%9A%84%E7%B6%B2%E7%AB%99/"/>
+    <id>https://riverye.com/2021/10/10/Day27-如何讓-Google-搜尋到你的網站/</id>
+    <published>2021-10-09T16:00:00.000Z</published>
+    <updated>2021-09-29T15:18:39.937Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>網站上線後，希望給更多人能找到的話，通常會用 <a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Google Search Console</a>，讓自己的網站可以被 Google 搜尋的到</p><p>note: 已經會設定的人，可以左轉離開了~</p><h2><span id="如何使用">如何使用</span></h2><p>到 <a href="https://search.google.com/search-console/about" target="_blank" rel="noopener">https://search.google.com/search-console/about</a> ，Google 很貼心提供中文介面，基本上就是照著步驟做，網站下方也有提供教學影片</p><p><img src="https://i.imgur.com/RpyQpgS.png" alt></p><h3><span id="可以選擇輸入網域或網址前置字元以下兩種驗證方式會不同會各別示範">可以選擇輸入「網域」或「網址前置字元」，以下兩種驗證方式會不同，會各別示範</span></h3><p><img src="https://i.imgur.com/LHMz0BC.png" alt></p><h3><span id="網址前置字元提供以下幾種驗證">「網址前置字元」提供以下幾種驗證</span></h3><ol><li>HTML 檔案 (建議用這個)</li><li>HTML 標記</li><li>Google Analytics (分析)</li><li>Google 代碼管理工具</li><li>網域名稱供應商</li></ol><p>Google 會提供 HTML 檔案，跟著放到專案(部落格)中，一起部署後，就能在回到這頁做驗證了</p><p>note: 驗證成功後，也不能移除喔~</p><p><img src="https://i.imgur.com/tYV9oet.png" alt></p><h3><span id="網域驗證">「網域」驗證</span></h3><p>我自己是在 <a href="https://www.gandi.net/" target="_blank" rel="noopener">Gandi.net</a> 買網域的</p><p>直接輸入網域後，會跳出如下視窗，接著進行第三方驗證即可</p><p><img src="https://i.imgur.com/7UKU3rc.png" alt></p><h3><span id="網域驗證完成畫面如下">「網域」驗證完成畫面如下</span></h3><p><img src="https://i.imgur.com/bovQvOo.png" alt></p><h3><span id="接著等待-google-資料處理約一天時間通常會更快">接著等待 Google 資料處理，約一天時間(通常會更快)</span></h3><p>一天後再來看，就能知道是否設定成功了<br><img src="https://i.imgur.com/KXiW8qD.png" alt></p><h3><span id="可用之後的畫面">可用之後的畫面</span></h3><p><img src="https://i.imgur.com/Gp3tfz4.png" alt></p><h2><span id="小結">小結</span></h2><p>這篇是定位在完全不知道如何讓自己網站被 Google 搜尋到的小白看的，被搜尋到只是剛起步，後續如何導流量、SEO、使用者體驗...等，可在自行研究或請益身邊的行銷好友們~</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10274871" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10274871</a><br>medium 文章連結：<a href="https://link.medium.com/LgXnsCqVWjb" target="_blank" rel="noopener">https://link.medium.com/LgXnsCqVWjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/10/10/Day27-%E5%A6%82%E4%BD%95%E8%AE%93-Google-%E6%90%9C%E5%B0%8B%E5%88%B0%E4%BD%A0%E7%9A%84%E7%B6%B2%E7%AB%99/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;網站上線後，希望給更多人能找到的話，通常會用 &lt;a href=&quot;https://search.google.com/search-console/about&quot; target=&quot;_blank&quot; rel=&quot;noo
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day26 - 用 Ruby on Rails 寫分析股票的技術指標</title>
@@ -539,33 +566,6 @@
 &lt;blockquote&gt;
 &lt;p&gt;Allows identical sidekiq jobs to be processed with a single background call&lt;/p&gt;
 &lt;/blockquot
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day07 - Gem-sidekiq-limit_fetch 限制 sidekiq queue 執行數量</title>
-    <link href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-%E9%99%90%E5%88%B6-sidekiq-queue-%E5%9F%B7%E8%A1%8C%E6%95%B8%E9%87%8F/"/>
-    <id>https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-限制-sidekiq-queue-執行數量/</id>
-    <published>2021-09-19T16:00:00.000Z</published>
-    <updated>2021-09-23T16:27:08.212Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>上篇介紹如何監控 Sidekiq，這篇介紹如何限制每個 queue 的上限，若是 <a href="https://sidekiq.org/products/enterprise.html" target="_blank" rel="noopener">Sidekiq ENTERPRISE</a> 可以左轉離開了，本身就有提供，免另外透過第三方 Gem 處理</p><h2><span id="說明">說明</span></h2><p>比方說有個 worker 負責處理影像轉檔 (可參考去年<a href="https://ithelp.ithome.com.tw/articles/10247454" target="_blank" rel="noopener">鐵人賽文章</a>)，轉檔時會吃比較多資源，擔心影響 server 其它服務，除了限制 CPU 使用量外，也要限制同時執行的數量，故可透過 <a href="https://rubygems.org/gems/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch Gem</a> 來完成</p><h2><span id="示意圖">示意圖</span></h2><p><img src="https://i.imgur.com/89IaLWc.png" alt></p><h2><span id="實作">實作</span></h2><p>從<a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">官方文件</a>中得知，在需要使用的 worker 中加入 <code>require 'sidekiq-limit_fetch'</code>，並在 <code>sidekiq.yml</code> 檔案中增加 <code>limits</code> 即可，範例可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/commit/8da34278f07bbf8a90f3d53a3f8eb7096628b04d" target="_blank" rel="noopener">commit</a></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 欲使用的　worker</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'sidekiq-limit_fetch'</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># config/sidekiq.yml</span></span><br><span class="line"><span class="comment"># 若沒幫 worker queue 命名，會使用預設 default</span></span><br><span class="line">  <span class="symbol">:limits</span><span class="symbol">:</span></span><br><span class="line">    <span class="symbol">queue_name1:</span> <span class="number">5</span></span><br><span class="line">    <span class="symbol">queue_name2:</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p><h2><span id="小結">小結</span></h2><p>起初是為了影像轉檔時，想到要限制 queue(佇列) 的使用上限而使用。</p><p>後續在打 API 至第三方時，遇到會連續觸發 N 個 worker (超過設定最多同時 10 個 concurrency)，同時對方又回應比較慢時 (ex: 每個都數十秒甚至更長時間才回應)，進而影響到其它服務，確認該 worker 不用即時處理時，便透過這個 Gem 來解決問題</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://github.com/brainopia/sidekiq-limit_fetch" target="_blank" rel="noopener">sidekiq-limit_fetch GitHub</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264576" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264576</a><br>medium 文章連結：<a href="https://link.medium.com/WH74csl2Mjb" target="_blank" rel="noopener">https://link.medium.com/WH74csl2Mjb</a><br>本文同步發布於 <a href="https://riverye.com/2021/09/20/Day07-Gem-sidekiq-limit-fetch-%E9%99%90%E5%88%B6-sidekiq-queue-%E5%9F%B7%E8%A1%8C%E6%95%B8%E9%87%8F/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;上篇介紹如何監控 Sidekiq，這篇介紹如何限制每個 queue 的上限，若是 &lt;a href=&quot;https://sidekiq.org/products/enterprise.html&quot; target=&quot;
       
     
     </summary>
