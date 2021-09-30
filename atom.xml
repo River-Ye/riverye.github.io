@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-30T15:44:14.057Z</updated>
+  <updated>2021-09-30T15:48:42.461Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://riverye.com/2021/10/11/Day28-%E5%A6%82%E4%BD%95%E5%9F%8B-GA-Google-Analytics/"/>
     <id>https://riverye.com/2021/10/11/Day28-如何埋-GA-Google-Analytics/</id>
     <published>2021-10-10T16:00:00.000Z</published>
-    <updated>2021-09-30T15:44:14.057Z</updated>
+    <updated>2021-09-30T15:48:42.461Z</updated>
     
     <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p><a href="https://ithelp.ithome.com.tw/articles/10274871" target="_blank" rel="noopener">前篇教學</a>已經能讓 Google 搜尋到網站，接下來若想做流量分析的話，需要埋 <a href="https://analytics.google.com/analytics/" target="_blank" rel="noopener">Google Analytics</a> (簡稱: GA)</p><h2><span id="如何使用">如何使用</span></h2><p>首先要有 Google 帳號，接著到這裡<a href="https://analytics.google.com/analytics/web/?authuser=0#provision/SignUp/" target="_blank" rel="noopener">註冊 Google Analytics</a>，照著網頁提示註冊即可</p><p><img src="https://i.imgur.com/sMLU5ab.png" alt></p><h3><span id="註冊完-ga-後點選網站">註冊完 GA 後，點選「網站」</span></h3><p><img src="https://i.imgur.com/ldU3Eyz.png" alt></p><h3><span id="網站網址-串流名稱要填寫">網站網址、串流名稱，要填寫</span></h3><p><img src="https://i.imgur.com/fhDTNYX.png" alt></p><h3><span id="這邊以全域網站代碼為例">這邊以「全域網站代碼」為例</span></h3><p>Google 會提供一組 HTML HEAD，貼到自己專案中的 HTML HEAD 中，並部署</p><p><img src="https://i.imgur.com/5rX52XW.png" alt></p><h3><span id="檢查自己專案是否有埋成功">檢查自己專案是否有埋成功</span></h3><p>可透過開發者工具 (快捷鍵 F12)，並搜尋 <code>GoogleAnalyticsObject</code> ，看是否有找到對應的 code</p><p><img src="https://i.imgur.com/2trPhLC.jpg" alt></p><h3><span id="回到-ga-檢查是否有流量">回到 GA 檢查是否有流量</span></h3><p>上個步驟檢查有的話，理論上就大功告成了</p><p><img src="https://i.imgur.com/YfPhJQ1.png" alt></p><h2><span id="小結">小結</span></h2><p>對行銷人來說，這是非常基本的事情，但對於初次接觸且不熟行銷的人來說，會需要稍微了解下</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10275551" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10275551</a><br>medium 文章連結：<a href="https://link.medium.com/c5HrqkbCYjb" target="_blank" rel="noopener">https://link.medium.com/c5HrqkbCYjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/10/11/Day28-%E5%A6%82%E4%BD%95%E5%9F%8B-GA-Google-Analytics/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
     
