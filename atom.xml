@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-29T15:18:39.937Z</updated>
+  <updated>2021-09-30T15:44:14.057Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day28 - 如何埋 GA (Google Analytics)</title>
+    <link href="https://riverye.com/2021/10/11/Day28-%E5%A6%82%E4%BD%95%E5%9F%8B-GA-Google-Analytics/"/>
+    <id>https://riverye.com/2021/10/11/Day28-如何埋-GA-Google-Analytics/</id>
+    <published>2021-10-10T16:00:00.000Z</published>
+    <updated>2021-09-30T15:44:14.057Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p><a href="https://ithelp.ithome.com.tw/articles/10274871" target="_blank" rel="noopener">前篇教學</a>已經能讓 Google 搜尋到網站，接下來若想做流量分析的話，需要埋 <a href="https://analytics.google.com/analytics/" target="_blank" rel="noopener">Google Analytics</a> (簡稱: GA)</p><h2><span id="如何使用">如何使用</span></h2><p>首先要有 Google 帳號，接著到這裡<a href="https://analytics.google.com/analytics/web/?authuser=0#provision/SignUp/" target="_blank" rel="noopener">註冊 Google Analytics</a>，照著網頁提示註冊即可</p><p><img src="https://i.imgur.com/sMLU5ab.png" alt></p><h3><span id="註冊完-ga-後點選網站">註冊完 GA 後，點選「網站」</span></h3><p><img src="https://i.imgur.com/ldU3Eyz.png" alt></p><h3><span id="網站網址-串流名稱要填寫">網站網址、串流名稱，要填寫</span></h3><p><img src="https://i.imgur.com/fhDTNYX.png" alt></p><h3><span id="這邊以全域網站代碼為例">這邊以「全域網站代碼」為例</span></h3><p>Google 會提供一組 HTML HEAD，貼到自己專案中的 HTML HEAD 中，並部署</p><p><img src="https://i.imgur.com/5rX52XW.png" alt></p><h3><span id="檢查自己專案是否有埋成功">檢查自己專案是否有埋成功</span></h3><p>可透過開發者工具 (快捷鍵 F12)，並搜尋 <code>GoogleAnalyticsObject</code> ，看是否有找到對應的 code</p><p><img src="https://i.imgur.com/2trPhLC.jpg" alt></p><h3><span id="回到-ga-檢查是否有流量">回到 GA 檢查是否有流量</span></h3><p>上個步驟檢查有的話，理論上就大功告成了</p><p><img src="https://i.imgur.com/YfPhJQ1.png" alt></p><h2><span id="小結">小結</span></h2><p>對行銷人來說，這是非常基本的事情，但對於初次接觸且不熟行銷的人來說，會需要稍微了解下</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10275551" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10275551</a><br>medium 文章連結：<a href="https://link.medium.com/c5HrqkbCYjb" target="_blank" rel="noopener">https://link.medium.com/c5HrqkbCYjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/10/11/Day28-%E5%A6%82%E4%BD%95%E5%9F%8B-GA-Google-Analytics/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://ithelp.ithome.com.tw/articles/10274871&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;前篇教學&lt;/a&gt;已經能讓 Goo
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day27 - 如何讓 Google 搜尋到你的網站</title>
@@ -537,35 +564,6 @@
       
         &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;JWT 是 &lt;a href=&quot;https://jwt.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;JSON Web Token&lt;/a&gt; 的縮寫。在寫此篇時，發現已經有許多相關文章可
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day08 - Gem-sidekiq-grouping 允許單個 sidekiq 處理多個相似(一樣)的 jobs</title>
-    <link href="https://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-%E5%85%81%E8%A8%B1%E5%96%AE%E5%80%8B-sidekiq-%E8%99%95%E7%90%86%E5%A4%9A%E5%80%8B%E7%9B%B8%E4%BC%BC-%E4%B8%80%E6%A8%A3-%E7%9A%84-jobs/"/>
-    <id>https://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-允許單個-sidekiq-處理多個相似-一樣-的-jobs/</id>
-    <published>2021-09-20T16:00:00.000Z</published>
-    <updated>2021-09-23T16:27:23.571Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><blockquote><p>Allows identical sidekiq jobs to be processed with a single background call</p></blockquote><p>上述引用自 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping</a>，能將多個同 queue 的 worker 整合成一個處理</p><h2><span id="說明">說明</span></h2><p>直接以情境舉例，假如要打 API 更新第三方庫存數量，由於更新商品數量有加也有減，因此先 grouped 起來，整合成一個 job 處理</p><h2><span id="實作">實作</span></h2><p>在 Gemfile 中加入該 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping</a>，範例可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/pull/1" target="_blank" rel="noopener">pr</a></p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/routes.rb</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"sidekiq/grouping/web"</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment"># app/worker/flush_worker.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlushWorker</span></span></span><br><span class="line">  <span class="keyword">include</span> Sidekiq::Worker</span><br><span class="line"></span><br><span class="line">  sidekiq_options(</span><br><span class="line">  <span class="symbol">retry:</span> <span class="literal">false</span>,</span><br><span class="line">  <span class="symbol">batch_flush_size:</span> <span class="number">5</span>,      <span class="comment"># 當 Jobs 數量超過 5 個時，將合併作業</span></span><br><span class="line">  <span class="symbol">batch_flush_interval:</span> <span class="number">30</span>, <span class="comment"># 每 30 秒合併作業一次</span></span><br><span class="line">  <span class="symbol">batch_unique:</span> <span class="literal">true</span>,       <span class="comment"># 同參數是否要 unique，無指定預設為 false</span></span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">perform</span><span class="params">(groups = <span class="literal">nil</span>)</span></span></span><br><span class="line">    puts <span class="string">"args: <span class="subst">#&#123;groups&#125;</span>"</span></span><br><span class="line">    puts <span class="string">"execute <span class="subst">#&#123;<span class="keyword">self</span>.<span class="keyword">class</span>&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><p>接著在 <code>rails console</code> 輸入<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 當 batch_unique: true</span></span><br><span class="line"><span class="number">10</span>.times &#123; FlushWorker.perform_async(<span class="number">1</span>) &#125;</span><br><span class="line"><span class="comment"># args: [[1]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 當 batch_unique: false or 沒指定</span></span><br><span class="line"><span class="number">10</span>.times &#123; FlushWorker.perform_async(<span class="number">1</span>) &#125;</span><br><span class="line"><span class="comment"># args: [[1], [1], [1], [1], [1]]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">10</span>.times &#123; <span class="params">|t|</span> FlushWorker.perform_async(t) &#125;</span><br><span class="line"><span class="comment"># args: [[0], [1], [2], [3], [4]]</span></span><br><span class="line"><span class="comment"># args: [[5], [6], [7], [8], [9]]</span></span><br></pre></td></tr></table></figure></p><h3><span id="當-batch_unique-true">當 <code>batch_unique: true</code></span></h3><p><img src="https://i.imgur.com/BnqUF82.png" alt></p><h3><span id="當-batch_unique-false-或沒寫">當 <code>batch_unique: false</code> 或沒寫</span></h3><p><img src="https://i.imgur.com/qPFkcx6.png" alt></p><h2><span id="web-ui">Web UI</span></h2><p>在 <code>routes.rb</code> 檔案中加入 <code>require &quot;sidekiq/grouping/web&quot;</code><img src="https://i.imgur.com/izBR53X.png" alt></p><h2><span id="小結">小結</span></h2><p>蠻好上手的一個 <a href="https://rubygems.org/gems/sidekiq-grouping" target="_blank" rel="noopener">Gem</a>，在 <a href="https://github.com/gzigzigzeo/sidekiq-grouping" target="_blank" rel="noopener">GitHub</a> 的範例也寫得淺顯易懂，連測試也有範例，這邊就不多加贅述</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://github.com/gzigzigzeo/sidekiq-grouping" target="_blank" rel="noopener">sidekiq-grouping GitHub</a></li><li><a href="https://hant.kaifa99.com/GitHub/article_119365" target="_blank" rel="noopener">sidekiq-grouping, 允許使用單個後台調用處理相同的sidekiq作業</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264578" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264578</a><br>medium 文章連結：<a href="https://link.medium.com/0SSdkIm2Mjb" target="_blank" rel="noopener">https://link.medium.com/0SSdkIm2Mjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/09/21/Day08-Gem-sidekiq-grouping-%E5%85%81%E8%A8%B1%E5%96%AE%E5%80%8B-sidekiq-%E8%99%95%E7%90%86%E5%A4%9A%E5%80%8B%E7%9B%B8%E4%BC%BC-%E4%B8%80%E6%A8%A3-%E7%9A%84-jobs">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Allows identical sidekiq jobs to be processed with a single background call&lt;/p&gt;
-&lt;/blockquot
       
     
     </summary>
