@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2021-09-30T15:48:42.461Z</updated>
+  <updated>2021-10-01T14:30:31.027Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Day29 - 透過 PageSpeed Insights 了解網站速度優化</title>
+    <link href="https://riverye.com/2021/10/12/Day29-%E9%80%8F%E9%81%8E-PageSpeed-Insights-%E4%BA%86%E8%A7%A3%E7%B6%B2%E7%AB%99%E9%80%9F%E5%BA%A6%E5%84%AA%E5%8C%96/"/>
+    <id>https://riverye.com/2021/10/12/Day29-透過-PageSpeed-Insights-了解網站速度優化/</id>
+    <published>2021-10-11T16:00:00.000Z</published>
+    <updated>2021-10-01T14:30:31.027Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>若想進行網站速度優化，Google 有提供 <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">PageSpeed Insights</a> 與 <a href="https://www.thinkwithgoogle.com/intl/zh-tw/feature/testmysite/" target="_blank" rel="noopener">Think with Google</a> 這兩項工具可供參考</p><h2><span id="說明">說明</span></h2><p>使用方式非常的簡單，將想要測試的網址，輸入在 Google 提供的網站中進行測試即可</p><h3><span id="pagespeed-insights">PageSpeed Insights</span></h3><p><a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">https://developers.google.com/speed/pagespeed/insights/</a></p><p><img src="https://i.imgur.com/3LNUsA5.png" alt></p><h4><span id="試著把-google-提供的網址輸入進去看看">試著把 Google 提供的網址輸入進去看看...</span></h4><p>以下為行動版的分數</p><p><img src="https://i.imgur.com/uaD8fVb.png" alt></p><p>以下為電腦版的分數</p><p><img src="https://i.imgur.com/2ZQfTri.png" alt></p><h4><span id="實際跑完顯示的詳細資訊">實際跑完顯示的詳細資訊</span></h4><p>發現同樣的網址，連續測試時，每次的分數不完全一樣，當參考即可</p><p><img src="https://i.imgur.com/HlacHUr.jpg" alt></p><hr><h3><span id="比較您的行動網站載入速度-think-with-google">比較您的行動網站載入速度 - Think with Google</span></h3><p><a href="https://www.thinkwithgoogle.com/intl/zh-tw/feature/testmysite/" target="_blank" rel="noopener">https://www.thinkwithgoogle.com/intl/zh-tw/feature/testmysite/</a></p><p><img src="https://i.imgur.com/ufCOhtV.png" alt></p><h4><span id="試著把-google-提供的網址輸入進去看看">試著把 Google 提供的網址輸入進去看看...</span></h4><p><img src="https://i.imgur.com/eIGeHNJ.png" alt></p><h4><span id="實際跑完顯示的詳細資訊">實際跑完顯示的詳細資訊</span></h4><p>頁面的左上角可以「取得完整報表」</p><p><img src="https://i.imgur.com/PEoqcEY.jpg" alt></p><h2><span id="小結">小結</span></h2><p>跑出來的結果，可以當作參考，在自行評估是否要調整</p><p>也可以看下自己公司、競爭對手的網站的分數如何，分數只是分數，不能代表什麼，當作茶餘飯後閒聊即可</p><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10276008" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10276008</a><br>medium 文章連結：<a href="https://link.medium.com/CVmaqyOb0jb" target="_blank" rel="noopener">https://link.medium.com/CVmaqyOb0jb</a><br>本文同步發布於 <a href="http://riverye.com/2021/10/12/Day29-%E9%80%8F%E9%81%8E-PageSpeed-Insights-%E4%BA%86%E8%A7%A3%E7%B6%B2%E7%AB%99%E9%80%9F%E5%BA%A6%E5%84%AA%E5%8C%96/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;若想進行網站速度優化，Google 有提供 &lt;a href=&quot;https://developers.google.com/speed/pagespeed/insights/&quot; target=&quot;_blank&quot; 
+      
+    
+    </summary>
+    
+    
+      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+    
+      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>Day28 - 如何埋 GA (Google Analytics)</title>
@@ -537,33 +564,6 @@
 &lt;p&gt;在開發時，除了用 Chrome 開發者工具切成不同尺寸確認外，若想在手機上操作的話...&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&quot;說明&quot;&gt;說明&lt;/span&gt;&lt;/h2&gt;
 &lt;h3&gt;&lt;span id=&quot;1-首先電腦和手
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day09 - Gem-jwt 介紹與應用</title>
-    <link href="https://riverye.com/2021/09/22/Day09-Gem-jwt-%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/"/>
-    <id>https://riverye.com/2021/09/22/Day09-Gem-jwt-介紹與應用/</id>
-    <published>2021-09-21T16:00:00.000Z</published>
-    <updated>2021-09-23T16:30:54.765Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>JWT 是 <a href="https://jwt.io/" target="_blank" rel="noopener">JSON Web Token</a> 的縮寫。在寫此篇時，發現已經有許多相關文章可參考，故本篇以實作為主，若想知道更深入部分，可直接看參考資料</p><h2><span id="jwt組成">JWT組成</span></h2><p>由 <code>Header</code> 、<code>Payload</code>、 <code>Signature</code> 所組成的字串，中間以 <code>.</code> 做間隔</p><p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 寫成一行的話，組成如下</span></span><br><span class="line">Header.Payload.Signature</span><br><span class="line"></span><br><span class="line"><span class="comment"># 實際範例如下 (中間以 . 做間隔)</span></span><br><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br></pre></td></tr></table></figure></p><table><thead><tr><th>組成</th><th>說明</th></tr></thead><tbody><tr><td>Header</td><td>通常由演算法簽章、 Token 類型所組成的 JSON，再做 Base64 URL 編碼</td></tr><tr><td>Payload</td><td>需傳遞的資料放這</td></tr><tr><td>Signature</td><td>Header、Payload、密鑰 (secret) 透過雜湊演算法所產生</td></tr></tbody></table><h2><span id="最終資料呈現如下方圖左是一個字串">最終資料呈現如下方圖左，是一個字串</span></h2><p><img src="https://i.imgur.com/laWFn0S.png" alt></p><h2><span id="動手做看看">動手做看看</span></h2><p><a href="https://jwt.io/" target="_blank" rel="noopener">官方 JWT</a> 首頁已有範例，這邊以 Ruby 做演練</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 irb 中操作</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"json"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"base64"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"openssl"</span></span><br><span class="line"></span><br><span class="line">header = &#123; <span class="string">"alg"</span> =&gt; <span class="string">"HS256"</span>, <span class="string">"typ"</span> =&gt; <span class="string">"JWT"</span> &#125;</span><br><span class="line">header_json = header.to_json <span class="comment"># or JSON(header)</span></span><br><span class="line">encoded_header = Base64.urlsafe_encode64(header_json, <span class="symbol">padding:</span> <span class="literal">false</span>) <span class="comment"># Base64 編碼 header</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">payload = &#123; <span class="string">"sub"</span> =&gt; <span class="string">"1234567890"</span>, <span class="string">"name"</span> =&gt; <span class="string">"John Doe"</span>, <span class="string">"iat"</span> =&gt; <span class="number">1516239022</span> &#125;</span><br><span class="line">payload_json = payload.to_json <span class="comment"># or JSON(payload)</span></span><br><span class="line">encoded_payload = Base64.urlsafe_encode64(payload_json, <span class="symbol">padding:</span> <span class="literal">false</span>) <span class="comment"># Base64 編碼 payload</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">secret_key = <span class="string">"your-256-bit-secret"</span></span><br><span class="line">data = <span class="string">"<span class="subst">#&#123;encoded_header&#125;</span>.<span class="subst">#&#123;encoded_payload&#125;</span>"</span></span><br><span class="line">digest = OpenSSL::Digest::SHA256.new <span class="comment"># 使用 SHA256 演算法</span></span><br><span class="line">signature = OpenSSL::HMAC.digest(digest, secret_key, data) <span class="comment"># 透過 HMAC 演算法簽章</span></span><br><span class="line">encoded_signature = Base64.urlsafe_encode64(signature, <span class="symbol">padding:</span> <span class="literal">false</span>) <span class="comment"># Base64 編碼 signature</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">token = <span class="string">"<span class="subst">#&#123;encoded_header&#125;</span>.<span class="subst">#&#123;encoded_payload&#125;</span>.<span class="subst">#&#123;encoded_signature&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 驗證，與 JWT 首頁範例一樣</span></span><br><span class="line">token == <span class="string">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"</span></span><br></pre></td></tr></table></figure></p><h2><span id="使用-rubygems">使用 RubyGems</span></h2><p>上述為手動實作，透過實作能更清楚如何運作也可直接使用 <a href="https://rubygems.org/gems/jwt" target="_blank" rel="noopener">jwt gem</a> 來處理，一切變得簡單多了，有興趣可看下 <a href="https://github.com/jwt/ruby-jwt/blob/master/lib/jwt.rb" target="_blank" rel="noopener">source code</a> 部分</p><p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 ruby-jwt gem 實作</span></span><br><span class="line"></span><br><span class="line">hmac_secret = <span class="string">"your-256-bit-secret"</span></span><br><span class="line">payload = &#123; <span class="string">"sub"</span> =&gt; <span class="string">"1234567890"</span>, <span class="string">"name"</span> =&gt; <span class="string">"John Doe"</span>, <span class="string">"iat"</span> =&gt; <span class="number">1516239022</span> &#125;</span><br><span class="line"></span><br><span class="line">token = JWT.encode payload, hmac_secret, <span class="string">"HS256"</span></span><br><span class="line"></span><br><span class="line">decoded_token = JWT.decode token, hmac_secret, <span class="literal">true</span>, &#123; <span class="symbol">algorithm:</span> <span class="string">"HS256"</span> &#125;</span><br><span class="line"><span class="comment"># # Array (payload + header)</span></span><br><span class="line"><span class="comment"># [</span></span><br><span class="line"><span class="comment">#   &#123;</span></span><br><span class="line"><span class="comment">#     "sub" =&gt; "1234567890",</span></span><br><span class="line"><span class="comment">#     "name" =&gt; "John Doe",</span></span><br><span class="line"><span class="comment">#     "iat" =&gt; 1516239022</span></span><br><span class="line"><span class="comment">#   &#125;,</span></span><br><span class="line"><span class="comment">#   &#123;</span></span><br><span class="line"><span class="comment">#     "alg" =&gt; "HS256"</span></span><br><span class="line"><span class="comment">#   &#125;</span></span><br><span class="line"><span class="comment"># ]</span></span><br></pre></td></tr></table></figure></p><h2><span id="小結">小結</span></h2><p>JWT 的特色有「JSON 通用性的關係，可跨語言使用」、「構造簡單，size 小，便於傳輸」...等</p><p>在使用 JWT 時，不建議把敏感資料放裡面，只要解碼 Base64 便能看到原本的資料</p><p>推薦下面參考資料可以都看過一輪</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://jwt.io/" target="_blank" rel="noopener">https://jwt.io/</a></li><li><a href="https://en.wikipedia.org/wiki/JSON_Web_Token" target="_blank" rel="noopener">JSON Web Token Wiki</a></li><li><a href="https://github.com/jwt/ruby-jwt" target="_blank" rel="noopener">ruuby-jwt</a></li><li><a href="https://5xruby.tw/posts/what-is-jwt" target="_blank" rel="noopener">是誰在敲打我窗？什麼是 JWT ？</a></li><li><a href="https://dev.to/kevinluo201/jwt-27ng" target="_blank" rel="noopener">見令如見人，介紹 JWT</a></li><li><a href="https://link.medium.com/BFwUDzHKkib" target="_blank" rel="noopener">[筆記] 透過 JWT 實作驗證機制</a></li><li><a href="https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html" target="_blank" rel="noopener">JSON Web Token 入门教程</a></li><li><a href="https://mgleon08.github.io/blog/2018/07/16/jwt/" target="_blank" rel="noopener">JSON Web Token(JWT) 簡單介紹</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10264580" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10264580</a><br>medium 文章連結：<a href="https://link.medium.com/OYkJftn2Mjb" target="_blank" rel="noopener">https://link.medium.com/OYkJftn2Mjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/09/22/Day09-Gem-jwt-%E4%BB%8B%E7%B4%B9%E8%88%87%E6%87%89%E7%94%A8/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;JWT 是 &lt;a href=&quot;https://jwt.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;JSON Web Token&lt;/a&gt; 的縮寫。在寫此篇時，發現已經有許多相關文章可
       
     
     </summary>
