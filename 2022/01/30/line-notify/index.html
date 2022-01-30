@@ -313,7 +313,7 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >595</span
+            >637</span
           >閱讀時間:
           <span class="post-count reading-time"
             >2 min</span
@@ -458,11 +458,14 @@ height:50vh;
 <p>不能保證每次打 API 都是正常的，有可能剛好遇到 LINE 服務異常，導致 <a href="https://github.com/ankane/the-ultimate-guide-to-ruby-timeouts" target="_blank" rel="noopener">Timeout</a> 等問題，應該要針對已知可能會發生的問題，進行預防和處理。</p>
 <p>另外也應該針對 response 和 exception 存 logger，後續有異常要追問題時，才會有比較多線索和方向</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatBotNotifier</span></span></span><br><span class="line">  <span class="keyword">require</span>(<span class="string">'logger'</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">'net/http'</span>)</span><br><span class="line"></span><br><span class="line">  LINE_NOTIFY_URL = <span class="string">'https://notify-api.line.me/api/notify'</span>.freeze</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">line_notify</span><span class="params">(token, message)</span></span></span><br><span class="line">    uri = URI(LINE_NOTIFY_URL)</span><br><span class="line">    http = init_http(uri)</span><br><span class="line">    call_line_api(uri, http, token, message)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">logger</span></span></span><br><span class="line">    @logger <span class="params">||</span>= Logger.new(<span class="string">'message.log'</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">init_http</span><span class="params">(uri)</span></span></span><br><span class="line">    http = Net::HTTP.new(uri.host, uri.port)</span><br><span class="line">    http.use_ssl = <span class="literal">true</span> <span class="keyword">if</span> uri.scheme == <span class="string">'https'</span></span><br><span class="line">    http.open_timeout = <span class="number">10</span></span><br><span class="line">    http.continue_timeout = <span class="number">10</span></span><br><span class="line">    http</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call_line_api</span><span class="params">(uri, http, token, message, error_retry = <span class="number">0</span>)</span></span></span><br><span class="line">    request = Net::HTTP::Post.new(uri)</span><br><span class="line">    request[<span class="string">'Authorization'</span>] = <span class="string">"Bearer <span class="subst">#&#123;token&#125;</span>"</span></span><br><span class="line">    request.set_form_data(<span class="symbol">message:</span> <span class="string">"\n<span class="subst">#&#123;message&#125;</span>"</span>)</span><br><span class="line">    response = http.request(request)</span><br><span class="line">    logger.info(<span class="string">"<span class="subst">#&#123;__FILE_<span class="number">_</span>&#125;</span>#<span class="subst">#&#123;__method_<span class="number">_</span>&#125;</span> response: <span class="subst">#&#123;response.body&#125;</span>"</span>)</span><br><span class="line">  <span class="keyword">rescue</span> StandardError =&gt; e</span><br><span class="line">    <span class="keyword">if</span> error_retry &lt; <span class="number">5</span></span><br><span class="line">      sleep(<span class="number">10</span>)</span><br><span class="line">      error_retry += <span class="number">1</span></span><br><span class="line">      <span class="keyword">retry</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      logger.error(<span class="string">"<span class="subst">#&#123;__FILE_<span class="number">_</span>&#125;</span>#<span class="subst">#&#123;__method_<span class="number">_</span>&#125;</span> exception: <span class="subst">#&#123;e.inspect&#125;</span>"</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">token = <span class="string">'tsxxxxxxxxxIV'</span> <span class="comment"># 換成自己的 Token</span></span><br><span class="line">message = <span class="string">"測試要傳的訊息\nHello World!!"</span></span><br><span class="line">ChatBotNotifier.new.line_notify(token, message)</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h1><span id="小結">小結</span></h1>
+<h2><span id="小結">小結</span></h2>
 <p>若有例行要傳的訊息，可以用 Linux crontab 做排程，也可用 Sidekiq 的 scheduler 處理。</p>
-<h1><span id="參考文件">參考文件</span></h1>
+<h2><span id="參考文件">參考文件</span></h2>
 <p><a href="https://notify-bot.line.me/doc/en/" target="_blank" rel="noopener">LINE Notify API Document</a></p>
+<hr>
+<p>medium 文章連結：<a href="https://link.medium.com/gkQQBO1Henb" target="_blank" rel="noopener">https://link.medium.com/gkQQBO1Henb</a><br>
+本文同步發布於 <a href="https://riverye.com/2022/01/30/line-notify/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+<p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
@@ -618,7 +621,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">步驟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1. 登入到 ，並登入個人的 LINE 帳號</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.1.</span> <span class="toc-text">LINE Notify 頁面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.2.</span> <span class="toc-text">登入自己的 LINE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">2. 點自己的名字，進入「個人頁面」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">3. 選「發行權杖」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">4. 輸入想要加入 LINE Notify 的 LINE 群組，接著點「發行」</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.4.1.</span> <span class="toc-text">注意: 若離開此頁面，將不會再顯示新發行的權杖。 離開頁面前，請先複製權杖。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">5. 用 curl 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.5.1.</span> <span class="toc-text">記得先把 加入群組中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.6.</span> <span class="toc-text">6. 用 Postman 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.6.1.</span> <span class="toc-text">Postman 點 &lt;/&gt; icon ，可以選各式程式語言的範例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.7.</span> <span class="toc-text">7. 用 Ruby 的 irb 測試看看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">將 Ruby 那段寫得更嚴謹些</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">參考文件</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">步驟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1. 登入到 ，並登入個人的 LINE 帳號</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.1.</span> <span class="toc-text">LINE Notify 頁面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.2.</span> <span class="toc-text">登入自己的 LINE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">2. 點自己的名字，進入「個人頁面」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">3. 選「發行權杖」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">4. 輸入想要加入 LINE Notify 的 LINE 群組，接著點「發行」</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.4.1.</span> <span class="toc-text">注意: 若離開此頁面，將不會再顯示新發行的權杖。 離開頁面前，請先複製權杖。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">5. 用 curl 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.5.1.</span> <span class="toc-text">記得先把 加入群組中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.6.</span> <span class="toc-text">6. 用 Postman 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.6.1.</span> <span class="toc-text">Postman 點 &lt;/&gt; icon ，可以選各式程式語言的範例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.7.</span> <span class="toc-text">7. 用 Ruby 的 irb 測試看看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">將 Ruby 那段寫得更嚴謹些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">參考文件</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -3007,23 +3010,29 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
-        <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
         <span class="sidebar-tag-name" data-tags="導覽列"><span class="iconfont-archer">&#xe606;</span>導覽列</span>
     
         <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
     
+        <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
+    
         <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
+        <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
         <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
         <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+    
+        <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
+    
+        <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
+    
+        <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
@@ -3045,23 +3054,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
     
-        <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
-    
-        <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
-    
-        <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
-    
         <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+    
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
     
         <span class="sidebar-tag-name" data-tags="Postman"><span class="iconfont-archer">&#xe606;</span>Postman</span>
     
         <span class="sidebar-tag-name" data-tags="curl"><span class="iconfont-archer">&#xe606;</span>curl</span>
     
         <span class="sidebar-tag-name" data-tags="LINE Notify"><span class="iconfont-archer">&#xe606;</span>LINE Notify</span>
-    
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -3077,6 +3080,10 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
+    
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
         <span class="sidebar-tag-name" data-tags="Windows"><span class="iconfont-archer">&#xe606;</span>Windows</span>
@@ -3085,29 +3092,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
     
-        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
-    
-        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
         <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
     
         <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
     
         <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
     
+        <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
+    
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
+    
         <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
         <span class="sidebar-tag-name" data-tags="keyword arguments"><span class="iconfont-archer">&#xe606;</span>keyword arguments</span>
     
         <span class="sidebar-tag-name" data-tags="block"><span class="iconfont-archer">&#xe606;</span>block</span>
-    
-        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
-    
-        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="Cloudflare"><span class="iconfont-archer">&#xe606;</span>Cloudflare</span>
     
@@ -3152,9 +3155,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
-        <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
-    
         <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
+    
+        <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
