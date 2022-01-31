@@ -311,10 +311,10 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.1k</span
+            >1.2k</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >4 min</span
+            >5 min</span
           ></span
         >
       </div>
@@ -448,6 +448,12 @@ height:50vh;
 <p>在 macOS 上實測加密/解密，是沒問題的!!</p>
 <p>以下示範如何解密 Excel 檔案，就不再贅述如何加密</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rails console</span></span><br><span class="line"><span class="comment"># 假設 msoffice path 與 repo path 是同目錄名 (dirname)</span></span><br><span class="line"></span><br><span class="line">msoffice = Pathname.new(Dir.pwd).dirname.join(<span class="string">'msoffice'</span>, <span class="string">'bin'</span>, <span class="string">'msoffice-crypt.exe'</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">msoffice = Pathname.new(Dir.pwd).dirname.join(<span class="string">'msoffice/bin/msoffice-crypt.exe'</span>)</span><br><span class="line"></span><br><span class="line">input_xlsx_file = Rails.root.join(<span class="string">'data/river_demo.xlsx'</span>)</span><br><span class="line">encrypted_xlsx_file_path = input_xlsx_file.dirname.join(<span class="string">'river_demo_encrypted.xlsx'</span>)</span><br><span class="line">password = <span class="string">'我是密碼-River'</span></span><br><span class="line">decrypted_xlsx_file_path = input_xlsx_file.dirname.join(<span class="string">'river_demo_decrypted.xlsx'</span>) <span class="comment"># 解密後的檔案</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解密 xlsx 檔案</span></span><br><span class="line"><span class="string">`<span class="subst">#&#123;msoffice&#125;</span> -d -p <span class="subst">#&#123;password&#125;</span> <span class="subst">#&#123;encrypted_xlsx_file_path&#125;</span> <span class="subst">#&#123;decrypted_xlsx_file_path&#125;</span>`</span></span><br></pre></td></tr></table></figure></p>
+<h3><span id="補充-隨機產密碼">補充: 隨機產密碼</span></h3>
+<p>若密碼要改成隨機產生 (包含數字、英文大小寫) 的話，以下幾種方法皆可產密碼</p>
+<p>隨機產的密碼，務必要存起來，不然加密後的 Excel 會不知道開啟的密碼 XD<br>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ openssl rand -base64 32</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS 需安裝 brew install pwgen</span></span><br><span class="line">$ pwgen 14 1 --symbols</span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ruby</span></span><br><span class="line"><span class="comment"># need require 'securerandom'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'securerandom'</span></span><br><span class="line"></span><br><span class="line">SecureRandom.hex</span><br><span class="line">SecureRandom.base64</span><br><span class="line">SecureRandom.alphanumeric(<span class="number">20</span>) <span class="comment"># 20 為密碼長度</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.imgur.com/ETt4MNY.png" alt></p>
 <hr>
 <h1><span id="幫-excel-欄位加超連結-修改字形色彩等">幫 Excel 欄位加超連結、修改字形色彩...等</span></h1>
 <p>仍以上面 demo 資料為主(未加密的)<br>
@@ -633,7 +639,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">demo 用的假資料 Excel</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">Excel 加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">使用  來加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">Excel 加密/解密 (另一個方法)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">使用  進行加密/解密 Excel 檔案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">幫 Excel 欄位加超連結、修改字形色彩...等</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">增加超連結 (hyperlink)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">增加篩選、凍結第一列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">針對有超連結欄位，改成藍色字形色彩、加底線</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">補測試</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">實際結果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考文件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">說明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.0.1.</span> <span class="toc-text">demo 用的假資料 Excel</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">Excel 加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">使用  來加密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">Excel 加密/解密 (另一個方法)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">使用  進行加密/解密 Excel 檔案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">1.1.</span> <span class="toc-text">補充: 隨機產密碼</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text">幫 Excel 欄位加超連結、修改字形色彩...等</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">增加超連結 (hyperlink)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">增加篩選、凍結第一列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">針對有超連結欄位，改成藍色字形色彩、加底線</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">補測試</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">4.1.</span> <span class="toc-text">實際結果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">6.</span> <span class="toc-text">參考文件</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -646,16 +652,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3044,11 +3040,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="導覽列"><span class="iconfont-archer">&#xe606;</span>導覽列</span>
+    
+        <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
+    
         <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
-    
         <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
@@ -3058,10 +3060,6 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
         <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
@@ -3070,17 +3068,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
-        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
-        <span class="sidebar-tag-name" data-tags="導覽列"><span class="iconfont-archer">&#xe606;</span>導覽列</span>
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
     
-        <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
-    
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
     
@@ -3088,13 +3080,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
-        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
     
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
     
-        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
@@ -3106,6 +3096,10 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="LINE Notify"><span class="iconfont-archer">&#xe606;</span>LINE Notify</span>
     
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+    
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
         <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
@@ -3114,11 +3108,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
-    
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3127,6 +3119,10 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Capybara"><span class="iconfont-archer">&#xe606;</span>Capybara</span>
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
+    
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
     
@@ -3195,13 +3191,13 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
+        <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
+    
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
     
         <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
-        <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
     
         <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
