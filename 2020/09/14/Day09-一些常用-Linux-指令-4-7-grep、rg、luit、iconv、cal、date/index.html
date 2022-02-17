@@ -307,7 +307,7 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >1.5k</span
+            >1.4k</span
           >閱讀時間:
           <span class="post-count reading-time"
             >6 min</span
@@ -425,10 +425,10 @@ height:50vh;
 <p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 將以下資訊儲存成 demo.log</span></span><br><span class="line"></span><br><span class="line">INFO [2099-01-11 13:14:40]: order_id: 0001, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-11 14:15:41]: 其它資訊</span><br><span class="line">INFO [2099-01-11 14:18:42]: order_id: 0002, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:10]: order_id: 0003, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-12 10:00:13]: 其它資訊</span><br><span class="line">INFO [2099-01-12 11:22:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-15 14:15:40]: order_id: 0004, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 23:34:10]: order_id: 0005, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:32]: order_id: 0006, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-15 14:15:33]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:24]: order_id: 0007, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:25]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-01-16 14:15:29]: order_id: 0008, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-01-16 14:15:30]: 其它資訊</span><br><span class="line">INFO [2099-01-16 14:15:30]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 08:15:40]: order_id: 0009, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 09:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 10:15:40]: order_id: 0010, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0011, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 11:15:40]: order_id: 0012, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 15:15:40]: 其它資訊</span><br><span class="line">INFO [2099-12-25 16:15:40]: order_id: ----, message: <span class="string">"建立失敗"</span></span><br><span class="line">INFO [2099-12-25 17:15:40]: order_id: 0013, message: <span class="string">"建立成功"</span></span><br><span class="line">INFO [2099-12-25 20:15:40]: 其它資訊</span><br></pre></td></tr></table></figure></p>
 <h2><span id="grep">grep</span></h2>
 <p>找出符合搜尋條件的訊息<br>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 關鍵字 路徑</span></span><br><span class="line">grep search_pattern path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出正在運行中的程式，關鍵字為 line</span></span><br><span class="line">ps aux | grep line</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的上文也顯示 15 行</span></span><br><span class="line">grep -A 15 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下文也顯示 20 行</span></span><br><span class="line">grep -B 20 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下下各顯示 5 行</span></span><br><span class="line">grep -C 5 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算關鍵字出現的次數</span></span><br><span class="line">grep -c <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過濾除了關鍵字的訊息</span></span><br><span class="line">grep -v <span class="string">"其它"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A or B 關鍵字的訊息</span></span><br><span class="line">grep -E <span class="string">"2099|成功"</span> demo.log</span><br><span class="line">grep -E <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">grep <span class="string">'2099\|成功'</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A and B 的關鍵字訊息</span></span><br><span class="line">grep <span class="string">"2099"</span> demo.log | grep 成功</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的訂單數量</span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -c 建立成功</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | wc -l</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -v -c <span class="string">'建立失敗\|其它資訊'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的資訊，並反轉印出</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | tac</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 關鍵字 路徑</span></span><br><span class="line">grep search_pattern path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出正在運行中的程式，關鍵字為 line</span></span><br><span class="line">ps aux | grep line</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下文也顯示 6 行</span></span><br><span class="line">grep -A 6 <span class="string">"0007"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的上文也顯示 3 行</span></span><br><span class="line">grep -B 3 <span class="string">"0007"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 符合條件的下下各顯示 5 行</span></span><br><span class="line">grep -C 5 <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 計算關鍵字出現的次數</span></span><br><span class="line">grep -c <span class="string">"成功"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 過濾除了關鍵字的訊息</span></span><br><span class="line">grep -v <span class="string">"其它"</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A or B 關鍵字的訊息</span></span><br><span class="line">grep -E <span class="string">"2099|成功"</span> demo.log</span><br><span class="line">grep -E <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">grep <span class="string">'2099\|成功'</span> demo.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出符合 A and B 的關鍵字訊息</span></span><br><span class="line">grep <span class="string">"2099"</span> demo.log | grep 成功</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的訂單數量</span></span><br><span class="line"><span class="comment"># 方法1</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -c 建立成功</span><br><span class="line"><span class="comment"># 方法2</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | wc -l</span><br><span class="line"><span class="comment"># 方法3</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep -v -c <span class="string">'建立失敗\|其它資訊'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出 2099-01-16 建立成功的資訊，並反轉印出</span></span><br><span class="line">grep <span class="string">'2099-01-16'</span> demo.log | grep 建立成功 | tac</span><br></pre></td></tr></table></figure></p>
 <h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
-符合條件的下文也顯示 n 行： <code>-B n</code><br>
+<p>符合條件的下文也顯示 n 行： <code>-A n</code><br>
+符合條件的上文也顯示 n 行： <code>-B n</code><br>
 符合條件的上下各顯示 n 行： <code>-C n</code><br>
 計算符合條件的數量： <code>-c</code><br>
 除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
@@ -439,8 +439,8 @@ height:50vh;
 <p>備註: 需另外安裝 <a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener">官方網站</a><br>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MacOS、Linux 原生不支援這指令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MacOS 安裝指令</span></span><br><span class="line">brew install ripgrep</span><br><span class="line"></span><br><span class="line">rg 建立成功</span><br><span class="line">rg -uu 建立成功</span><br><span class="line">rg -C 7 建立失敗</span><br><span class="line">rg <span class="string">'2099|成功'</span> demo.log</span><br><span class="line">rg <span class="string">"2099"</span> demo.log | rg 成功</span><br><span class="line">rg -t <span class="built_in">log</span> 成功</span><br><span class="line"></span><br><span class="line">rg -z <span class="string">"成功"</span></span><br></pre></td></tr></table></figure></p>
 <h4><span id="幾個常用參數說明">幾個常用參數說明：</span></h4>
-<p>符合條件的上文也顯示 n 行： <code>-A n</code><br>
-符合條件的下文也顯示 n 行： <code>-B n</code><br>
+<p>符合條件的下文也顯示 n 行： <code>-A n</code><br>
+符合條件的上文也顯示 n 行： <code>-B n</code><br>
 符合條件的上下各顯示 n 行： <code>-C n</code><br>
 計算符合條件的數量： <code>-c</code><br>
 除了關鍵字以外的訊息，其它全顯示： <code>-v</code><br>
@@ -530,7 +530,7 @@ medium 文章連結：<a href="https://link.medium.com/YFjvigcCK9" target="_blan
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/">https://riverye.com/2020/09/14/Day09-一些常用-Linux-指令-4-7-grep、rg、luit、iconv、cal、date/</a></p>
     <p>發表日期：2020-09-14</p>
-    <p>更新日期：2020-09-14</p>
+    <p>更新日期：2022-02-17</p>
   </div>
   
   <!-- paginator  -->
@@ -696,6 +696,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
@@ -3078,9 +3082,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
-    
         <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
+    
+        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
@@ -3104,6 +3108,10 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+    
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
         <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
@@ -3111,6 +3119,12 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
         <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
@@ -3124,15 +3138,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
-    
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
-    
-        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
-    
-        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
     
         <span class="sidebar-tag-name" data-tags="Postman"><span class="iconfont-archer">&#xe606;</span>Postman</span>
     
@@ -3140,9 +3146,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="LINE Notify"><span class="iconfont-archer">&#xe606;</span>LINE Notify</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+        <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -3152,9 +3158,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
     
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+    
+        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3163,10 +3171,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Capybara"><span class="iconfont-archer">&#xe606;</span>Capybara</span>
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
-    
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
     
