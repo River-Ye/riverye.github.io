@@ -313,10 +313,10 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >637</span
+            >651</span
           >閱讀時間:
           <span class="post-count reading-time"
-            >2 min</span
+            >3 min</span
           ></span
         >
       </div>
@@ -428,7 +428,8 @@ height:50vh;
     <h2><span id="前言">前言</span></h2>
 <p>首先你要先有 LINE，若沒有，可以左轉離開了 XD</p>
 <h2><span id="步驟">步驟</span></h2>
-<h3><span id="1-登入到-line-notify並登入個人的-line-帳號">1. 登入到 ，並登入個人的 LINE 帳號</span></h3>
+<h3><span id="1-到-line-notify-並登入個人的-line-帳號">1. 到 LINE Notify ，並登入個人的 LINE 帳號</span></h3>
+<p><a href="https://notify-bot.line.me/zh_TW/" target="_blank" rel="noopener">LINE Notify</a></p>
 <h4><span id="line-notify-頁面">LINE Notify 頁面</span></h4>
 <p><img src="https://i.imgur.com/jZ0yzC0.png" alt></p>
 <h4><span id="登入自己的-line">登入自己的 LINE</span></h4>
@@ -442,8 +443,9 @@ height:50vh;
 <h4><span id="注意-若離開此頁面將不會再顯示新發行的權杖-離開頁面前請先複製權杖">注意: 若離開此頁面，將不會再顯示新發行的權杖。 離開頁面前，請先複製權杖。</span></h4>
 <p><img src="https://i.imgur.com/MKY6Vag.png" alt></p>
 <h3><span id="5-用-curl-測試看看">5. 用 <code>curl</code> 測試看看</span></h3>
-<h4><span id="記得先把-line-notify-官方帳號加入群組中">記得先把 加入群組中</span></h4>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 記得換成自己的 token</span></span><br><span class="line">curl -X POST -H <span class="string">'Authorization: Bearer &lt;access_token&gt;'</span> -F <span class="string">'message=測試發訊息'</span> https://notify-api.line.me/api/notify</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">curl -X POST -H <span class="string">'Authorization: Bearer tsxxxxxxxxxIV'</span> -F <span class="string">'message=測試發訊息'</span> https://notify-api.line.me/api/notify</span><br></pre></td></tr></table></figure></p>
+<h4><span id="記得先把line-notify-官方帳號加入群組中">記得先把「LINE Notify 官方帳號」加入群組中</span></h4>
+<p><a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=linenotify" target="_blank" rel="noopener">LINE Notify 官方帳號</a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 記得換成自己的 token</span></span><br><span class="line">curl -X POST -H <span class="string">'Authorization: Bearer &lt;access_token&gt;'</span> -F <span class="string">'message=測試發訊息'</span> https://notify-api.line.me/api/notify</span><br><span class="line"></span><br><span class="line"><span class="comment"># 範例</span></span><br><span class="line">curl -X POST -H <span class="string">'Authorization: Bearer tsxxxxxxxxxIV'</span> -F <span class="string">'message=測試發訊息'</span> https://notify-api.line.me/api/notify</span><br></pre></td></tr></table></figure></p>
 <p><a href="https://notify-bot.line.me/doc/en/#:~:text=Message%20visible%20to%20end%2Duser-,Sample,-%24%20curl%20%2DX%20POST%20%2DH%20%27Authorization%3A%20Bearer%20%3Caccess_token%3E%27%20%2DF" target="_blank" rel="noopener">官方文件 LINE Notify API Document 提供的範例</a></p>
 <p><img src="https://i.imgur.com/ZrEaxSQ.png" alt></p>
 <h3><span id="6-用-postman-測試看看">6. 用 Postman 測試看看</span></h3>
@@ -473,7 +475,7 @@ height:50vh;
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2022/01/30/line-notify/">https://riverye.com/2022/01/30/line-notify/</a></p>
     <p>發表日期：2022-01-30</p>
-    <p>更新日期：2022-01-30</p>
+    <p>更新日期：2022-07-22</p>
   </div>
   
   <!-- paginator  -->
@@ -626,7 +628,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">步驟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1. 登入到 ，並登入個人的 LINE 帳號</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.1.</span> <span class="toc-text">LINE Notify 頁面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.2.</span> <span class="toc-text">登入自己的 LINE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">2. 點自己的名字，進入「個人頁面」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">3. 選「發行權杖」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">4. 輸入想要加入 LINE Notify 的 LINE 群組，接著點「發行」</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.4.1.</span> <span class="toc-text">注意: 若離開此頁面，將不會再顯示新發行的權杖。 離開頁面前，請先複製權杖。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">5. 用 curl 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.5.1.</span> <span class="toc-text">記得先把 加入群組中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.6.</span> <span class="toc-text">6. 用 Postman 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.6.1.</span> <span class="toc-text">Postman 點 &lt;/&gt; icon ，可以選各式程式語言的範例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.7.</span> <span class="toc-text">7. 用 Ruby 的 irb 測試看看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">將 Ruby 那段寫得更嚴謹些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">參考文件</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">步驟</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.1.</span> <span class="toc-text">1. 到 LINE Notify ，並登入個人的 LINE 帳號</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.1.</span> <span class="toc-text">LINE Notify 頁面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.2.</span> <span class="toc-text">登入自己的 LINE</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.2.</span> <span class="toc-text">2. 點自己的名字，進入「個人頁面」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.3.</span> <span class="toc-text">3. 選「發行權杖」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.4.</span> <span class="toc-text">4. 輸入想要加入 LINE Notify 的 LINE 群組，接著點「發行」</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.4.1.</span> <span class="toc-text">注意: 若離開此頁面，將不會再顯示新發行的權杖。 離開頁面前，請先複製權杖。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.5.</span> <span class="toc-text">5. 用 curl 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.5.1.</span> <span class="toc-text">記得先把「LINE Notify 官方帳號」加入群組中</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.6.</span> <span class="toc-text">6. 用 Postman 測試看看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.6.1.</span> <span class="toc-text">Postman 點 &lt;/&gt; icon ，可以選各式程式語言的範例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-number">2.7.</span> <span class="toc-text">7. 用 Ruby 的 irb 測試看看</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">3.</span> <span class="toc-text">將 Ruby 那段寫得更嚴謹些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">4.</span> <span class="toc-text">小結</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">5.</span> <span class="toc-text">參考文件</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -639,8 +641,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
@@ -3025,9 +3025,9 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
-    
         <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
+    
+        <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
     
