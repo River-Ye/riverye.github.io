@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>如何在 Ruby 中使用 Tor 進行匿名瀏覽 · 小菜的 Blog</title>
+    <title>在 Ruby 中用 Tor 打 API：如何隱藏真實 IP · 小菜的 Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -243,7 +243,7 @@
                 <a href="/" >你必須很努力</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">如何在 Ruby 中使用 Tor 進行匿名瀏覽</a>
+                <a href="#" class="post-name">在 Ruby 中用 Tor 打 API：如何隱藏真實 IP</a>
             </div>
     </div>
     
@@ -277,7 +277,7 @@ height:50vh;
     <!-- 标题  -->
     <h1 class="intro-title">
       <!-- 主页  -->
-       如何在 Ruby 中使用 Tor 進行匿名瀏覽
+       在 Ruby 中用 Tor 打 API：如何隱藏真實 IP
       <!-- 404 -->
       
     </h1>
@@ -309,7 +309,7 @@ height:50vh;
         <span
           >字數統計:
           <span class="post-count word-count"
-            >639</span
+            >667</span
           >閱讀時間:
           <span class="post-count reading-time"
             >3 min</span
@@ -422,7 +422,8 @@ height:50vh;
             <main class="main post-page">
   <article class="article-entry">
     <h2><span id="前言">前言</span></h2>
-<p><a href="https://zh.m.wikipedia.org/zh-tw/Tor" target="_blank" rel="noopener">Tor (The Onion Router)</a> 是一個用於匿名通訊的網絡，可以用來瀏覽網頁、傳輸數據和通訊。<br>
+<p>用 Ruby 在打 API 時，若不想讓人知道請求的 IP (request IP)，可以搭配用 Tor 來實踐。<br>
+<a href="https://zh.m.wikipedia.org/zh-tw/Tor" target="_blank" rel="noopener">Tor (The Onion Router)</a> 是一個用於匿名通訊的網絡，可以用來瀏覽網頁、傳輸數據和通訊。<br>
 本文將介紹如何在 Ruby 中使用 Tor 進行匿名瀏覽和通訊。</p>
 <h2><span id="說明">說明</span></h2>
 <p>這邊以 Ruby 3.1.2 為範例，並提供 2 種方法作為參考</p>
@@ -465,16 +466,16 @@ note: 我個人比較習慣用這個</p>
 <li><a href="https://check.torproject.org/api/ip" target="_blank" rel="noopener">https://check.torproject.org/api/ip</a></li>
 </ol>
 <h2><span id="小結">小結</span></h2>
-<p>在爬網站資料時，又不想讓人知道實際 IP 時，這是一個還不錯的方法，並租一台機器在雲端上跑，就更難被發現了 XD</p>
+<p>在爬網站資料時，若不想讓人知道實際 IP 時，這是一個還不錯的方法，並租一台機器在雲端上跑，就更難被發現了 XD</p>
 <p>medium 文章連結：<a href="https://link.medium.com/Aw09O7sMPvb" target="_blank" rel="noopener">https://link.medium.com/Aw09O7sMPvb</a><br>
-本文同步發布於 <a href="https://riverye.com/2022/12/17/How-to-Use-Tor-for-Anonymous-Browsing-in-Ruby/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
+本文同步發布於 <a href="https://riverye.com/2022/12/17/Protecting-Your-Real-IP-When-Hitting-APIs-with-Ruby-and-Tor/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p>
 <p>備註：之後文章修改更新，以個人部落格為主</p>
 
   </article>
   <!-- license  -->
   
   <div class="license-wrapper">
-    <p>原文連結：<a href="https://riverye.com/2022/12/17/How-to-Use-Tor-for-Anonymous-Browsing-in-Ruby/">https://riverye.com/2022/12/17/How-to-Use-Tor-for-Anonymous-Browsing-in-Ruby/</a></p>
+    <p>原文連結：<a href="https://riverye.com/2022/12/17/Protecting-Your-Real-IP-When-Hitting-APIs-with-Ruby-and-Tor/">https://riverye.com/2022/12/17/Protecting-Your-Real-IP-When-Hitting-APIs-with-Ruby-and-Tor/</a></p>
     <p>發表日期：2022-12-17</p>
     <p>更新日期：2022-12-17</p>
   </div>
@@ -504,8 +505,8 @@ note: 我個人比較習慣用這個</p>
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
         
         var disqus_config = function () {
-        this.page.url = "https://riverye.com/2022/12/17/How-to-Use-Tor-for-Anonymous-Browsing-in-Ruby/";  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = "如何在 Ruby 中使用 Tor 進行匿名瀏覽"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://riverye.com/2022/12/17/Protecting-Your-Real-IP-When-Hitting-APIs-with-Ruby-and-Tor/";  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = "在 Ruby 中用 Tor 打 API：如何隱藏真實 IP"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         
         (function () { // DON'T EDIT BELOW THIS LINE
@@ -2419,6 +2420,12 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 116
@@ -2441,7 +2448,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/2022/12/17/How-to-Use-Tor-for-Anonymous-Browsing-in-Ruby/" >如何在 Ruby 中使用 Tor 進行匿名瀏覽</a>
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/2022/12/17/Protecting-Your-Real-IP-When-Hitting-APIs-with-Ruby-and-Tor/" >在 Ruby 中用 Tor 打 API：如何隱藏真實 IP</a>
         </li>
     
     
@@ -3073,37 +3080,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
     
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+    
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+    
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
         <span class="sidebar-tag-name" data-tags="Pry"><span class="iconfont-archer">&#xe606;</span>Pry</span>
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
-    
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
-    
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
-    
-        <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
-    
-        <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
-    
-        <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
-    
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
-    
-        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
-    
-        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
-    
-        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
-    
-        <span class="sidebar-tag-name" data-tags="Excel"><span class="iconfont-archer">&#xe606;</span>Excel</span>
-    
-        <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
-    
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
     
         <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
     
@@ -3111,11 +3096,25 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
-        <span class="sidebar-tag-name" data-tags="Postman"><span class="iconfont-archer">&#xe606;</span>Postman</span>
+        <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
-        <span class="sidebar-tag-name" data-tags="curl"><span class="iconfont-archer">&#xe606;</span>curl</span>
+        <span class="sidebar-tag-name" data-tags="Proc"><span class="iconfont-archer">&#xe606;</span>Proc</span>
     
-        <span class="sidebar-tag-name" data-tags="LINE Notify"><span class="iconfont-archer">&#xe606;</span>LINE Notify</span>
+        <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
+    
+        <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
+    
+        <span class="sidebar-tag-name" data-tags="Git"><span class="iconfont-archer">&#xe606;</span>Git</span>
+    
+        <span class="sidebar-tag-name" data-tags="postgresql"><span class="iconfont-archer">&#xe606;</span>postgresql</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+    
+        <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
+    
+        <span class="sidebar-tag-name" data-tags="Excel"><span class="iconfont-archer">&#xe606;</span>Excel</span>
+    
+        <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
         <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
     
@@ -3125,13 +3124,27 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
-        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
-    
-        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
     
         <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
         <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="Postman"><span class="iconfont-archer">&#xe606;</span>Postman</span>
+    
+        <span class="sidebar-tag-name" data-tags="curl"><span class="iconfont-archer">&#xe606;</span>curl</span>
+    
+        <span class="sidebar-tag-name" data-tags="LINE Notify"><span class="iconfont-archer">&#xe606;</span>LINE Notify</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
+    
+        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
+    
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3140,12 +3153,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Capybara"><span class="iconfont-archer">&#xe606;</span>Capybara</span>
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
-    
-        <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
     
