@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://riverye.com/"/>
-  <updated>2022-12-17T14:56:12.139Z</updated>
+  <updated>2022-12-20T15:30:39.434Z</updated>
   <id>https://riverye.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何擷取電腦、手機的封包 (圖文教學)</title>
+    <link href="https://riverye.com/2022/12/18/Capturing-Packets-on-a-Computer-and-Mobile-Phone/"/>
+    <id>https://riverye.com/2022/12/18/Capturing-Packets-on-a-Computer-and-Mobile-Phone/</id>
+    <published>2022-12-17T16:00:00.000Z</published>
+    <updated>2022-12-20T15:30:39.434Z</updated>
+    
+    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>透過網路封包擷取工具，可以擷取到 Windows、Mac、Mobile Phone 等不同裝置上的封包，自己用過 <a href="https://zh.wikipedia.org/zh-tw/Burp_suite" target="_blank" rel="noopener">Burp Suite</a>、<a href="https://zh.wikipedia.org/zh-tw/%E6%9F%A5%E7%88%BE%E6%96%AF%E4%BB%A3%E7%90%86" target="_blank" rel="noopener">Charles</a>、<a href="https://zh.wikipedia.org/zh-tw/Fiddler" target="_blank" rel="noopener">Fiddler</a> 等這幾套軟體，以自己需求來說，<a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 就夠用了，因此這篇會以這套軟體操作介紹為主。</p><h2><span id="說明">說明</span></h2><p>有在 macOS Ventura‌ 13.0.1 、iOS 16.2 、Windows 10、Android 交叉測試過，確認是可以擷取到封包，由於 Windows 與 macOS 操作大同小異，以及本身是用 iPhone ，故以下說明與截圖會是 macOS 和 iPhone 為主</p><p>因目前許多網站和伺服器是以 HTTPS 來加密傳輸資料，若需要解析加密的資料，可用 Charles 內建提供的憑證來處理，就能看到加密前的資料，若有疑慮可用其它軟體以及另外準備憑證處理</p><p>開始前請先到<a href="https://www.charlesproxy.com/download/" target="_blank" rel="noopener">官網下載安裝 Charles</a></p><h2><span id="免費版限制">免費版限制</span></h2><p>雖說 Charles 是付費軟體，但可以免費使用，限制如下:</p><ol><li><p>開啟程式時，需要等待 10 秒<img src="wait_ten_secondes.png" alt="等待10秒的畫面"></p></li><li><p>每次僅能使用 30 分鐘，超過需要重啟程式<img src="usage_restrictions.png" alt="每使用30分鐘會跳一次訊息"></p></li></ol><p>note: 上述限制已夠我使用，故不影響 (不確定未來政策是否會調整)</p><hr><h2><span id="macos-設定教學">macOS 設定教學</span></h2><h3><span id="影片版教學">影片版教學</span></h3><p><div class="video-container"><iframe src="//www.youtube.com/embed/EIf9zmPCJwE" frameborder="0" allowfullscreen></iframe></div></p><h3><span id="圖文教學">圖文教學</span></h3><ol><li><p>安裝憑證 (Certificate)<br>在 Charles 的 Help → SSL Proxying<br>可選擇直接安裝 (Install Charles Root Certificate)，或先另存憑證 (Save Charles Root Certificate)，在手動匯入<br>這邊以手動匯入為例<img src="charles_settings_01.png" alt="Save Charles Root Certificate"></p></li><li><p>手動匯入憑證 (直接安裝者，可略過這步驟)<br>在 macOS 的 應用程式 → 工具程式 → 鑰匙圈存取<br>將另存的憑證手動匯入，並對該憑證點滑鼠右鍵的「取得資訊」，在「信任」中，改成「永遠信任」<br><img src="charles_settings_02.png" alt="Setting Certificate"></p></li><li><p>設定 Proxy<br>在 Charles 的 Proxy → SSL Proxying Settings → SSL Proxying<br>3-1. 勾選「Enable SSL Proxying」<br>3-2. 設定所有 Host 以及 Port 都要解析 (Empty fields match all values.)<br>3-3. 「macOS Proxy」也要開著<br><img src="charles_settings_03.png" alt="Setting Proxy"></p></li><li><p>開始紀錄 (Start Recording)<br>以 Visual Studio Code 為例<img src="charles_settings_04.png" alt="Start Recording"></p></li></ol><hr><h2><span id="iphone-設定教學">iPhone 設定教學</span></h2><h3><span id="影片版教學">影片版教學</span></h3><p>有錄影，但有些資料較敏感(ex: 手機序號等)，且懶得後製影片，故不放 xd</p><h3><span id="圖文教學">圖文教學</span></h3><ol><li><p>設定 HTTP Proxy Port<br>Proxy → Proxy Settings → Proxies → Port: 8888 → OK<br><img src="iphone_settings_01.png" alt></p></li><li><p>查看電腦的區域網路 IP<br>在 Charles 的 Proxy → Local IP Addresses<br><img src="iphone_settings_02.png" alt></p></li><li><p>Install Charles Root Certificate in iOS Simulators<br><img src="iphone_settings_03.png" alt></p></li><li><p>Install Charles Root Certificate on a Mobile Device or Remote Browser<br>這邊會提醒手機的代理伺服器以及要連哪個網站才能下載憑證<br><img src="iphone_settings_04.png" alt></p></li><li><p>需確保電腦與手機在同個區域網路<br><img src="iphone_settings_05.png" alt></p></li><li><p>手機設定代理伺服器<br>手機的設定 → 一般 → Wi-Fi → 點「i」的 icon 圖案 → 設定代理伺服器<img src="iphone_settings_06.png" alt></p></li><li><p>用 Safari 開啟 <a href="chls.pro/ssh">chls.pro/ssh</a>，並下載憑證<br><img src="iphone_settings_07.png" alt></p></li><li><p>手機安裝憑證<br>手機的設定 → 已下載描述檔 → 安裝  (安裝後，可在這裡查看: 設定 → 一般 → VPN 與 裝置管)<br>測完，可在這移除<br><img src="iphone_settings_08.png" alt></p></li><li><p>手動開啟憑證 <strong>(開啟後，建議先把手機的 Wi-Fi 先關閉再開啟)</strong><br>手機的設定 → 一般 → 關於本機 → 憑證信任設定 → 測試時記得開啟<br><img src="iphone_settings_09.png" alt></p></li><li><p>以 GitHub App 為例<br><img src="iphone_settings_10.png" alt></p></li></ol><hr><h2><span id="小結">小結</span></h2><p>會有這篇是為了解決自己的痛點，像是買的除濕機提供的 App 只能設定 7 組開關時間，但我想要每天早晚指定時間都自動開啟 1 小時，因超過 App 提供 7 組的設定上限，於是乎有了解析手機 App 封包的想法，觀察打的是哪隻 API 並用 Postman 測試，最後寫成 iPhone 的捷徑與自動化，還能用 Siri 語音控制，進而實現自動化解決這問題</p><p>其實我 3 個多月前就已經完成上述的事情，發現在寫這篇文章時，有些細節都忘了，趁還有動力時，趕緊做個紀錄，免得哪天又忘記時，也能當筆記回顧</p><p>其他類似的軟體蠻多的，像是知名的 <a href="https://zh.wikipedia.org/zh-tw/Wireshark" target="_blank" rel="noopener">Wireshark</a> 等軟體，這邊就不多贅述了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;透過網路封包擷取工具，可以擷取到 Windows、Mac、Mobile Phone 等不同裝置上的封包，自己用過 &lt;a href=&quot;https://zh.wikipedia.org/zh-tw/Burp_su
+      
+    
+    </summary>
+    
+    
+      <category term="教學文" scheme="https://riverye.com/categories/%E6%95%99%E5%AD%B8%E6%96%87/"/>
+    
+    
+      <category term="抓包軟體" scheme="https://riverye.com/tags/%E6%8A%93%E5%8C%85%E8%BB%9F%E9%AB%94/"/>
+    
+      <category term="網路封包擷取" scheme="https://riverye.com/tags/%E7%B6%B2%E8%B7%AF%E5%B0%81%E5%8C%85%E6%93%B7%E5%8F%96/"/>
+    
+      <category term="Charles" scheme="https://riverye.com/tags/Charles/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Ruby 中用 Tor 打 API：如何隱藏真實 IP</title>
@@ -544,34 +575,6 @@
 &lt;p&gt;不論是產各式報表，都與 Excel 脫離不了關係，產 Excel 屬於必備技能之一，以下示範如何產 Excel 檔&lt;/p&gt;
 &lt;h2&gt;&lt;span id=&quot;實作&quot;&gt;實作&lt;/span&gt;&lt;/h2&gt;
 &lt;p&gt;這邊以 &lt;a
-      
-    
-    </summary>
-    
-    
-      <category term="鐵人賽" scheme="https://riverye.com/categories/%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-    
-      <category term="13th鐵人賽" scheme="https://riverye.com/tags/13th%E9%90%B5%E4%BA%BA%E8%B3%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Day15 - 匯出(下載) PDF</title>
-    <link href="https://riverye.com/2021/09/28/Day15-%E5%8C%AF%E5%87%BA-%E4%B8%8B%E8%BC%89-PDF/"/>
-    <id>https://riverye.com/2021/09/28/Day15-匯出-下載-PDF/</id>
-    <published>2021-09-27T16:00:00.000Z</published>
-    <updated>2022-09-23T08:45:10.258Z</updated>
-    
-    <content type="html"><![CDATA[<h2><span id="前言">前言</span></h2><p>使用者在操作頁面或輸入網址後，要下載檔案(不局限於 PDF 檔案)，可以使用 Ruby on Rails 內建的 <code>send_file</code> 來處理</p><h2><span id="實作">實作</span></h2><p>下載的檔案不局限於 PDF 檔，可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/pull/5" target="_blank" rel="noopener">pr</a><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/routes.rb</span></span><br><span class="line"></span><br><span class="line">resources <span class="symbol">:shops</span> <span class="keyword">do</span></span><br><span class="line">  collection <span class="keyword">do</span></span><br><span class="line">    get <span class="symbol">:download_pdf</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/controllers/shops_controller.rb</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_pdf</span></span></span><br><span class="line">  pdf_path = Rails.root.join(<span class="string">'data/river_demo_pdf.pdf'</span>)</span><br><span class="line"></span><br><span class="line">  send_file pdf_path</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># spec/requests/shops_spec.rb</span></span><br><span class="line"></span><br><span class="line">describe <span class="string">"GET /download_pdf"</span> <span class="keyword">do</span></span><br><span class="line">  subject &#123; get download_pdf_shops_path, <span class="symbol">params:</span> &#123; <span class="symbol">format:</span> <span class="symbol">:text</span> &#125; &#125;</span><br><span class="line"></span><br><span class="line">  it <span class="string">"send correct file"</span> <span class="keyword">do</span></span><br><span class="line">    allow_any_instance_of(ShopsController).to receive(<span class="symbol">:send_file</span>).with(Rails.root.join(<span class="string">'data/river_demo_pdf.pdf'</span>))</span><br><span class="line">    subject</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p><h3><span id="實際畫面">實際畫面</span></h3><p><img src="https://i.imgur.com/1ftFejA.png" alt></p><h2><span id="小結">小結</span></h2><p>一開始不知道時，會想說該如何實作，才能讓使用者可以下載檔案，後來發現 Ruby on Rails 已經幫我們做了許多事情，讓我們在實作上，可以簡單幾行便實現該功能，真的非常快速又方便~</p><h2><span id="參考資料">參考資料</span></h2><ol><li><a href="https://apidock.com/rails/ActionController/DataStreaming/send_file" target="_blank" rel="noopener">apidock#send_file</a></li></ol><hr><p>鐵人賽文章連結：<a href="https://ithelp.ithome.com.tw/articles/10271932" target="_blank" rel="noopener">https://ithelp.ithome.com.tw/articles/10271932</a><br>medium 文章連結：<a href="https://link.medium.com/91hPYYFVPjb" target="_blank" rel="noopener">https://link.medium.com/91hPYYFVPjb</a><br>本文同步發布於 <a href="http://riverye.com/2021/09/28/Day15-%E5%8C%AF%E5%87%BA-%E4%B8%8B%E8%BC%89-PDF/">小菜的 Blog</a> <a href="https://riverye.com/">https://riverye.com/</a></p><p>備註：之後文章修改更新，以個人部落格為主</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;使用者在操作頁面或輸入網址後，要下載檔案(不局限於 PDF 檔案)，可以使用 Ruby on Rails 內建的 &lt;code&gt;send_file&lt;/code&gt; 來處理&lt;/p&gt;
-&lt;h2&gt;&lt;span id=&quot;實作
       
     
     </summary>
