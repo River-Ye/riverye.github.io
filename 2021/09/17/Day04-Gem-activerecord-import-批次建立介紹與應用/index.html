@@ -428,16 +428,16 @@ height:50vh;
 <h2><span id="使用方法">使用方法</span></h2>
 <p>在 <code>rails console --sandbox</code> 中演練示範</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rails console --sandbox 可縮寫成 rails c -s</span></span><br><span class="line"><span class="comment"># 不建議在 production 使用 sandbox ， 可能會造成 DB Lock，詳情自行上網查</span></span><br><span class="line"></span><br><span class="line">$ rails c -s</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; Shop.count</span><br><span class="line">  TRANSACTION (<span class="number">0</span>.<span class="number">2</span>ms)  <span class="keyword">BEGIN</span></span><br><span class="line">   (<span class="number">11.7</span>ms)  SELECT COUNT(*) FROM <span class="string">"shops"</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">[<span class="number">2</span>] pry(main)&gt; shops = []</span><br><span class="line">[]</span><br><span class="line">[<span class="number">3</span>] pry(main)&gt; <span class="number">10</span>.times &#123; <span class="params">|i|</span> shops &lt;&lt; &#123; <span class="symbol">name:</span> <span class="string">"test_<span class="subst">#&#123;i&#125;</span>"</span>, <span class="symbol">email:</span> <span class="string">'test'</span>, <span class="symbol">note:</span> <span class="literal">nil</span> &#125; &#125;</span><br><span class="line"><span class="number">10</span></span><br><span class="line">[<span class="number">4</span>] pry(main)&gt; Shop.import(shops)</span><br><span class="line">  Shop Create Many (<span class="number">1.0</span>ms)  INSERT INTO <span class="string">"shops"</span> (<span class="string">"name"</span>,<span class="string">"email"</span>,<span class="string">"note"</span>,<span class="string">"created_at"</span>,<span class="string">"updated_at"</span>) VALUES (<span class="string">'test_0'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_1'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_2'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_3'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_4'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_5'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_6'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_7'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_8'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>),(<span class="string">'test_9'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:09:50.230104'</span>,<span class="string">'2021-07-11 06:09:50.230104'</span>) RETURNING <span class="string">"id"</span></span><br><span class="line"><span class="comment">#&lt;Struct:ActiveRecord::Import::Result:0x00008098</span></span><br><span class="line">    failed_instances = [],</span><br><span class="line">    ids = [</span><br><span class="line">        [<span class="number">0</span>] <span class="number">1</span>,</span><br><span class="line">        [<span class="number">1</span>] <span class="number">2</span>,</span><br><span class="line">        [<span class="number">2</span>] <span class="number">3</span>,</span><br><span class="line">        [<span class="number">3</span>] <span class="number">4</span>,</span><br><span class="line">        [<span class="number">4</span>] <span class="number">5</span>,</span><br><span class="line">        [<span class="number">5</span>] <span class="number">6</span>,</span><br><span class="line">        [<span class="number">6</span>] <span class="number">7</span>,</span><br><span class="line">        [<span class="number">7</span>] <span class="number">8</span>,</span><br><span class="line">        [<span class="number">8</span>] <span class="number">9</span>,</span><br><span class="line">        [<span class="number">9</span>] <span class="number">10</span></span><br><span class="line">    ],</span><br><span class="line">    num_inserts = <span class="number">1</span>,</span><br><span class="line">    results = []</span><br><span class="line">&gt;</span><br><span class="line">[<span class="number">5</span>] pry(main)&gt; Shop.count</span><br><span class="line">   (<span class="number">0</span>.<span class="number">4</span>ms)  SELECT COUNT(*) FROM <span class="string">"shops"</span></span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/D3tjABy.png" alt></p>
+<p><img src="D3tjABy.png" alt></p>
 <h2><span id="注意">注意</span></h2>
 <p>在使用 <code>import</code> 時，須留意不會檢查 <code>ActiveRecord</code> 的 <code>validates</code> 與觸發 <code>callback</code>，可參考這篇 <a href="https://github.com/zdennis/activerecord-import/issues/430" target="_blank" rel="noopener">GitHub Issue</a></p>
 <p>以下為還原情境
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/models/shop.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shop</span> &lt; ApplicationRecord</span></span><br><span class="line">  strip_attributes</span><br><span class="line">  validates <span class="symbol">:name</span>, <span class="symbol">uniqueness:</span> <span class="literal">true</span></span><br><span class="line">  after_commit <span class="symbol">:say_hello</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span></span></span><br><span class="line">    puts <span class="string">"hello"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">$ rails c -s</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>] pry(main)&gt; Shop.count</span><br><span class="line">  TRANSACTION (<span class="number">0</span>.<span class="number">2</span>ms)  <span class="keyword">BEGIN</span></span><br><span class="line">   (<span class="number">1.1</span>ms)  SELECT COUNT(*) FROM <span class="string">"shops"</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">[<span class="number">2</span>] pry(main)&gt; shops = []</span><br><span class="line">[]</span><br><span class="line">[<span class="number">3</span>] pry(main)&gt; <span class="number">10</span>.times &#123; <span class="params">|i|</span> shops &lt;&lt; &#123; <span class="symbol">name:</span> <span class="string">"test"</span>, <span class="symbol">email:</span> <span class="string">"test"</span>, <span class="symbol">note:</span> <span class="literal">nil</span> &#125; &#125;</span><br><span class="line"><span class="number">10</span></span><br><span class="line">[<span class="number">4</span>] pry(main)&gt; Shop.import(shops)</span><br><span class="line">  Shop Create Many (<span class="number">1.8</span>ms)  INSERT INTO <span class="string">"shops"</span> (<span class="string">"name"</span>,<span class="string">"email"</span>,<span class="string">"note"</span>,<span class="string">"created_at"</span>,<span class="string">"updated_at"</span>) VALUES (<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>),(<span class="string">'test'</span>,<span class="string">'test'</span>,NULL,<span class="string">'2021-07-11 06:41:34.694983'</span>,<span class="string">'2021-07-11 06:41:34.694983'</span>) RETURNING <span class="string">"id"</span></span><br><span class="line"><span class="comment">#&lt;Struct:ActiveRecord::Import::Result:0x000083b8</span></span><br><span class="line">    failed_instances = [],</span><br><span class="line">    ids = [</span><br><span class="line">        [<span class="number">0</span>] <span class="number">1</span>,</span><br><span class="line">        [<span class="number">1</span>] <span class="number">2</span>,</span><br><span class="line">        [<span class="number">2</span>] <span class="number">3</span>,</span><br><span class="line">        [<span class="number">3</span>] <span class="number">4</span>,</span><br><span class="line">        [<span class="number">4</span>] <span class="number">5</span>,</span><br><span class="line">        [<span class="number">5</span>] <span class="number">6</span>,</span><br><span class="line">        [<span class="number">6</span>] <span class="number">7</span>,</span><br><span class="line">        [<span class="number">7</span>] <span class="number">8</span>,</span><br><span class="line">        [<span class="number">8</span>] <span class="number">9</span>,</span><br><span class="line">        [<span class="number">9</span>] <span class="number">10</span></span><br><span class="line">    ],</span><br><span class="line">    num_inserts = <span class="number">1</span>,</span><br><span class="line">    results = []</span><br><span class="line">&gt;</span><br><span class="line">[<span class="number">5</span>] pry(main)&gt; Shop.count</span><br><span class="line">   (<span class="number">0</span>.<span class="number">5</span>ms)  SELECT COUNT(*) FROM <span class="string">"shops"</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line">[<span class="number">6</span>] pry(main)&gt; Shop.pluck(<span class="symbol">:name</span>)</span><br><span class="line">   (<span class="number">0</span>.<span class="number">3</span>ms)  SELECT <span class="string">"shops"</span>.<span class="string">"name"</span> FROM <span class="string">"shops"</span></span><br><span class="line">[</span><br><span class="line">    [<span class="number">0</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">1</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">2</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">3</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">4</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">5</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">6</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">7</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">8</span>] <span class="string">"test"</span>,</span><br><span class="line">    [<span class="number">9</span>] <span class="string">"test"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/8tEd4JA.png" alt></p>
+<p><img src="8tEd4JA.png" alt></p>
 <h2><span id="避免踩到-unique-解法">避免踩到 <code>unique</code> 解法</span></h2>
 <p>Database 增加 <code>unique</code> ，便可避免建立重複的資料，可參考此 <a href="https://github.com/River-Ye/ironman_13th_2021/commit/7eeeeff773f39e0847133a91512462b256b01c5c" target="_blank" rel="noopener">commit</a>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_index <span class="symbol">:shops</span>, <span class="symbol">:name</span>, <span class="symbol">unique:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/d2kV4T3.png" alt></p>
+<p><img src="d2kV4T3.png" alt></p>
 <h2><span id="小結">小結</span></h2>
 <p>大量資料存入 Database 時，<code>import</code> 是很好用的工具，同時也須留意眉角，避免踩雷。</p>
 <p>note: Callbacks 解法可參考 <a href="https://github.com/zdennis/activerecord-import#callbacks" target="_blank" rel="noopener">GitHub README</a></p>
@@ -458,7 +458,7 @@ medium 文章連結：<a href="https://link.medium.com/GX2nvti2Mjb" target="_bla
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2021/09/17/Day04-Gem-activerecord-import-批次建立介紹與應用/">https://riverye.com/2021/09/17/Day04-Gem-activerecord-import-批次建立介紹與應用/</a></p>
     <p>發表日期：2021-09-17</p>
-    <p>更新日期：2022-09-23</p>
+    <p>更新日期：2022-12-21</p>
   </div>
   
   <!-- paginator  -->
@@ -624,22 +624,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3070,21 +3054,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
-    
         <span class="sidebar-tag-name" data-tags="抓包軟體"><span class="iconfont-archer">&#xe606;</span>抓包軟體</span>
     
         <span class="sidebar-tag-name" data-tags="網路封包擷取"><span class="iconfont-archer">&#xe606;</span>網路封包擷取</span>
     
         <span class="sidebar-tag-name" data-tags="Charles"><span class="iconfont-archer">&#xe606;</span>Charles</span>
     
+        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
-    
-        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
@@ -3092,13 +3072,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
     
         <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
@@ -3106,7 +3090,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
@@ -3114,13 +3102,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
-    
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
     
@@ -3128,9 +3112,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+    
         <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
         <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
+    
+        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
+    
+        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
+    
+        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
@@ -3148,19 +3142,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
-        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
-    
-        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
-    
-        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
-    
-        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3170,21 +3152,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
     
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
-    
-        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
-    
-        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
     
         <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
     
         <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
+    
+        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
@@ -3199,6 +3181,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Heroku"><span class="iconfont-archer">&#xe606;</span>Heroku</span>
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -3233,19 +3217,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
         <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
+    
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
     

@@ -423,7 +423,7 @@ height:50vh;
   <article class="article-entry">
     <p>建立 Rails 新專案時 (以 5.2.3 為例)，接著開啟專案中「Gemfile」檔案：</p>
 <p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">source &apos;https://rubygems.org&apos;</span><br><span class="line">git_source(:github) &#123; |repo| &quot;https://github.com/#&#123;repo&#125;.git&quot; &#125;</span><br><span class="line"></span><br><span class="line">ruby &apos;2.6.3&apos;</span><br><span class="line"></span><br><span class="line"># Bundle edge Rails instead: gem &apos;rails&apos;, github: &apos;rails/rails&apos;</span><br><span class="line">gem &apos;rails&apos;, &apos;~&gt; 5.2.3&apos;</span><br><span class="line"># Use sqlite3 as the database for Active Record</span><br><span class="line">gem &apos;sqlite3&apos;</span><br><span class="line"># Use Puma as the app server</span><br><span class="line">gem &apos;puma&apos;, &apos;~&gt; 3.11&apos;</span><br><span class="line"># Use SCSS for stylesheets</span><br><span class="line">gem &apos;sass-rails&apos;, &apos;~&gt; 5.0&apos;</span><br><span class="line"># Use Uglifier as compressor for JavaScript assets</span><br><span class="line">gem &apos;uglifier&apos;, &apos;&gt;= 1.3.0&apos;</span><br><span class="line"># See https://github.com/rails/execjs#readme for more supported runtimes</span><br><span class="line"># gem &apos;mini_racer&apos;, platforms: :ruby</span><br><span class="line"></span><br><span class="line"># Use CoffeeScript for .coffee assets and views</span><br><span class="line">gem &apos;coffee-rails&apos;, &apos;~&gt; 4.2&apos;</span><br><span class="line"># Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks</span><br><span class="line">gem &apos;turbolinks&apos;, &apos;~&gt; 5&apos;</span><br><span class="line"># Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder</span><br><span class="line">gem &apos;jbuilder&apos;, &apos;~&gt; 2.5&apos;</span><br><span class="line"># Use Redis adapter to run Action Cable in production</span><br><span class="line"># gem &apos;redis&apos;, &apos;~&gt; 4.0&apos;</span><br><span class="line"># Use ActiveModel has_secure_password</span><br><span class="line"># gem &apos;bcrypt&apos;, &apos;~&gt; 3.1.7&apos;</span><br><span class="line"></span><br><span class="line"># Use ActiveStorage variant</span><br><span class="line"># gem &apos;mini_magick&apos;, &apos;~&gt; 4.8&apos;</span><br><span class="line"></span><br><span class="line"># Use Capistrano for deployment</span><br><span class="line"># gem &apos;capistrano-rails&apos;, group: :development</span><br><span class="line"></span><br><span class="line"># Reduces boot times through caching; required in config/boot.rb</span><br><span class="line">gem &apos;bootsnap&apos;, &apos;&gt;= 1.1.0&apos;, require: false</span><br><span class="line"></span><br><span class="line">group :development, :test do</span><br><span class="line">  # Call &apos;byebug&apos; anywhere in the code to stop execution and get a debugger console</span><br><span class="line">  gem &apos;byebug&apos;, platforms: [:mri, :mingw, :x64_mingw]</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :development do</span><br><span class="line">  # Access an interactive console on exception pages or by calling &apos;console&apos; anywhere in the code.</span><br><span class="line">  gem &apos;web-console&apos;, &apos;&gt;= 3.3.0&apos;</span><br><span class="line">  gem &apos;listen&apos;, &apos;&gt;= 3.0.5&apos;, &apos;&lt; 3.2&apos;</span><br><span class="line">  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span><br><span class="line">  gem &apos;spring&apos;</span><br><span class="line">  gem &apos;spring-watcher-listen&apos;, &apos;~&gt; 2.0.0&apos;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">group :test do</span><br><span class="line">  # Adds support for Capybara system testing and selenium driver</span><br><span class="line">  gem &apos;capybara&apos;, &apos;&gt;= 2.15&apos;</span><br><span class="line">  gem &apos;selenium-webdriver&apos;</span><br><span class="line">  # Easy installation and use of chromedriver to run system tests with Chrome</span><br><span class="line">  gem &apos;chromedriver-helper&apos;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"># Windows does not include zoneinfo files, so bundle the tzinfo-data gem</span><br><span class="line">gem &apos;tzinfo-data&apos;, platforms: [:mingw, :mswin, :x64_mingw, :jruby]</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://i.imgur.com/bL5RKaL.png" alt></p>
+<p><img src="bL5RKaL.png" alt></p>
 <p>會發現第 1–2 行寫著如下：</p>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source ‘<span class="symbol">https:</span>/<span class="regexp">/rubygems.org'</span></span><br><span class="line"><span class="regexp">git_source(:github) &#123; |repo| “https:/</span><span class="regexp">/github.com/</span><span class="comment">#&#123;repo&#125;.git" &#125;</span></span><br></pre></td></tr></table></figure></p>
 <p>Gemfile 需要至少一個 gem 來源，以 <a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a> 伺服器 URL 格式來說，透過執行產生具有預設 <a href="https://rubygems.org/" target="_blank" rel="noopener">rubygems.org</a> 的 Gemfile <code>bundle init</code>，請使用<code>https</code>以便使用 SSL 驗證與 <a href="https://rubygems.org/" target="_blank" rel="noopener">rubygems.org</a> 的連結。</p>
@@ -483,7 +483,7 @@ height:50vh;
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2019/09/15/Rails-中的-Gemfile-檔案的內容/">https://riverye.com/2019/09/15/Rails-中的-Gemfile-檔案的內容/</a></p>
     <p>發表日期：2019-09-15</p>
-    <p>更新日期：2022-09-23</p>
+    <p>更新日期：2022-12-21</p>
   </div>
   
   <!-- paginator  -->
@@ -649,22 +649,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3095,21 +3079,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
-    
         <span class="sidebar-tag-name" data-tags="抓包軟體"><span class="iconfont-archer">&#xe606;</span>抓包軟體</span>
     
         <span class="sidebar-tag-name" data-tags="網路封包擷取"><span class="iconfont-archer">&#xe606;</span>網路封包擷取</span>
     
         <span class="sidebar-tag-name" data-tags="Charles"><span class="iconfont-archer">&#xe606;</span>Charles</span>
     
+        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
-    
-        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
@@ -3117,13 +3097,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
     
         <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
@@ -3131,7 +3115,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
@@ -3139,13 +3127,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
-    
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
     
@@ -3153,9 +3137,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+    
         <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
         <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
+    
+        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
+    
+        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
+    
+        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
@@ -3173,19 +3167,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
-        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
-    
-        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
-    
-        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
-    
-        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3195,21 +3177,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
     
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
-    
-        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
-    
-        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
     
         <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
     
         <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
+    
+        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
@@ -3224,6 +3206,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Heroku"><span class="iconfont-archer">&#xe606;</span>Heroku</span>
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -3258,19 +3242,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
         <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
+    
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
     

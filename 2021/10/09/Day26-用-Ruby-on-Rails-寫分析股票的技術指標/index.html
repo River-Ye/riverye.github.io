@@ -426,7 +426,7 @@ height:50vh;
 <h2><span id="實作">實作</span></h2>
 <p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/models/stock.rb</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stock</span> &lt; ApplicationRecord</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">specify_date</span><span class="params">(date)</span></span></span><br><span class="line">    daily_quotes.find_by(<span class="symbol">transaction_date:</span> date.to_date)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">simple_moving_average</span><span class="params">(code, number)</span></span></span><br><span class="line">    stock = <span class="keyword">self</span>.find_by!(<span class="symbol">code:</span> code)</span><br><span class="line">    stock.simple_moving_average(number)</span><br><span class="line">  <span class="keyword">rescue</span> ActiveRecord::RecordNotFound =&gt; e</span><br><span class="line">    puts <span class="string">"無此股票代號: <span class="subst">#&#123;code&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">simple_moving_average</span><span class="params">(number)</span></span></span><br><span class="line">    result = daily_quotes.order(<span class="string">"transaction_date DESC"</span>).limit(number).select(<span class="symbol">:closing_price</span>)</span><br><span class="line">    <span class="keyword">if</span> result.size == number</span><br><span class="line">      (result.sum(&amp;<span class="symbol">:closing_price</span>) / number).round(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="number">0</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 找出指定日期，成交量前幾名的股票</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">top_ranks_trade_volume</span><span class="params">(number, date = <span class="literal">nil</span>)</span></span></span><br><span class="line">    <span class="keyword">self</span>.latest_transaction_date(date)</span><br><span class="line">        .order(<span class="string">"daily_quotes.trade_volume DESC"</span>)</span><br><span class="line">        .limit(number)</span><br><span class="line">        .select(<span class="symbol">:name</span>, <span class="symbol">:code</span>, <span class="string">"daily_quotes.trade_volume"</span>)</span><br><span class="line">        .map &#123; <span class="params">|stock|</span> &#123; <span class="string">"股票名稱"</span> =&gt; stock.name, <span class="string">"股票代號"</span> =&gt; stock.code, <span class="string">"成交量(張)"</span> =&gt; stock.trade_volume / <span class="number">1000</span> &#125; &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 找出指定日期，成交量破XXXX張的股票</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">volume_broke_lot</span><span class="params">(number, date = <span class="literal">nil</span>)</span></span></span><br><span class="line">    <span class="keyword">self</span>.latest_transaction_date(date)</span><br><span class="line">        .where(<span class="string">"daily_quotes.trade_volume &gt; ?"</span>, number * <span class="number">1000</span>)</span><br><span class="line">        .order(<span class="string">"daily_quotes.trade_volume DESC"</span>)</span><br><span class="line">        .select(<span class="symbol">:name</span>, <span class="symbol">:code</span>, <span class="string">"daily_quotes.trade_volume"</span>)</span><br><span class="line">        .map &#123; <span class="params">|stock|</span> &#123; <span class="string">"股票名稱"</span> =&gt; stock.name, <span class="string">"股票代號"</span> =&gt; stock.code, <span class="string">"成交量(張)"</span> =&gt; stock.trade_volume / <span class="number">1000</span> &#125; &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 找出指定日期，漲停的股票</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_limit_up_stocks</span><span class="params">(date = <span class="literal">nil</span>)</span></span></span><br><span class="line">    latest_transaction_date = find_latest_transaction_dates(<span class="number">2</span>, date)</span><br><span class="line">    candidate_stocks = find_ups_and_downs(latest_transaction_date)</span><br><span class="line">    candidate_stocks.select <span class="keyword">do</span> <span class="params">|key, values|</span></span><br><span class="line">      latest_info = <span class="literal">nil</span></span><br><span class="line">      yesterday_info = <span class="literal">nil</span></span><br><span class="line">      values.each <span class="keyword">do</span> <span class="params">|value|</span></span><br><span class="line">        <span class="keyword">if</span> value.transaction_date == latest_transaction_date[<span class="number">0</span>]</span><br><span class="line">          latest_info = value</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          yesterday_info = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">next</span> <span class="keyword">if</span> latest_info.ups_and_downs != <span class="string">"+"</span> <span class="params">||</span> latest_info.closing_price != latest_info.highest_price</span><br><span class="line"></span><br><span class="line">      latest_info.closing_price &gt;= yesterday_info.closing_price * <span class="number">1.095</span></span><br><span class="line">    <span class="keyword">end</span>.keys</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 找出指定日期，跌停的股票</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_limit_down_stocks</span><span class="params">(date = <span class="literal">nil</span>)</span></span></span><br><span class="line">    latest_transaction_date = find_latest_transaction_dates(<span class="number">2</span>, date)</span><br><span class="line">    candidate_stocks = find_ups_and_downs(latest_transaction_date)</span><br><span class="line">    candidate_stocks.select <span class="keyword">do</span> <span class="params">|key, values|</span></span><br><span class="line">      latest_info = <span class="literal">nil</span></span><br><span class="line">      yesterday_info = <span class="literal">nil</span></span><br><span class="line">      values.each <span class="keyword">do</span> <span class="params">|value|</span></span><br><span class="line">        <span class="keyword">if</span> value.transaction_date == latest_transaction_date[<span class="number">0</span>]</span><br><span class="line">          latest_info = value</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          yesterday_info = value</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">next</span> <span class="keyword">if</span> latest_info.ups_and_downs != <span class="string">"-"</span> <span class="params">||</span> latest_info.closing_price != latest_info.lowest_price</span><br><span class="line"></span><br><span class="line">      latest_info.closing_price &lt;= yesterday_info.closing_price / <span class="number">1.095</span></span><br><span class="line">    <span class="keyword">end</span>.keys</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 找出最新 X 天的交易日期</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_latest_transaction_dates</span><span class="params">(number, date = <span class="literal">nil</span>)</span></span></span><br><span class="line">    <span class="keyword">if</span> date</span><br><span class="line">      DailyQuote.where(<span class="string">"transaction_date &lt;= ?"</span>, date.to_date)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      DailyQuote</span><br><span class="line">    <span class="keyword">end</span>.select(<span class="symbol">:transaction_date</span>).order(<span class="string">"transaction_date DESC"</span>).distinct.limit(number).pluck(<span class="symbol">:transaction_date</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find_ups_and_downs</span><span class="params">(latest_transaction_date)</span></span></span><br><span class="line">    <span class="keyword">self</span>.joins(<span class="symbol">:daily_quotes</span>)</span><br><span class="line">        .where(<span class="symbol">daily_quotes:</span> &#123; <span class="symbol">transaction_date:</span> latest_transaction_date[-<span class="number">1</span>]..latest_transaction_date[<span class="number">0</span>] &#125;)</span><br><span class="line">        .order(<span class="string">"daily_quotes.trade_volume DESC"</span>)</span><br><span class="line">        .select(<span class="symbol">:code</span>, <span class="symbol">:name</span>,</span><br><span class="line">                <span class="string">"daily_quotes.transaction_date"</span>, <span class="string">"daily_quotes.opening_price"</span>, <span class="string">"daily_quotes.closing_price"</span>,</span><br><span class="line">                <span class="string">"daily_quotes.highest_price"</span>, <span class="string">"daily_quotes.lowest_price"</span>, <span class="string">"daily_quotes.ups_and_downs"</span>,</span><br><span class="line">               )</span><br><span class="line">        .group_by &#123; <span class="params">|stock|</span> &#123; <span class="string">"股票名稱"</span> =&gt; stock.name, <span class="string">"股票代號"</span> =&gt; stock.code &#125; &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 <h2><span id="實際執行畫面">實際執行畫面</span></h2>
-<p><img src="https://i.imgur.com/8FSCAhq.png" alt></p>
+<p><img src="8FSCAhq.png" alt></p>
 <h2><span id="小結">小結</span></h2>
 <p>每當寫完一個技術指標後，如何驗證自己寫的是否正確呢?</p>
 <p>我的做法是去用其他平台，然後看結果是否與我一樣 XD</p>
@@ -444,7 +444,7 @@ medium 文章連結：<a href="https://link.medium.com/G7zXw5NuTjb" target="_bla
   <div class="license-wrapper">
     <p>原文連結：<a href="https://riverye.com/2021/10/09/Day26-用-Ruby-on-Rails-寫分析股票的技術指標/">https://riverye.com/2021/10/09/Day26-用-Ruby-on-Rails-寫分析股票的技術指標/</a></p>
     <p>發表日期：2021-10-09</p>
-    <p>更新日期：2022-09-23</p>
+    <p>更新日期：2022-12-21</p>
   </div>
   
   <!-- paginator  -->
@@ -610,22 +610,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -3056,21 +3040,17 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
-    
         <span class="sidebar-tag-name" data-tags="抓包軟體"><span class="iconfont-archer">&#xe606;</span>抓包軟體</span>
     
         <span class="sidebar-tag-name" data-tags="網路封包擷取"><span class="iconfont-archer">&#xe606;</span>網路封包擷取</span>
     
         <span class="sidebar-tag-name" data-tags="Charles"><span class="iconfont-archer">&#xe606;</span>Charles</span>
     
+        <span class="sidebar-tag-name" data-tags="12th鐵人賽"><span class="iconfont-archer">&#xe606;</span>12th鐵人賽</span>
+    
         <span class="sidebar-tag-name" data-tags="13th鐵人賽"><span class="iconfont-archer">&#xe606;</span>13th鐵人賽</span>
     
         <span class="sidebar-tag-name" data-tags="11th鐵人賽"><span class="iconfont-archer">&#xe606;</span>11th鐵人賽</span>
-    
-        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
-    
-        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
@@ -3078,13 +3058,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="站內搜尋"><span class="iconfont-archer">&#xe606;</span>站內搜尋</span>
     
-        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
+        <span class="sidebar-tag-name" data-tags="Ruby"><span class="iconfont-archer">&#xe606;</span>Ruby</span>
     
-        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
+        <span class="sidebar-tag-name" data-tags="Tor"><span class="iconfont-archer">&#xe606;</span>Tor</span>
     
         <span class="sidebar-tag-name" data-tags="Rails"><span class="iconfont-archer">&#xe606;</span>Rails</span>
     
         <span class="sidebar-tag-name" data-tags="gemfile"><span class="iconfont-archer">&#xe606;</span>gemfile</span>
+    
+        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+    
+        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
     
         <span class="sidebar-tag-name" data-tags="IRB"><span class="iconfont-archer">&#xe606;</span>IRB</span>
     
@@ -3092,7 +3076,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="rails console"><span class="iconfont-archer">&#xe606;</span>rails console</span>
     
-        <span class="sidebar-tag-name" data-tags="form_with"><span class="iconfont-archer">&#xe606;</span>form_with</span>
+        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
+    
+        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
     
         <span class="sidebar-tag-name" data-tags="Block"><span class="iconfont-archer">&#xe606;</span>Block</span>
     
@@ -3100,13 +3088,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="Lambda"><span class="iconfont-archer">&#xe606;</span>Lambda</span>
     
-        <span class="sidebar-tag-name" data-tags="self"><span class="iconfont-archer">&#xe606;</span>self</span>
+        <span class="sidebar-tag-name" data-tags="string"><span class="iconfont-archer">&#xe606;</span>string</span>
     
-        <span class="sidebar-tag-name" data-tags="Ubuntu"><span class="iconfont-archer">&#xe606;</span>Ubuntu</span>
-    
-        <span class="sidebar-tag-name" data-tags="sudo"><span class="iconfont-archer">&#xe606;</span>sudo</span>
-    
-        <span class="sidebar-tag-name" data-tags="no password"><span class="iconfont-archer">&#xe606;</span>no password</span>
+        <span class="sidebar-tag-name" data-tags="object"><span class="iconfont-archer">&#xe606;</span>object</span>
     
         <span class="sidebar-tag-name" data-tags="Ruby on Rails"><span class="iconfont-archer">&#xe606;</span>Ruby on Rails</span>
     
@@ -3114,9 +3098,19 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="xlsx"><span class="iconfont-archer">&#xe606;</span>xlsx</span>
     
+        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+    
         <span class="sidebar-tag-name" data-tags="Leetcode"><span class="iconfont-archer">&#xe606;</span>Leetcode</span>
     
         <span class="sidebar-tag-name" data-tags="刷題"><span class="iconfont-archer">&#xe606;</span>刷題</span>
+    
+        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
+    
+        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
+    
+        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
+    
+        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
     
         <span class="sidebar-tag-name" data-tags="Node.js"><span class="iconfont-archer">&#xe606;</span>Node.js</span>
     
@@ -3134,19 +3128,7 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="git branch"><span class="iconfont-archer">&#xe606;</span>git branch</span>
     
-        <span class="sidebar-tag-name" data-tags="BIOS"><span class="iconfont-archer">&#xe606;</span>BIOS</span>
-    
-        <span class="sidebar-tag-name" data-tags="Boot"><span class="iconfont-archer">&#xe606;</span>Boot</span>
-    
-        <span class="sidebar-tag-name" data-tags="UEFI"><span class="iconfont-archer">&#xe606;</span>UEFI</span>
-    
-        <span class="sidebar-tag-name" data-tags="Windows 10"><span class="iconfont-archer">&#xe606;</span>Windows 10</span>
-    
         <span class="sidebar-tag-name" data-tags="spring"><span class="iconfont-archer">&#xe606;</span>spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
-    
-        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="RSpec"><span class="iconfont-archer">&#xe606;</span>RSpec</span>
     
@@ -3156,21 +3138,21 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="selenium-webdriver"><span class="iconfont-archer">&#xe606;</span>selenium-webdriver</span>
     
-        <span class="sidebar-tag-name" data-tags="禱告"><span class="iconfont-archer">&#xe606;</span>禱告</span>
+        <span class="sidebar-tag-name" data-tags="GitHub"><span class="iconfont-archer">&#xe606;</span>GitHub</span>
     
         <span class="sidebar-tag-name" data-tags="預設模板"><span class="iconfont-archer">&#xe606;</span>預設模板</span>
-    
-        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
-    
-        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
-    
-        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="轉職"><span class="iconfont-archer">&#xe606;</span>轉職</span>
     
         <span class="sidebar-tag-name" data-tags="工程師"><span class="iconfont-archer">&#xe606;</span>工程師</span>
     
         <span class="sidebar-tag-name" data-tags="軟體工程師"><span class="iconfont-archer">&#xe606;</span>軟體工程師</span>
+    
+        <span class="sidebar-tag-name" data-tags="部落格"><span class="iconfont-archer">&#xe606;</span>部落格</span>
+    
+        <span class="sidebar-tag-name" data-tags="Blog"><span class="iconfont-archer">&#xe606;</span>Blog</span>
+    
+        <span class="sidebar-tag-name" data-tags="domain"><span class="iconfont-archer">&#xe606;</span>domain</span>
     
         <span class="sidebar-tag-name" data-tags="method"><span class="iconfont-archer">&#xe606;</span>method</span>
     
@@ -3185,6 +3167,8 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="Heroku"><span class="iconfont-archer">&#xe606;</span>Heroku</span>
     
         <span class="sidebar-tag-name" data-tags="Domain"><span class="iconfont-archer">&#xe606;</span>Domain</span>
+    
+        <span class="sidebar-tag-name" data-tags="Travis CI"><span class="iconfont-archer">&#xe606;</span>Travis CI</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -3219,19 +3203,19 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
-    
         <span class="sidebar-category-name" data-categories="教學文"><span class="iconfont-archer">&#xe60a;</span>教學文</span>
+    
+        <span class="sidebar-category-name" data-categories="鐵人賽"><span class="iconfont-archer">&#xe60a;</span>鐵人賽</span>
     
         <span class="sidebar-category-name" data-categories="踩到的雷"><span class="iconfont-archer">&#xe60a;</span>踩到的雷</span>
     
-        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
-    
         <span class="sidebar-category-name" data-categories="Rails"><span class="iconfont-archer">&#xe60a;</span>Rails</span>
     
-        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
+        <span class="sidebar-category-name" data-categories="Ruby"><span class="iconfont-archer">&#xe60a;</span>Ruby</span>
     
         <span class="sidebar-category-name" data-categories="環境修復"><span class="iconfont-archer">&#xe60a;</span>環境修復</span>
+    
+        <span class="sidebar-category-name" data-categories="環境建置"><span class="iconfont-archer">&#xe60a;</span>環境建置</span>
     
         <span class="sidebar-category-name" data-categories="心得文"><span class="iconfont-archer">&#xe60a;</span>心得文</span>
     
