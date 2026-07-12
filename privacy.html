@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="River-Ye 說明 riverye.com 與所屬子網域如何使用廣告 Cookie、裝置識別資訊及 Google 廣告服務，以及如何管理或撤回同意。">
+    <meta name="robots" content="index, follow">
+    <title>隱私權政策｜River-Ye</title>
+    <link rel="canonical" href="https://riverye.com/privacy.html">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #5e697b;
+        --line: #d7dee8;
+        --paper: #f4f7fa;
+        --surface: #ffffff;
+        --navy: #123b5a;
+        --blue: #255f85;
+        --accent: #c84852;
+        --shadow: 0 24px 60px rgba(18, 59, 90, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(135deg, rgba(37, 95, 133, 0.11), transparent 38%),
+          var(--paper);
+        color: var(--ink);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        line-height: 1.75;
+      }
+
+      a {
+        color: var(--blue);
+        text-underline-offset: 3px;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgba(37, 95, 133, 0.35);
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 10;
+        padding: 10px 14px;
+        color: #fff;
+        background: var(--navy);
+        border-radius: 6px;
+        transform: translateY(-160%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .site-header {
+        border-bottom: 1px solid rgba(18, 59, 90, 0.14);
+      }
+
+      .site-header-inner,
+      main,
+      footer {
+        width: min(920px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .site-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 72px;
+      }
+
+      .brand {
+        color: var(--navy);
+        font-weight: 850;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+      }
+
+      .header-link {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      main {
+        padding: 72px 0 48px;
+      }
+
+      article {
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      .intro {
+        padding: clamp(28px, 6vw, 64px);
+        color: #fff;
+        background:
+          linear-gradient(135deg, rgba(200, 72, 82, 0.9), rgba(200, 72, 82, 0) 48%),
+          var(--navy);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        line-height: 1.25;
+      }
+
+      h1 {
+        max-width: 680px;
+        font-size: clamp(36px, 7vw, 64px);
+      }
+
+      .lead {
+        max-width: 700px;
+        margin: 20px 0 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 18px;
+      }
+
+      .updated {
+        margin: 20px 0 0;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 13px;
+      }
+
+      .policy-body {
+        padding: clamp(28px, 6vw, 64px);
+      }
+
+      .summary {
+        margin: 0 0 40px;
+        padding: 18px 20px;
+        background: #eef4f8;
+        border-left: 4px solid var(--blue);
+      }
+
+      section + section {
+        margin-top: 42px;
+        padding-top: 42px;
+        border-top: 1px solid var(--line);
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        color: var(--navy);
+        font-size: 24px;
+      }
+
+      p,
+      ul {
+        margin: 0 0 16px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .action-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 16px;
+        color: #fff;
+        background: var(--blue);
+        border-radius: 7px;
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      .action-link.secondary {
+        color: var(--navy);
+        background: #edf2f6;
+        border: 1px solid var(--line);
+      }
+
+      .legal-note {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      footer {
+        padding-bottom: 48px;
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      @media (max-width: 620px) {
+        .site-header-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 88px;
+          padding: 14px 0;
+        }
+
+        main {
+          padding-top: 28px;
+        }
+
+        article {
+          border-radius: 8px;
+        }
+
+        .actions {
+          display: grid;
+        }
+
+        .action-link {
+          justify-content: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#policy">跳到隱私權政策內容</a>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="https://riverye.com/">River-Ye</a>
+        <a class="header-link" href="https://appliance.riverye.com/">返回家電推薦比較工作台</a>
+      </div>
+    </header>
+
+    <main id="policy" tabindex="-1">
+      <article>
+        <header class="intro">
+          <p class="eyebrow">Privacy</p>
+          <h1>隱私權政策</h1>
+          <p class="lead">本政策說明 riverye.com 及其所屬子網域如何處理與網站、廣告及同意選項有關的資訊。</p>
+          <p class="updated">最後更新：2026-07-12</p>
+        </header>
+
+        <div class="policy-body">
+          <p class="summary">重點摘要：網站可能使用 Google 廣告服務。你可以依所在地選擇個人化、非個人化或受限廣告，並可於之後撤回或調整同意。</p>
+
+          <section aria-labelledby="scope-heading">
+            <h2 id="scope-heading">1. 適用範圍</h2>
+            <p>本政策適用於 <strong>riverye.com 及其所屬子網域</strong>，包含小菜的 Blog 與家電推薦比較工作台。外部購買頁、社群網站及其他第三方服務有各自的隱私政策，離開本站後請另行查閱。</p>
+          </section>
+
+          <section aria-labelledby="data-heading">
+            <h2 id="data-heading">2. 可能處理的資訊</h2>
+            <p>網站本身不要求建立帳號，也不提供購物車或結帳。當你瀏覽頁面時，主機、內容傳遞或第三方服務仍可能自動接收下列技術資訊：</p>
+            <ul>
+              <li>IP 位址、瀏覽器與作業系統類型、語言、概略地區、請求時間及參照頁面。</li>
+              <li>Cookie、本機儲存空間、廣告 ID 或其他<strong>裝置識別資訊</strong>。</li>
+              <li>頁面瀏覽、廣告顯示、同意選項及防止詐欺所需的事件資訊。</li>
+            </ul>
+            <p>若你主動來信，本站會收到你提供的電子郵件地址與訊息內容，僅用於回覆及必要的紀錄保存。</p>
+          </section>
+
+          <section aria-labelledby="ads-heading">
+            <h2 id="ads-heading">3. Google 廣告與 Cookie</h2>
+            <p>本站使用 Google AdSense。Google 與其廣告合作夥伴可能使用<strong>廣告 Cookie</strong>及裝置識別資訊，以提供、衡量及保護廣告服務。依你的所在地、同意選項與 Google 可用的資料，可能顯示：</p>
+            <ul>
+              <li><strong>個人化廣告</strong>：可能依過往活動、興趣或其他訊號選擇廣告。</li>
+              <li><strong>非個人化廣告</strong>：主要依目前頁面內容、概略位置等情境訊號選擇廣告。</li>
+              <li><strong>受限廣告</strong>：在沒有特定同意或適用限制時，以更受限制的資料處理方式提供廣告。</li>
+            </ul>
+            <p>Google 與其廣告合作夥伴會依各自政策處理資料。你可以閱讀 <a href="https://policies.google.com/privacy?hl=zh-TW" target="_blank" rel="noopener noreferrer">Google 隱私權政策</a>與 <a href="https://business.safety.google/privacy/" target="_blank" rel="noopener noreferrer">Google 如何使用合作夥伴網站資訊</a>。</p>
+            <p>根網域發布的 <a href="https://riverye.com/ads.txt">ads.txt</a> 用於公開授權的廣告銷售者，內容本身不會在你的裝置上建立 Cookie。</p>
+          </section>
+
+          <section aria-labelledby="consent-heading">
+            <h2 id="consent-heading">4. 同意、拒絕與撤回</h2>
+            <p>對歐洲經濟區、英國及瑞士等適用地區，本站使用 Google 認證的同意管理平台（CMP）呈現選項。你可以同意、拒絕或管理用途與合作夥伴；若網站顯示「隱私權與 Cookie 設定」入口，可用它重新開啟選項並<strong>撤回或調整同意</strong>。</p>
+            <p>你也可以使用瀏覽器封鎖或刪除 Cookie，並透過 <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">Google 我的廣告中心</a>管理 Google 廣告偏好。變更可能需要重新整理頁面才會生效，且封鎖必要儲存空間可能影響部分功能。</p>
+          </section>
+
+          <section aria-labelledby="services-heading">
+            <h2 id="services-heading">5. 服務、保存與安全</h2>
+            <p>部分 Blog 頁面仍含既有 Google Analytics，並可能使用搜尋、內容傳遞或瀏覽計數服務；家電推薦比較工作台不使用 Google Analytics，也未加入 Google Ads 轉換追蹤。第三方會依其政策保存資料，本站不會用廣告資料建立可直接辨識你的會員檔案。</p>
+            <p>技術紀錄與來信會依維運、安全、爭議處理或法律義務所需期間保存。雖採取合理措施降低未授權存取風險，但網路傳輸與儲存無法保證絕對安全。</p>
+          </section>
+
+          <section aria-labelledby="contact-heading">
+            <h2 id="contact-heading">6. 聯絡與政策更新</h2>
+            <p>若對本政策、資料處理或同意選項有疑問，請寄信至 <a href="mailto:river@riverye.com">river@riverye.com</a>。政策如有重大變更，會更新本頁內容與日期。</p>
+            <div class="actions">
+              <a class="action-link" href="https://appliance.riverye.com/">返回家電推薦比較工作台</a>
+              <a class="action-link secondary" href="https://riverye.com/">返回小菜的 Blog</a>
+            </div>
+          </section>
+
+          <p class="legal-note">本頁是依現行網站功能與 Google 服務要求建立的實作基線，不構成針對任何司法管轄區的法律意見。</p>
+        </div>
+      </article>
+    </main>
+
+    <footer>© River-Ye</footer>
+  </body>
+</html>
